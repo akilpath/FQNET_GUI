@@ -1,4 +1,4 @@
- #include <qutag_adq.h>
+#include <qutag_adq.h>
 #include <iostream>//entradas y salidas por consola
 #include <fstream>//archivos.txt
 
@@ -8,9 +8,7 @@
 //////constructor////////
 //////////////////////////////////////////////////
 qutagadq::qutagadq(){
-  /*else{
-	printf("El conversor esta con problemas\n");printf("error %d\n", ret);terminate();
-	}*/
+
 	
 }
 
@@ -18,6 +16,12 @@ void qutagadq::run(){
 
     rc = TDC_init( -1 );                                 /* Accept every device */
     checkRc( "TDC_init", rc );
+
+    rc = TDC_getTimebase( &timeBase );
+    checkRc( "TDC_getTimebase", rc );
+
+    rc = TDC_enableChannels( 0xff );                     /* Use all channels */
+    checkRc( "TDC_enableChannels", rc );
 }
 
 /* Check return code and exit on error */
@@ -32,54 +36,32 @@ void qutagadq::checkRc( const char * fctname, int rc )
     }
   }
 }
-/////////////////////////////////////////
-////////loop de adquisicion//////////////
-////////////////////////////////////////
+
+
 
 
  void qutagadq::adqui(){
-
-
-	
-
-
 
     //	gettimeofday(&ti,NULL);
 	
 //////////////////////adquisition loop/////////////////
 
 		while(1){
-			
-	
 
-
+            TDC_getLastTimestamps( 1, timestamps, channels, &tsValid );
             //gettimeofday(&ti,NULL);
             //time = t.tv_sec-ti.tv_sec;
 
             //for (time = 0 ;time < _tiempoadq; gettimeofday(&t,NULL), time = t.tv_sec-ti.tv_sec) {
+//			if(_stop)break;
+         //   while(_pause);
 
 
-                //while(_pause)sleep(1);
-
-
-
-
-	
-				if(_stop)break;
-
-				if(ret!=0){
-					printf("error %d\n", ret);
-                    //emit error1();break;
-				}
 
                 //fflush(stdout);
 
 
 
-
-                    //	data.append(*(Evt->DataChannel[0]+j));
-
-					}
 
 
 
@@ -94,18 +76,10 @@ void qutagadq::checkRc( const char * fctname, int rc )
 					if(contaeve > _eventosfoto)emit adquifoto();
 					contaeve=0;emit scope(datascope);
                 }*/
-				
+							
 
-			
 
-            /*if(ret!=0){
-				printf("error %d\n", ret);
-				break;
-            }*/
-
-			
-	
-
+        }
             //if(_stop)break;
             //if(conta!=0)emit finadqhist(data, conta, line);
             //printf("emit final adq\n");
@@ -115,9 +89,7 @@ void qutagadq::checkRc( const char * fctname, int rc )
 }
 
 
-////////////////////////////////////////////////
-//////////slots para pausar/reanudar la adq////
-/////////////////////////////////////////////////
+
 
 /*void adquiclass::detener(){
 	_pause=true;
@@ -125,8 +97,7 @@ void qutagadq::checkRc( const char * fctname, int rc )
 */
 
  qutagadq::~qutagadq(){
-   /*else{
-     printf("El conversor esta con problemas\n");printf("error %d\n", ret);terminate();
-     }*/
+
+TDC_deInit();
 
  }

@@ -17,6 +17,7 @@
 typedef QVector<int> datadqi;
 typedef QVector<double> datadqidouble;
 
+#define TIMESTAMP_COUNT   100000
 
 class qutagadq : public QThread
 {
@@ -52,7 +53,10 @@ private:
 	QVector<int> datascope;
 	bool _stop, _pause;
     int ret, rc;
-
+    double timeBase;
+    Int64 timestamps[TIMESTAMP_COUNT];
+    Int8  channels[TIMESTAMP_COUNT];
+    Int32 tsValid;
 };
 
 #endif // ADQUICLASS_H
