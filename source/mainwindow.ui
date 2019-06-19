@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>683</height>
+    <width>1500</width>
+    <height>1000</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>QCustomPlot plot examples</string>
@@ -39,11 +45,11 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="tabconf">
+      <widget class="QWidget" name="tab1">
        <attribute name="title">
-        <string>Configuration</string>
+        <string>Tab 1</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
@@ -62,108 +68,1271 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QWidget" name="horizontalWidget_2" native="true">
-            <property name="styleSheet">
-             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <property name="sizeConstraint">
-              <enum>QLayout::SetDefaultConstraint</enum>
+         <widget class="QWidget" name="widget" native="true">
+          <property name="styleSheet">
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QFrame" name="horizontalFrame_299">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <item alignment="Qt::AlignLeft">
-              <widget class="QLabel" name="label_8">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>264</width>
-                 <height>102</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::RichText</enum>
-               </property>
-               <property name="pixmap">
-                <pixmap>logo15.png</pixmap>
-               </property>
-               <property name="scaledContents">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);</string>
-               </property>
-               <property name="text">
-                <string>RESET</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QScrollArea" name="scrollArea">
-              <property name="styleSheet">
-               <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+             <property name="styleSheet">
+              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetDefaultConstraint</enum>
               </property>
-              <property name="widgetResizable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>990</width>
-                 <height>492</height>
-                </rect>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_2"/>
-              </widget>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <item>
+                 <widget class="QLabel" name="label_8">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="palette">
+                   <palette>
+                    <active>
+                     <colorrole role="WindowText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>238</red>
+                        <green>238</green>
+                        <blue>236</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Button">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Light">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Midlight">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Dark">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>127</red>
+                        <green>127</green>
+                        <blue>127</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Mid">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>170</red>
+                        <green>170</green>
+                        <blue>170</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Text">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="BrightText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ButtonText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Base">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Window">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Shadow">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="AlternateBase">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ToolTipBase">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>220</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ToolTipText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="PlaceholderText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="128">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                    </active>
+                    <inactive>
+                     <colorrole role="WindowText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>238</red>
+                        <green>238</green>
+                        <blue>236</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Button">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Light">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Midlight">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Dark">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>127</red>
+                        <green>127</green>
+                        <blue>127</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Mid">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>170</red>
+                        <green>170</green>
+                        <blue>170</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Text">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="BrightText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ButtonText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Base">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Window">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Shadow">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="AlternateBase">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ToolTipBase">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>220</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ToolTipText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="PlaceholderText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="128">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                    </inactive>
+                    <disabled>
+                     <colorrole role="WindowText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>127</red>
+                        <green>127</green>
+                        <blue>127</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Button">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Light">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Midlight">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Dark">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>127</red>
+                        <green>127</green>
+                        <blue>127</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Mid">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>170</red>
+                        <green>170</green>
+                        <blue>170</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Text">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>127</red>
+                        <green>127</green>
+                        <blue>127</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="BrightText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ButtonText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>127</red>
+                        <green>127</green>
+                        <blue>127</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Base">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Window">
+                      <brush brushstyle="LinearGradientPattern">
+                       <gradient startx="0.000000000000000" starty="0.000000000000000" endx="1.000000000000000" endy="0.000000000000000" type="LinearGradient" spread="PadSpread" coordinatemode="ObjectBoundingMode">
+                        <gradientstop position="0.000000000000000">
+                         <color alpha="255">
+                          <red>80</red>
+                          <green>80</green>
+                          <blue>80</blue>
+                         </color>
+                        </gradientstop>
+                        <gradientstop position="1.000000000000000">
+                         <color alpha="255">
+                          <red>50</red>
+                          <green>50</green>
+                          <blue>50</blue>
+                         </color>
+                        </gradientstop>
+                       </gradient>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="Shadow">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="AlternateBase">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ToolTipBase">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>220</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="ToolTipText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="255">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                     <colorrole role="PlaceholderText">
+                      <brush brushstyle="SolidPattern">
+                       <color alpha="128">
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                       </color>
+                      </brush>
+                     </colorrole>
+                    </disabled>
+                   </palette>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="textFormat">
+                   <enum>Qt::RichText</enum>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="resources.qrc">:/logo15.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QWidget" name="" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_24">
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>Clock/Start Channel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>Auto</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinBox">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_11">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Minimum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_8">
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Bin resolution</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="spinBox_17">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_12">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Minimum</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <item>
+                 <widget class="QLabel" name="label_4">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string># bins in plot</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="spinBox_2">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_13">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Minimum</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_7">
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>update rate / Adq time</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_14">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Minimum</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="horizontalWidget" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QCustomPlot" name="PlotA" native="true">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_10"/>
+               </widget>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_12">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <item>
+                   <widget class="QLabel" name="label_3">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>Windows</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QGridLayout" name="gridLayout">
+                  <item row="3" column="1">
+                   <widget class="QSpinBox" name="spinBox_6">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="spinBox_5">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QSpinBox" name="spinBox_9">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_10">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(136, 138, 133);
+color: rgb(52, 101, 164);</string>
+                    </property>
+                    <property name="text">
+                     <string>3</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_19">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>End</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QSpinBox" name="spinBox_7">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_9">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(136, 138, 133);
+color: rgb(115, 210, 22);</string>
+                    </property>
+                    <property name="text">
+                     <string>2</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="label_18">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>Begin</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinBox_4">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_7">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(136, 138, 133);
+color: rgb(239, 41, 41);</string>
+                    </property>
+                    <property name="text">
+                     <string>1</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QSpinBox" name="spinBox_8">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_10">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_13">
+                <item>
+                 <widget class="QLabel" name="label_6">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Plot A</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QFormLayout" name="formLayout_2">
+                  <item row="1" column="0">
+                   <widget class="QLCDNumber" name="lcdNumber"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QRadioButton" name="radioButton_2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLCDNumber" name="lcdNumber_2"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLCDNumber" name="lcdNumber_3"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QRadioButton" name="radioButton_3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QRadioButton" name="radioButton_4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_17">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>Counts</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="label_20">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>Track</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_9">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="horizontalWidget_3" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QCustomPlot" name="PlotB" native="true">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_11"/>
+               </widget>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Windows</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QGridLayout" name="gridLayout_2">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_15">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(136, 138, 133);
+color: rgb(115, 210, 22);</string>
+                    </property>
+                    <property name="text">
+                     <string>2</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QSpinBox" name="spinBox_11">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QSpinBox" name="spinBox_12">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QSpinBox" name="spinBox_15">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_14">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(136, 138, 133);
+color: rgb(52, 101, 164);</string>
+                    </property>
+                    <property name="text">
+                     <string>3</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_13">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(136, 138, 133);
+color: rgb(239, 41, 41);</string>
+                    </property>
+                    <property name="text">
+                     <string>1</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QSpinBox" name="spinBox_10">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinBox_13">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="spinBox_14">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="label_31">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>Begin</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_53">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>End</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_14">
+                <item>
+                 <widget class="QLabel" name="label_12">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Plot B</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QFormLayout" name="formLayout_3">
+                  <item row="1" column="0">
+                   <widget class="QLCDNumber" name="lcdNumber_4"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLCDNumber" name="lcdNumber_5"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLCDNumber" name="lcdNumber_6"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QRadioButton" name="radioButton_5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QRadioButton" name="radioButton_6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QRadioButton" name="radioButton_7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_54">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>Counts</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="label_55">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>Track</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_8">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="horizontalWidget_2" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_16">
+                <item>
+                 <widget class="QLabel" name="label_16">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Track coincidences</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCustomPlot" name="PlotTrack" native="true">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_17"/>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabdisp">
+      <widget class="QWidget" name="tab2">
        <attribute name="title">
-        <string>Display</string>
+        <string>Tab 2</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="spacing">
@@ -182,23 +1351,108 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <property name="spacing">
-           <number>0</number>
+         <widget class="QWidget" name="tab2W" native="true">
+          <property name="styleSheet">
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
           </property>
-          <item>
-           <widget class="QWidget" name="verticalWidget" native="true">
-            <property name="styleSheet">
-             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_19">
              <item>
-              <spacer name="verticalSpacer">
+              <layout class="QVBoxLayout" name="verticalLayout_20">
+               <item>
+                <widget class="QLabel" name="label_21">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                 <property name="text">
+                  <string>X value</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBox_16">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_22">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                 <property name="text">
+                  <string>Adquisition time</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Start / adquire</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Save data / plot</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_3">
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Preferred</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -209,9 +1463,580 @@
               </spacer>
              </item>
             </layout>
-           </widget>
-          </item>
-         </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_18">
+             <property name="leftMargin">
+              <number>25</number>
+             </property>
+             <property name="rightMargin">
+              <number>23</number>
+             </property>
+             <item>
+              <spacer name="verticalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_9">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_27">
+                 <item>
+                  <widget class="QLabel" name="label_27">
+                   <property name="font">
+                    <font>
+                     <pointsize>20</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string> Plot</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_28">
+                   <property name="font">
+                    <font>
+                     <pointsize>20</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string> Window </string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_29">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <widget class="QLabel" name="label_29">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>A</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_30">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>B</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_11">
+                   <item>
+                    <widget class="QLabel" name="label_36">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_37">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_35">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_28">
+                 <item>
+                  <widget class="QLabel" name="label_23">
+                   <property name="font">
+                    <font>
+                     <pointsize>43</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>&amp;</string>
+                   </property>
+                   <property name="textFormat">
+                    <enum>Qt::RichText</enum>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_26">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_10">
+                   <item>
+                    <widget class="QLabel" name="label_32">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_34">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_33">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_6">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_5">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_12">
+                   <item>
+                    <widget class="QLabel" name="label_38">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_40">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_39">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_31">
+                 <item>
+                  <widget class="QLabel" name="label_25">
+                   <property name="font">
+                    <font>
+                     <pointsize>20</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string> Plot</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_26">
+                   <property name="font">
+                    <font>
+                     <pointsize>20</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string> Window </string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_22">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                   <item>
+                    <widget class="QLabel" name="label_42">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_43">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_41">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_4">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_3">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_14">
+                   <item>
+                    <widget class="QLabel" name="label_44">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_45">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_46">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_23">
+                 <item>
+                  <widget class="QLabel" name="label_24">
+                   <property name="font">
+                    <font>
+                     <pointsize>44</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>&amp;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_30">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_15">
+                   <item>
+                    <widget class="QLabel" name="label_47">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_49">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_48">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_8">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="horizontalSlider_7">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_16">
+                   <item>
+                    <widget class="QLabel" name="label_50">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_52">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_51">
+                     <property name="text">
+                      <string>TextLabel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QCustomPlot" name="PlotTab2" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5"/>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -224,7 +2049,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>1500</width>
      <height>25</height>
     </rect>
    </property>
@@ -307,6 +2132,16 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>./qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

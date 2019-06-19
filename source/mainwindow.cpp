@@ -18,8 +18,11 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow){
 
   ui->setupUi(this);
-  setGeometry(200, 200, 1100, 600);
+  setGeometry(200, 200, 1500, 1000);
 
+setupPlotA(ui->PlotB);
+setupPlotA(ui->PlotA);
+//setupPlotA(ui->PlotA);
 
  /* setupHistoPlot(ui->histograma);
 
@@ -35,12 +38,12 @@ MainWindow::MainWindow(QWidget *parent) :
   //setupsignalslot();
 
 setWindowTitle(QString("INQNET TDC"));
-QPixmap pixmap("/home/cptlab/Desktop/INQNET_GUI/source/logo15.png");
+/*QPixmap pixmap("/home/cptlab/Desktop/INQNET_GUI/source/logo15.png");
 ui->label_8->setPixmap(pixmap);
 //ui->label_8->setMask(pixmap.mask());
-ui->label_8->show();
+ui->label_8->show();*/
  
-  statusBar()->clearMessage();
+ // statusBar()->clearMessage();
 
   /*ui->histograma->replot();
   ui->rate->replot();
@@ -53,21 +56,8 @@ f.start();
 anl.start();
 
 */
+adq.start();
 
-/*QVector<double> x(500); 
-_xpedestal=162;
-_xcristal=10121;
-double delta=_xcristal - _xpedestal;
-for (int i=0; i<500; ++i){
-			x[i] = (1435/delta)*(i - _xpedestal);
-		}
-
-cout<<_xpedestal<<endl<<_xcristal<<endl<<delta<<endl;
-for (int i=0; i<50; ++i){
-			cout<<x[i]<<"  ";
-		}
-
-*/
 }
 
 
@@ -77,11 +67,9 @@ void MainWindow::getImg(QImage* img)   //This code will update the image
  ui->imageLabel->setPixmap(QPixmap::fromImage(*img));
  delete img;
  }*/
-///////////////////////////////////////////
-///////////setup osciloscopio//////////////
-///////////////////////////////////////////
 
-/*void MainWindow::setupCustomScope(QCustomPlot *scope){
+
+void MainWindow::setupPlotA(QCustomPlot *scope){
 
 
 scope->plotLayout()->clear();
@@ -126,8 +114,8 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
   wideAxisRect->axis(QCPAxis::atLeft, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
   wideAxisRect->axis(QCPAxis::atBottom, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
 
-  wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabel("Voltaje [V]");
-  wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabel("Tiempo [ns]");
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabel("Counts");
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabel("Time");
 
   wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabelColor(Qt::white);
   wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabelColor(Qt::white);
@@ -136,13 +124,10 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
 
 
   
-	QCPPlotTitle *title1 = new QCPPlotTitle(scope);
-	title1->setText("Osciloscopio");
-	title1->setFont(QFont("sans", 12, QFont::Bold));
-	title1->setTextColor(Qt::white);
 
- scope->plotLayout()->addElement(0, 0, title1);
- scope->plotLayout()->addElement(1, 0, wideAxisRect); 
+
+ //scope->plotLayout()->addElement(0, 0, title1);
+ scope->plotLayout()->addElement(0, 0, wideAxisRect);
 
 
 
@@ -161,16 +146,17 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
   plotGradient.setColorAt(0, QColor(80, 80, 80));
   plotGradient.setColorAt(1, QColor(50, 50, 50));
   scope->setBackground(plotGradient);
-  QLinearGradient axisRectGradient;
+  /*QLinearGradient axisRectGradient;
   axisRectGradient.setStart(0, 0);
   axisRectGradient.setFinalStop(0, 350);
   axisRectGradient.setColorAt(0, QColor(80, 80, 80));
   axisRectGradient.setColorAt(1, QColor(30, 30, 30));
-  scope->axisRect()->setBackground(axisRectGradient);
+  scope->axisRect()->setBackground(axisRectGradient);*/
 
-
+  scope->rescaleAxes();
+  scope->yAxis->setRange(0, 2);
 }
-
+/*
 
 /////////////////////////////////////////////////////////
 //////////setup histograma pestaña calibracion/////////

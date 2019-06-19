@@ -11,6 +11,7 @@
 //#include "autagAN.h"
 #include <ctime>
 #include <stdio.h>
+#include "qutag_adq.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,8 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
   void closeEvent(QCloseEvent *event);
+
+  void setupPlotA(QCustomPlot *customPlot);
   /*void setupHistoPlot(QCustomPlot *customPlot);
   void setupRatePlot(QCustomPlot *customPlot);
   void setupCustomCali(QCustomPlot *customcali);
@@ -54,6 +57,7 @@ private slots:
 
 private:
   Ui::MainWindow *ui;
+  qutagadq adq;
   QString demoName;
   QTimer dataTimer;
   QCPItemTracer *itemDemoPhaseTracer;
