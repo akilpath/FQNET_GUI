@@ -24,12 +24,14 @@ INCPATH +=
 SOURCES += main.cpp\
            mainwindow.cpp \
            qcustomplot.cpp \
-           qutag_adq.cpp
+           qutag_adq.cpp \
+           qutag_anl.cpp
           
 
 HEADERS  += mainwindow.h \
             qcustomplot.h \
             qutag_adq.h \
+            qutag_anl.h \
             tdcbase.h \
             tdcdecl.h \
             tdcstartstop.h

@@ -22,20 +22,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 setupPlotA(ui->PlotB);
 setupPlotA(ui->PlotA);
+setupPlotA(ui->PlotTrack);
 //setupPlotA(ui->PlotA);
 
- /* setupHistoPlot(ui->histograma);
-
-  setupRatePlot(ui->rate);
-
-  setupCustomCali(ui->customcali);
-
-  setupCustomScope(ui->scope);
-*/
 
 
-
-  //setupsignalslot();
+  setupsignalslot();
 
 setWindowTitle(QString("INQNET TDC"));
 /*QPixmap pixmap("/home/cptlab/Desktop/INQNET_GUI/source/logo15.png");
@@ -57,6 +49,7 @@ anl.start();
 
 */
 adq.start();
+anl.start();
 
 }
 
@@ -469,7 +462,21 @@ void MainWindow::setupRatePlot(QCustomPlot *rate){
 }
 ////////////////////////////////////////
 //////////////////////////////////////////
+*/
+void MainWindow::setupsignalslot(){
 
+    qRegisterMetaType<timetagsPP>("timetagsPP");
+    qRegisterMetaType<channelsTDCPP>("channelsTDCPP");
+
+
+QObject::connect(ui->startChan, SIGNAL(valueChanged(int)), &adq, SLOT(clockchange(int)));
+
+QObject::connect(&adq, SIGNAL(dataready(timetagsPP, channelsTDCPP, int)), &anl, SLOT(inputdata(timetagsPP, channelsTDCPP, int)),Qt::QueuedConnection);
+
+}
+
+
+/*
 void MainWindow::setupsignalslot(){
 
 
@@ -588,41 +595,41 @@ void MainWindow::scopeplot(const datadqi &datach1)
 ////////////////////////////////////////////////
 //////////////grafico eventos////////////////////
 ////////////////////////////////////////////////
-
-void MainWindow::tiemporeal2(int event, double key){
+*/
+void MainWindow::plotRates(int event, double key){
 
 static double lastPointKey = 0;
 
     double value1 = event; 
     // add data to lines:
-    ui->eventrate->display(event);
-   if(event<_eventosalarma)ui->rate->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),8));
-   else ui->rate->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),8));
+    //ui->eventrate->display(event);
+   //if(event<_eventosalarma)ui->rate->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),8));
+   //else ui->rate->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),8));
 
-    ui->rate->graph(0)->addData(key, value1);
+    ui->PlotTrack->graph(0)->addData(key, value1);
     // remove data of lines that's outside visible range:key, value1
-    ui->rate->graph(0)->removeDataBefore(key-55);
+    //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
     // rescale value (vertical) axis to fit the current data:
-    ui->rate->graph(0)->rescaleValueAxis(true);
+    ui->PlotTrack->graph(0)->rescaleValueAxis(true);
     lastPointKey = key;
 
 
   
  // make key axis range scroll with the data (at a constant range size of 8):
-   ui->rate->graph(0)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
-   ui->rate->replot();
+   ui->PlotTrack->graph(0)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
+   ui->PlotTrack->replot();
 
 
-   prom=0;
-   promedio.prepend(event);
-   for(int i=0; i<promedio.size(); i++)prom=prom+promedio[i];
-   prom=prom/promedio.size();
-   ui->mediamovil->display(prom);
-   if(promedio.size()>50)promedio.resize(50);
+   //prom=0;
+   //promedio.prepend(event);
+   //for(int i=0; i<promedio.size(); i++)prom=prom+promedio[i];
+   //prom=prom/promedio.size();
+   //ui->mediamovil->display(prom);
+   //if(promedio.size()>50)promedio.resize(50);
    
 
 }
-
+/*
 //////////////////////////////////////////////////////////
 ///////////////////histograma///////////////////////////
 ///////////////////////////////////////////////////////////
