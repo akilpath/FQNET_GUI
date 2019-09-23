@@ -703,6 +703,15 @@
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
+                   <property name="minimum">
+                    <number>0</number>
+                   </property>
+                   <property name="maximum">
+                    <number>5</number>
+                   </property>
+                   <property name="value">
+                    <number>3</number>
+                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -743,12 +752,30 @@
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
+                    <property name="minimum">
+                     <number>0</number>
+                    </property>
+                    <property name="maximum">
+                     <number>4</number>
+                    </property>
+                    <property name="value">
+                     <number>4</number>
+                    </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="PlotAchn2">
+                   <widget class="QSpinBox" name="PlotAChn2">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>4</number>
+                    </property>
+                    <property name="value">
+                     <number>4</number>
                     </property>
                    </widget>
                   </item>
@@ -787,16 +814,34 @@
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_24">
                   <item>
-                   <widget class="QSpinBox" name="PlotBchn1">
+                   <widget class="QSpinBox" name="PlotBChn1">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>4</number>
+                    </property>
+                    <property name="value">
+                     <number>4</number>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="PlotBchn2">
+                   <widget class="QSpinBox" name="PlotBChn2">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>4</number>
+                    </property>
+                    <property name="value">
+                     <number>4</number>
                     </property>
                    </widget>
                   </item>
@@ -813,32 +858,60 @@
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
                    <property name="text">
-                    <string>Bin resolution</string>
+                    <string>Histogram Start</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="binres">
+                  <widget class="QSpinBox" name="histStart">
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
+                   <property name="suffix">
+                    <string>  [ps]</string>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>90000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>0</number>
+                   </property>
+                   <property name="value">
+                    <number>2</number>
+                   </property>
                   </widget>
                  </item>
                  <item>
-                  <spacer name="verticalSpacer_12">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                  <widget class="QLabel" name="label_70">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Minimum</enum>
+                   <property name="text">
+                    <string>Histogram End</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="histEnd">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
-                  </spacer>
+                   <property name="suffix">
+                    <string> [ps]</string>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>100000</number>
+                   </property>
+                   <property name="value">
+                    <number>800</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -860,6 +933,12 @@
                   <widget class="QSpinBox" name="binsinplot">
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>100000</number>
                    </property>
                   </widget>
                  </item>
@@ -899,6 +978,12 @@
                   <widget class="QDoubleSpinBox" name="adqtime">
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="suffix">
+                    <string> [s]</string>
+                   </property>
+                   <property name="minimum">
+                    <double>0.100000000000000</double>
                    </property>
                   </widget>
                  </item>
@@ -967,12 +1052,30 @@
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
+                    </property>
                    </widget>
                   </item>
                   <item row="2" column="1">
                    <widget class="QSpinBox" name="BegA2">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
                     </property>
                    </widget>
                   </item>
@@ -981,13 +1084,22 @@
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
+                    </property>
                    </widget>
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_10">
                     <property name="styleSheet">
                      <string notr="true">background-color: rgb(136, 138, 133);
-color: rgb(52, 101, 164);</string>
+color: rgb(252, 233, 79);</string>
                     </property>
                     <property name="text">
                      <string> 3 </string>
@@ -1008,6 +1120,15 @@ color: rgb(52, 101, 164);</string>
                    <widget class="QSpinBox" name="EndA2">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
                     </property>
                    </widget>
                   </item>
@@ -1037,6 +1158,15 @@ color: rgb(115, 210, 22);</string>
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
+                    </property>
                    </widget>
                   </item>
                   <item row="1" column="0">
@@ -1054,6 +1184,15 @@ color: rgb(239, 41, 41);</string>
                    <widget class="QSpinBox" name="EndA1">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
                     </property>
                    </widget>
                   </item>
@@ -1091,13 +1230,6 @@ color: rgb(239, 41, 41);</string>
                   <item row="1" column="0">
                    <widget class="QLCDNumber" name="countA1"/>
                   </item>
-                  <item row="1" column="1">
-                   <widget class="QRadioButton" name="trackA1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="2" column="0">
                    <widget class="QLCDNumber" name="countA2"/>
                   </item>
@@ -1106,15 +1238,27 @@ color: rgb(239, 41, 41);</string>
                   </item>
                   <item row="2" column="1">
                    <widget class="QRadioButton" name="trackA2">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(238, 238, 236);</string>
+                    </property>
                     <property name="text">
-                     <string/>
+                     <string>2</string>
+                    </property>
+                    <property name="autoExclusive">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="1">
                    <widget class="QRadioButton" name="trackA3">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(238, 238, 236);</string>
+                    </property>
                     <property name="text">
-                     <string/>
+                     <string>3</string>
+                    </property>
+                    <property name="autoExclusive">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -1135,6 +1279,22 @@ color: rgb(239, 41, 41);</string>
                     </property>
                     <property name="text">
                      <string>Track</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QRadioButton" name="trackA1">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="text">
+                     <string>1</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="autoExclusive">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -1194,6 +1354,15 @@ color: rgb(239, 41, 41);</string>
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
+                    </property>
                    </widget>
                   </item>
                   <item row="3" column="2">
@@ -1201,12 +1370,30 @@ color: rgb(239, 41, 41);</string>
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
+                    </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
                    <widget class="QSpinBox" name="BegB1">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
                     </property>
                    </widget>
                   </item>
@@ -1224,7 +1411,7 @@ color: rgb(239, 41, 41);</string>
                    <widget class="QLabel" name="label_14">
                     <property name="styleSheet">
                      <string notr="true">background-color: rgb(136, 138, 133);
-color: rgb(52, 101, 164);</string>
+color: rgb(252, 233, 79);</string>
                     </property>
                     <property name="text">
                      <string> 3 </string>
@@ -1247,12 +1434,30 @@ color: rgb(115, 210, 22);</string>
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
+                    </property>
                    </widget>
                   </item>
                   <item row="1" column="2">
                    <widget class="QSpinBox" name="EndB1">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
                     </property>
                    </widget>
                   </item>
@@ -1270,6 +1475,15 @@ color: rgb(115, 210, 22);</string>
                    <widget class="QSpinBox" name="BegB2">
                     <property name="styleSheet">
                      <string notr="true">color: rgb(238, 238, 236);</string>
+                    </property>
+                    <property name="suffix">
+                     <string> [ps]</string>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>100</number>
                     </property>
                    </widget>
                   </item>
@@ -1326,22 +1540,31 @@ color: rgb(239, 41, 41);</string>
                   </item>
                   <item row="1" column="1">
                    <widget class="QRadioButton" name="trackB1">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(238, 238, 236);</string>
+                    </property>
                     <property name="text">
-                     <string/>
+                     <string>1</string>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="1">
                    <widget class="QRadioButton" name="trackB2">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(238, 238, 236);</string>
+                    </property>
                     <property name="text">
-                     <string/>
+                     <string>2</string>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="1">
                    <widget class="QRadioButton" name="trackB3">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(238, 238, 236);</string>
+                    </property>
                     <property name="text">
-                     <string/>
+                     <string>3</string>
                     </property>
                    </widget>
                   </item>
@@ -1399,24 +1622,6 @@ color: rgb(239, 41, 41);</string>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_16">
-                <item>
-                 <widget class="QLabel" name="label_16">
-                  <property name="font">
-                   <font>
-                    <pointsize>19</pointsize>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(238, 238, 236);</string>
-                  </property>
-                  <property name="text">
-                   <string>Track coincidences</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
                 <item>
                  <widget class="QCustomPlot" name="PlotTrack" native="true">
                   <property name="sizePolicy">
@@ -1522,6 +1727,9 @@ color: rgb(239, 41, 41);</string>
                 <widget class="QDoubleSpinBox" name="adqtime_2">
                  <property name="styleSheet">
                   <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                 <property name="suffix">
+                  <string> [s]</string>
                  </property>
                 </widget>
                </item>
@@ -1663,10 +1871,13 @@ color: rgb(239, 41, 41);</string>
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>1</number>
+                   </property>
+                   <property name="value">
+                    <number>1</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1682,10 +1893,13 @@ color: rgb(239, 41, 41);</string>
                     </sizepolicy>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>2</number>
+                   </property>
+                   <property name="value">
+                    <number>2</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1791,10 +2005,13 @@ color: rgb(239, 41, 41);</string>
                     </sizepolicy>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>1</number>
+                   </property>
+                   <property name="value">
+                    <number>1</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1810,10 +2027,13 @@ color: rgb(239, 41, 41);</string>
                     </sizepolicy>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>2</number>
+                   </property>
+                   <property name="value">
+                    <number>2</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1929,10 +2149,13 @@ color: rgb(239, 41, 41);</string>
                     </sizepolicy>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>1</number>
+                   </property>
+                   <property name="value">
+                    <number>0</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -1948,10 +2171,13 @@ color: rgb(239, 41, 41);</string>
                     </sizepolicy>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>2</number>
+                   </property>
+                   <property name="value">
+                    <number>0</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -2051,10 +2277,13 @@ color: rgb(239, 41, 41);</string>
                     </sizepolicy>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>1</number>
+                   </property>
+                   <property name="value">
+                    <number>0</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -2070,10 +2299,13 @@ color: rgb(239, 41, 41);</string>
                     </sizepolicy>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                    <property name="maximum">
-                    <number>3</number>
+                    <number>2</number>
+                   </property>
+                   <property name="value">
+                    <number>0</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -2189,6 +2421,9 @@ color: rgb(239, 41, 41);</string>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="maximum">
+                    <number>1</number>
+                   </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
@@ -2201,6 +2436,15 @@ color: rgb(239, 41, 41);</string>
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>0</number>
+                   </property>
+                   <property name="maximum">
+                    <number>2</number>
+                   </property>
+                   <property name="value">
+                    <number>0</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -2301,6 +2545,9 @@ color: rgb(239, 41, 41);</string>
                        <verstretch>0</verstretch>
                       </sizepolicy>
                      </property>
+                     <property name="maximum">
+                      <number>1</number>
+                     </property>
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
                      </property>
@@ -2313,6 +2560,9 @@ color: rgb(239, 41, 41);</string>
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
+                     </property>
+                     <property name="maximum">
+                      <number>2</number>
                      </property>
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
@@ -2417,13 +2667,8 @@ color: rgb(239, 41, 41);</string>
     <property name="title">
      <string>menu1</string>
     </property>
-    <addaction name="action"/>
     <addaction name="separator"/>
-    <addaction name="action_2"/>
-    <addaction name="action_3"/>
     <addaction name="separator"/>
-    <addaction name="action_4"/>
-    <addaction name="action_5"/>
    </widget>
    <widget class="QMenu" name="menudisplay_n">
     <property name="font">
@@ -2434,81 +2679,22 @@ color: rgb(239, 41, 41);</string>
     <property name="title">
      <string>menu2</string>
     </property>
-    <addaction name="action_6"/>
-    <addaction name="action_7"/>
    </widget>
    <addaction name="menuconfig_n"/>
    <addaction name="menudisplay_n"/>
   </widget>
-  <action name="action">
-   <property name="text">
-    <string>Comenzar</string>
-   </property>
-  </action>
-  <action name="action_4">
-   <property name="text">
-    <string>Detener</string>
-   </property>
-  </action>
-  <action name="action_6">
-   <property name="text">
-    <string>Foto</string>
-   </property>
-  </action>
-  <action name="action_3">
-   <property name="text">
-    <string>Continuar</string>
-   </property>
-  </action>
-  <action name="action_5">
-   <property name="text">
-    <string>Reset</string>
-   </property>
-  </action>
-  <action name="actionCalibrar">
-   <property name="text">
-    <string>Calibrar</string>
-   </property>
-  </action>
-  <action name="action_7">
-   <property name="text">
-    <string>Pantallazo</string>
-   </property>
-  </action>
-  <action name="action_2">
-   <property name="text">
-    <string>Pausar</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>QCustomPlot</class>
    <extends>QWidget</extends>
-   <header>./qcustomplot.h</header>
+   <header location="global">./qcustomplot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>trackA1</sender>
-   <signal>clicked()</signal>
-   <receiver>trackA2</receiver>
-   <slot>toggle()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1459</x>
-     <y>264</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1459</x>
-     <y>293</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

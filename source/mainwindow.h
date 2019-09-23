@@ -7,8 +7,6 @@
 #include <QTimer>
 #include "qcustomplot.h" 
 #include <QtCore>
-//#include "qutagADQ.h"
-//#include "autagAN.h"
 #include <ctime>
 #include <stdio.h>
 #include "qutag_adq.h"
@@ -34,32 +32,66 @@ public:
   void closeEvent(QCloseEvent *event);
 
   void setupPlotA(QCustomPlot *customPlot);
+  void setupratePlot(QCustomPlot *customPlot);
 
   void setupsignalslot();
-  /*void setupHistoPlot(QCustomPlot *customPlot);
-  void setupRatePlot(QCustomPlot *customPlot);
-  void setupCustomCali(QCustomPlot *customcali);
-  void setupCustomScope(QCustomPlot *customcali);
-  void setupPlayground(QCustomPlot *customPlot);
-  */
-  
+  void setupHistoPlot(QCustomPlot *customPlot);
+
   
 
 private slots:
-  //void tiemporeal(const datadqi &datach1, int even, int mues);
-  /*void tiemporeal(const datadqidouble &dat);
-  void histopedestal(const datadqidouble &dat, int xset, int a);
-  void scopeplot(const datadqi &datach1);
-*/
-  /*void changeBinres(int binres);
 
-  void changeBinsInPlot(int binsinplot);
-  void changeUpdateRate(int updaterate);
-  void changePlotCoincidenceA(int ch1,int ch2);
-  */
-  void plotRates(int event, double key);
-  void changeStartchan(int starchan){startChan=starchan;}
+  void plotRates(char AoB, int event, double key);
+  void changeStartchan(int starchan){this->in_startChan=starchan;}
 
+  void histoplot(const vectorDouble &dat1, const vectorDouble &dat2);
+
+  void LinePlot();
+  void BegA1(int val){Plot_Win_BoE[0][0][0]=val;LinePlot();}
+  void BegA2(int val){Plot_Win_BoE[0][1][0]=val;LinePlot();}
+  void BegA3(int val){Plot_Win_BoE[0][2][0]=val;LinePlot();}
+  void EndA1(int val){Plot_Win_BoE[0][0][1]=val;LinePlot();}
+  void EndA2(int val){Plot_Win_BoE[0][1][1]=val;LinePlot();}
+  void EndA3(int val){Plot_Win_BoE[0][2][1]=val;LinePlot();}
+
+  void BegB1(int val){Plot_Win_BoE[1][0][0]=val;LinePlot();}
+  void BegB2(int val){Plot_Win_BoE[1][1][0]=val;LinePlot();}
+  void BegB3(int val){Plot_Win_BoE[1][2][0]=val;LinePlot();}
+  void EndB1(int val){Plot_Win_BoE[1][0][1]=val;LinePlot();}
+  void EndB2(int val){Plot_Win_BoE[1][1][1]=val;LinePlot();}
+  void EndB3(int val){Plot_Win_BoE[1][2][1]=val;LinePlot();}
+
+  void Chang_in_binsinplot(int val){this->in_binsinplot=val;}
+  void Chang_in_histStart(int val){this->in_histStart=val;}
+  void Chang_in_histEnd(int val){this->in_histEnd=val;}
+
+  void Chang_in_adqtime(double val){this->in_adqtime=val;}
+
+  void Chang_plot1_1(int val){this->tab2_plot[0][0]=val;}
+  void Chang_plot1_2(int val){this->tab2_plot[0][1]=val;}
+  void Chang_plot2_1(int val){this->tab2_plot[1][0]=val;}
+  void Chang_plot2_2(int val){this->tab2_plot[1][1]=val;}
+  void Chang_plot3_1(int val){this->tab2_plot[2][0]=val;}
+  void Chang_plot3_2(int val){this->tab2_plot[2][1]=val;}
+
+  void Chang_win1_1(int val){this->tab2_win[0][0]=val;}
+  void Chang_win1_2(int val){this->tab2_win[0][1]=val;}
+  void Chang_win2_1(int val){this->tab2_win[1][0]=val;}
+  void Chang_win2_2(int val){this->tab2_win[1][1]=val;}
+  void Chang_win3_1(int val){this->tab2_win[2][0]=val;}
+  void Chang_win3_2(int val){this->tab2_win[2][1]=val;}
+
+  void Chang_in_PlotAChn1(int val){this->in_PlotACh1=val;}
+  void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;}
+  void Chang_in_PlotBChn1(int val){this->in_PlotBCh1=val;}
+  void Chang_in_PlotBChn2(int val){this->in_PlotBCh2=val;}
+
+  void Chang_track1(bool val){this->P_T[0]=val;trackRateChang =true;}
+  void Chang_track2(bool val){this->P_T[1]=val;trackRateChang =true;}
+  void Chang_track3(bool val){this->P_T[2]=val;trackRateChang =true;}
+  void Chang_track4(bool val){this->P_T[3]=val;trackRateChang =true;}
+  void Chang_track5(bool val){this->P_T[4]=val;trackRateChang =true;}
+  void Chang_track6(bool val){this->P_T[5]=val;trackRateChang =true;}
 
 private:
   Ui::MainWindow *ui;
@@ -70,34 +102,40 @@ private:
   QCPItemTracer *itemDemoPhaseTracer;
   int currentDemoIndex;
   double prom;
+  QButtonGroup *buttonGroup1 ;
+  QButtonGroup *buttonGroup2 ;
+  bool trackRateChang =false;
 
-  bool fotodisponible;
   QVector<int> datach1;
   QVector<int> datacali;
-  QVector<double> promedio;
-  int _xpedestal, _xcristal, _eventosalarma;
+
+  //QCPItemStraightLine *infLine1,*infLine2,*infLine3,*infLine4,*infLine5,*infLine6,*infLine7,*infLine8,*infLine9,*infLine10,*infLine11,*infLine12;
+  QCPItemStraightLine *infLine[12];
 
   ////first tab//////
 
   ///general Configs////
-  int binres, startChan, binsinplot;
-  float updaterate;
-  int plotAch1, plotAch2, plotBch1, plotBch2;
+  int in_binsinplot, in_startChan, in_histStart, in_histEnd;
+  double in_adqtime;
+  int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2;
   /////first plot////
-  int PA_B1,PA_B2, PA_B3, PA_E1, PA_E2, PA_E3;
-  bool PA_T1, PA_T2, PA_T3;
-  int PA_R1, PA_R2, PA_R3;
+  int P_R[6];
+  bool P_T[6];
+  int Plot_Win_BoE[2][3][2];
+  //int PA_B1,PA_B2, PA_B3, PA_E1, PA_E2, PA_E3;
+  //bool PA_T1, PA_T2, PA_T3;
+  //int PA_R1=0, PA_R2=0, PA_R3=0;
   /////second plot////
-  int PB_B1,PB_B2, PB_B3, PB_E1, PB_E2, PB_E3;
-  bool PB_T1, PB_T2, PB_T3;
-  int PB_R1, PB_R2, PB_R3;
+  //int PB_B1,PB_B2, PB_B3, PB_E1, PB_E2, PB_E3;
+  //bool PB_T1, PB_T2, PB_T3;
+  //int PB_R1=0, PB_R2=0, PB_R3=0;
 
   ////SECOND tab////
 
   int xtime;
   float adqtime_tab2;
-  int plot1A, plot1B, plot2A, plot2B, plot3A, plot3B;
-  int win1A, win1B, win2A, win2B, win3A, win3B;
+  int tab2_plot[3][2];
+  int tab2_win[3][2];
 
 
 
