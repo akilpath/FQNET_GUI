@@ -147,20 +147,24 @@ public slots:
   void Chang_win3_1(int val){this->tab2_win[2][0]=val;updateConditions();}
   void Chang_win3_2(int val){this->tab2_win[2][1]=val;updateConditions();}
 
-  void Chang_adqtime_2(float val){this->adqtime_2=val;updateConditions();}
+  void Chang_adqtime_2(double val){this->adqtime_2=val;updateConditions();}
 
 signals:
 
     void histo1signal(const vectorDouble &TTdata);      //histogram 1 data ready
     void anlongoing(bool ong);                          //analysis program still working
     void Chang_anlAvilable(bool val);
+    void CombinationChange(bool val);
+    void rates_tab2(int, int, int, double);
 private:
 
   QVector<double> histo1data;
   std::ofstream file;
   double diffh;
   int ChannelIndex=0, j, StopIndex=0, counterplot[3]={0,0,0}, flag[2]= {0,0};
-  float adqtime_2=0;
+  double adqtime_2=0;
+  double previouskey;
+  double key;
 
 };
 

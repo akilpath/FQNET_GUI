@@ -33,6 +33,7 @@ setWindowTitle(QString("INQNET TDC"));
 setupHistoPlot(ui->PlotB);
 setupHistoPlot(ui->PlotA);
 setupratePlot(ui->PlotTrack);
+setupratePlot_tab2(ui->PlotTab2);
 
 for (int i=0;i<12;i++) {
     if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
@@ -103,6 +104,10 @@ ui->startChan->setValue(1);
 
 ui->adqtime_2->setValue(10);
 
+
+lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+
 adq.start();
 anl.start();
 
@@ -110,12 +115,6 @@ adq.initdone = 1;
 }
 
 
-/*
-void MainWindow::getImg(QImage* img)   //This code will update the image
- {
- ui->imageLabel->setPixmap(QPixmap::fromImage(*img));
- delete img;
- }*/
 
 
 void MainWindow::setupratePlot(QCustomPlot *scope){
@@ -177,11 +176,105 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
 
   QCPGraph *graph1 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
   graph1->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),4));
-  graph1->setPen(QPen(QColor(100, 0, 0), 2));
+  graph1->setPen(QPen(QColor(200, 0, 0), 2));
 
   QCPGraph *graph2 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
   graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
-  graph2->setPen(QPen(QColor(0, 100, 0), 2));
+  graph2->setPen(QPen(QColor(0, 200, 0), 2));
+
+
+
+  QLinearGradient plotGradient;
+  plotGradient.setStart(0, 0);
+  plotGradient.setFinalStop(0, 350);
+  plotGradient.setColorAt(0, QColor(80, 80, 80));
+  plotGradient.setColorAt(1, QColor(50, 50, 50));
+  scope->setBackground(plotGradient);
+  QLinearGradient axisRectGradient;
+  axisRectGradient.setStart(0, 0);
+  axisRectGradient.setFinalStop(0, 350);
+  axisRectGradient.setColorAt(0, QColor(80, 80, 80));
+  axisRectGradient.setColorAt(1, QColor(30, 30, 30));
+  scope->axisRect()->setBackground(axisRectGradient);
+
+
+  //scope->yAxis->setRange(0, 2);
+
+  QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+  timeTicker->setTimeFormat("%h:%m:%s");
+  scope->xAxis->setTicker(timeTicker);
+scope->rescaleAxes();
+  scope->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+}
+
+void MainWindow::setupratePlot_tab2(QCustomPlot *scope){
+
+
+scope->plotLayout()->clear();
+
+QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
+
+
+  wideAxisRect->setupFullAxesBox(true);
+  wideAxisRect->axis(QCPAxis::atRight, 0)->setTickLabels(true);
+  //wideAxisRect->axis(QCPAxis::atTop, 0)->setTickLabels(true);
+
+  wideAxisRect->axis(QCPAxis::atRight, 0)->setTickLabelColor(Qt::white);
+  //wideAxisRect->axis(QCPAxis::atTop, 0)->setTickLabelColor(Qt::white);
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->setTickLabelColor(Qt::white);
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->setTickLabelColor(Qt::white);
+
+  wideAxisRect->axis(QCPAxis::atRight, 0)->setBasePen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atTop, 0)->setBasePen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->setBasePen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->setBasePen(QPen(Qt::white, 1));
+
+  wideAxisRect->axis(QCPAxis::atRight, 0)->setTickPen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atTop, 0)->setTickPen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->setTickPen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->setTickPen(QPen(Qt::white, 1));
+
+  wideAxisRect->axis(QCPAxis::atRight, 0)->setSubTickPen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atTop, 0)->setSubTickPen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->setSubTickPen(QPen(Qt::white, 1));
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->setSubTickPen(QPen(Qt::white, 1));
+
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setSubGridVisible(true);
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setSubGridVisible(true);
+  //wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setVisible(false);//
+  //wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setVisible(false);//
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setZeroLinePen(Qt::NoPen);
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setZeroLinePen(Qt::NoPen);
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
+
+  //wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabel("Counts");
+  //wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabel("Time");
+
+  wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabelColor(Qt::white);
+  wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabelColor(Qt::white);
+
+  wideAxisRect->setRangeZoom(Qt::Vertical);
+
+
+ //scope->plotLayout()->addElement(0, 0, title1);
+ scope->plotLayout()->addElement(0, 0, wideAxisRect);
+
+  QCPGraph *graph1 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+  graph1->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),4));
+  graph1->setPen(QPen(QColor(200, 0, 0), 2));
+
+  QCPGraph *graph2 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+  graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+  graph2->setPen(QPen(QColor(0, 200, 0), 2));
+
+  QCPGraph *graph3 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+  graph3->setPen(QPen(QColor(200, 200, 0), 2));
 
 
 
@@ -305,118 +398,6 @@ title1->setTextColor(Qt::white);
 
 
 }
-/*
-/////////////////////////////////////////////////////////
-
-void MainWindow::setupRatePlot(QCustomPlot *rate){
-
-
-  rate->plotLayout()->clear();
- 
-  QCPAxisRect *subLayout = new QCPAxisRect(rate);
-  
- 
-  subLayout->setupFullAxesBox(true);
-  subLayout->axis(QCPAxis::atRight, 0)->setTickLabels(true);
-  subLayout->axis(QCPAxis::atTop, 0)->setTickLabels(true);
-
-  subLayout->axis(QCPAxis::atRight, 0)->setTickLabelColor(Qt::white);
-  subLayout->axis(QCPAxis::atTop, 0)->setTickLabelColor(Qt::white);
-  subLayout->axis(QCPAxis::atLeft, 0)->setTickLabelColor(Qt::white);
-  subLayout->axis(QCPAxis::atBottom, 0)->setTickLabelColor(Qt::white);
-
-  subLayout->axis(QCPAxis::atRight, 0)->setBasePen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atTop, 0)->setBasePen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atLeft, 0)->setBasePen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atBottom, 0)->setBasePen(QPen(Qt::white, 1));
-
-  subLayout->axis(QCPAxis::atRight, 0)->setTickPen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atTop, 0)->setTickPen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atLeft, 0)->setTickPen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atBottom, 0)->setTickPen(QPen(Qt::white, 1));
-
-  subLayout->axis(QCPAxis::atRight, 0)->setSubTickPen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atTop, 0)->setSubTickPen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atLeft, 0)->setSubTickPen(QPen(Qt::white, 1));
-  subLayout->axis(QCPAxis::atBottom, 0)->setSubTickPen(QPen(Qt::white, 1));
-
-  subLayout->axis(QCPAxis::atLeft, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-  subLayout->axis(QCPAxis::atBottom, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-  subLayout->axis(QCPAxis::atLeft, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-  subLayout->axis(QCPAxis::atBottom, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-  subLayout->axis(QCPAxis::atLeft, 0)->grid()->setSubGridVisible(true);
-  subLayout->axis(QCPAxis::atBottom, 0)->grid()->setSubGridVisible(true);
-  subLayout->axis(QCPAxis::atLeft, 0)->grid()->setZeroLinePen(Qt::NoPen);
-  subLayout->axis(QCPAxis::atBottom, 0)->grid()->setZeroLinePen(Qt::NoPen);
-  subLayout->axis(QCPAxis::atLeft, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
-  subLayout->axis(QCPAxis::atBottom, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
-
-
-  subLayout->axis(QCPAxis::atLeft, 0)->setLabel("Eventos");
-  subLayout->axis(QCPAxis::atBottom, 0)->setLabel("Tiempo");
-
-
-  subLayout->axis(QCPAxis::atLeft, 0)->setLabelColor(Qt::white);
-  subLayout->axis(QCPAxis::atBottom, 0)->setLabelColor(Qt::white);
-
-
-  subLayout->setRangeZoom(Qt::Vertical);
-  
-  QCPPlotTitle *title1 = new QCPPlotTitle(rate);
-  title1->setText("Nivel de Radiación");
-  title1->setFont(QFont("sans", 12, QFont::Bold));
-  title1->setTextColor(Qt::white);
-
-
-  rate->plotLayout()->addElement(0, 0, title1);
-  rate->plotLayout()->addElement(1, 0, subLayout); 
-
-  QCPGraph *graph2 = rate->addGraph(subLayout->axis(QCPAxis::atBottom), subLayout->axis(QCPAxis::atLeft));
-
-  graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),8));
-  graph2->setPen(QPen(QColor(100, 100, 100), 2));
-
-
-  subLayout->axis(QCPAxis::atBottom, 0)->setTickLabelType(QCPAxis::ltDateTime);
-  subLayout->axis(QCPAxis::atBottom, 0)->setDateTimeFormat("hh:mm:ss");
-  subLayout->axis(QCPAxis::atBottom, 0)->setAutoTickStep(false);
-  subLayout->axis(QCPAxis::atBottom, 0)->setTickStep(12);
-  subLayout->axis(QCPAxis::atTop, 0)->setTickLabelType(QCPAxis::ltDateTime);
-  subLayout->axis(QCPAxis::atTop, 0)->setDateTimeFormat("hh:mm:ss");
-  subLayout->axis(QCPAxis::atTop, 0)->setAutoTickStep(false);
-  subLayout->axis(QCPAxis::atTop, 0)->setTickStep(12);
-
-  // make left and bottom axes transfer their ranges to right and top axes:
-  connect(subLayout->axis(QCPAxis::atBottom, 0), SIGNAL(rangeChanged(QCPRange)), subLayout->axis(QCPAxis::atTop, 0), SLOT(setRange(QCPRange)));
-  connect(subLayout->axis(QCPAxis::atLeft, 0), SIGNAL(rangeChanged(QCPRange)), subLayout->axis(QCPAxis::atRight, 0), SLOT(setRange(QCPRange)));
-  
-  dataTimer.start(0); // Interval 0 means to refresh as fast as possible
-
-
-  QLinearGradient plotGradient;
-  plotGradient.setStart(0, 0);
-  plotGradient.setFinalStop(0, 350);
-  plotGradient.setColorAt(0, QColor(80, 80, 80));
-  plotGradient.setColorAt(1, QColor(50, 50, 50));
-  rate->setBackground(plotGradient);
-  QLinearGradient axisRectGradient;
-  axisRectGradient.setStart(0, 0);
-  axisRectGradient.setFinalStop(0, 350);
-  axisRectGradient.setColorAt(0, QColor(80, 80, 80));
-  axisRectGradient.setColorAt(1, QColor(30, 30, 30));
-  rate->axisRect()->setBackground(axisRectGradient);
-
-
-
- // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
-  rate->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-
-
-}
-////////////////////////////////////////
-//////////////////////////////////////////
-*/
-
 
 
 void MainWindow::setupsignalslot(){
@@ -433,8 +414,7 @@ void MainWindow::setupsignalslot(){
 
     QObject::connect(ui->adqtime, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_adqtime(double)));
     QObject::connect(ui->adqtime, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_adqtime(double)));
-    //deactivated until we unlock the filter feature
-    //QObject::connect(ui->startChan, SIGNAL(valueChanged(int)), &adq, SLOT(filterconfigure(int)));
+
 
 
     QObject::connect(ui->histStart, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_in_histStart(int)));
@@ -521,127 +501,46 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->win3_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win3_1(int)));
     QObject::connect(ui->win3_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win3_2(int)));
 
-    QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(float)), &anl, SLOT(Chang_adqtime_2(float)));
+    QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(double)), &anl, SLOT(Chang_adqtime_2(double)));
 
     QObject::connect(&anl, SIGNAL(Chang_anlAvilable(bool)), &adq, SLOT(Chang_anlAvilable(bool)));
 
+    QObject::connect(&anl, SIGNAL(CombinationChange(bool)), this, SLOT(CombinationChange(bool)));
 
     QObject::connect(&adq, SIGNAL(dataready(vectorInt64, vectorInt8, int)), &anl, SLOT(timestampANL(vectorInt64, vectorInt8, int)),Qt::QueuedConnection);
 
 
-//QObject::connect(&anl, SIGNAL(histo1signal(vectorDouble)), this, SLOT(histo1plot(vectorDouble)),Qt::QueuedConnection);
-
     QObject::connect(&anl, SIGNAL(anlongoing(bool)), &adq, SLOT(adqpausechange(bool)));
-
-    //QObject::connect(&adq, SIGNAL(qutaghist1(vectorInt32)), this, SLOT(histo1plot(vectorInt32)),Qt::QueuedConnection);
 
     QObject::connect(&adq, SIGNAL(qutaghist(vectorDouble, vectorDouble)), this, SLOT(histoplot(vectorDouble, vectorDouble)),Qt::QueuedConnection);
 
+     QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, double)));
 
 
 }
 
 
-/*
-void MainWindow::setupsignalslot(){
 
-
-qRegisterMetaType<datadqi>("datadqi");
-qRegisterMetaType<datadqidouble>("datadqidouble");
-
-_xpedestal=0;
-_xcristal=0;
-
-QObject::connect(&adq, SIGNAL(finadqhist(datadqi, int, int)), &anl, SLOT(histoanalisis(datadqi, int, int)),Qt::QueuedConnection);
-QObject::connect(&anl, SIGNAL(analisiscompletado(datadqidouble)), this, SLOT(tiemporeal(datadqidouble)),Qt::QueuedConnection);
-QObject::connect(&adq, SIGNAL(finpedestal(datadqi, int, int)), &anl, SLOT(anlpedestal(datadqi, int, int)),Qt::QueuedConnection);////cambiar nombre
-QObject::connect(&anl, SIGNAL(anlpedestalcompletado(datadqidouble, int, int)), this, SLOT(histopedestal(datadqidouble, int, int)),Qt::QueuedConnection);
-QObject::connect(&adq, SIGNAL(fincalibracristal(datadqi, int, int)), &anl, SLOT(anlcalibracristal(datadqi, int, int)),Qt::QueuedConnection);
-QObject::connect(&anl, SIGNAL(finanlcristal(datadqidouble, int, int)), this, SLOT(histopedestal(datadqidouble, int, int)),Qt::QueuedConnection);
-
-QObject::connect(&adq, SIGNAL(scope(datadqi)), this, SLOT(scopeplot(datadqi)),Qt::QueuedConnection);
-QObject::connect(&adq, SIGNAL(finadqeven(int, double)), this, SLOT(tiemporeal2(int, double)));
-QObject::connect(&adq, SIGNAL(error1()), this, SLOT(error1()));
-
-QObject::connect(ui->actionComenzar, SIGNAL(triggered()), &adq, SLOT(tipoadq1()));
-QObject::connect(ui->actionPausar, SIGNAL(triggered()), &adq, SLOT(detener()));
-QObject::connect(ui->actionContinuar, SIGNAL(triggered()), &adq, SLOT(continuar()));
-QObject::connect(ui->actionDetener, SIGNAL(triggered()), &adq, SLOT(stopadq()));
-QObject::connect(ui->actionReset, SIGNAL(triggered()), &adq, SLOT(reset()));
-QObject::connect(ui->calicali, SIGNAL(pressed()), &adq, SLOT(tipoadq2()));
-
-
-fotodisponible=true;
-QObject::connect(&adq, SIGNAL(adquifoto()), this, SLOT(tfoto()));
-QObject::connect(ui->actionFoto, SIGNAL(triggered()), this, SLOT(tfoto()));
-
-QObject::connect(ui->actionPantallazo, SIGNAL(triggered()), this, SLOT(screenShot()));
-
-
-QObject::connect(&f, SIGNAL(newImgAvailable(QImage*)),this, SLOT(getImg(QImage*)));
-
-ui->eventoscali->setSingleStep(1000);
-ui->eventoscali->setMinimum(0);
-ui->eventoscali->setMaximum(100000);
-ui->eventoscali->setValue(10000);
-QObject::connect(ui->eventoscali, SIGNAL(valueChanged(int)), &adq, SLOT(Ceventoscali(int)));
-
-
-ui->threshold->setSingleStep(0.01);
-ui->threshold->setSuffix(" [V]");
-ui->threshold->setMinimum(-1.25);
-ui->threshold->setMaximum(1.25);
-ui->threshold->setValue(-0.02);
-QObject::connect(ui->threshold, SIGNAL(valueChanged(double)), &adq, SLOT(Cthreshold1(double)));
-
-ui->histotime->setSingleStep(1);
-ui->histotime->setSuffix(" [s]");
-ui->histotime->setMinimum(0);
-ui->histotime->setMaximum(3600);
-ui->histotime->setValue(10);
-QObject::connect(ui->histotime, SIGNAL(valueChanged(int)), &adq, SLOT(Ctiempoadq(int)));
-
-_eventosalarma=1000;
-ui->eventosalarma->setSingleStep(100);
-ui->eventosalarma->setMinimum(0);
-ui->eventosalarma->setMaximum(5000);
-ui->eventosalarma->setValue(1000);
-QObject::connect(ui->eventosalarma, SIGNAL(valueChanged(int)), this, SLOT(Ceventosalarma(int)));
-QObject::connect(ui->eventosalarma, SIGNAL(valueChanged(int)), &adq, SLOT(Ceventosfoto(int)));
-
-
-ui->calibratime->setSingleStep(1);
-ui->calibratime->setSuffix(" [min]");
-ui->calibratime->setMinimum(0);
-ui->calibratime->setMaximum(60);
-ui->calibratime->setValue(10);
-QObject::connect(ui->calibratime, SIGNAL(valueChanged(int)), &adq, SLOT(Ccristaltime(int)));
-
-    QWidget* popupWidget = new QWidget();
-    popupWidget->setWindowFlags(Qt::Popup);
-
-}
-
-
-*/
 //////////////////////////////////////////////////////////
 ///////////////////rateplot///////////////////////////
 ///////////////////////////////////////////////////////////
 
 void MainWindow::plotRates(char AoB, int event, double key){
 
-static double lastPointKey = 0;
+
+
+
 
     double value1 = event; 
-   std::cout<<value1<<std::endl;
+  // std::cout<<value1<<std::endl;
    if(AoB=='A'){
 
-        ui->PlotTrack->graph(0)->addData(key, value1);
+        ui->PlotTrack->graph(0)->addData(key-lastPointKey_tab1, value1);
     // remove data of lines that's outside visible range:key, value1
     //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
     // rescale value (vertical) axis to fit the current data:
         ui->PlotTrack->graph(0)->rescaleValueAxis(true);
-        lastPointKey = key;
+      //  lastPointKey_tab1 = key;
  // make key axis range scroll with the data (at a constant range size of 8):
        // ui->PlotTrack->graph(0)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
         //ui->PlotTrack->xAxis->setRange(key, 8, Qt::AlignRight);
@@ -650,18 +549,18 @@ static double lastPointKey = 0;
    if(AoB=='B'){
 
 
-        ui->PlotTrack->graph(1)->addData(key, value1);
+        ui->PlotTrack->graph(1)->addData(key-lastPointKey_tab1, value1);
     // remove data of lines that's outside visible range:key, value1
     //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
     // rescale value (vertical) axis to fit the current data:
         ui->PlotTrack->graph(1)->rescaleValueAxis(true);
-        lastPointKey = key;
+
  // make key axis range scroll with the data (at a constant range size of 8):
       //  ui->PlotTrack->graph(1)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
 
     }
-   ui->PlotTrack->xAxis->setRange(key, 40, Qt::AlignRight);
-   ui->PlotTrack->yAxis->rescale();
+   ui->PlotTrack->xAxis->setRange(key-lastPointKey_tab1, 40, Qt::AlignRight);
+   //ui->PlotTrack->yAxis->rescale();
     ui->PlotTrack->replot();
 
     if(trackRateChang && AoB=='A'){
@@ -678,7 +577,50 @@ static double lastPointKey = 0;
    //prom=prom/promedio.size();
    //ui->mediamovil->display(prom);
    //if(promedio.size()>50)promedio.resize(50);
-   
+    //lastPointKey_tab1 = key;
+
+}
+
+void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
+
+
+   double value1 = eventA;
+   double value2 = eventB;
+   double value3 = eventC;
+   //std::cout<<value1<<std::endl;
+
+        ui->PlotTab2->graph(0)->addData(key-lastPointKey_tab2, value1);
+        ui->PlotTab2->graph(0)->rescaleValueAxis(true);
+
+
+
+        ui->PlotTab2->graph(1)->addData(key-lastPointKey_tab2, value2);
+        ui->PlotTab2->graph(1)->rescaleValueAxis(true);
+
+
+
+        ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
+        ui->PlotTab2->graph(2)->rescaleValueAxis(true);
+
+
+
+   ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, 120, Qt::AlignRight);
+   ui->PlotTab2->yAxis->rescale();
+   ui->PlotTab2->replot();
+
+    if(CombiChang ){
+        ui->PlotTab2->graph(0)->data()->clear();
+        CombiChang=false;
+    }
+    if(CombiChang){
+        ui->PlotTab2->graph(1)->data()->clear();
+        CombiChang=false;
+    }
+    if(CombiChang){
+        ui->PlotTab2->graph(2)->data()->clear();
+        CombiChang=false;
+    }
+//lastPointKey_tab2 = key;
 
 }
 
@@ -783,9 +725,6 @@ void MainWindow::LinePlot(){
 
 
 }
-
-
-
 
 
 MainWindow::~MainWindow()

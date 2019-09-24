@@ -26,19 +26,12 @@ file.open("dataTest.csv");
 
 void qutaganl::run(){
 
- updateConditions();
+previouskey = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+updateConditions();
 emit(Chang_anlAvilable(true));
 }
 
 
-/*void qutaganl::clockchange(int clockchannel)
-{
-    anlclock = clockchannel;
-    printf("anl knows clock is: %d \n", anlclock);
-    fflush(stdout);
-
-}
-*/
 void qutaganl::print_event(int EVT, int CLOCK){
     printf("Event number %d \n", EVT);
     printf("***************************************************** \n");
@@ -149,10 +142,6 @@ void qutaganl::print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, in
 }
 
 
-
-
-
-
 qutaganl::~qutaganl(){
 file.close();
 }
@@ -175,7 +164,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
 
 
-std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
+//std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
 
 
     for ( int i=0 ; i<tsvalid; i++) {
@@ -211,8 +200,17 @@ std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
         }
     }
 
-    std::cout<<counterplot[0]<<"\t"<<counterplot[1]<<"\t"<<counterplot[2]<<std::endl;
-    counterplot[0]=0;counterplot[1]=0;counterplot[2]=0;
+    //std::cout<<counterplot[0]<<"\t"<<counterplot[1]<<"\t"<<counterplot[2]<<std::endl;
+
+
+    key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+    //std::cout<<key-previouskey<<std::endl;
+
+    if(key-previouskey>adqtime_2){
+    emit rates_tab2(counterplot[0], counterplot[1], counterplot[2], key);
+     counterplot[0]=0;counterplot[1]=0;counterplot[2]=0;
+     previouskey=key;
+    }
    /*if(tsvalid>100){
         for ( int i=startindex; i < 100; i++ ) {
             if(vectorChannels[i]==in_startChan)i=localstart;
@@ -237,12 +235,8 @@ std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
 }
 
 
-
-
-
-
-
 void qutaganl::updateConditions(){
+    emit CombinationChange(true);
     for (int i=0; i<3; i++) {//recorro los graficos
         for (int j=0; j<2; j++) {//recorro A & B
             for (int k=0 ;k<2;k++) {//recorro inicio o fin

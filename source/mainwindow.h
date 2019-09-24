@@ -33,6 +33,7 @@ public:
 
   void setupPlotA(QCustomPlot *customPlot);
   void setupratePlot(QCustomPlot *customPlot);
+  void setupratePlot_tab2(QCustomPlot *customPlot);
 
   void setupsignalslot();
   void setupHistoPlot(QCustomPlot *customPlot);
@@ -42,6 +43,7 @@ public:
 private slots:
 
   void plotRates(char AoB, int event, double key);
+  void plotRates_tab2(int eventA, int eventB, int eventC, double key);
   void changeStartchan(int starchan){this->in_startChan=starchan;}
 
   void histoplot(const vectorDouble &dat1, const vectorDouble &dat2);
@@ -93,6 +95,8 @@ private slots:
   void Chang_track5(bool val){this->P_T[4]=val;trackRateChang =true;}
   void Chang_track6(bool val){this->P_T[5]=val;trackRateChang =true;}
 
+  void CombinationChange(bool val){CombiChang =val;}
+
 private:
   Ui::MainWindow *ui;
   qutagadq adq;
@@ -104,13 +108,16 @@ private:
   double prom;
   QButtonGroup *buttonGroup1 ;
   QButtonGroup *buttonGroup2 ;
-  bool trackRateChang =false;
+  bool trackRateChang =false, CombiChang =false;
 
   QVector<int> datach1;
   QVector<int> datacali;
 
   //QCPItemStraightLine *infLine1,*infLine2,*infLine3,*infLine4,*infLine5,*infLine6,*infLine7,*infLine8,*infLine9,*infLine10,*infLine11,*infLine12;
   QCPItemStraightLine *infLine[12];
+
+  double lastPointKey_tab1;
+  double lastPointKey_tab2;
 
   ////first tab//////
 
