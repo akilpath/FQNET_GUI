@@ -39,28 +39,11 @@ for (int i=0;i<12;i++) {
     if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
     else infLine[i] = new QCPItemStraightLine(ui->PlotB);
 }
-/*infLine1 = new QCPItemStraightLine(ui->PlotA);
-infLine2 = new QCPItemStraightLine(ui->PlotA);
-infLine3 = new QCPItemStraightLine(ui->PlotA);
-infLine4 = new QCPItemStraightLine(ui->PlotA);
-infLine5 = new QCPItemStraightLine(ui->PlotA);
-infLine6 = new QCPItemStraightLine(ui->PlotA);
-infLine7 = new QCPItemStraightLine(ui->PlotB);
-infLine8 = new QCPItemStraightLine(ui->PlotB);
-infLine9 = new QCPItemStraightLine(ui->PlotB);
-infLine10 = new QCPItemStraightLine(ui->PlotB);
-infLine11 = new QCPItemStraightLine(ui->PlotB);
-infLine12 = new QCPItemStraightLine(ui->PlotB);
-/*
-buttonGroup1 = new QButtonGroup;
-buttonGroup1->addButton(ui->trackA1);
-buttonGroup1->addButton(ui->trackA2);
-buttonGroup1->addButton(ui->trackA3);
-buttonGroup1->setExclusive(true);
 
-buttonGroup2 = new QButtonGroup;
-
-*/
+ui->thch1->setValue(0.5);
+ui->thch2->setValue(-0.15);
+ui->thch3->setValue(-0.15);
+ui->cw->setValue(50000);
 
 for (int i=0;i<6;i++)P_R[i]=0;
 for (int i=0;i<6;i++)P_T[i]=false;
@@ -70,28 +53,27 @@ ui->plot1_2->setValue(0);
 ui->win1_1->setValue(0);
 ui->win1_2->setValue(0);
 
-/*ui->histStart->setValue(39600);
-ui->histEnd->setValue(39921);*/
-ui->histStart->setValue(1);
+ui->histStart->setValue(70000);
 ui->histEnd->setValue(90000);
+/*ui->histStart->setValue(1000);
+ui->histEnd->setValue(10000);*/
 
-ui->binsinplot->setValue(100);
+ui->binsinplot->setValue(1000);
 ui->adqtime->setValue(2);
 
-ui->BegA1->setValue(1100);
-//ui->BegA1->setValue(39620);
-ui->BegA2->setValue(3100);
-ui->BegA3->setValue(5100);
-ui->EndA1->setValue(2900);
+ui->BegA1->setValue(81200);
+ui->BegA2->setValue(83300);
+ui->BegA3->setValue(10100);
+ui->EndA1->setValue(83000);
 //ui->EndA1->setValue(39800);
-ui->EndA2->setValue(4900);
-ui->EndA3->setValue(6900);
+ui->EndA2->setValue(84900);
+ui->EndA3->setValue(102000);
 
-ui->BegB1->setValue(1100);
-ui->BegB2->setValue(3100);
+ui->BegB1->setValue(81900);
+ui->BegB2->setValue(83900);
 ui->BegB3->setValue(5100);
-ui->EndB1->setValue(2900);
-ui->EndB2->setValue(4900);
+ui->EndB1->setValue(83400);
+ui->EndB2->setValue(85400);
 ui->EndB3->setValue(6900);
 
 ui->PlotAChn1->setValue(1);
@@ -102,7 +84,7 @@ ui->startChan->setValue(1);
 
 //QThread::msleep(100);
 
-ui->adqtime_2->setValue(10);
+ui->adqtime_2->setValue(2);
 
 
 lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
@@ -506,6 +488,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(&anl, SIGNAL(Chang_anlAvilable(bool)), &adq, SLOT(Chang_anlAvilable(bool)));
 
     QObject::connect(&anl, SIGNAL(CombinationChange(bool)), this, SLOT(CombinationChange(bool)));
+   // QObject::connect(&anl, SIGNAL(CombinationChange(bool)), this, SLOT(CombinationChange(bool)));
 
     QObject::connect(&adq, SIGNAL(dataready(vectorInt64, vectorInt8, int)), &anl, SLOT(timestampANL(vectorInt64, vectorInt8, int)),Qt::QueuedConnection);
 
@@ -516,7 +499,10 @@ void MainWindow::setupsignalslot(){
 
      QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, double)));
 
-
+    QObject::connect(ui->thch1, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch1(double)));
+    QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch2(double)));
+    QObject::connect(ui->thch3, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch3(double)));
+    QObject::connect(ui->cw, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_cw(int)));
 }
 
 
@@ -590,22 +576,22 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
    //std::cout<<value1<<std::endl;
 
         ui->PlotTab2->graph(0)->addData(key-lastPointKey_tab2, value1);
-        ui->PlotTab2->graph(0)->rescaleValueAxis(true);
+        //ui->PlotTab2->graph(0)->rescaleValueAxis(true);
 
 
 
         ui->PlotTab2->graph(1)->addData(key-lastPointKey_tab2, value2);
-        ui->PlotTab2->graph(1)->rescaleValueAxis(true);
+        //ui->PlotTab2->graph(1)->rescaleValueAxis(true);
 
 
 
         ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
-        ui->PlotTab2->graph(2)->rescaleValueAxis(true);
+        //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
 
 
 
    ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, 120, Qt::AlignRight);
-   ui->PlotTab2->yAxis->rescale();
+  //ui->PlotTab2->yAxis->rescale();
    ui->PlotTab2->replot();
 
     if(CombiChang ){
@@ -691,8 +677,8 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB){
 void MainWindow::LinePlot(){
 
    ////int Plot_Win_BoE[2][3][2];
-
-    for (int i=0; i<12; i++) {
+sleep(1);
+   for (int i=0; i<12; i++) {
 
         if(i==0 || i==3 || i==6 || i==9)infLine[i]->setPen(QPen(Qt::red));
         if(i==1 || i==4 || i==7 || i==10)infLine[i]->setPen(QPen(Qt::green));

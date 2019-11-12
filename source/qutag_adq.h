@@ -73,6 +73,11 @@ public slots:
 
   void Chang_anlAvilable(bool val){this->anlAvilable =val;}
 
+  void Chang_in_thch1(double val){this->in_thch1=val;changThreshold(1,val);}
+  void Chang_in_thch2(double val){this->in_thch2=val;changThreshold(2,val);}
+  void Chang_in_thch3(double val){this->in_thch3=val;changThreshold(3,val);}
+  void Chang_in_cw(int val){this->in_cw=val; TDC_setCoincidenceWindow(val);}
+
 signals:
    // void dataready(const vectorInt64 &TTdata, const channelsTDCPP &CHdata, int nevent); // sends to inputdata()
     void dataready(const vectorInt64 &vectorTimetags, const vectorInt8 &vectorChannels, int tsvalid);
@@ -119,6 +124,8 @@ private:
 
     void andrewrun();
     void lautrun();
+    void getTimeStamps();
+    void changThreshold(int, double);
     int HIST_BINWIDTH;
     int HIST_BINCOUNT;
     int HIST_BINWIDTH_out, HIST_BINCOUNT_out;
@@ -133,7 +140,9 @@ private:
     int in_binsinplot, in_startChan, in_histStart, in_histEnd;
     double in_adqtime;
     int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2;
-
+    double in_thch1, in_thch2,in_thch3;
+    int in_cw;
+    bool RoF[5];
 
 public:
     clock_t begin, end;

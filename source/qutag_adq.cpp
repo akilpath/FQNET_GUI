@@ -41,14 +41,18 @@ qutagadq::qutagadq(){
     rc = TDC_setExposureTime( 1000 );
     checkRc( "TDC_setExposureTime", rc );
 
+    RoF[1]=0;
+    RoF[2]=0;
+    RoF[3]=0;
+
 
     //rc = TDC_configureFilter(1, FILTER_COINC, 3);
-    rc = TDC_configureSignalConditioning(0, SCOND_MISC, 1, .1);
-    rc = TDC_configureSignalConditioning(1, SCOND_MISC, 1, .1);
-    rc = TDC_configureSignalConditioning(2, SCOND_MISC, 1, .1);
-    rc = TDC_configureSignalConditioning(3, SCOND_MISC, 1, .1);
+   /* rc = TDC_configureSignalConditioning(0, SCOND_MISC, 1, .1);
+    rc = TDC_configureSignalConditioning(1, SCOND_MISC, 0, .50);
+    rc = TDC_configureSignalConditioning(2, SCOND_MISC, 0, -0.150);
+    rc = TDC_configureSignalConditioning(3, SCOND_MISC, 0, -0.150);
     rc = TDC_configureSignalConditioning(4, SCOND_MISC, 1, .1);
-    checkRc( "TDC_configureSignalConditioning", rc );
+    checkRc( "TDC_configureSignalConditioning", rc );*/
 
 
 
@@ -152,10 +156,10 @@ int qutagadq::filterset(){
 
     int maskA=0x00 , maskB=0x00, maskC=0x00;
 
-    //maskA|=0x1<<(in_PlotACh2);
+    maskA|=0x1<<(in_PlotACh2);
     maskA|=0x1<<(in_startChan);
 
-    //maskB|=0x1<<(in_PlotBCh2);
+    maskB|=0x1<<(in_PlotBCh1);
     maskB|=0x1<<(in_startChan);
 
     maskC|=0x1<<(in_PlotACh2);
@@ -167,9 +171,9 @@ int qutagadq::filterset(){
     std::cout<<"filter channel : "<<in_PlotBCh2<<"  , mask : "<<maskB<<std::endl;*/
     rc = TDC_configureFilter(in_startChan, FILTER_SYNC , maskC);
     checkRc( "TDC_configureFilter clock", rc );
-    rc = TDC_configureFilter(in_PlotACh2, FILTER_COINC, maskA);
+    rc = TDC_configureFilter(in_PlotACh2, FILTER_NONE, maskA);
     checkRc( "TDC_configureFilter mask A", rc );
-    rc = TDC_configureFilter(in_PlotBCh2, FILTER_COINC, maskB);
+    rc = TDC_configureFilter(in_PlotBCh2, FILTER_NONE, maskB);
     checkRc( "TDC_configureFilter mask B", rc );
 
     return 0;
@@ -190,12 +194,19 @@ int qutagadq::filterset(){
   //Int32 coincWin = in_histEnd-in_histStart;
   //rc =TDC_setCoincidenceWindow(coincWin);
   //checkRc( "TDC_enableStartStop", rc );
+    double previous_time = QDateTime::currentDateTime().toMSecsSinceEpoch();
+    double current_time;
 
      while(!break_){
+         current_time = QDateTime::currentDateTime().toMSecsSinceEpoch();
+        // std::cout<< current_time-previous_time <<std::endl;
+         if((current_time-previous_time) > 1000*in_adqtime){
+             getHisto();
+             previous_time = current_time;
+         }
+         getTimeStamps();
+         QThread::msleep(100);
 
-         getHisto();
-
-         QThread::msleep(1000*in_adqtime);
      }
 
  }
@@ -204,19 +215,6 @@ int qutagadq::filterset(){
     //std::cout<<"gethisto"<<std::endl;
     if(paramschange)setHistograms();
     if(rc)return;
-
-
-
-     rc = TDC_getLastTimestamps( 1, timestamps, channels, &tsValid );
-     checkRc( "TDC_getHistogram A", rc );
-     std::copy(timestamps, timestamps + tsValid, std::back_inserter(timetags));
-     std::copy(channels, channels + tsValid, std::back_inserter(channelsTDC));
-     if(tsValid>0 && anlAvilable){
-         emit dataready(timetags, channelsTDC, (int)tsValid);
-     }
-
-
-
 
      if (histodataA != 0) {
          delete [] histodataA;
@@ -291,7 +289,21 @@ int qutagadq::filterset(){
 
  }
 
+
+ void qutagadq::getTimeStamps(){
+    timetags.clear();channelsTDC.clear();
+     rc = TDC_getLastTimestamps( 1, timestamps, channels, &tsValid );
+     checkRc( "TDC_getHistogram A", rc );
+     std::copy(timestamps, timestamps + tsValid, std::back_inserter(timetags));
+     std::copy(channels, channels + tsValid, std::back_inserter(channelsTDC));
+     if(tsValid>0 && anlAvilable){
+         emit dataready(timetags, channelsTDC, (int)tsValid);
+     }
+
+ }
+
  void qutagadq::setHistograms(){
+
 
      /////////calculate histogram parameters///////////
 
@@ -354,3 +366,12 @@ int qutagadq::filterset(){
     std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
 
  }
+
+ void qutagadq::changThreshold(int ch, double val){
+
+     rc = TDC_configureSignalConditioning(ch, SCOND_MISC, RoF[ch], val);
+     checkRc( "TDC_configureSignalConditioning", rc );
+
+ }
+
+

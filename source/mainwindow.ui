@@ -49,7 +49,7 @@
       </property>
       <widget class="QWidget" name="tab1">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>Histograms</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
@@ -874,7 +874,7 @@
                     <number>1</number>
                    </property>
                    <property name="maximum">
-                    <number>90000</number>
+                    <number>110000</number>
                    </property>
                    <property name="singleStep">
                     <number>0</number>
@@ -906,7 +906,7 @@
                     <number>1</number>
                    </property>
                    <property name="maximum">
-                    <number>100000</number>
+                    <number>120000</number>
                    </property>
                    <property name="value">
                     <number>800</number>
@@ -1056,7 +1056,7 @@
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1072,7 +1072,7 @@
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1088,7 +1088,7 @@
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1125,7 +1125,7 @@ color: rgb(252, 233, 79);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1162,7 +1162,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1189,7 +1189,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1228,13 +1228,25 @@ color: rgb(239, 41, 41);</string>
                 <item>
                  <layout class="QFormLayout" name="formLayout_2">
                   <item row="1" column="0">
-                   <widget class="QLCDNumber" name="countA1"/>
+                   <widget class="QLCDNumber" name="countA1">
+                    <property name="digitCount">
+                     <number>7</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QLCDNumber" name="countA2"/>
+                   <widget class="QLCDNumber" name="countA2">
+                    <property name="digitCount">
+                     <number>7</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="3" column="0">
-                   <widget class="QLCDNumber" name="countA3"/>
+                   <widget class="QLCDNumber" name="countA3">
+                    <property name="digitCount">
+                     <number>7</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="2" column="1">
                    <widget class="QRadioButton" name="trackA2">
@@ -1358,7 +1370,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1374,7 +1386,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1390,7 +1402,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1438,7 +1450,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1454,7 +1466,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1480,7 +1492,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>100000</number>
+                     <number>200000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1530,13 +1542,25 @@ color: rgb(239, 41, 41);</string>
                 <item>
                  <layout class="QFormLayout" name="formLayout_3">
                   <item row="1" column="0">
-                   <widget class="QLCDNumber" name="countB1"/>
+                   <widget class="QLCDNumber" name="countB1">
+                    <property name="digitCount">
+                     <number>7</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QLCDNumber" name="countB2"/>
+                   <widget class="QLCDNumber" name="countB2">
+                    <property name="digitCount">
+                     <number>7</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="3" column="0">
-                   <widget class="QLCDNumber" name="countB3"/>
+                   <widget class="QLCDNumber" name="countB3">
+                    <property name="digitCount">
+                     <number>7</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="1" column="1">
                    <widget class="QRadioButton" name="trackB1">
@@ -1648,7 +1672,7 @@ color: rgb(239, 41, 41);</string>
       </widget>
       <widget class="QWidget" name="tab2">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>AND gates</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="spacing">
@@ -2634,6 +2658,165 @@ color: rgb(239, 41, 41);</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_5"/>
             </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="conf">
+       <attribute name="title">
+        <string>Parameters</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_26">
+        <item>
+         <widget class="QWidget" name="horizontalWidget" native="true">
+          <property name="styleSheet">
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_25">
+           <item>
+            <layout class="QFormLayout" name="formLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_16">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Threshold ch1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="thch1">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="minimum">
+                <double>-10.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_71">
+               <property name="styleSheet">
+                <string notr="true">
+color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Threshold ch2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="thch2">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="minimum">
+                <double>-10.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_72">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Threshold ch3</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QDoubleSpinBox" name="thch3">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="minimum">
+                <double>-10.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_76">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Coinc Window</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="cw">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="maximum">
+                <number>999999</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QFormLayout" name="formLayout_4">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_73">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>RoF ch1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="rofch1">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_74">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>RoF ch2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="rofch2">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_75">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>RoF ch3</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="rofch3">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>

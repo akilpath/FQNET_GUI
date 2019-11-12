@@ -149,6 +149,7 @@ file.close();
 void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 &vectorChannels, int tsvalid){
 
     emit(Chang_anlAvilable(false));
+    anlbusy=true;
    ///////////////////
 ////int xtime;/////
  ////   float adqtime_tab2;
@@ -166,41 +167,45 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
 //std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
 
-
     for ( int i=0 ; i<tsvalid; i++) {
-        ChannelIndex = (int)vectorChannels[i];
-        if(ChannelIndex == in_startChan){
-            j=i+1;
-            StopIndex=(int)vectorChannels[j];
-            while(StopIndex!=in_startChan){
-                //std::cout<<(int)vectorChannels[j]<<std::endl;
-                diffh = vectorTimetags[j]-vectorTimetags[i];
-                //if(i<30)std::cout<<"diff  "<<diffh<<std::endl;
-                if(diffh>in_histStart && diffh<in_histEnd){
-                        for (int ii=0; ii<3; ii++) {//recorro los graficos
-                            for (int jj=0; jj<2; jj++) {//recorro A & B
-                               if(tab2_plot[ii][jj] == 0 && StopIndex == in_PlotACh2){
-
-                                    if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[jj]=true;
-                                }
-                                if(tab2_plot[ii][jj] == 1 && StopIndex == in_PlotBCh2){
-                                    if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[jj]=true;
-                                }
-                            }
-                            if(flag[0]&&flag[1])counterplot[ii]++;
-                            flag[0]=false;flag[1]=false;
-                        }
-                //if(diffh>tab2_ranges[0][0][0] && diffh<tab2_ranges[0][0][1])std::cout<<diffh<<std::endl;
-                //if(flag[0])counterplot[0]++;
-                //flag[0]=false;
-                }
-                j++;
+            ChannelIndex = (int)vectorChannels[i];
+            if(ChannelIndex == in_startChan){
+                j=i+1;
                 StopIndex=(int)vectorChannels[j];
+
+                while(StopIndex!=in_startChan){
+                    //std::cout<<(int)vectorChannels[j]<<std::endl;
+                    diffh = vectorTimetags[j]-vectorTimetags[i];
+                    //if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh<<std::endl;
+                    if(diffh+in_histStart>in_histStart && diffh<in_histEnd){
+                            for (int ii=0; ii<3; ii++) {//over the 3 curves of tab2
+                                for (int jj=0; jj<2; jj++) {//check the condition of at one side of the &
+                                   if(tab2_plot[ii][jj] == 0 && StopIndex == in_PlotACh2){
+                                        if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                        //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh <<"   "<<jj<<std::endl;
+                                        //std::cout<<flag[jj]<<std::endl;
+                                    }
+                                    if(tab2_plot[ii][jj] == 1 && StopIndex == in_PlotBCh2){
+                                        if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                    }
+                                }
+                                //if(ii==0)std::cout<<flag[0]<<"    "<<flag[1]<<std::endl;
+                                /*if(flag[0]&&flag[1])counterplot[ii]++;
+                                flag[0]=false;flag[1]=false;*/
+                            }
+
+                    }
+
+                    j++;
+                    StopIndex=(int)vectorChannels[j];
+                }
+                for (int ii=0; ii<3; ii++) {//over the 3 curves of tab2
+                     if(flag[ii][0] && flag[ii][1])counterplot[ii]++;
+                     flag[ii][0]=0;flag[ii][1]=0;
+                }
             }
         }
-    }
 
-    //std::cout<<counterplot[0]<<"\t"<<counterplot[1]<<"\t"<<counterplot[2]<<std::endl;
 
 
     key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
@@ -213,7 +218,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
     }
    /*if(tsvalid>100){
         for ( int i=startindex; i < 100; i++ ) {
-            if(vectorChannels[i]==in_startChan)i=localstart;
+            if(vectorChannels[i]==in_startChan)i=localstart;tab2_ranges[ii][jj][k]
 
            if(vectorChannels[i]==in_PlotACh2){
                 std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]-vectorTimetags[localstart]<<std::endl;
@@ -222,9 +227,8 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
     }*/
 
 /*for ( int i=0; i < 20; i++ ) {
-        std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<std::endl;
-    }*/
-
+    std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<std::endl;
+}*/
 /*for ( int i=0; i < 20; i++ ) {
         std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<std::endl;
         file<<(int)vectorChannels[i]<<","<<vectorTimetags[i]<<std::endl;
@@ -232,15 +236,17 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 */
 
     emit(Chang_anlAvilable(true));
+    anlbusy=false;
 }
 
 
 void qutaganl::updateConditions(){
-    emit CombinationChange(true);
-    for (int i=0; i<3; i++) {//recorro los graficos
-        for (int j=0; j<2; j++) {//recorro A & B
+    //while(anlbusy){std::cout<<"quechuchawn:"<<std::endl;}
+   emit CombinationChange(true);
+    for (int ii=0; ii<3; ii++) {//recorro los graficos
+        for (int jj=0; jj<2; jj++) {//recorro A & B
             for (int k=0 ;k<2;k++) {//recorro inicio o fin
-                tab2_ranges[i][j][k] = Plot_Win_BoE[ tab2_plot[i][j] ][ tab2_win[i][j] ][k];
+                tab2_ranges[ii][jj][k] = Plot_Win_BoE[ tab2_plot[ii][jj] ][ tab2_win[ii][jj] ][k];
             }
 
         }

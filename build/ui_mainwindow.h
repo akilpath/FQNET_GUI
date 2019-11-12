@@ -20,6 +20,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -247,6 +248,26 @@ public:
     QSpacerItem *verticalSpacer_4;
     QCustomPlot *PlotTab2;
     QVBoxLayout *verticalLayout_5;
+    QWidget *conf;
+    QHBoxLayout *horizontalLayout_26;
+    QWidget *horizontalWidget1;
+    QHBoxLayout *horizontalLayout_25;
+    QFormLayout *formLayout;
+    QLabel *label_16;
+    QDoubleSpinBox *thch1;
+    QLabel *label_71;
+    QDoubleSpinBox *thch2;
+    QLabel *label_72;
+    QDoubleSpinBox *thch3;
+    QLabel *label_76;
+    QSpinBox *cw;
+    QFormLayout *formLayout_4;
+    QLabel *label_73;
+    QLineEdit *rofch1;
+    QLabel *label_74;
+    QLineEdit *rofch2;
+    QLabel *label_75;
+    QLineEdit *rofch3;
     QMenuBar *menuBar;
     QMenu *menuconfig_n;
     QMenu *menudisplay_n;
@@ -585,7 +606,7 @@ public:
         histStart->setObjectName(QString::fromUtf8("histStart"));
         histStart->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         histStart->setMinimum(1);
-        histStart->setMaximum(90000);
+        histStart->setMaximum(110000);
         histStart->setSingleStep(0);
         histStart->setValue(2);
 
@@ -601,7 +622,7 @@ public:
         histEnd->setObjectName(QString::fromUtf8("histEnd"));
         histEnd->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         histEnd->setMinimum(1);
-        histEnd->setMaximum(100000);
+        histEnd->setMaximum(120000);
         histEnd->setValue(800);
 
         verticalLayout_8->addWidget(histEnd);
@@ -705,7 +726,7 @@ public:
         BegA3 = new QSpinBox(horizontalWidget);
         BegA3->setObjectName(QString::fromUtf8("BegA3"));
         BegA3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        BegA3->setMaximum(100000);
+        BegA3->setMaximum(200000);
         BegA3->setSingleStep(100);
 
         gridLayout->addWidget(BegA3, 3, 1, 1, 1);
@@ -713,7 +734,7 @@ public:
         BegA2 = new QSpinBox(horizontalWidget);
         BegA2->setObjectName(QString::fromUtf8("BegA2"));
         BegA2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        BegA2->setMaximum(100000);
+        BegA2->setMaximum(200000);
         BegA2->setSingleStep(100);
 
         gridLayout->addWidget(BegA2, 2, 1, 1, 1);
@@ -721,7 +742,7 @@ public:
         EndA3 = new QSpinBox(horizontalWidget);
         EndA3->setObjectName(QString::fromUtf8("EndA3"));
         EndA3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        EndA3->setMaximum(100000);
+        EndA3->setMaximum(200000);
         EndA3->setSingleStep(100);
 
         gridLayout->addWidget(EndA3, 3, 2, 1, 1);
@@ -742,7 +763,7 @@ public:
         EndA2 = new QSpinBox(horizontalWidget);
         EndA2->setObjectName(QString::fromUtf8("EndA2"));
         EndA2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        EndA2->setMaximum(100000);
+        EndA2->setMaximum(200000);
         EndA2->setSingleStep(100);
 
         gridLayout->addWidget(EndA2, 2, 2, 1, 1);
@@ -763,7 +784,7 @@ public:
         BegA1 = new QSpinBox(horizontalWidget);
         BegA1->setObjectName(QString::fromUtf8("BegA1"));
         BegA1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        BegA1->setMaximum(100000);
+        BegA1->setMaximum(200000);
         BegA1->setSingleStep(100);
 
         gridLayout->addWidget(BegA1, 1, 1, 1, 1);
@@ -778,7 +799,7 @@ public:
         EndA1 = new QSpinBox(horizontalWidget);
         EndA1->setObjectName(QString::fromUtf8("EndA1"));
         EndA1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        EndA1->setMaximum(100000);
+        EndA1->setMaximum(200000);
         EndA1->setSingleStep(100);
 
         gridLayout->addWidget(EndA1, 1, 2, 1, 1);
@@ -807,16 +828,19 @@ public:
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         countA1 = new QLCDNumber(horizontalWidget);
         countA1->setObjectName(QString::fromUtf8("countA1"));
+        countA1->setDigitCount(7);
 
         formLayout_2->setWidget(1, QFormLayout::LabelRole, countA1);
 
         countA2 = new QLCDNumber(horizontalWidget);
         countA2->setObjectName(QString::fromUtf8("countA2"));
+        countA2->setDigitCount(7);
 
         formLayout_2->setWidget(2, QFormLayout::LabelRole, countA2);
 
         countA3 = new QLCDNumber(horizontalWidget);
         countA3->setObjectName(QString::fromUtf8("countA3"));
+        countA3->setDigitCount(7);
 
         formLayout_2->setWidget(3, QFormLayout::LabelRole, countA3);
 
@@ -900,7 +924,7 @@ public:
         EndB2 = new QSpinBox(horizontalWidget_3);
         EndB2->setObjectName(QString::fromUtf8("EndB2"));
         EndB2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        EndB2->setMaximum(100000);
+        EndB2->setMaximum(200000);
         EndB2->setSingleStep(100);
 
         gridLayout_2->addWidget(EndB2, 2, 2, 1, 1);
@@ -908,7 +932,7 @@ public:
         EndB3 = new QSpinBox(horizontalWidget_3);
         EndB3->setObjectName(QString::fromUtf8("EndB3"));
         EndB3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        EndB3->setMaximum(100000);
+        EndB3->setMaximum(200000);
         EndB3->setSingleStep(100);
 
         gridLayout_2->addWidget(EndB3, 3, 2, 1, 1);
@@ -916,7 +940,7 @@ public:
         BegB1 = new QSpinBox(horizontalWidget_3);
         BegB1->setObjectName(QString::fromUtf8("BegB1"));
         BegB1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        BegB1->setMaximum(100000);
+        BegB1->setMaximum(200000);
         BegB1->setSingleStep(100);
 
         gridLayout_2->addWidget(BegB1, 1, 1, 1, 1);
@@ -944,7 +968,7 @@ public:
         BegB3 = new QSpinBox(horizontalWidget_3);
         BegB3->setObjectName(QString::fromUtf8("BegB3"));
         BegB3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        BegB3->setMaximum(100000);
+        BegB3->setMaximum(200000);
         BegB3->setSingleStep(100);
 
         gridLayout_2->addWidget(BegB3, 3, 1, 1, 1);
@@ -952,7 +976,7 @@ public:
         EndB1 = new QSpinBox(horizontalWidget_3);
         EndB1->setObjectName(QString::fromUtf8("EndB1"));
         EndB1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        EndB1->setMaximum(100000);
+        EndB1->setMaximum(200000);
         EndB1->setSingleStep(100);
 
         gridLayout_2->addWidget(EndB1, 1, 2, 1, 1);
@@ -966,7 +990,7 @@ public:
         BegB2 = new QSpinBox(horizontalWidget_3);
         BegB2->setObjectName(QString::fromUtf8("BegB2"));
         BegB2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        BegB2->setMaximum(100000);
+        BegB2->setMaximum(200000);
         BegB2->setSingleStep(100);
 
         gridLayout_2->addWidget(BegB2, 2, 1, 1, 1);
@@ -1002,16 +1026,19 @@ public:
         formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
         countB1 = new QLCDNumber(horizontalWidget_3);
         countB1->setObjectName(QString::fromUtf8("countB1"));
+        countB1->setDigitCount(7);
 
         formLayout_3->setWidget(1, QFormLayout::LabelRole, countB1);
 
         countB2 = new QLCDNumber(horizontalWidget_3);
         countB2->setObjectName(QString::fromUtf8("countB2"));
+        countB2->setDigitCount(7);
 
         formLayout_3->setWidget(2, QFormLayout::LabelRole, countB2);
 
         countB3 = new QLCDNumber(horizontalWidget_3);
         countB3->setObjectName(QString::fromUtf8("countB3"));
+        countB3->setDigitCount(7);
 
         formLayout_3->setWidget(3, QFormLayout::LabelRole, countB3);
 
@@ -1753,6 +1780,125 @@ public:
         verticalLayout_3->addWidget(tab2W);
 
         horizontalTabWidget->addTab(tab2, QString());
+        conf = new QWidget();
+        conf->setObjectName(QString::fromUtf8("conf"));
+        horizontalLayout_26 = new QHBoxLayout(conf);
+        horizontalLayout_26->setSpacing(6);
+        horizontalLayout_26->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_26->setObjectName(QString::fromUtf8("horizontalLayout_26"));
+        horizontalWidget1 = new QWidget(conf);
+        horizontalWidget1->setObjectName(QString::fromUtf8("horizontalWidget1"));
+        horizontalWidget1->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
+        horizontalLayout_25 = new QHBoxLayout(horizontalWidget1);
+        horizontalLayout_25->setSpacing(6);
+        horizontalLayout_25->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_25->setObjectName(QString::fromUtf8("horizontalLayout_25"));
+        formLayout = new QFormLayout();
+        formLayout->setSpacing(6);
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        label_16 = new QLabel(horizontalWidget1);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+        label_16->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_16);
+
+        thch1 = new QDoubleSpinBox(horizontalWidget1);
+        thch1->setObjectName(QString::fromUtf8("thch1"));
+        thch1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        thch1->setMinimum(-10.000000000000000);
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, thch1);
+
+        label_71 = new QLabel(horizontalWidget1);
+        label_71->setObjectName(QString::fromUtf8("label_71"));
+        label_71->setStyleSheet(QString::fromUtf8("\n"
+"color: rgb(238, 238, 236);"));
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_71);
+
+        thch2 = new QDoubleSpinBox(horizontalWidget1);
+        thch2->setObjectName(QString::fromUtf8("thch2"));
+        thch2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        thch2->setMinimum(-10.000000000000000);
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, thch2);
+
+        label_72 = new QLabel(horizontalWidget1);
+        label_72->setObjectName(QString::fromUtf8("label_72"));
+        label_72->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_72);
+
+        thch3 = new QDoubleSpinBox(horizontalWidget1);
+        thch3->setObjectName(QString::fromUtf8("thch3"));
+        thch3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        thch3->setMinimum(-10.000000000000000);
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, thch3);
+
+        label_76 = new QLabel(horizontalWidget1);
+        label_76->setObjectName(QString::fromUtf8("label_76"));
+        label_76->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_76);
+
+        cw = new QSpinBox(horizontalWidget1);
+        cw->setObjectName(QString::fromUtf8("cw"));
+        cw->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        cw->setMaximum(999999);
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, cw);
+
+
+        horizontalLayout_25->addLayout(formLayout);
+
+        formLayout_4 = new QFormLayout();
+        formLayout_4->setSpacing(6);
+        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
+        label_73 = new QLabel(horizontalWidget1);
+        label_73->setObjectName(QString::fromUtf8("label_73"));
+        label_73->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_73);
+
+        rofch1 = new QLineEdit(horizontalWidget1);
+        rofch1->setObjectName(QString::fromUtf8("rofch1"));
+        rofch1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        rofch1->setReadOnly(true);
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, rofch1);
+
+        label_74 = new QLabel(horizontalWidget1);
+        label_74->setObjectName(QString::fromUtf8("label_74"));
+        label_74->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_4->setWidget(1, QFormLayout::LabelRole, label_74);
+
+        rofch2 = new QLineEdit(horizontalWidget1);
+        rofch2->setObjectName(QString::fromUtf8("rofch2"));
+        rofch2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_4->setWidget(1, QFormLayout::FieldRole, rofch2);
+
+        label_75 = new QLabel(horizontalWidget1);
+        label_75->setObjectName(QString::fromUtf8("label_75"));
+        label_75->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_4->setWidget(2, QFormLayout::LabelRole, label_75);
+
+        rofch3 = new QLineEdit(horizontalWidget1);
+        rofch3->setObjectName(QString::fromUtf8("rofch3"));
+        rofch3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_4->setWidget(2, QFormLayout::FieldRole, rofch3);
+
+
+        horizontalLayout_25->addLayout(formLayout_4);
+
+
+        horizontalLayout_26->addWidget(horizontalWidget1);
+
+        horizontalTabWidget->addTab(conf, QString());
 
         verticalLayout->addWidget(horizontalTabWidget);
 
@@ -1837,7 +1983,7 @@ public:
         trackB3->setText(QApplication::translate("MainWindow", "3", nullptr));
         label_54->setText(QApplication::translate("MainWindow", "Counts", nullptr));
         label_55->setText(QApplication::translate("MainWindow", "Track", nullptr));
-        horizontalTabWidget->setTabText(horizontalTabWidget->indexOf(tab1), QApplication::translate("MainWindow", "Tab 1", nullptr));
+        horizontalTabWidget->setTabText(horizontalTabWidget->indexOf(tab1), QApplication::translate("MainWindow", "Histograms", nullptr));
         label_21->setText(QApplication::translate("MainWindow", "X value", nullptr));
         label_22->setText(QApplication::translate("MainWindow", "Adquisition time", nullptr));
         adqtime_2->setSuffix(QApplication::translate("MainWindow", " [s]", nullptr));
@@ -1882,7 +2028,15 @@ public:
         label_65->setText(QApplication::translate("MainWindow", "1", nullptr));
         label_64->setText(QApplication::translate("MainWindow", "2", nullptr));
         label_66->setText(QApplication::translate("MainWindow", "3", nullptr));
-        horizontalTabWidget->setTabText(horizontalTabWidget->indexOf(tab2), QApplication::translate("MainWindow", "Tab 2", nullptr));
+        horizontalTabWidget->setTabText(horizontalTabWidget->indexOf(tab2), QApplication::translate("MainWindow", "AND gates", nullptr));
+        label_16->setText(QApplication::translate("MainWindow", "Threshold ch1", nullptr));
+        label_71->setText(QApplication::translate("MainWindow", "Threshold ch2", nullptr));
+        label_72->setText(QApplication::translate("MainWindow", "Threshold ch3", nullptr));
+        label_76->setText(QApplication::translate("MainWindow", "Coinc Window", nullptr));
+        label_73->setText(QApplication::translate("MainWindow", "RoF ch1", nullptr));
+        label_74->setText(QApplication::translate("MainWindow", "RoF ch2", nullptr));
+        label_75->setText(QApplication::translate("MainWindow", "RoF ch3", nullptr));
+        horizontalTabWidget->setTabText(horizontalTabWidget->indexOf(conf), QApplication::translate("MainWindow", "Parameters", nullptr));
         menuconfig_n->setTitle(QApplication::translate("MainWindow", "menu1", nullptr));
         menudisplay_n->setTitle(QApplication::translate("MainWindow", "menu2", nullptr));
     } // retranslateUi
