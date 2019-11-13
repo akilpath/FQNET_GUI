@@ -20,7 +20,7 @@ https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/
 
 7. add the `/lib` folder to the end of bashrc file
 
-On Centos, bashrc is located in `/etc/bashrc/' \
+On Centos, bashrc is located in `/etc/bashrc/` \
 
 Example: \
 `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cptlab/Desktop/FQNET_GUI/lib/`
