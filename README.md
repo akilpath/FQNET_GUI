@@ -1,30 +1,34 @@
 Qt based user interface for FQNET TDC
 
-compile instructions:
+Set up instructions:
 
-1. install CENTOS 7 3.10.0-957.el7.x86_64
+1. `git clone https://github.com/FermilabQuantumNetwork/FQNET_GUI.git`
 
-2. install GCC
+2. install CENTOS 7 3.10.0-957.el7.x86_64
 
-3. install qt-opensource-linux-x64-5.12.3
+3. install GCC
 
-4. add the user to the sudoers (wheel group), add the user to dialoutgroup
+4. install qt-opensource-linux-x64-5.12.3
 
-5. add libraries to bashrc
+5. add the user to the sudoers (wheel group)
+On centos: 
+https://phoenixnap.com/kb/how-to-create-add-sudo-user-centos
 
-example
+6. add the user to dialoutgroup
+On centos: `usermod -a -G examplegroup exampleusername`
+https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/
 
+7. add the `/lib` folder to the end of bashrc file
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cptlab/Desktop/FQNET_GUI/lib/
+On Centos, bashrc is located in `/etc/bashrc/'
 
-6. reboot
+Example:
+`export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cptlab/Desktop/FQNET_GUI/lib/`
 
+8. reboot
 
+9. open .pro file
 
-
-
-7. open .pro file
-
-8. run
+10. run
 
 
