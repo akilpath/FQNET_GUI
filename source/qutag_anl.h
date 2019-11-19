@@ -161,7 +161,7 @@ private:
   QVector<double> histo1data;
   std::ofstream file;
   double diffh;
-  int ChannelIndex=0, j, StopIndex=0, counterplot[3]={0,0,0};
+  int ChannelIndex=0, j=0, StopIndex=0, counterplot[3]={0,0,0};
   int flag[3][2]= {{0}};
   double adqtime_2=0;
   double previouskey;

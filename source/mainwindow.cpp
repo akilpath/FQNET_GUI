@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow){
 
   ui->setupUi(this);
-  setGeometry(200, 200, 1500, 1000);
+  setGeometry(200, 200, 1500, 500);
 
 
 //setupPlotA(ui->PlotA);
@@ -41,8 +41,8 @@ for (int i=0;i<12;i++) {
 }
 
 ui->thch1->setValue(0.5);
-ui->thch2->setValue(-0.15);
-ui->thch3->setValue(-0.15);
+ui->thch2->setValue(-0.08);
+ui->thch3->setValue(-0.08);
 ui->cw->setValue(50000);
 
 for (int i=0;i<6;i++)P_R[i]=0;
@@ -53,28 +53,31 @@ ui->plot1_2->setValue(0);
 ui->win1_1->setValue(0);
 ui->win1_2->setValue(0);
 
-ui->histStart->setValue(70000);
-ui->histEnd->setValue(90000);
+ui->histStart->setValue(71000);
+ui->histEnd->setValue(85000);
 /*ui->histStart->setValue(1000);
 ui->histEnd->setValue(10000);*/
 
 ui->binsinplot->setValue(1000);
 ui->adqtime->setValue(2);
 
-ui->BegA1->setValue(81200);
-ui->BegA2->setValue(83300);
-ui->BegA3->setValue(10100);
-ui->EndA1->setValue(83000);
-//ui->EndA1->setValue(39800);
-ui->EndA2->setValue(84900);
-ui->EndA3->setValue(102000);
 
-ui->BegB1->setValue(81900);
-ui->BegB2->setValue(83900);
-ui->BegB3->setValue(5100);
-ui->EndB1->setValue(83400);
-ui->EndB2->setValue(85400);
-ui->EndB3->setValue(6900);
+ui->BegA1->setValue(76500);
+ui->BegA2->setValue(79200);
+ui->BegA3->setValue(76000);
+ui->EndA1->setValue(77600);
+//ui->EndA1->setValue(39800);
+ui->EndA2->setValue(80600);
+ui->EndA3->setValue(76000);
+
+ui->BegB1->setValue(76000);
+ui->BegB2->setValue(79300);
+ui->BegB3->setValue(76000);
+ui->EndB1->setValue(78000);
+ui->EndB2->setValue(80900);
+ui->EndB3->setValue(76000);
+
+
 
 ui->PlotAChn1->setValue(1);
 ui->PlotAChn2->setValue(3);
@@ -92,6 +95,8 @@ lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
 adq.start();
 anl.start();
+
+
 
 adq.initdone = 1;
 }
@@ -496,8 +501,9 @@ void MainWindow::setupsignalslot(){
     QObject::connect(&anl, SIGNAL(anlongoing(bool)), &adq, SLOT(adqpausechange(bool)));
 
     QObject::connect(&adq, SIGNAL(qutaghist(vectorDouble, vectorDouble)), this, SLOT(histoplot(vectorDouble, vectorDouble)),Qt::QueuedConnection);
+    //QObject::connect(&adq, SIGNAL(qutaghist(vectorDouble, vectorDouble)), this, SLOT(histoplot(vectorDouble, vectorDouble)), Qt::BlockingQueuedConnection);
 
-     QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, double)));
+    QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, double)));
 
     QObject::connect(ui->thch1, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch1(double)));
     QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch2(double)));
@@ -616,9 +622,10 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
 
 
 void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB){
-
-    int binwidth=(int)((in_histEnd-in_histStart)/in_binsinplot);
+    //std::cout<<"que pasaaaaaaaaaaaaaaaaaaaaaa histo"<<std::endl;
+    double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
    // std::cout<<"histogram size   "<<datA.size()<<std::endl;
+
     QVector<double> x(datA.size());
 //for (int i=in_histStart; i<in_histEnd; i++){
     for (int i=0; i<datA.size(); ++i){
@@ -640,6 +647,7 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB){
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
   ui->PlotB->graph(0)->rescaleAxes();
   ui->PlotB->replot();
+
 
   for (int D=0; D<datA.size(); D++) {
       for (int i=0; i<6; i++) {
@@ -677,7 +685,7 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB){
 void MainWindow::LinePlot(){
 
    ////int Plot_Win_BoE[2][3][2];
-sleep(1);
+
    for (int i=0; i<12; i++) {
 
         if(i==0 || i==3 || i==6 || i==9)infLine[i]->setPen(QPen(Qt::red));
@@ -708,7 +716,7 @@ sleep(1);
 
         }
     }
-
+//std::cout<<"que pasaaaaaaaaaaaaaaaaaaaaaa  line"<<std::endl;
 
 }
 
