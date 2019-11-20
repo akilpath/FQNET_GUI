@@ -167,6 +167,7 @@ private:
   double previouskey;
   double key;
   bool anlbusy =false;
+  bool borrame =false;double firstkey;
 
 };
 

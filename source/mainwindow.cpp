@@ -53,29 +53,29 @@ ui->plot1_2->setValue(0);
 ui->win1_1->setValue(0);
 ui->win1_2->setValue(0);
 
-ui->histStart->setValue(71000);
-ui->histEnd->setValue(85000);
+ui->histStart->setValue(69000);
+ui->histEnd->setValue(77500);
 /*ui->histStart->setValue(1000);
 ui->histEnd->setValue(10000);*/
 
 ui->binsinplot->setValue(1000);
-ui->adqtime->setValue(2);
+ui->adqtime->setValue(10);//update rate Adq time
 
 
-ui->BegA1->setValue(76500);
-ui->BegA2->setValue(79200);
-ui->BegA3->setValue(76000);
-ui->EndA1->setValue(77600);
+ui->BegA1->setValue(70500);
+ui->BegA2->setValue(72700);
+ui->BegA3->setValue(74600);
+ui->EndA1->setValue(72100);
 //ui->EndA1->setValue(39800);
-ui->EndA2->setValue(80600);
-ui->EndA3->setValue(76000);
+ui->EndA2->setValue(73900);
+ui->EndA3->setValue(75900);
 
-ui->BegB1->setValue(76000);
-ui->BegB2->setValue(79300);
-ui->BegB3->setValue(76000);
-ui->EndB1->setValue(78000);
-ui->EndB2->setValue(80900);
-ui->EndB3->setValue(76000);
+ui->BegB1->setValue(71600);
+ui->BegB2->setValue(73600);
+ui->BegB3->setValue(75600);
+ui->EndB1->setValue(72800);
+ui->EndB2->setValue(74800);
+ui->EndB3->setValue(76800);
 
 
 
@@ -85,9 +85,24 @@ ui->PlotBChn1->setValue(1);
 ui->PlotBChn2->setValue(2);
 ui->startChan->setValue(1);
 
+
+ui->plot1_1->setValue(0);
+ui->plot1_2->setValue(1);
+ui->plot2_1->setValue(0);
+ui->plot2_2->setValue(1);
+ui->plot3_1->setValue(0);
+ui->plot3_2->setValue(1);
+
+ui->win1_1->setValue(0);
+ui->win1_2->setValue(0);
+ui->win2_1->setValue(1);
+ui->win2_2->setValue(1);
+ui->win3_1->setValue(2);
+ui->win3_2->setValue(2);
+
 //QThread::msleep(100);
 
-ui->adqtime_2->setValue(2);
+ui->adqtime_2->setValue(10);
 
 
 lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;

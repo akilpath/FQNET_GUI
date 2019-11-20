@@ -153,7 +153,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
     anlbusy=true;
 
 
-std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
+//std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
 
     for ( int i=0 ; i<tsvalid; i++) {
             ChannelIndex = (int)vectorChannels[i];
@@ -200,13 +200,17 @@ std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
 
 
     key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
-    //std::cout<<key-previouskey<<std::endl;
+    if(!borrame){firstkey=key;borrame=true;}
 
     if(key-previouskey>adqtime_2){
     emit rates_tab2(counterplot[0], counterplot[1], counterplot[2], key);
+    std::cout<<key-firstkey<<std::endl;
+     file<<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
      counterplot[0]=0;counterplot[1]=0;counterplot[2]=0;
      previouskey=key;
+
     }
+
    /*if(tsvalid>100){
         for ( int i=startindex; i < 100; i++ ) {
             if(vectorChannels[i]==in_startChan)i=localstart;tab2_ranges[ii][jj][k]
