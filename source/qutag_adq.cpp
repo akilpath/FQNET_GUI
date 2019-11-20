@@ -20,7 +20,7 @@ qutagadq::qutagadq(){
     adqpause_=false;
     histodataA=0;
     histodataB=0;
-
+    anlAvilable=false;
 
     printf( ">>> tdcbase version: %f\n", TDC_getVersion() );
     rc = TDC_init( -1 );                                 /* Accept every device */
@@ -186,7 +186,7 @@ int qutagadq::filterset(){
 
 
  void qutagadq::lautrun(){
-    // setHistograms();
+     setHistograms();
 
   TDC_clearAllHistograms ();
 
@@ -200,11 +200,11 @@ int qutagadq::filterset(){
      while(!break_){
          current_time = QDateTime::currentDateTime().toMSecsSinceEpoch();
         // std::cout<< current_time-previous_time <<std::endl;
-         if((current_time-previous_time) > 1000*in_adqtime){
-             getHisto();
+         if((current_time-previous_time) > 1000*in_adqtime){           
+             getHisto();//TDC_clearAllHistograms ();
              previous_time = current_time;
          }
-         getTimeStamps();
+         if(anlAvilable)getTimeStamps();
          QThread::msleep(100);
 
      }
@@ -212,6 +212,7 @@ int qutagadq::filterset(){
  }
 
  void qutagadq::getHisto(){
+
     //std::cout<<"gethisto"<<std::endl;
     if(paramschange)setHistograms();
     if(rc)return;
@@ -284,22 +285,24 @@ int qutagadq::filterset(){
        }
 
        if(count1 != 0 || count2 !=0)emit(qutaghist(dataA, dataB));
+
        dataA.clear();
        dataB.clear();
-
  }
 
 
  void qutagadq::getTimeStamps(){
-    timetags.clear();channelsTDC.clear();
+     //std::cout<<"gethisto"<<std::endl;
+     timetags.clear();channelsTDC.clear();
      rc = TDC_getLastTimestamps( 1, timestamps, channels, &tsValid );
-     checkRc( "TDC_getHistogram A", rc );
+     checkRc( "TDC_getLastTimestamps", rc );
      std::copy(timestamps, timestamps + tsValid, std::back_inserter(timetags));
-     std::copy(channels, channels + tsValid, std::back_inserter(channelsTDC));
+     std::copy(channels, channels + tsValid, std::back_inserter(channelsTDC));     
      if(tsValid>0 && anlAvilable){
-         emit dataready(timetags, channelsTDC, (int)tsValid);
+        // QThread::msleep(1);
+        emit dataready(timetags, channelsTDC, (int)tsValid);
      }
-
+//std::cout<<"gethisto5"<<std::endl;
  }
 
  void qutagadq::setHistograms(){

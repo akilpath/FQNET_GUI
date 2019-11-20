@@ -1976,7 +1976,7 @@ color: rgb(239, 41, 41);</string>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">color: rgb(238, 238, 236);</string>
+                    <string notr="true">color: rgb(200, 0, 0);</string>
                    </property>
                    <property name="text">
                     <string>&amp;</string>
@@ -2254,7 +2254,7 @@ color: rgb(239, 41, 41);</string>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">color: rgb(238, 238, 236);</string>
+                    <string notr="true">color: rgb(0, 200, 0);</string>
                    </property>
                    <property name="text">
                     <string>&amp;</string>
@@ -2521,7 +2521,7 @@ color: rgb(239, 41, 41);</string>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">color: rgb(238, 238, 236);</string>
+                    <string notr="true">color: rgb(200, 200, 0);</string>
                    </property>
                    <property name="text">
                     <string>&amp;</string>
@@ -2772,16 +2772,6 @@ color: rgb(238, 238, 236);</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="rofch1">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_74">
                <property name="styleSheet">
@@ -2789,13 +2779,6 @@ color: rgb(238, 238, 236);</string>
                </property>
                <property name="text">
                 <string>RoF ch2</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="rofch2">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
                </property>
               </widget>
              </item>
@@ -2809,10 +2792,39 @@ color: rgb(238, 238, 236);</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QLineEdit" name="rofch3">
+             <item row="0" column="1">
+              <widget class="QComboBox" name="rof1">
                <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
+                <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+               </property>
+               <property name="currentText">
+                <string/>
+               </property>
+               <property name="currentIndex">
+                <number>-1</number>
+               </property>
+               <property name="maxVisibleItems">
+                <number>2</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="rof2">
+               <property name="styleSheet">
+                <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+               </property>
+               <property name="maxVisibleItems">
+                <number>2</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="rof3">
+               <property name="styleSheet">
+                <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+               </property>
+               <property name="maxVisibleItems">
+                <number>2</number>
                </property>
               </widget>
              </item>

@@ -19,6 +19,7 @@ Hist2start=1;
 Hist1end=800;
 Hist2end=800;
 
+//Chang_anlAvilable(true);
 
 file.open("dataTest.csv");
 
@@ -150,19 +151,6 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
     emit(Chang_anlAvilable(false));
     anlbusy=true;
-   ///////////////////
-////int xtime;/////
- ////   float adqtime_tab2;
- ////   int plot1_1, plot1_2, plot2_1, plot2_2, plot3_1, plot3_2;
-////  int win1_1, win1_2, win2_1, win2_2, win3_1, win3_2;
- ////    int counterplot1=0, counterplot2=0, counterplot3=0;
-////    int  in_startChan;
-  ////  int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2;
-  /// in_histStart, in_histEnd;
-  //////////////////
-  ///
-
-
 
 
 //std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
@@ -171,37 +159,40 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
             ChannelIndex = (int)vectorChannels[i];
             if(ChannelIndex == in_startChan){
                 j=i+1;
+                if(j>=tsvalid)break; // do not allow the pointer go outside the allocated memory
                 StopIndex=(int)vectorChannels[j];
 
                 while(StopIndex!=in_startChan){
                     //std::cout<<(int)vectorChannels[j]<<std::endl;
                     diffh = vectorTimetags[j]-vectorTimetags[i];
-                    //if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh<<std::endl;
-                    if(diffh+in_histStart>in_histStart && diffh<in_histEnd){
+                   // if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh+in_histStart<<std::endl;
+                    //if(diffh+in_histStart>in_histStart && diffh+in_histStart<in_histEnd){
                             for (int ii=0; ii<3; ii++) {//over the 3 curves of tab2
                                 for (int jj=0; jj<2; jj++) {//check the condition of at one side of the &
                                    if(tab2_plot[ii][jj] == 0 && StopIndex == in_PlotACh2){
                                         if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
-                                        //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh <<"   "<<jj<<std::endl;
+                                        //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         //std::cout<<flag[jj]<<std::endl;
                                     }
                                     if(tab2_plot[ii][jj] == 1 && StopIndex == in_PlotBCh2){
                                         if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                        //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                     }
                                 }
-                                //if(ii==0)std::cout<<flag[0]<<"    "<<flag[1]<<std::endl;
-                                /*if(flag[0]&&flag[1])counterplot[ii]++;
-                                flag[0]=false;flag[1]=false;*/
+                               // if(i<50)if(ii==0)std::cout<<flag[ii][0]<<"    "<<flag[ii][1]<<std::endl;
+
                             }
 
-                    }
+                    //}
 
                     j++;
+                    if(j>=tsvalid)break;
                     StopIndex=(int)vectorChannels[j];
                 }
                 for (int ii=0; ii<3; ii++) {//over the 3 curves of tab2
                      if(flag[ii][0] && flag[ii][1])counterplot[ii]++;
                      flag[ii][0]=0;flag[ii][1]=0;
+                     //if(i<50)if(ii==0)std::cout<<"------------------"<<std::endl;
                 }
             }
         }
@@ -209,13 +200,17 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
 
     key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
-    //std::cout<<key-previouskey<<std::endl;
+    if(!borrame){firstkey=key;borrame=true;}
 
     if(key-previouskey>adqtime_2){
     emit rates_tab2(counterplot[0], counterplot[1], counterplot[2], key);
+    std::cout<<key-firstkey<<std::endl;
+     file<<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
      counterplot[0]=0;counterplot[1]=0;counterplot[2]=0;
      previouskey=key;
+
     }
+
    /*if(tsvalid>100){
         for ( int i=startindex; i < 100; i++ ) {
             if(vectorChannels[i]==in_startChan)i=localstart;tab2_ranges[ii][jj][k]

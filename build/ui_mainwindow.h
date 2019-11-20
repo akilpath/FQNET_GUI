@@ -13,6 +13,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
@@ -20,7 +21,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -263,11 +263,11 @@ public:
     QSpinBox *cw;
     QFormLayout *formLayout_4;
     QLabel *label_73;
-    QLineEdit *rofch1;
     QLabel *label_74;
-    QLineEdit *rofch2;
     QLabel *label_75;
-    QLineEdit *rofch3;
+    QComboBox *rof1;
+    QComboBox *rof2;
+    QComboBox *rof3;
     QMenuBar *menuBar;
     QMenu *menuconfig_n;
     QMenu *menudisplay_n;
@@ -1309,7 +1309,7 @@ public:
         QFont font1;
         font1.setPointSize(43);
         label_23->setFont(font1);
-        label_23->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        label_23->setStyleSheet(QString::fromUtf8("color: rgb(200, 0, 0);"));
         label_23->setTextFormat(Qt::RichText);
         label_23->setScaledContents(true);
         label_23->setAlignment(Qt::AlignCenter);
@@ -1493,7 +1493,7 @@ public:
         QFont font2;
         font2.setPointSize(44);
         label_24->setFont(font2);
-        label_24->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        label_24->setStyleSheet(QString::fromUtf8("color: rgb(0, 200, 0);"));
         label_24->setAlignment(Qt::AlignCenter);
 
         verticalLayout_23->addWidget(label_24);
@@ -1672,7 +1672,7 @@ public:
         label_61 = new QLabel(tab2W);
         label_61->setObjectName(QString::fromUtf8("label_61"));
         label_61->setFont(font2);
-        label_61->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        label_61->setStyleSheet(QString::fromUtf8("color: rgb(200, 200, 0);"));
         label_61->setAlignment(Qt::AlignCenter);
 
         verticalLayout_33->addWidget(label_61);
@@ -1861,24 +1861,11 @@ public:
 
         formLayout_4->setWidget(0, QFormLayout::LabelRole, label_73);
 
-        rofch1 = new QLineEdit(horizontalWidget1);
-        rofch1->setObjectName(QString::fromUtf8("rofch1"));
-        rofch1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        rofch1->setReadOnly(true);
-
-        formLayout_4->setWidget(0, QFormLayout::FieldRole, rofch1);
-
         label_74 = new QLabel(horizontalWidget1);
         label_74->setObjectName(QString::fromUtf8("label_74"));
         label_74->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout_4->setWidget(1, QFormLayout::LabelRole, label_74);
-
-        rofch2 = new QLineEdit(horizontalWidget1);
-        rofch2->setObjectName(QString::fromUtf8("rofch2"));
-        rofch2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-
-        formLayout_4->setWidget(1, QFormLayout::FieldRole, rofch2);
 
         label_75 = new QLabel(horizontalWidget1);
         label_75->setObjectName(QString::fromUtf8("label_75"));
@@ -1886,11 +1873,26 @@ public:
 
         formLayout_4->setWidget(2, QFormLayout::LabelRole, label_75);
 
-        rofch3 = new QLineEdit(horizontalWidget1);
-        rofch3->setObjectName(QString::fromUtf8("rofch3"));
-        rofch3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        rof1 = new QComboBox(horizontalWidget1);
+        rof1->setObjectName(QString::fromUtf8("rof1"));
+        rof1->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
+        rof1->setMaxVisibleItems(2);
 
-        formLayout_4->setWidget(2, QFormLayout::FieldRole, rofch3);
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, rof1);
+
+        rof2 = new QComboBox(horizontalWidget1);
+        rof2->setObjectName(QString::fromUtf8("rof2"));
+        rof2->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
+        rof2->setMaxVisibleItems(2);
+
+        formLayout_4->setWidget(1, QFormLayout::FieldRole, rof2);
+
+        rof3 = new QComboBox(horizontalWidget1);
+        rof3->setObjectName(QString::fromUtf8("rof3"));
+        rof3->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
+        rof3->setMaxVisibleItems(2);
+
+        formLayout_4->setWidget(2, QFormLayout::FieldRole, rof3);
 
 
         horizontalLayout_25->addLayout(formLayout_4);
@@ -1925,6 +1927,7 @@ public:
         retranslateUi(MainWindow);
 
         horizontalTabWidget->setCurrentIndex(1);
+        rof1->setCurrentIndex(-1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2036,6 +2039,7 @@ public:
         label_73->setText(QApplication::translate("MainWindow", "RoF ch1", nullptr));
         label_74->setText(QApplication::translate("MainWindow", "RoF ch2", nullptr));
         label_75->setText(QApplication::translate("MainWindow", "RoF ch3", nullptr));
+        rof1->setCurrentText(QString());
         horizontalTabWidget->setTabText(horizontalTabWidget->indexOf(conf), QApplication::translate("MainWindow", "Parameters", nullptr));
         menuconfig_n->setTitle(QApplication::translate("MainWindow", "menu1", nullptr));
         menudisplay_n->setTitle(QApplication::translate("MainWindow", "menu2", nullptr));
