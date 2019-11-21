@@ -14,7 +14,6 @@ compile instructions:
 
 example
 
-
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cptlab/Desktop/FQNET_GUI/lib/
 
 6. reboot
