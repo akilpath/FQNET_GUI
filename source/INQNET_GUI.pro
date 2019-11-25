@@ -1,6 +1,6 @@
 
 
-QT       += core gui multimedia
+QT       += core gui multimedia sql widgets
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
@@ -22,6 +22,7 @@ INCPATH +=
 
 
 SOURCES += main.cpp\
+           dbcontrol.cpp \
            mainwindow.cpp \
            qcustomplot.cpp \
            qutag_adq.cpp \
@@ -29,6 +30,7 @@ SOURCES += main.cpp\
           
 
 HEADERS  += mainwindow.h \
+            dbcontrol.h \
             qcustomplot.h \
             qutag_adq.h \
             qutag_anl.h \
