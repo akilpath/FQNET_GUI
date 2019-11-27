@@ -22,13 +22,13 @@ qutagadq::qutagadq(){
     histodataB=0;
     anlAvilable=false;
 
-    printf( ">>> tdcbase version: %f\n", TDC_getVersion() );
+   // printf( ">>> tdcbase version: %f\n", TDC_getVersion() );
     rc = TDC_init( -1 );                                 /* Accept every device */
     checkRc( "TDC_init", rc );
 
     rc = TDC_getTimebase( &timeBase );
     checkRc( "TDC_getTimebase", rc );
-    printf( ">>> timebase: %g ps\n", timeBase * 1.e12 );
+    //printf( ">>> timebase: %g ps\n", timeBase * 1.e12 );
     fflush(stdout);
 
 
@@ -44,15 +44,6 @@ qutagadq::qutagadq(){
     RoF[1]=0;
     RoF[2]=0;
     RoF[3]=0;
-
-
-    //rc = TDC_configureFilter(1, FILTER_COINC, 3);
-   /* rc = TDC_configureSignalConditioning(0, SCOND_MISC, 1, .1);
-    rc = TDC_configureSignalConditioning(1, SCOND_MISC, 0, .50);
-    rc = TDC_configureSignalConditioning(2, SCOND_MISC, 0, -0.150);
-    rc = TDC_configureSignalConditioning(3, SCOND_MISC, 0, -0.150);
-    rc = TDC_configureSignalConditioning(4, SCOND_MISC, 1, .1);
-    checkRc( "TDC_configureSignalConditioning", rc );*/
 
 
 
@@ -81,16 +72,6 @@ qutagadq::qutagadq(){
     fflush(stdout);
 
 
-
-    for (int i=0;i<4;i++) {
-        for (int j=0;j<4;j++) {
-            ActHist[i][j]=0;
-        }
-    }
-    rc = TDC_getTimebase( &timeBase );
-
-    checkRc( "TDC_getTimebase", rc );
-    printf( ">>> timebase: %g ps\n", timeBase * 1.e12 );
 
     rc = TDC_enableStartStop( 1 );
     checkRc( "TDC_enableStartStop", rc );
@@ -137,20 +118,6 @@ TDC_deInit();
  }
 
 
- float qutagadq::rate(int ch_rate)
- {
-   return ((float)ch_rate/(float)EXP_TIME)*1.e3/1.e6;//convert to Hz then to MHz
- }
-
-
- int qutagadq::get_max_collection_time( float rate )
- {
-   return (int)((float)TIMESTAMP_COUNT*0.90/rate);//rate in MHz so time is in us
- }
-
-
-
-
 
 int qutagadq::filterset(){
 
@@ -178,11 +145,6 @@ int qutagadq::filterset(){
 
     return 0;
 }
-
-
-
-
-
 
 
  void qutagadq::lautrun(){

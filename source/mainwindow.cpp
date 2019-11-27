@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 //setupPlotA(ui->PlotA);
 
-dbc.DBConnect("localhost", 3306, "INQNET_GUI", "GUI", "Teleport1536!");
+//dbc.DBConnect("localhost", 3306, "INQNET_GUI", "GUI", "Teleport1536!");
 
  setupsignalslot();
 
@@ -108,6 +108,8 @@ ui->adqtime_2->setValue(10);
 lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
+
+dbc.start();
 adq.start();
 anl.start();
 
@@ -610,7 +612,7 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
         ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
         //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
 
-    dbc.SaveAndValues(value1, value2, value3, in_adqtime_2);
+    dbc.SaveAndValues(int(value1), int(value2), int(value3), in_adqtime_2);
 
    ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, 120, Qt::AlignRight);
   //ui->PlotTab2->yAxis->rescale();
@@ -767,7 +769,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
 
 
 	
-       while(adq.isRunning() || anl.isRunning())usleep(100);
+       while(adq.isRunning() || anl.isRunning()|| dbc.isRunning())usleep(100);
        usleep(1000);
        event->accept();
 

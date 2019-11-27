@@ -10,11 +10,6 @@
 
 void my_handler(int s){
            printf("\n ADIOS :D \n");
-
-	   /*adquiclass cierre;
-	   cierre.~adquiclass();
-	   cierre.terminate();
-	*/
            exit(1); 
 }
 
