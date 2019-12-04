@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "qutag_adq.h"
 #include "qutag_anl.h"
+#include "dbcontrol.h"
 
 namespace Ui {
 class MainWindow;
@@ -97,10 +98,12 @@ private slots:
 
   void CombinationChange(bool val){CombiChang =val;}
 
+  void Chang_adqtime_2(double val){in_adqtime_2=val;}
 private:
   Ui::MainWindow *ui;
   qutagadq adq;
   qutaganl anl;
+  DBControl dbc;
   QString demoName;
   QTimer dataTimer;
   QCPItemTracer *itemDemoPhaseTracer;
@@ -109,7 +112,7 @@ private:
   QButtonGroup *buttonGroup1 ;
   QButtonGroup *buttonGroup2 ;
   bool trackRateChang =false, CombiChang =false;
-
+  float in_adqtime_2;
   QVector<int> datach1;
   QVector<int> datacali;
 

@@ -61,12 +61,12 @@ public:
 
 
 
-       std::array<std::array<int,4>,4> my2darray{}; //for testing
+      /* std::array<std::array<int,4>,4> my2darray{}; //for testing
 
        std::vector<std::array<std::array<Int64, TAGPCLOCK>,4 >> events;    //vector(events) of array(channels) of array(tags for each channel)   **basically a 3D datastructure of variable length**
 
 
-       std::vector< std::pair <Int64,int> > deltavector;
+       std::vector< std::pair <Int64,int> > deltavector;*/
 
     void run();
 

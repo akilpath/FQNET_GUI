@@ -11,9 +11,8 @@
 
 qutaganl::qutaganl(){
 
-events.reserve(TIMESTAMP_COUNT+1);
+//events.reserve(TIMESTAMP_COUNT+1);
 anlclock = 1;
-
 Hist1start=1;
 Hist2start=1;
 Hist1end=800;
@@ -21,7 +20,7 @@ Hist2end=800;
 
 //Chang_anlAvilable(true);
 
-file.open("dataTest.csv");
+//file.open("dataTest.csv");
 
 }
 
@@ -36,60 +35,18 @@ emit(Chang_anlAvilable(true));
 void qutaganl::print_event(int EVT, int CLOCK){
     printf("Event number %d \n", EVT);
     printf("***************************************************** \n");
-    /* not a priority
-    switch(CLOCK){
 
-    case 1:
-        clock1 = "*****clock*****";
-        clock2 = "               ";
-        clock3 = "               ";
-        clock4 = "               ";
-    case 2:
-        clock1 = "               ";
-        clock2 = "*****clock*****";
-        clock3 = "               ";
-        clock4 = "               ";
-    case 3:
-        clock1 = "               ";
-        clock2 = "               ";
-        clock3 = "*****clock*****";
-        clock4 = "               ";
-    case 4:
-        clock1 = "               ";
-        clock2 = "               ";
-        clock3 = "               ";
-        clock4 = "*****clock*****";
-    }
-    printf("%s %s %s %s", clock1, clock2, clock3, clock4);
-
-    */
-    for (tg = 0; tg < TAGPCLOCK; tg++){
-        for (ch = 0; ch < 4; ch++){
-            printf("%17" PRId64 "     ", events[EVT][ch][tg]);
-        }
-        printf("\n");
-    }
-    printf("***************************************************** \n");
 
 }
 
 
 void qutaganl::clear_events()
 {
-    for(evt = 0; evt < TIMESTAMP_COUNT; evt++){
-        for(ch = 0; ch < 4; ch++){
-            for(tg = 0; tg < TAGPCLOCK; tg++){
-                events[evt][ch][tg] = -1;
-            }
-        }
-    }
-evt = 0;
-ch = 0;
-tg = 0;
+
 }
 
 
-void qutaganl::generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS){
+/*void qutaganl::generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS){
     //do clock tags usually occur only once per event?
     deltavector.clear();
     clocksum = 0;
@@ -132,7 +89,7 @@ void qutaganl::generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS){
 
 
 }
-
+*/
 
 void qutaganl::print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, int LENGTHTOPRINT){
     for (i = 0; i < VECTOR.size(); i++){
@@ -144,7 +101,7 @@ void qutaganl::print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, in
 
 
 qutaganl::~qutaganl(){
-file.close();
+//file.close();
 }
 
 void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 &vectorChannels, int tsvalid){
@@ -204,8 +161,9 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
     if(key-previouskey>adqtime_2){
     emit rates_tab2(counterplot[0], counterplot[1], counterplot[2], key);
-    std::cout<<key-firstkey<<std::endl;
-     file<<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
+    //std::cout<<key-firstkey<<std::endl;
+     //file<<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
+     std::cout <<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
      counterplot[0]=0;counterplot[1]=0;counterplot[2]=0;
      previouskey=key;
 
