@@ -1773,22 +1773,28 @@ color: rgb(239, 41, 41);</string>
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="startadq">
+              <widget class="QLabel" name="label_77">
                <property name="styleSheet">
                 <string notr="true">color: rgb(238, 238, 236);</string>
                </property>
                <property name="text">
-                <string>Start / adquire</string>
+                <string>Record Data</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="saveDat">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
+              <widget class="QSlider" name="DBON">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="text">
-                <string>Save data / plot</string>
+               <property name="maximum">
+                <number>1</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
                </property>
               </widget>
              </item>

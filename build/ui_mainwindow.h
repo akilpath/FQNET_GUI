@@ -24,7 +24,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
@@ -162,8 +161,8 @@ public:
     QLabel *label_22;
     QDoubleSpinBox *adqtime_2;
     QSpacerItem *verticalSpacer_2;
-    QPushButton *startadq;
-    QPushButton *saveDat;
+    QLabel *label_77;
+    QSlider *DBON;
     QSpacerItem *verticalSpacer_3;
     QVBoxLayout *verticalLayout_18;
     QHBoxLayout *horizontalLayout_9;
@@ -1180,17 +1179,20 @@ public:
 
         verticalLayout_19->addLayout(verticalLayout_21);
 
-        startadq = new QPushButton(tab2W);
-        startadq->setObjectName(QString::fromUtf8("startadq"));
-        startadq->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        label_77 = new QLabel(tab2W);
+        label_77->setObjectName(QString::fromUtf8("label_77"));
+        label_77->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_19->addWidget(startadq);
+        verticalLayout_19->addWidget(label_77);
 
-        saveDat = new QPushButton(tab2W);
-        saveDat->setObjectName(QString::fromUtf8("saveDat"));
-        saveDat->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        DBON = new QSlider(tab2W);
+        DBON->setObjectName(QString::fromUtf8("DBON"));
+        sizePolicy3.setHeightForWidth(DBON->sizePolicy().hasHeightForWidth());
+        DBON->setSizePolicy(sizePolicy3);
+        DBON->setMaximum(1);
+        DBON->setOrientation(Qt::Horizontal);
 
-        verticalLayout_19->addWidget(saveDat);
+        verticalLayout_19->addWidget(DBON);
 
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -1990,8 +1992,7 @@ public:
         label_21->setText(QApplication::translate("MainWindow", "X value", nullptr));
         label_22->setText(QApplication::translate("MainWindow", "Adquisition time", nullptr));
         adqtime_2->setSuffix(QApplication::translate("MainWindow", " [s]", nullptr));
-        startadq->setText(QApplication::translate("MainWindow", "Start / adquire", nullptr));
-        saveDat->setText(QApplication::translate("MainWindow", "Save data / plot", nullptr));
+        label_77->setText(QApplication::translate("MainWindow", "Record Data", nullptr));
         label_27->setText(QApplication::translate("MainWindow", " Plot", nullptr));
         label_28->setText(QApplication::translate("MainWindow", " Window ", nullptr));
         label_29->setText(QApplication::translate("MainWindow", "A", nullptr));

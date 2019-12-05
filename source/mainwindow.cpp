@@ -1,4 +1,3 @@
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
@@ -54,7 +53,7 @@ ui->win1_1->setValue(0);
 ui->win1_2->setValue(0);
 
 ui->histStart->setValue(69000);
-ui->histEnd->setValue(77500);
+ui->histEnd->setValue(78500);
 /*ui->histStart->setValue(1000);
 ui->histEnd->setValue(10000);*/
 
@@ -62,8 +61,8 @@ ui->binsinplot->setValue(1000);
 ui->adqtime->setValue(10);//update rate Adq time
 
 
-ui->BegA1->setValue(70500);
-ui->BegA2->setValue(72700);
+ui->BegA1->setValue(70700);
+ui->BegA2->setValue(72600);
 ui->BegA3->setValue(74600);
 ui->EndA1->setValue(72100);
 //ui->EndA1->setValue(39800);
@@ -527,6 +526,8 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch2(double)));
     QObject::connect(ui->thch3, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch3(double)));
     QObject::connect(ui->cw, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_cw(int)));
+
+    QObject::connect(ui->DBON, SIGNAL(valueChanged(int)), this, SLOT(turnONDB(int)));
 }
 
 
@@ -612,7 +613,7 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
         ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
         //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
 
-    dbc.SaveAndValues(int(value1), int(value2), int(value3), in_adqtime_2);
+    if(dbrunning)dbc.SaveAndValues(int(value1), int(value2), int(value3), in_adqtime_2);
 
    ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, 120, Qt::AlignRight);
   //ui->PlotTab2->yAxis->rescale();
@@ -685,6 +686,8 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB){
   ui->countB3->display(P_R[5]);
 
 
+  if(dbrunning)dbc.SaveRateValues(P_R[0], P_R[1],  P_R[2], P_R[3], P_R[4], P_R[5], float(in_adqtime));
+
   double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
   for (int i=0;i<6;i++){
       char AoB;
@@ -740,6 +743,19 @@ void MainWindow::LinePlot(){
 
 }
 
+
+void MainWindow::turnONDB(int val){
+    /*if(!dbc.isRunning() && dbrunning == 0 && val==1){
+        dbc.run();
+        dbrunning=val;
+    }
+    if(dbc.isRunning() && dbrunning == 1 && val==0){
+        dbrunning = val;
+        while(dbc.isRunning())usleep(100);
+        dbc.~DBControl();
+    }*/
+    dbrunning=val;
+}
 
 MainWindow::~MainWindow()
 {

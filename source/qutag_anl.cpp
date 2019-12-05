@@ -118,11 +118,11 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
                 j=i+1;
                 if(j>=tsvalid)break; // do not allow the pointer go outside the allocated memory
                 StopIndex=(int)vectorChannels[j];
-
+                //if(i<50)std::cout<<"clock cycle"<<std::endl;
                 while(StopIndex!=in_startChan){
                     //std::cout<<(int)vectorChannels[j]<<std::endl;
                     diffh = vectorTimetags[j]-vectorTimetags[i];
-                   // if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh+in_histStart<<std::endl;
+                    //if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh+in_histStart<<std::endl;
                     //if(diffh+in_histStart>in_histStart && diffh+in_histStart<in_histEnd){
                             for (int ii=0; ii<3; ii++) {//over the 3 curves of tab2
                                 for (int jj=0; jj<2; jj++) {//check the condition of at one side of the &
@@ -163,7 +163,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
     emit rates_tab2(counterplot[0], counterplot[1], counterplot[2], key);
     //std::cout<<key-firstkey<<std::endl;
      //file<<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
-     std::cout <<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
+     //std::cout <<counterplot[0]<<","<<counterplot[1]<<","<<counterplot[2]<<","<<key-firstkey<<std::endl;
      counterplot[0]=0;counterplot[1]=0;counterplot[2]=0;
      previouskey=key;
 
@@ -180,7 +180,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
     }*/
 
 /*for ( int i=0; i < 20; i++ ) {
-    std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<std::endl;
+    std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<"       "<<vectorTimetags[i+1]-vectorTimetags[i]<<std::endl;
 }*/
 /*for ( int i=0; i < 20; i++ ) {
         std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<std::endl;

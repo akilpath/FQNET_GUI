@@ -99,6 +99,8 @@ private slots:
   void CombinationChange(bool val){CombiChang =val;}
 
   void Chang_adqtime_2(double val){in_adqtime_2=val;}
+
+  void turnONDB(int val);
 private:
   Ui::MainWindow *ui;
   qutagadq adq;
@@ -115,7 +117,7 @@ private:
   float in_adqtime_2;
   QVector<int> datach1;
   QVector<int> datacali;
-
+  bool dbrunning=false;
   //QCPItemStraightLine *infLine1,*infLine2,*infLine3,*infLine4,*infLine5,*infLine6,*infLine7,*infLine8,*infLine9,*infLine10,*infLine11,*infLine12;
   QCPItemStraightLine *infLine[12];
 
