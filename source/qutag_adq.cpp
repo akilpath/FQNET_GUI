@@ -22,13 +22,13 @@ qutagadq::qutagadq(){
     histodataB=0;
     anlAvilable=false;
 
-   // printf( ">>> tdcbase version: %f\n", TDC_getVersion() );
+    printf( ">>> tdcbase version: %f\n", TDC_getVersion() );
     rc = TDC_init( -1 );                                 /* Accept every device */
     checkRc( "TDC_init", rc );
 
     rc = TDC_getTimebase( &timeBase );
     checkRc( "TDC_getTimebase", rc );
-    //printf( ">>> timebase: %g ps\n", timeBase * 1.e12 );
+    printf( ">>> timebase: %g ps\n", timeBase * 1.e12 );
     fflush(stdout);
 
 
@@ -41,7 +41,7 @@ qutagadq::qutagadq(){
     rc = TDC_setExposureTime( 1000 );
     checkRc( "TDC_setExposureTime", rc );
 
-    RoF[1]=0;
+    RoF[1]=1;
     RoF[2]=0;
     RoF[3]=0;
 
@@ -313,7 +313,7 @@ int qutagadq::filterset(){
 
     //////////////fix the delay////////////
 
-    //std::cout<<in_PlotACh1 <<std::endl;
+    //std::cout<<in_PlotACh1 << "||||||||"<<in_PlotACh1 <<std::endl;
     for (int i=0;i<5;i++) {
         if(i==in_PlotACh1 || i==in_PlotBCh1)delays[i]=in_histStart;
         else delays[i]=0;
