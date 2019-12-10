@@ -81,7 +81,7 @@ qutagadq::qutagadq(){
 
 void qutagadq::run(){
 
-//lautrun();
+lautrun();
 //andrewrun();
 }
 
@@ -165,7 +165,7 @@ int qutagadq::filterset(){
              getHisto();//TDC_clearAllHistograms ();
              previous_time = current_time;
          }
-         //if(anlAvilable)getTimeStamps();
+         if(anlAvilable)getTimeStamps();
          QThread::msleep(100);
 
      }

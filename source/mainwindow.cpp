@@ -119,7 +119,7 @@ ui->tab2_plot3->setChecked(true);
 lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
-//dbc.start();
+dbc.start();
 adq.start();
 anl.start();
 
@@ -596,7 +596,7 @@ void MainWindow::plotRates(char AoB, int event, double key){
     // remove data of lines that's outside visible range:key, value1
     //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
     // rescale value (vertical) axis to fit the current data:
-        ui->PlotTrack->graph(0)->rescaleValueAxis(true);
+        //ui->PlotTrack->graph(0)->rescaleValueAxis(true);
       //  lastPointKey_tab1 = key;
  // make key axis range scroll with the data (at a constant range size of 8):
        // ui->PlotTrack->graph(0)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
@@ -610,7 +610,7 @@ void MainWindow::plotRates(char AoB, int event, double key){
     // remove data of lines that's outside visible range:key, value1
     //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
     // rescale value (vertical) axis to fit the current data:
-        ui->PlotTrack->graph(1)->rescaleValueAxis(true);
+        //ui->PlotTrack->graph(1)->rescaleValueAxis(true);
 
  // make key axis range scroll with the data (at a constant range size of 8):
       //  ui->PlotTrack->graph(1)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
@@ -623,13 +623,13 @@ void MainWindow::plotRates(char AoB, int event, double key){
     // remove data of lines that's outside visible range:key, value1
     //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
     // rescale value (vertical) axis to fit the current data:
-        ui->PlotTrack->graph(2)->rescaleValueAxis(true);
+        //ui->PlotTrack->graph(2)->rescaleValueAxis(true);
 
  // make key axis range scroll with the data (at a constant range size of 8):
       //  ui->PlotTrack->graph(1)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
 
     }
-   ui->PlotTrack->xAxis->setRange(key-lastPointKey_tab1, 40, Qt::AlignRight);
+   ui->PlotTrack->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
    //ui->PlotTrack->yAxis->rescale();
     ui->PlotTrack->replot();
 
@@ -750,9 +750,9 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
   ui->countB1->display(P_R[3]);
   ui->countB2->display(P_R[4]);
   ui->countB3->display(P_R[5]);
-  ui->countB3->display(P_R[6]);
-  ui->countB3->display(P_R[7]);
-  ui->countB3->display(P_R[8]);
+  ui->countC3->display(P_R[6]);
+  ui->countC3->display(P_R[7]);
+  ui->countC3->display(P_R[8]);
 
 
   if(dbrunning)dbc.SaveRateValues(P_R[0], P_R[1],  P_R[2], P_R[3], P_R[4], P_R[5], P_R[6], P_R[7], P_R[8], float(in_adqtime));

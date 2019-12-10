@@ -169,7 +169,9 @@ private:
   int tab2_plot[3][2];
   int tab2_win[3][2];
 
-  bool in_tab2_plot1, in_tab2_plot2, in_tab2_plot3;
+  bool in_tab2_plot1=false;
+  bool in_tab2_plot2=false;
+  bool in_tab2_plot3=false;
 
 
 
