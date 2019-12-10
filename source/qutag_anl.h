@@ -81,12 +81,12 @@ public:
     ~qutaganl();
 
     /////histogram Windows////
-    int Plot_Win_BoE[2][3][2]= {{{0}}};
+    int Plot_Win_BoE[3][3][2]= {{{0}}};
 
     ////first plot////
     int in_binsinplot, in_startChan, in_histStart, in_histEnd;
     double in_adqtime;
-    int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2;
+    int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2, in_PlotCCh1, in_PlotCCh2;
 
 
 
@@ -95,7 +95,7 @@ public:
    //////tab 2 param/////////
     int xtime;
     float adqtime_tab2;
-    int tab2_plot[3][2]={{0}};
+    int tab2_plot[3][3]={{0}};
     int tab2_win[3][2]= {{0}};
 
     int counterplot1=0, counterplot2=0, counterplot3=0;
@@ -111,6 +111,8 @@ public slots:
   void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;updateConditions();}
   void Chang_in_PlotBChn1(int val){this->in_PlotBCh1=val;updateConditions();}
   void Chang_in_PlotBChn2(int val){this->in_PlotBCh2=val;updateConditions();}
+  void Chang_in_PlotCChn1(int val){this->in_PlotCCh1=val;updateConditions();}
+  void Chang_in_PlotCChn2(int val){this->in_PlotCCh2=val;updateConditions();}
 
   void Chang_in_binsinplot(int val){this->in_binsinplot=val;updateConditions();}
   void Chang_in_histStart(int val){this->in_histStart=val;updateConditions();}
@@ -132,13 +134,23 @@ public slots:
   void EndB2(int val){Plot_Win_BoE[1][1][1]=val;updateConditions();}
   void EndB3(int val){Plot_Win_BoE[1][2][1]=val;updateConditions();}
 
+  void BegC1(int val){Plot_Win_BoE[2][0][0]=val;updateConditions();}
+  void BegC2(int val){Plot_Win_BoE[2][1][0]=val;updateConditions();}
+  void BegC3(int val){Plot_Win_BoE[2][2][0]=val;updateConditions();}
+  void EndC1(int val){Plot_Win_BoE[2][0][1]=val;updateConditions();}
+  void EndC2(int val){Plot_Win_BoE[2][1][1]=val;updateConditions();}
+  void EndC3(int val){Plot_Win_BoE[2][2][1]=val;updateConditions();}
+
 
   void Chang_plot1_1(int val){this->tab2_plot[0][0]=val;updateConditions();}
   void Chang_plot1_2(int val){this->tab2_plot[0][1]=val;updateConditions();}
+  void Chang_plot1_3(int val){this->tab2_plot[0][2]=val;updateConditions();}
   void Chang_plot2_1(int val){this->tab2_plot[1][0]=val;updateConditions();}
   void Chang_plot2_2(int val){this->tab2_plot[1][1]=val;updateConditions();}
+  void Chang_plot2_3(int val){this->tab2_plot[1][2]=val;updateConditions();}
   void Chang_plot3_1(int val){this->tab2_plot[2][0]=val;updateConditions();}
   void Chang_plot3_2(int val){this->tab2_plot[2][1]=val;updateConditions();}
+  void Chang_plot3_3(int val){this->tab2_plot[2][2]=val;updateConditions();}
 
   void Chang_win1_1(int val){this->tab2_win[0][0]=val;updateConditions();}
   void Chang_win1_2(int val){this->tab2_win[0][1]=val;updateConditions();}

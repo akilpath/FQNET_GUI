@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_qutaganl_t {
-    QByteArrayData data[51];
-    char stringdata0[593];
+    QByteArrayData data[62];
+    char stringdata0[709];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -54,34 +54,45 @@ QT_MOC_LITERAL(19, 211, 18), // "Chang_in_PlotAChn1"
 QT_MOC_LITERAL(20, 230, 18), // "Chang_in_PlotAChn2"
 QT_MOC_LITERAL(21, 249, 18), // "Chang_in_PlotBChn1"
 QT_MOC_LITERAL(22, 268, 18), // "Chang_in_PlotBChn2"
-QT_MOC_LITERAL(23, 287, 19), // "Chang_in_binsinplot"
-QT_MOC_LITERAL(24, 307, 18), // "Chang_in_histStart"
-QT_MOC_LITERAL(25, 326, 16), // "Chang_in_histEnd"
-QT_MOC_LITERAL(26, 343, 5), // "BegA1"
-QT_MOC_LITERAL(27, 349, 5), // "BegA2"
-QT_MOC_LITERAL(28, 355, 5), // "BegA3"
-QT_MOC_LITERAL(29, 361, 5), // "EndA1"
-QT_MOC_LITERAL(30, 367, 5), // "EndA2"
-QT_MOC_LITERAL(31, 373, 5), // "EndA3"
-QT_MOC_LITERAL(32, 379, 5), // "BegB1"
-QT_MOC_LITERAL(33, 385, 5), // "BegB2"
-QT_MOC_LITERAL(34, 391, 5), // "BegB3"
-QT_MOC_LITERAL(35, 397, 5), // "EndB1"
-QT_MOC_LITERAL(36, 403, 5), // "EndB2"
-QT_MOC_LITERAL(37, 409, 5), // "EndB3"
-QT_MOC_LITERAL(38, 415, 13), // "Chang_plot1_1"
-QT_MOC_LITERAL(39, 429, 13), // "Chang_plot1_2"
-QT_MOC_LITERAL(40, 443, 13), // "Chang_plot2_1"
-QT_MOC_LITERAL(41, 457, 13), // "Chang_plot2_2"
-QT_MOC_LITERAL(42, 471, 13), // "Chang_plot3_1"
-QT_MOC_LITERAL(43, 485, 13), // "Chang_plot3_2"
-QT_MOC_LITERAL(44, 499, 12), // "Chang_win1_1"
-QT_MOC_LITERAL(45, 512, 12), // "Chang_win1_2"
-QT_MOC_LITERAL(46, 525, 12), // "Chang_win2_1"
-QT_MOC_LITERAL(47, 538, 12), // "Chang_win2_2"
-QT_MOC_LITERAL(48, 551, 12), // "Chang_win3_1"
-QT_MOC_LITERAL(49, 564, 12), // "Chang_win3_2"
-QT_MOC_LITERAL(50, 577, 15) // "Chang_adqtime_2"
+QT_MOC_LITERAL(23, 287, 18), // "Chang_in_PlotCChn1"
+QT_MOC_LITERAL(24, 306, 18), // "Chang_in_PlotCChn2"
+QT_MOC_LITERAL(25, 325, 19), // "Chang_in_binsinplot"
+QT_MOC_LITERAL(26, 345, 18), // "Chang_in_histStart"
+QT_MOC_LITERAL(27, 364, 16), // "Chang_in_histEnd"
+QT_MOC_LITERAL(28, 381, 5), // "BegA1"
+QT_MOC_LITERAL(29, 387, 5), // "BegA2"
+QT_MOC_LITERAL(30, 393, 5), // "BegA3"
+QT_MOC_LITERAL(31, 399, 5), // "EndA1"
+QT_MOC_LITERAL(32, 405, 5), // "EndA2"
+QT_MOC_LITERAL(33, 411, 5), // "EndA3"
+QT_MOC_LITERAL(34, 417, 5), // "BegB1"
+QT_MOC_LITERAL(35, 423, 5), // "BegB2"
+QT_MOC_LITERAL(36, 429, 5), // "BegB3"
+QT_MOC_LITERAL(37, 435, 5), // "EndB1"
+QT_MOC_LITERAL(38, 441, 5), // "EndB2"
+QT_MOC_LITERAL(39, 447, 5), // "EndB3"
+QT_MOC_LITERAL(40, 453, 5), // "BegC1"
+QT_MOC_LITERAL(41, 459, 5), // "BegC2"
+QT_MOC_LITERAL(42, 465, 5), // "BegC3"
+QT_MOC_LITERAL(43, 471, 5), // "EndC1"
+QT_MOC_LITERAL(44, 477, 5), // "EndC2"
+QT_MOC_LITERAL(45, 483, 5), // "EndC3"
+QT_MOC_LITERAL(46, 489, 13), // "Chang_plot1_1"
+QT_MOC_LITERAL(47, 503, 13), // "Chang_plot1_2"
+QT_MOC_LITERAL(48, 517, 13), // "Chang_plot1_3"
+QT_MOC_LITERAL(49, 531, 13), // "Chang_plot2_1"
+QT_MOC_LITERAL(50, 545, 13), // "Chang_plot2_2"
+QT_MOC_LITERAL(51, 559, 13), // "Chang_plot2_3"
+QT_MOC_LITERAL(52, 573, 13), // "Chang_plot3_1"
+QT_MOC_LITERAL(53, 587, 13), // "Chang_plot3_2"
+QT_MOC_LITERAL(54, 601, 13), // "Chang_plot3_3"
+QT_MOC_LITERAL(55, 615, 12), // "Chang_win1_1"
+QT_MOC_LITERAL(56, 628, 12), // "Chang_win1_2"
+QT_MOC_LITERAL(57, 641, 12), // "Chang_win2_1"
+QT_MOC_LITERAL(58, 654, 12), // "Chang_win2_2"
+QT_MOC_LITERAL(59, 667, 12), // "Chang_win3_1"
+QT_MOC_LITERAL(60, 680, 12), // "Chang_win3_2"
+QT_MOC_LITERAL(61, 693, 15) // "Chang_adqtime_2"
 
     },
     "qutaganl\0histo1signal\0\0vectorDouble\0"
@@ -92,12 +103,15 @@ QT_MOC_LITERAL(50, 577, 15) // "Chang_adqtime_2"
     "Chang_in_startChan\0starchan\0"
     "Chang_in_PlotAChn1\0Chang_in_PlotAChn2\0"
     "Chang_in_PlotBChn1\0Chang_in_PlotBChn2\0"
+    "Chang_in_PlotCChn1\0Chang_in_PlotCChn2\0"
     "Chang_in_binsinplot\0Chang_in_histStart\0"
     "Chang_in_histEnd\0BegA1\0BegA2\0BegA3\0"
     "EndA1\0EndA2\0EndA3\0BegB1\0BegB2\0BegB3\0"
-    "EndB1\0EndB2\0EndB3\0Chang_plot1_1\0"
-    "Chang_plot1_2\0Chang_plot2_1\0Chang_plot2_2\0"
-    "Chang_plot3_1\0Chang_plot3_2\0Chang_win1_1\0"
+    "EndB1\0EndB2\0EndB3\0BegC1\0BegC2\0BegC3\0"
+    "EndC1\0EndC2\0EndC3\0Chang_plot1_1\0"
+    "Chang_plot1_2\0Chang_plot1_3\0Chang_plot2_1\0"
+    "Chang_plot2_2\0Chang_plot2_3\0Chang_plot3_1\0"
+    "Chang_plot3_2\0Chang_plot3_3\0Chang_win1_1\0"
     "Chang_win1_2\0Chang_win2_1\0Chang_win2_2\0"
     "Chang_win3_1\0Chang_win3_2\0Chang_adqtime_2"
 };
@@ -109,7 +123,7 @@ static const uint qt_meta_data_qutaganl[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      39,   14, // methods
+      50,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -117,47 +131,58 @@ static const uint qt_meta_data_qutaganl[] = {
        5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  209,    2, 0x06 /* Public */,
-       5,    1,  212,    2, 0x06 /* Public */,
-       7,    1,  215,    2, 0x06 /* Public */,
-       9,    1,  218,    2, 0x06 /* Public */,
-      10,    4,  221,    2, 0x06 /* Public */,
+       1,    1,  264,    2, 0x06 /* Public */,
+       5,    1,  267,    2, 0x06 /* Public */,
+       7,    1,  270,    2, 0x06 /* Public */,
+       9,    1,  273,    2, 0x06 /* Public */,
+      10,    4,  276,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      11,    3,  230,    2, 0x0a /* Public */,
-      17,    1,  237,    2, 0x0a /* Public */,
-      19,    1,  240,    2, 0x0a /* Public */,
-      20,    1,  243,    2, 0x0a /* Public */,
-      21,    1,  246,    2, 0x0a /* Public */,
-      22,    1,  249,    2, 0x0a /* Public */,
-      23,    1,  252,    2, 0x0a /* Public */,
-      24,    1,  255,    2, 0x0a /* Public */,
-      25,    1,  258,    2, 0x0a /* Public */,
-      26,    1,  261,    2, 0x0a /* Public */,
-      27,    1,  264,    2, 0x0a /* Public */,
-      28,    1,  267,    2, 0x0a /* Public */,
-      29,    1,  270,    2, 0x0a /* Public */,
-      30,    1,  273,    2, 0x0a /* Public */,
-      31,    1,  276,    2, 0x0a /* Public */,
-      32,    1,  279,    2, 0x0a /* Public */,
-      33,    1,  282,    2, 0x0a /* Public */,
-      34,    1,  285,    2, 0x0a /* Public */,
-      35,    1,  288,    2, 0x0a /* Public */,
-      36,    1,  291,    2, 0x0a /* Public */,
-      37,    1,  294,    2, 0x0a /* Public */,
-      38,    1,  297,    2, 0x0a /* Public */,
-      39,    1,  300,    2, 0x0a /* Public */,
-      40,    1,  303,    2, 0x0a /* Public */,
-      41,    1,  306,    2, 0x0a /* Public */,
-      42,    1,  309,    2, 0x0a /* Public */,
-      43,    1,  312,    2, 0x0a /* Public */,
-      44,    1,  315,    2, 0x0a /* Public */,
-      45,    1,  318,    2, 0x0a /* Public */,
-      46,    1,  321,    2, 0x0a /* Public */,
-      47,    1,  324,    2, 0x0a /* Public */,
-      48,    1,  327,    2, 0x0a /* Public */,
-      49,    1,  330,    2, 0x0a /* Public */,
-      50,    1,  333,    2, 0x0a /* Public */,
+      11,    3,  285,    2, 0x0a /* Public */,
+      17,    1,  292,    2, 0x0a /* Public */,
+      19,    1,  295,    2, 0x0a /* Public */,
+      20,    1,  298,    2, 0x0a /* Public */,
+      21,    1,  301,    2, 0x0a /* Public */,
+      22,    1,  304,    2, 0x0a /* Public */,
+      23,    1,  307,    2, 0x0a /* Public */,
+      24,    1,  310,    2, 0x0a /* Public */,
+      25,    1,  313,    2, 0x0a /* Public */,
+      26,    1,  316,    2, 0x0a /* Public */,
+      27,    1,  319,    2, 0x0a /* Public */,
+      28,    1,  322,    2, 0x0a /* Public */,
+      29,    1,  325,    2, 0x0a /* Public */,
+      30,    1,  328,    2, 0x0a /* Public */,
+      31,    1,  331,    2, 0x0a /* Public */,
+      32,    1,  334,    2, 0x0a /* Public */,
+      33,    1,  337,    2, 0x0a /* Public */,
+      34,    1,  340,    2, 0x0a /* Public */,
+      35,    1,  343,    2, 0x0a /* Public */,
+      36,    1,  346,    2, 0x0a /* Public */,
+      37,    1,  349,    2, 0x0a /* Public */,
+      38,    1,  352,    2, 0x0a /* Public */,
+      39,    1,  355,    2, 0x0a /* Public */,
+      40,    1,  358,    2, 0x0a /* Public */,
+      41,    1,  361,    2, 0x0a /* Public */,
+      42,    1,  364,    2, 0x0a /* Public */,
+      43,    1,  367,    2, 0x0a /* Public */,
+      44,    1,  370,    2, 0x0a /* Public */,
+      45,    1,  373,    2, 0x0a /* Public */,
+      46,    1,  376,    2, 0x0a /* Public */,
+      47,    1,  379,    2, 0x0a /* Public */,
+      48,    1,  382,    2, 0x0a /* Public */,
+      49,    1,  385,    2, 0x0a /* Public */,
+      50,    1,  388,    2, 0x0a /* Public */,
+      51,    1,  391,    2, 0x0a /* Public */,
+      52,    1,  394,    2, 0x0a /* Public */,
+      53,    1,  397,    2, 0x0a /* Public */,
+      54,    1,  400,    2, 0x0a /* Public */,
+      55,    1,  403,    2, 0x0a /* Public */,
+      56,    1,  406,    2, 0x0a /* Public */,
+      57,    1,  409,    2, 0x0a /* Public */,
+      58,    1,  412,    2, 0x0a /* Public */,
+      59,    1,  415,    2, 0x0a /* Public */,
+      60,    1,  418,    2, 0x0a /* Public */,
+      61,    1,  421,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -169,6 +194,17 @@ static const uint qt_meta_data_qutaganl[] = {
  // slots: parameters
     QMetaType::Void, 0x80000000 | 12, 0x80000000 | 14, QMetaType::Int,   13,   15,   16,
     QMetaType::Void, QMetaType::Int,   18,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void, QMetaType::Int,    8,
@@ -222,34 +258,45 @@ void qutaganl::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 8: _t->Chang_in_PlotAChn2((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 9: _t->Chang_in_PlotBChn1((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: _t->Chang_in_PlotBChn2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 11: _t->Chang_in_binsinplot((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->Chang_in_histStart((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 13: _t->Chang_in_histEnd((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 14: _t->BegA1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 15: _t->BegA2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 16: _t->BegA3((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 17: _t->EndA1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 18: _t->EndA2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 19: _t->EndA3((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 20: _t->BegB1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 21: _t->BegB2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 22: _t->BegB3((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 23: _t->EndB1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 24: _t->EndB2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 25: _t->EndB3((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 26: _t->Chang_plot1_1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 27: _t->Chang_plot1_2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 28: _t->Chang_plot2_1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 29: _t->Chang_plot2_2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 30: _t->Chang_plot3_1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 31: _t->Chang_plot3_2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 32: _t->Chang_win1_1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 33: _t->Chang_win1_2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 34: _t->Chang_win2_1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 35: _t->Chang_win2_2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 36: _t->Chang_win3_1((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 37: _t->Chang_win3_2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 38: _t->Chang_adqtime_2((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 11: _t->Chang_in_PlotCChn1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 12: _t->Chang_in_PlotCChn2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 13: _t->Chang_in_binsinplot((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->Chang_in_histStart((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 15: _t->Chang_in_histEnd((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->BegA1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 17: _t->BegA2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 18: _t->BegA3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 19: _t->EndA1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 20: _t->EndA2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 21: _t->EndA3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 22: _t->BegB1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 23: _t->BegB2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 24: _t->BegB3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 25: _t->EndB1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 26: _t->EndB2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 27: _t->EndB3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 28: _t->BegC1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 29: _t->BegC2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 30: _t->BegC3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 31: _t->EndC1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 32: _t->EndC2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 33: _t->EndC3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 34: _t->Chang_plot1_1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 35: _t->Chang_plot1_2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 36: _t->Chang_plot1_3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 37: _t->Chang_plot2_1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 38: _t->Chang_plot2_2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 39: _t->Chang_plot2_3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 40: _t->Chang_plot3_1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 41: _t->Chang_plot3_2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 42: _t->Chang_plot3_3((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 43: _t->Chang_win1_1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 44: _t->Chang_win1_2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 45: _t->Chang_win2_1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 46: _t->Chang_win2_2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 47: _t->Chang_win3_1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 48: _t->Chang_win3_2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 49: _t->Chang_adqtime_2((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -321,13 +368,13 @@ int qutaganl::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 39)
+        if (_id < 50)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 39;
+        _id -= 50;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 39)
+        if (_id < 50)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 39;
+        _id -= 50;
     }
     return _id;
 }

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_qutagadq_t {
-    QByteArrayData data[33];
-    char stringdata0[424];
+    QByteArrayData data[37];
+    char stringdata0[485];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,40 +43,46 @@ QT_MOC_LITERAL(8, 81, 9), // "qutaghist"
 QT_MOC_LITERAL(9, 91, 12), // "vectorDouble"
 QT_MOC_LITERAL(10, 104, 7), // "TTdata1"
 QT_MOC_LITERAL(11, 112, 7), // "TTdata2"
-QT_MOC_LITERAL(12, 120, 5), // "adqui"
-QT_MOC_LITERAL(13, 126, 13), // "setHistograms"
-QT_MOC_LITERAL(14, 140, 14), // "adqpausechange"
-QT_MOC_LITERAL(15, 155, 5), // "chang"
-QT_MOC_LITERAL(16, 161, 5), // "Break"
-QT_MOC_LITERAL(17, 167, 9), // "filterset"
-QT_MOC_LITERAL(18, 177, 19), // "Chang_in_binsinplot"
-QT_MOC_LITERAL(19, 197, 3), // "val"
-QT_MOC_LITERAL(20, 201, 18), // "Chang_in_histStart"
-QT_MOC_LITERAL(21, 220, 16), // "Chang_in_histEnd"
-QT_MOC_LITERAL(22, 237, 18), // "Chang_in_startChan"
-QT_MOC_LITERAL(23, 256, 16), // "Chang_in_adqtime"
-QT_MOC_LITERAL(24, 273, 18), // "Chang_in_PlotAChn1"
-QT_MOC_LITERAL(25, 292, 18), // "Chang_in_PlotAChn2"
-QT_MOC_LITERAL(26, 311, 18), // "Chang_in_PlotBChn1"
-QT_MOC_LITERAL(27, 330, 18), // "Chang_in_PlotBChn2"
-QT_MOC_LITERAL(28, 349, 17), // "Chang_anlAvilable"
-QT_MOC_LITERAL(29, 367, 14), // "Chang_in_thch1"
-QT_MOC_LITERAL(30, 382, 14), // "Chang_in_thch2"
-QT_MOC_LITERAL(31, 397, 14), // "Chang_in_thch3"
-QT_MOC_LITERAL(32, 412, 11) // "Chang_in_cw"
+QT_MOC_LITERAL(12, 120, 7), // "TTdata3"
+QT_MOC_LITERAL(13, 128, 5), // "adqui"
+QT_MOC_LITERAL(14, 134, 13), // "setHistograms"
+QT_MOC_LITERAL(15, 148, 14), // "adqpausechange"
+QT_MOC_LITERAL(16, 163, 5), // "chang"
+QT_MOC_LITERAL(17, 169, 5), // "Break"
+QT_MOC_LITERAL(18, 175, 9), // "filterset"
+QT_MOC_LITERAL(19, 185, 19), // "Chang_in_binsinplot"
+QT_MOC_LITERAL(20, 205, 3), // "val"
+QT_MOC_LITERAL(21, 209, 18), // "Chang_in_histStart"
+QT_MOC_LITERAL(22, 228, 16), // "Chang_in_histEnd"
+QT_MOC_LITERAL(23, 245, 18), // "Chang_in_startChan"
+QT_MOC_LITERAL(24, 264, 16), // "Chang_in_adqtime"
+QT_MOC_LITERAL(25, 281, 18), // "Chang_in_PlotAChn1"
+QT_MOC_LITERAL(26, 300, 18), // "Chang_in_PlotAChn2"
+QT_MOC_LITERAL(27, 319, 18), // "Chang_in_PlotBChn1"
+QT_MOC_LITERAL(28, 338, 18), // "Chang_in_PlotBChn2"
+QT_MOC_LITERAL(29, 357, 18), // "Chang_in_PlotCChn1"
+QT_MOC_LITERAL(30, 376, 18), // "Chang_in_PlotCChn2"
+QT_MOC_LITERAL(31, 395, 17), // "Chang_anlAvilable"
+QT_MOC_LITERAL(32, 413, 14), // "Chang_in_thch1"
+QT_MOC_LITERAL(33, 428, 14), // "Chang_in_thch2"
+QT_MOC_LITERAL(34, 443, 14), // "Chang_in_thch3"
+QT_MOC_LITERAL(35, 458, 14), // "Chang_in_thch4"
+QT_MOC_LITERAL(36, 473, 11) // "Chang_in_cw"
 
     },
     "qutagadq\0dataready\0\0vectorInt64\0"
     "vectorTimetags\0vectorInt8\0vectorChannels\0"
     "tsvalid\0qutaghist\0vectorDouble\0TTdata1\0"
-    "TTdata2\0adqui\0setHistograms\0adqpausechange\0"
-    "chang\0Break\0filterset\0Chang_in_binsinplot\0"
-    "val\0Chang_in_histStart\0Chang_in_histEnd\0"
-    "Chang_in_startChan\0Chang_in_adqtime\0"
-    "Chang_in_PlotAChn1\0Chang_in_PlotAChn2\0"
-    "Chang_in_PlotBChn1\0Chang_in_PlotBChn2\0"
-    "Chang_anlAvilable\0Chang_in_thch1\0"
-    "Chang_in_thch2\0Chang_in_thch3\0Chang_in_cw"
+    "TTdata2\0TTdata3\0adqui\0setHistograms\0"
+    "adqpausechange\0chang\0Break\0filterset\0"
+    "Chang_in_binsinplot\0val\0Chang_in_histStart\0"
+    "Chang_in_histEnd\0Chang_in_startChan\0"
+    "Chang_in_adqtime\0Chang_in_PlotAChn1\0"
+    "Chang_in_PlotAChn2\0Chang_in_PlotBChn1\0"
+    "Chang_in_PlotBChn2\0Chang_in_PlotCChn1\0"
+    "Chang_in_PlotCChn2\0Chang_anlAvilable\0"
+    "Chang_in_thch1\0Chang_in_thch2\0"
+    "Chang_in_thch3\0Chang_in_thch4\0Chang_in_cw"
 };
 #undef QT_MOC_LITERAL
 
@@ -86,7 +92,7 @@ static const uint qt_meta_data_qutagadq[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      24,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -94,54 +100,60 @@ static const uint qt_meta_data_qutagadq[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    3,  119,    2, 0x06 /* Public */,
-       8,    2,  126,    2, 0x06 /* Public */,
+       1,    3,  134,    2, 0x06 /* Public */,
+       8,    3,  141,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      12,    0,  131,    2, 0x0a /* Public */,
-      13,    0,  132,    2, 0x0a /* Public */,
-      14,    1,  133,    2, 0x0a /* Public */,
-      16,    0,  136,    2, 0x0a /* Public */,
-      17,    0,  137,    2, 0x0a /* Public */,
-      18,    1,  138,    2, 0x0a /* Public */,
-      20,    1,  141,    2, 0x0a /* Public */,
-      21,    1,  144,    2, 0x0a /* Public */,
-      22,    1,  147,    2, 0x0a /* Public */,
-      23,    1,  150,    2, 0x0a /* Public */,
-      24,    1,  153,    2, 0x0a /* Public */,
-      25,    1,  156,    2, 0x0a /* Public */,
-      26,    1,  159,    2, 0x0a /* Public */,
-      27,    1,  162,    2, 0x0a /* Public */,
-      28,    1,  165,    2, 0x0a /* Public */,
-      29,    1,  168,    2, 0x0a /* Public */,
-      30,    1,  171,    2, 0x0a /* Public */,
-      31,    1,  174,    2, 0x0a /* Public */,
-      32,    1,  177,    2, 0x0a /* Public */,
+      13,    0,  148,    2, 0x0a /* Public */,
+      14,    0,  149,    2, 0x0a /* Public */,
+      15,    1,  150,    2, 0x0a /* Public */,
+      17,    0,  153,    2, 0x0a /* Public */,
+      18,    0,  154,    2, 0x0a /* Public */,
+      19,    1,  155,    2, 0x0a /* Public */,
+      21,    1,  158,    2, 0x0a /* Public */,
+      22,    1,  161,    2, 0x0a /* Public */,
+      23,    1,  164,    2, 0x0a /* Public */,
+      24,    1,  167,    2, 0x0a /* Public */,
+      25,    1,  170,    2, 0x0a /* Public */,
+      26,    1,  173,    2, 0x0a /* Public */,
+      27,    1,  176,    2, 0x0a /* Public */,
+      28,    1,  179,    2, 0x0a /* Public */,
+      29,    1,  182,    2, 0x0a /* Public */,
+      30,    1,  185,    2, 0x0a /* Public */,
+      31,    1,  188,    2, 0x0a /* Public */,
+      32,    1,  191,    2, 0x0a /* Public */,
+      33,    1,  194,    2, 0x0a /* Public */,
+      34,    1,  197,    2, 0x0a /* Public */,
+      35,    1,  200,    2, 0x0a /* Public */,
+      36,    1,  203,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5, QMetaType::Int,    4,    6,    7,
-    QMetaType::Void, 0x80000000 | 9, 0x80000000 | 9,   10,   11,
+    QMetaType::Void, 0x80000000 | 9, 0x80000000 | 9, 0x80000000 | 9,   10,   11,   12,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   15,
+    QMetaType::Void, QMetaType::Bool,   16,
     QMetaType::Void,
     QMetaType::Int,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Double,   19,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::Bool,   19,
-    QMetaType::Void, QMetaType::Double,   19,
-    QMetaType::Void, QMetaType::Double,   19,
-    QMetaType::Void, QMetaType::Double,   19,
-    QMetaType::Void, QMetaType::Int,   19,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Double,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::Bool,   20,
+    QMetaType::Void, QMetaType::Double,   20,
+    QMetaType::Void, QMetaType::Double,   20,
+    QMetaType::Void, QMetaType::Double,   20,
+    QMetaType::Void, QMetaType::Double,   20,
+    QMetaType::Void, QMetaType::Int,   20,
 
        0        // eod
 };
@@ -153,7 +165,7 @@ void qutagadq::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->dataready((*reinterpret_cast< const vectorInt64(*)>(_a[1])),(*reinterpret_cast< const vectorInt8(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
-        case 1: _t->qutaghist((*reinterpret_cast< const vectorDouble(*)>(_a[1])),(*reinterpret_cast< const vectorDouble(*)>(_a[2]))); break;
+        case 1: _t->qutaghist((*reinterpret_cast< const vectorDouble(*)>(_a[1])),(*reinterpret_cast< const vectorDouble(*)>(_a[2])),(*reinterpret_cast< const vectorDouble(*)>(_a[3]))); break;
         case 2: _t->adqui(); break;
         case 3: _t->setHistograms(); break;
         case 4: _t->adqpausechange((*reinterpret_cast< bool(*)>(_a[1]))); break;
@@ -169,11 +181,14 @@ void qutagadq::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 13: _t->Chang_in_PlotAChn2((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 14: _t->Chang_in_PlotBChn1((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 15: _t->Chang_in_PlotBChn2((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 16: _t->Chang_anlAvilable((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 17: _t->Chang_in_thch1((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 18: _t->Chang_in_thch2((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 19: _t->Chang_in_thch3((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 20: _t->Chang_in_cw((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->Chang_in_PlotCChn1((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 17: _t->Chang_in_PlotCChn2((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 18: _t->Chang_anlAvilable((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 19: _t->Chang_in_thch1((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 20: _t->Chang_in_thch2((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 21: _t->Chang_in_thch3((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 22: _t->Chang_in_thch4((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 23: _t->Chang_in_cw((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -186,7 +201,7 @@ void qutagadq::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             }
         }
         {
-            using _t = void (qutagadq::*)(const vectorDouble & , const vectorDouble & );
+            using _t = void (qutagadq::*)(const vectorDouble & , const vectorDouble & , const vectorDouble & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&qutagadq::qutaghist)) {
                 *result = 1;
                 return;
@@ -224,13 +239,13 @@ int qutagadq::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 24)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 24;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 21)
+        if (_id < 24)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 21;
+        _id -= 24;
     }
     return _id;
 }
@@ -243,9 +258,9 @@ void qutagadq::dataready(const vectorInt64 & _t1, const vectorInt8 & _t2, int _t
 }
 
 // SIGNAL 1
-void qutagadq::qutaghist(const vectorDouble & _t1, const vectorDouble & _t2)
+void qutagadq::qutaghist(const vectorDouble & _t1, const vectorDouble & _t2, const vectorDouble & _t3)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP

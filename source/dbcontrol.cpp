@@ -56,10 +56,9 @@ void DBControl::SaveAndValues(int and1, int and2, int and3, float andTime){
 
 }
 
-void DBControl::SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int Rb3, float hist_adqtime){
-    QString s= "insert into inqnet_gui_andgates(Ra1, Ra2, Ra3, Rb1, Rb2, Rb3, hist_adqtime, datetime) values("+QString::number(Ra1)+","+QString::number(Ra2)+","+QString::number(Ra3)+QString::number(Rb1)+","+QString::number(Rb2)+","+QString::number(Rb3)+","+QString::number(hist_adqtime)+","+"now());";
+void DBControl::SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int Rb3,int Rc1 , int Rc2, int Rc3, float hist_adqtime){
+    QString s= "insert into inqnet_gui_andgates(Ra1, Ra2, Ra3, Rb1, Rb2, Rb3, Rc1, Rc2, Rc3, hist_adqtime, datetime) values("+QString::number(Ra1)+","+QString::number(Ra2)+","+QString::number(Ra3)+QString::number(Rb1)+","+QString::number(Rb2)+","+QString::number(Rb3)+","+QString::number(Rc1)+","+QString::number(Rc2)+","+QString::number(Rc3)+","+QString::number(hist_adqtime)+","+"now());";
    if(connection_succesfull)QSqlQuery query(s,db);
-
 }
 
 

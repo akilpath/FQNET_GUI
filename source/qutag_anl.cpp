@@ -45,52 +45,6 @@ void qutaganl::clear_events()
 
 }
 
-
-/*void qutaganl::generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS){
-    //do clock tags usually occur only once per event?
-    deltavector.clear();
-    clocksum = 0;
-    for (evt = 0; evt < 20; evt++){
-        for (tg = 0; tg < 10; tg++){
-            if (events[evt][CLOCK - 1][tg] != -1){
-                clocksum++;
-            }
-        }
-    }
-    if (clocksum/20 > 2){
-        printf("ERROR: more than 1 clock per event \n");
-        return;
-    }
-
-    for (evt = 0; evt < TOTALEVENTS; evt++){
-        clocksum = 0;
-        for (tg = 0; tg < TAGPCLOCK; tg++){
-            if (events[evt][CLOCK - 1][tg] != -1){
-                clocksum++;
-            }
-        }
-        if (clocksum != 1){
-            printf("bad event \n");
-            printf("clocksum is: %d", clocksum);
-            continue;
-        }
-        else{
-            for (tg = 0; tg < TAGPCLOCK; tg++){
-                if (events[evt][CHAN - 1][tg] != -1){
-                    //        *event*                   -         *clock*
-                    delta = events[evt][CHAN - 1][tg] - events[evt][CLOCK - 1][0];
-                    deltavector.push_back(std::make_pair( delta, evt ));
-                }
-            }
-
-        }
-    }
-
-
-
-}
-*/
-
 void qutaganl::print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, int LENGTHTOPRINT){
     for (i = 0; i < VECTOR.size(); i++){
         printf("%18" PRId64 "     %d \n", VECTOR[i].first, VECTOR[i].second);
