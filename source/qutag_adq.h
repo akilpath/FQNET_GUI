@@ -66,6 +66,8 @@ public slots:
   void Chang_in_startChan(int val){this->in_startChan=val;paramschange=true;}
 
   void Chang_in_adqtime(double val){this->in_adqtime=val;}
+
+
   void Chang_in_PlotAChn1(int val){this->in_PlotACh1=val;paramschange=true;}
   void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;paramschange=true;}
   void Chang_in_PlotBChn1(int val){this->in_PlotBCh1=val;paramschange=true;}
@@ -122,7 +124,7 @@ private:
     int a = 0;
 
     int microsec = 10000; // length of time to sleep, in microseconds
-    struct timespec req = {0};
+    //struct timespec req = {0};
 
 
     void andrewrun();

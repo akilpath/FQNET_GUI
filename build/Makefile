@@ -4249,6 +4249,7 @@ mainwindow.o: ../source/mainwindow.cpp ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QLabel \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMenu \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMenuBar \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QPushButton \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QRadioButton \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSlider \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSpacerItem \

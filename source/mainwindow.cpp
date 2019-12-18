@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow){
 
   ui->setupUi(this);
-  setGeometry(200, 200, 1500, 500);
+  setGeometry(200, 200, 1500, 800);
 
 
 
@@ -38,17 +38,18 @@ setupratePlot_tab2(ui->PlotTab2);
 
 for (int i=0;i<18;i++) {
     if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
-    if(i>5 && i<12) infLine[i] = new QCPItemStraightLine(ui->PlotB);
+    if((i>5) && (i<12)) infLine[i] = new QCPItemStraightLine(ui->PlotB);
     if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
 }
 
-ui->thch1->setValue(0.5);
+ui->thch1->setValue(0.25);
 ui->thch2->setValue(-0.08);
 ui->thch3->setValue(-0.08);
+ui->thch4->setValue(-0.08);
 ui->cw->setValue(50000);
 
-for (int i=0;i<6;i++)P_R[i]=0;
-for (int i=0;i<6;i++)P_T[i]=false;
+//for (int i=0;i<9;i++)P_R[i]=0;
+//for (int i=0;i<9;i++)P_T[i]=false;
 
 ui->plot1_1->setValue(0);
 ui->plot1_2->setValue(0);
@@ -111,13 +112,19 @@ ui->win3_2->setValue(2);
 
 ui->adqtime_2->setValue(10);
 
-ui->tab2_plot1->setChecked(true);
+/*ui->tab2_plot1->setChecked(true);
 ui->tab2_plot2->setChecked(true);
 ui->tab2_plot3->setChecked(true);
-
+*/
 
 lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+
+
+ui->rof1->addItem(tr("Rise"));
+ui->rof1->addItem(tr("Fall"));
+ui->rof1->addItem(tr("hola"));
+
 
 dbc.start();
 adq.start();
@@ -195,7 +202,7 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
   graph2->setPen(QPen(QColor(0, 200, 0), 2));
 
   QCPGraph *graph3 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
-  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::blue),4));
   graph3->setPen(QPen(QColor(200, 200, 0), 2));
 
 
@@ -292,6 +299,13 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
   graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
   graph3->setPen(QPen(QColor(200, 200, 0), 2));
 
+  QCPGraph *graph4 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+  graph3->setPen(QPen(QColor(252, 175, 62), 2));
+
+  QCPGraph *graph5 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+  graph3->setPen(QPen(QColor(173, 127, 168), 2));
 
 
   QLinearGradient plotGradient;
@@ -418,6 +432,10 @@ title1->setTextColor(Qt::white);
 
 void MainWindow::setupsignalslot(){
 
+
+    //QTimer::singleShot(0, this, SLOT(showFullScreen()));
+
+
     qRegisterMetaType<vectorInt64>("vectorInt64");
     qRegisterMetaType<vectorInt32>("vectorInt32");
     qRegisterMetaType<vectorInt8>("vectorInt8");
@@ -534,6 +552,9 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->plot2_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot2_2(int)));
     QObject::connect(ui->plot3_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot3_1(int)));
     QObject::connect(ui->plot3_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot3_2(int)));
+    QObject::connect(ui->plot4_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot4_1(int)));
+    QObject::connect(ui->plot4_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot4_2(int)));
+    QObject::connect(ui->plot5_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot5_2(int)));
 
     QObject::connect(ui->win1_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win1_1(int)));
     QObject::connect(ui->win1_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win1_2(int)));
@@ -541,6 +562,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->win2_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win2_2(int)));
     QObject::connect(ui->win3_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win3_1(int)));
     QObject::connect(ui->win3_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win3_2(int)));
+    QObject::connect(ui->win5_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win5_2(int)));
 
     QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(double)), &anl, SLOT(Chang_adqtime_2(double)));
     QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(double)), this, SLOT(Chang_adqtime_2(double)));
@@ -558,7 +580,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(&adq, SIGNAL(qutaghist(vectorDouble, vectorDouble, vectorDouble)), this, SLOT(histoplot(vectorDouble, vectorDouble, vectorDouble)),Qt::QueuedConnection);
     //QObject::connect(&adq, SIGNAL(qutaghist(vectorDouble, vectorDouble)), this, SLOT(histoplot(vectorDouble, vectorDouble)), Qt::BlockingQueuedConnection);
 
-    QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, double)));
+    QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, int, int, double)));
 
     QObject::connect(ui->thch1, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch1(double)));
     QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch2(double)));
@@ -574,23 +596,34 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->tab2_plot1, SIGNAL(toggled(bool)), this, SLOT(tab2_plot1_activate(bool)));
     QObject::connect(ui->tab2_plot2, SIGNAL(toggled(bool)), this, SLOT(tab2_plot2_activate(bool)));
     QObject::connect(ui->tab2_plot3, SIGNAL(toggled(bool)), this, SLOT(tab2_plot3_activate(bool)));
+    QObject::connect(ui->tab2_plot4, SIGNAL(toggled(bool)), this, SLOT(tab2_plot4_activate(bool)));
+    QObject::connect(ui->tab2_plot5, SIGNAL(toggled(bool)), this, SLOT(tab2_plot5_activate(bool)));
+
+    QObject::connect(ui->BSM, SIGNAL(released()), this, SLOT(setBSMmeas()));
+    QObject::connect(ui->HOM, SIGNAL(released()), this, SLOT(setHOMmeas()));
+
+    QObject::connect(ui->delayline, SIGNAL(valueChanged(int)), this, SLOT(Chang_delayline(int)));
+
+    QObject::connect(this, SIGNAL(main_SaveAndValues(int, int, int , int , int, float , int )), &dbc, SLOT(SaveAndValues(int, int, int , int , int, float , int )));
+
+    QObject::connect(this, SIGNAL(main_SaveRateValues( int, int , int , int , int , int , int , int , int , float)), &dbc, SLOT(SaveRateValues( int, int , int , int , int , int , int , int , int , float)));
+
+    QObject::connect(ui->homscan_time, SIGNAL(valueChanged(int)), this, SLOT(Chang_homscan_time(int)));
+    QObject::connect(ui->homscan, SIGNAL(toggled(bool)), this, SLOT(Chang_homscan(bool)));
 }
 
 
 
 //////////////////////////////////////////////////////////
-///////////////////rateplot///////////////////////////
+///////////////////plotting///////////////////////////
 ///////////////////////////////////////////////////////////
 
-void MainWindow::plotRates(char AoB, int event, double key){
-
-
-
+void MainWindow::plotRates(char AoBoC, int event, double key){
 
 
     double value1 = event; 
-  // std::cout<<value1<<std::endl;
-   if(AoB=='A'){
+
+   if(AoBoC=='A'){
 
         ui->PlotTrack->graph(0)->addData(key-lastPointKey_tab1, value1);
     // remove data of lines that's outside visible range:key, value1
@@ -603,45 +636,34 @@ void MainWindow::plotRates(char AoB, int event, double key){
         //ui->PlotTrack->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->PlotTrack->replot();
     }
-   if(AoB=='B'){
+   if(AoBoC=='B'){
 
 
         ui->PlotTrack->graph(1)->addData(key-lastPointKey_tab1, value1);
-    // remove data of lines that's outside visible range:key, value1
-    //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
-    // rescale value (vertical) axis to fit the current data:
-        //ui->PlotTrack->graph(1)->rescaleValueAxis(true);
 
- // make key axis range scroll with the data (at a constant range size of 8):
-      //  ui->PlotTrack->graph(1)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
 
     }
-   if(AoB=='C'){
-
+   if(AoBoC=='C'){
+    //std::cout<<"que pasaaaaaaaaaaaaaaaaaaaaaa  line          "<<value1<<std::endl;
 
         ui->PlotTrack->graph(2)->addData(key-lastPointKey_tab1, value1);
-    // remove data of lines that's outside visible range:key, value1
-    //ui->PlotTrack->graph(0)->removeDataBefore(key-55);
-    // rescale value (vertical) axis to fit the current data:
-        //ui->PlotTrack->graph(2)->rescaleValueAxis(true);
-
- // make key axis range scroll with the data (at a constant range size of 8):
-      //  ui->PlotTrack->graph(1)->keyAxis()->setRange(key+0.25, 50, Qt::AlignRight);
 
     }
-   ui->PlotTrack->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
+
+    ui->PlotTrack->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
    //ui->PlotTrack->yAxis->rescale();
+
     ui->PlotTrack->replot();
 
-    if(trackRateChang && AoB=='A'){
+    if(trackRateChang && AoBoC=='A'){
         ui->PlotTrack->graph(0)->data()->clear();
         trackRateChang=false;
     }
-    if(trackRateChang && AoB=='B'){
+    if(trackRateChang && AoBoC=='B'){
         ui->PlotTrack->graph(1)->data()->clear();
         trackRateChang=false;
     }
-    if(trackRateChang && AoB=='C'){
+    if(trackRateChang && AoBoC=='C'){
         ui->PlotTrack->graph(2)->data()->clear();
         trackRateChang=false;
     }
@@ -655,12 +677,14 @@ void MainWindow::plotRates(char AoB, int event, double key){
 
 }
 
-void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
+void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate , int bsm, double key){
 
 
    double value1 = eventA;
    double value2 = eventB;
    double value3 = eventC;
+   double value4 = orgate;
+   double value5 = bsm;
    //std::cout<<value1<<std::endl;
 
         if(in_tab2_plot1)ui->PlotTab2->graph(0)->addData(key-lastPointKey_tab2, value1);
@@ -669,10 +693,20 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
         if(in_tab2_plot2)ui->PlotTab2->graph(1)->addData(key-lastPointKey_tab2, value2);
         //ui->PlotTab2->graph(1)->rescaleValueAxis(true);
 
-        if(in_tab2_plot2)ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
+        if(in_tab2_plot3)ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
         //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
 
-    if(dbrunning)dbc.SaveAndValues(int(value1), int(value2), int(value3), in_adqtime_2);
+        if(in_tab2_plot4)ui->PlotTab2->graph(3)->addData(key-lastPointKey_tab2, value4);
+        //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
+
+        if(in_tab2_plot5)ui->PlotTab2->graph(4)->addData(key-lastPointKey_tab2, value5);
+        //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
+
+    if(dbrunning && !in_homscan)emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, in_delayline);
+    if(dbrunning && in_homscan){
+        emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, prev_homscan);
+        prev_homscan=in_delayline+in_homscan_time;
+    }
 
    ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, 120, Qt::AlignRight);
   //ui->PlotTab2->yAxis->rescale();
@@ -700,7 +734,7 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, double key){
 
 
 void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, const vectorDouble &datC){
-    //std::cout<<"que pasaaaaaaaaaaaaaaaaaaaaaa histo"<<std::endl;
+    //std::cout<<" histoplot hermanitititototot"<< datB.size()<<"   "<<datC.size() <<std::endl;
     double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
    // std::cout<<"histogram size   "<<datA.size()<<std::endl;
 
@@ -734,15 +768,22 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
   ui->PlotC->replot();
 
 
+
   for (int D=0; D<datA.size(); D++) {
       for (int i=0; i<9; i++) {
-          if(i<3){if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA[D];}
-          if(i>2 && i<6) {if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB[D];}
-          if(i>5) {if(x[D]>Plot_Win_BoE[1][i-6][0] && x[D]<Plot_Win_BoE[1][i-6][1])P_R[i]+=datC[D];}
+          if(i<3){
+              if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA[D];
+          }
+          if(i>2 && i<6) {
+              if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB[D];
+          }
+          if(i>5) {
+              if(x[D]>Plot_Win_BoE[2][i-6][0] && x[D]<Plot_Win_BoE[2][i-6][1])P_R[i]+=datC[D];
+          }
 
-      }
+       }
 
-    }
+  }
 
   ui->countA1->display(P_R[0]);
   ui->countA2->display(P_R[1]);
@@ -750,21 +791,24 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
   ui->countB1->display(P_R[3]);
   ui->countB2->display(P_R[4]);
   ui->countB3->display(P_R[5]);
-  ui->countC3->display(P_R[6]);
-  ui->countC3->display(P_R[7]);
+  ui->countC1->display(P_R[6]);
+  ui->countC2->display(P_R[7]);
   ui->countC3->display(P_R[8]);
 
+  //std::cout<<P_R[7]<<std::endl;
 
-  if(dbrunning)dbc.SaveRateValues(P_R[0], P_R[1],  P_R[2], P_R[3], P_R[4], P_R[5], P_R[6], P_R[7], P_R[8], float(in_adqtime));
-
+  if(dbrunning)emit main_SaveRateValues(P_R[0], P_R[1],  P_R[2], P_R[3], P_R[4], P_R[5], P_R[6], P_R[7], P_R[8], float(in_adqtime));
+//std::cout<<P_R[7]<<std::endl;
   double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
   for (int i=0;i<9;i++){
-      char AoB;
+      char AoBoC = char(NULL);
       if(P_T[i]){
-          if(i<3)AoB='A';
-          if(i>2 && i<6) AoB='B';
-          if(i>5) AoB='C';
-          plotRates(AoB, P_R[i], key);
+          if(i<3)AoBoC='A';
+          if(i>2 && i<6) AoBoC='B';
+          if(i>5) AoBoC='C';
+          //std::cout<<AoBoC<<"    "<<P_R[i]<<"    "<<i<<std::endl;
+
+          plotRates(AoBoC, P_R[i], key);
       }
   }
 
@@ -809,10 +853,10 @@ void MainWindow::LinePlot(){
 
         }
         if(i>11){
-            if(i<15)infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-15][0], 0);
-                else infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-15-3][1], 0);
-            if(i<15)infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-15][0], 1);
-                else infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-15-3][1], 1);
+            if(i<15)infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-12][0], 0);
+                else infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-12-3][1], 0);
+            if(i<15)infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-12][0], 1);
+                else infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-12-3][1], 1);
 
             ui->PlotC->replot();
 
@@ -823,14 +867,9 @@ void MainWindow::LinePlot(){
    /*for (int i=0;i<3;i++) {
        for (int j ;j<3;j++) {
            for (int k;k<2;k++) {
-
            }
-
        }
-
    }*/
-
-
 }
 
 
@@ -1037,6 +1076,37 @@ MainWindow::~MainWindow()
 {
   delete ui;
 }
+
+void MainWindow::setBSMmeas(){
+    ui->tab2_plot1->setChecked(true);
+    ui->tab2_plot2->setChecked(true);
+    ui->tab2_plot3->setChecked(false);
+    ui->tab2_plot4->setChecked(true);
+    ui->tab2_plot5->setChecked(true);
+
+    ui->plot1_1->setValue(0);
+    ui->plot1_2->setValue(1);
+    ui->plot2_1->setValue(0);
+    ui->plot2_2->setValue(1);
+    //ui->plot3_1->setValue(0);
+    //ui->plot3_2->setValue(1);
+    ui->plot4_1->setValue(0);
+    ui->plot4_2->setValue(1);
+    ui->plot5_2->setValue(3);
+
+    ui->win1_1->setValue(0);
+    ui->win1_2->setValue(2);
+    ui->win2_1->setValue(2);
+    ui->win2_2->setValue(0);
+    ui->win5_2->setValue(0);
+    //ui->win3_2->setValue(2);
+
+}
+void MainWindow::setHOMmeas(){
+
+
+}
+
 
 //////////////////////////////////////
 ////////////popup error///////////////

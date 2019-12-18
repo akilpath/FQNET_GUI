@@ -72,9 +72,9 @@ public:
 
 
     void clear_events();
-    void print_event(int EVT, int CLOCK);
-    void generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS);
-    void print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, int LENGTHTOPRINT);
+    //void print_event(int EVT, int CLOCK);
+    //void generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS);
+    //void print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, int LENGTHTOPRINT);
 
     explicit qutaganl();
     void updateConditions();
@@ -95,11 +95,11 @@ public:
    //////tab 2 param/////////
     int xtime;
     float adqtime_tab2;
-    int tab2_plot[3][3]={{0}};
-    int tab2_win[3][2]= {{0}};
+    int tab2_plot[5][2]={{0}};
+    int tab2_win[5][2]= {{0}};
 
-    int counterplot1=0, counterplot2=0, counterplot3=0;
-    int tab2_ranges[3][2][2] = {{{0}}};
+   // int counterplot1=0, counterplot2=0, counterplot3=0;
+    int tab2_ranges[4][2][2] = {{{0}}};
 
 public slots:
     
@@ -144,13 +144,13 @@ public slots:
 
   void Chang_plot1_1(int val){this->tab2_plot[0][0]=val;updateConditions();}
   void Chang_plot1_2(int val){this->tab2_plot[0][1]=val;updateConditions();}
-  void Chang_plot1_3(int val){this->tab2_plot[0][2]=val;updateConditions();}
   void Chang_plot2_1(int val){this->tab2_plot[1][0]=val;updateConditions();}
   void Chang_plot2_2(int val){this->tab2_plot[1][1]=val;updateConditions();}
-  void Chang_plot2_3(int val){this->tab2_plot[1][2]=val;updateConditions();}
   void Chang_plot3_1(int val){this->tab2_plot[2][0]=val;updateConditions();}
   void Chang_plot3_2(int val){this->tab2_plot[2][1]=val;updateConditions();}
-  void Chang_plot3_3(int val){this->tab2_plot[2][2]=val;updateConditions();}
+  void Chang_plot4_1(int val){this->tab2_plot[3][0]=val;updateConditions();}
+  void Chang_plot4_2(int val){this->tab2_plot[3][1]=val;updateConditions();}
+  void Chang_plot5_2(int val){this->tab2_plot[4][1]=val;updateConditions();}
 
   void Chang_win1_1(int val){this->tab2_win[0][0]=val;updateConditions();}
   void Chang_win1_2(int val){this->tab2_win[0][1]=val;updateConditions();}
@@ -158,6 +158,7 @@ public slots:
   void Chang_win2_2(int val){this->tab2_win[1][1]=val;updateConditions();}
   void Chang_win3_1(int val){this->tab2_win[2][0]=val;updateConditions();}
   void Chang_win3_2(int val){this->tab2_win[2][1]=val;updateConditions();}
+  void Chang_win5_2(int val){this->tab2_win[4][1]=val;updateConditions();}
 
   void Chang_adqtime_2(double val){this->adqtime_2=val;updateConditions();}
 
@@ -167,14 +168,15 @@ signals:
     void anlongoing(bool ong);                          //analysis program still working
     void Chang_anlAvilable(bool val);
     void CombinationChange(bool val);
-    void rates_tab2(int, int, int, double);
+    void rates_tab2(int, int, int, int, int ,double);
+
 private:
 
   QVector<double> histo1data;
   std::ofstream file;
   double diffh;
-  int ChannelIndex=0, j=0, StopIndex=0, counterplot[3]={0,0,0};
-  int flag[3][2]= {{0}};
+  int ChannelIndex=0, StopIndex=0, counterplot[5]={0};
+  int flag[5][2]= {{0}};
   double adqtime_2=0;
   double previouskey;
   double key;

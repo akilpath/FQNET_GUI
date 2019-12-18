@@ -45,7 +45,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab1">
        <attribute name="title">
@@ -85,13 +85,25 @@
               <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="spacing">
+               <number>3</number>
+              </property>
               <property name="sizeConstraint">
                <enum>QLayout::SetDefaultConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>9</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="label_8">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -666,8 +678,20 @@
               <item>
                <widget class="QWidget" name="widget" native="true">
                 <layout class="QVBoxLayout" name="verticalLayout_24">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
@@ -721,6 +745,12 @@
                <layout class="QVBoxLayout" name="verticalLayout_6">
                 <item>
                  <widget class="QLabel" name="label_34">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
@@ -734,6 +764,12 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="label_68">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
@@ -787,6 +823,12 @@
                <layout class="QVBoxLayout" name="verticalLayout_35">
                 <item>
                  <widget class="QLabel" name="label_67">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
@@ -800,6 +842,12 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="label_69">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
@@ -853,6 +901,12 @@
                <layout class="QVBoxLayout" name="verticalLayout_36">
                 <item>
                  <widget class="QLabel" name="label_88">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
@@ -866,6 +920,12 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="label_89">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
@@ -900,6 +960,12 @@
               <item>
                <widget class="QWidget" name="ee" native="true">
                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_2">
                    <property name="styleSheet">
@@ -967,8 +1033,20 @@
               <item>
                <widget class="QWidget" name="rr" native="true">
                 <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_4">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
@@ -1012,8 +1090,20 @@
               <item>
                <widget class="QWidget" name="ww" native="true">
                 <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_5">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
@@ -2117,6 +2207,22 @@ background-color: rgb(136, 138, 133);</string>
               </widget>
              </item>
              <item>
+              <spacer name="verticalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QPushButton" name="HOM">
                <property name="styleSheet">
                 <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2128,6 +2234,64 @@ background-color: rgb(136, 138, 133);</string>
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <widget class="QLabel" name="label_103">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                 <property name="text">
+                  <string>Scan mode</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSlider" name="homscan">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>1</number>
+                 </property>
+                 <property name="value">
+                  <number>0</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_104">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                 <property name="text">
+                  <string>Step Size</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="homscan_time">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(238, 238, 236);</string>
+                 </property>
+                 <property name="suffix">
+                  <string> [ps]</string>
+                 </property>
+                 <property name="maximum">
+                  <number>1000</number>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <spacer name="verticalSpacer">
                  <property name="orientation">
@@ -2236,10 +2400,10 @@ background-color: rgb(136, 138, 133);</string>
                   </sizepolicy>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(238, 238, 236);</string>
+                  <string notr="true">background-color: rgb(239, 41, 41);</string>
                  </property>
                  <property name="text">
-                  <string>Q  </string>
+                  <string>&amp;&amp;1</string>
                  </property>
                  <property name="autoExclusive">
                   <bool>false</bool>
@@ -2587,10 +2751,10 @@ background-color: rgb(136, 138, 133);</string>
                   </sizepolicy>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(238, 238, 236);</string>
+                  <string notr="true">background-color: rgb(138, 226, 52);</string>
                  </property>
                  <property name="text">
-                  <string>W  </string>
+                  <string>&amp;&amp;2</string>
                  </property>
                  <property name="autoExclusive">
                   <bool>false</bool>
@@ -2911,10 +3075,10 @@ background-color: rgb(136, 138, 133);</string>
                   </sizepolicy>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(238, 238, 236);</string>
+                  <string notr="true">background-color: rgb(252, 233, 79);</string>
                  </property>
                  <property name="text">
-                  <string>E  </string>
+                  <string>&amp;&amp;3</string>
                  </property>
                  <property name="autoExclusive">
                   <bool>false</bool>
@@ -3212,9 +3376,9 @@ background-color: rgb(136, 138, 133);</string>
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_30">
+              <layout class="QHBoxLayout" name="horizontalLayout_37">
                <item>
-                <widget class="QRadioButton" name="radioButton">
+                <widget class="QRadioButton" name="tab2_plot5">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -3222,17 +3386,20 @@ background-color: rgb(136, 138, 133);</string>
                   </sizepolicy>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(238, 238, 236);</string>
+                  <string notr="true">background-color: rgb(252, 175, 62);</string>
                  </property>
                  <property name="text">
-                  <string>R  </string>
+                  <string>OR</string>
+                 </property>
+                 <property name="autoExclusive">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
                <item>
-                <layout class="QVBoxLayout" name="verticalLayout_43">
+                <layout class="QVBoxLayout" name="verticalLayout_46">
                  <item>
-                  <widget class="QLabel" name="label_100">
+                  <widget class="QLabel" name="label_127">
                    <property name="font">
                     <font>
                      <pointsize>20</pointsize>
@@ -3246,78 +3413,46 @@ background-color: rgb(136, 138, 133);</string>
                    </property>
                   </widget>
                  </item>
-                 <item>
-                  <widget class="QLabel" name="label_101">
-                   <property name="font">
-                    <font>
-                     <pointsize>20</pointsize>
-                    </font>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">color: rgb(238, 238, 236);
-</string>
-                   </property>
-                   <property name="text">
-                    <string> Window </string>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </item>
                <item>
-                <layout class="QVBoxLayout" name="verticalLayout_42">
+                <layout class="QVBoxLayout" name="verticalLayout_45">
                  <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_31">
+                  <layout class="QHBoxLayout" name="horizontalLayout_38">
                    <item>
-                    <widget class="QLabel" name="label_103">
+                    <widget class="QLabel" name="label_121">
                      <property name="styleSheet">
                       <string notr="true">color: rgb(238, 238, 236);</string>
                      </property>
                      <property name="text">
-                      <string>A</string>
+                      <string>&amp;1</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="label_104">
+                    <widget class="QLabel" name="label_122">
                      <property name="styleSheet">
                       <string notr="true">color: rgb(238, 238, 236);</string>
                      </property>
                      <property name="text">
-                      <string>B</string>
+                      <string>&amp;2</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="label_102">
+                    <widget class="QLabel" name="label_120">
                      <property name="styleSheet">
                       <string notr="true">color: rgb(238, 238, 236);</string>
                      </property>
                      <property name="text">
-                      <string>C</string>
+                      <string>&amp;3</string>
                      </property>
                     </widget>
                    </item>
                   </layout>
                  </item>
                  <item>
-                  <widget class="QSlider" name="plot3_3">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximum">
-                    <number>2</number>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSlider" name="win3_3">
+                  <widget class="QSlider" name="plot4_1">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -3330,49 +3465,136 @@ background-color: rgb(136, 138, 133);</string>
                    <property name="maximum">
                     <number>2</number>
                    </property>
-                   <property name="value">
-                    <number>0</number>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_98">
+                 <property name="font">
+                  <font>
+                   <pointsize>44</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(252, 175, 62);</string>
+                 </property>
+                 <property name="text">
+                  <string> || </string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_44">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_39">
+                   <item>
+                    <widget class="QLabel" name="label_125">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>&amp;1</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_126">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>&amp;2</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_124">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>&amp;3</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QSlider" name="plot4_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximum">
+                    <number>2</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
                   </widget>
                  </item>
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_32">
-                   <item>
-                    <widget class="QLabel" name="label_106">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>1</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_107">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>2</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_105">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>3</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
                 </layout>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_30">
+               <item>
+                <widget class="QRadioButton" name="tab2_plot4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(173, 127, 168);</string>
+                 </property>
+                 <property name="text">
+                  <string>bsm</string>
+                 </property>
+                 <property name="autoExclusive">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item>
                 <widget class="QLabel" name="label_99">
@@ -3382,119 +3604,15 @@ background-color: rgb(136, 138, 133);</string>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color: rgb(173, 127, 168);</string>
+                  <string notr="true">background-color: rgb(252, 175, 62);</string>
                  </property>
                  <property name="text">
-                  <string>&amp;</string>
+                  <string> OR </string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
                  </property>
                 </widget>
-               </item>
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_41">
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_33">
-                   <item>
-                    <widget class="QLabel" name="label_110">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>A</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_109">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>B</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_108">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>C</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <widget class="QSlider" name="plot3_4">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximum">
-                    <number>2</number>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSlider" name="win3_4">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximum">
-                    <number>2</number>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_34">
-                   <item>
-                    <widget class="QLabel" name="label_112">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>1</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_113">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>2</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_111">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>3</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                </layout>
                </item>
                <item>
                 <widget class="QLabel" name="label_123">
@@ -3551,7 +3669,7 @@ background-color: rgb(136, 138, 133);</string>
                   </layout>
                  </item>
                  <item>
-                  <widget class="QSlider" name="plot3_7">
+                  <widget class="QSlider" name="plot5_2">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -3567,7 +3685,7 @@ background-color: rgb(136, 138, 133);</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSlider" name="plot3_6">
+                  <widget class="QSlider" name="win5_2">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -3619,42 +3737,9 @@ background-color: rgb(136, 138, 133);</string>
                 </layout>
                </item>
                <item>
-                <spacer name="horizontalSpacer_4">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_37">
-               <item>
-                <widget class="QRadioButton" name="radioButton_2">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(238, 238, 236);</string>
-                 </property>
-                 <property name="text">
-                  <string>OR</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_46">
+                <layout class="QVBoxLayout" name="verticalLayout_43">
                  <item>
-                  <widget class="QLabel" name="label_127">
+                  <widget class="QLabel" name="label_100">
                    <property name="font">
                     <font>
                      <pointsize>20</pointsize>
@@ -3668,159 +3753,26 @@ background-color: rgb(136, 138, 133);</string>
                    </property>
                   </widget>
                  </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_45">
                  <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_38">
-                   <item>
-                    <widget class="QLabel" name="label_121">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>Q</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_122">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>W</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_120">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>E</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_128">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>R</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <widget class="QSlider" name="plot3_5">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
+                  <widget class="QLabel" name="label_101">
+                   <property name="font">
+                    <font>
+                     <pointsize>20</pointsize>
+                    </font>
                    </property>
-                   <property name="minimum">
-                    <number>0</number>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);
+</string>
                    </property>
-                   <property name="maximum">
-                    <number>3</number>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                   <property name="text">
+                    <string> Window </string>
                    </property>
                   </widget>
                  </item>
                 </layout>
                </item>
                <item>
-                <widget class="QLabel" name="label_98">
-                 <property name="font">
-                  <font>
-                   <pointsize>44</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(252, 175, 62);</string>
-                 </property>
-                 <property name="text">
-                  <string> || </string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_44">
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_39">
-                   <item>
-                    <widget class="QLabel" name="label_125">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>Q</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_126">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>W</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_124">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>E</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_129">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(238, 238, 236);</string>
-                     </property>
-                     <property name="text">
-                      <string>R</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <widget class="QSlider" name="plot3_8">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximum">
-                    <number>3</number>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_5">
+                <spacer name="horizontalSpacer_4">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -3976,6 +3928,29 @@ color: rgb(238, 238, 236);</string>
                </property>
                <property name="minimum">
                 <double>-10.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_102">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Delay line time</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QSpinBox" name="delayline">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="suffix">
+                <string> [ps]</string>
+               </property>
+               <property name="maximum">
+                <number>999999</number>
                </property>
               </widget>
              </item>

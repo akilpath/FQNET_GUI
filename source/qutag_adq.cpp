@@ -18,8 +18,10 @@ qutagadq::qutagadq(){
     channelsTDC.reserve(TIMESTAMP_COUNT+1);
     break_=false;
     adqpause_=false;
-    histodataA=0;
-    histodataB=0;
+    histodataA=NULL;
+    histodataB=NULL;
+    histodataC=NULL;
+
     anlAvilable=false;
 
     printf( ">>> tdcbase version: %f\n", TDC_getVersion() );
@@ -44,6 +46,7 @@ qutagadq::qutagadq(){
     RoF[1]=1;
     RoF[2]=0;
     RoF[3]=0;
+    RoF[4]=0;
 
 
 
@@ -66,8 +69,8 @@ qutagadq::qutagadq(){
 
 
 
-    req.tv_sec = 0;
-    req.tv_nsec = microsec * 1000L;
+    //req.tv_sec = 0;
+    //req.tv_nsec = microsec * 1000L;
 
     fflush(stdout);
 
@@ -196,7 +199,7 @@ int qutagadq::filterset(){
 
      histodataC = new Int32 [in_binsinplot];
 
-    /* std::cout<<"binsinplot adq  :  "<< in_binsinplot<<std::endl;
+     /*std::cout<<"binsinplot adq  :  "<< in_binsinplot<<std::endl;
      std::cout<<"plot 1A  :  "<< in_PlotACh1<<std::endl;
      std::cout<<"plot 2A  :  "<< in_PlotACh2<<std::endl;
 */
@@ -214,7 +217,7 @@ int qutagadq::filterset(){
        QVector<double> dataA(in_binsinplot);
        for (int i=0; i<in_binsinplot; ++i){
 
-           dataA[i]=(double) histodataA[i];
+           dataA[i]=double(histodataA[i]);
        }
 
 
@@ -226,14 +229,6 @@ int qutagadq::filterset(){
        rc = TDC_getHistogram(in_PlotBCh1, in_PlotBCh2, 1, histodataB, &count, &tooSmall, &tooBig, &eventsA, &eventsB, &expTime );
        checkRc( "TDC_getHistogram B", rc );
 
-      //  printf( ">>> Histogram 1-2:     valid=%d tooSmall=%d tooBig=%d\n", count, tooSmall, tooBig );
-       // printf( ">>>                    starts=%d  stops=%d expTime=%g s\n", eventsA, eventsB, expTime * timeBase );
-        /*printf( ">>>       Bin Time   Counter global      Counter 1-2\n" );
-        for ( i = 0; i < HIST_BINCOUNT; ++i ) {
-         ////// "Bin Time" is the lower limit of the bin
-          printf( ">>> %12fns %16d %16d\n", i * bin2ns, histodataA[i]);
-        }
-*/
 
        count2=count;
 
@@ -241,7 +236,7 @@ int qutagadq::filterset(){
 
        for (int i=0; i<in_binsinplot; ++i){
 
-           dataB[i]=(double) histodataB[i];
+           dataB[i]=double( histodataB[i] );
        }
 
 
@@ -256,7 +251,7 @@ int qutagadq::filterset(){
 
        for (int i=0; i<in_binsinplot; ++i){
 
-           dataC[i]=(double) histodataC[i];
+           dataC[i]=double (histodataC[i]);
        }
 
 
@@ -353,7 +348,7 @@ int qutagadq::filterset(){
 
 
      paramschange=false;
-    std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
+    //std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
 
  }
 
