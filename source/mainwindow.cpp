@@ -123,8 +123,13 @@ lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
 ui->rof1->addItem(tr("Rise"));
 ui->rof1->addItem(tr("Fall"));
-ui->rof1->addItem(tr("hola"));
+ui->rof2->addItem(tr("Rise"));
+ui->rof2->addItem(tr("Fall"));
+ui->rof3->addItem(tr("Rise"));
+ui->rof3->addItem(tr("Fall"));
 
+
+ui->Max_delay->setValue(500);
 
 dbc.start();
 adq.start();
@@ -288,24 +293,34 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
  scope->plotLayout()->addElement(0, 0, wideAxisRect);
 
   QCPGraph *graph1 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
-  graph1->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),4));
+  graph1->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(128,0,0), 1), QBrush(QColor(240,128,128)),4));
+  //graph1->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(200, 0, 0), 1), QBrush(QColor(128,0,0)),4));
   graph1->setPen(QPen(QColor(200, 0, 0), 2));
 
   QCPGraph *graph2 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
-  graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+  graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(0,100,0), 1), QBrush(QColor(144,238,144)),4));
+  //graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(0, 200, 0), 1), QBrush(QColor(0,128,0)),4));
   graph2->setPen(QPen(QColor(0, 200, 0), 2));
 
   QCPGraph *graph3 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
-  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(189,183,107), 1), QBrush(QColor(255,255,0)),4));
+  //graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(200, 200, 0), 1), QBrush(QColor(255,255,0)),4));
   graph3->setPen(QPen(QColor(200, 200, 0), 2));
 
+
   QCPGraph *graph4 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
-  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
-  graph3->setPen(QPen(QColor(252, 175, 62), 2));
+  graph4->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(72,61,139), 1), QBrush(QColor(230,230,250)),4));
+  //graph4->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(173, 127, 168), 1), QBrush(QColor(138,43,226)),4));
+  graph4->setPen(QPen(QColor(63, 211, 249), 2));
 
   QCPGraph *graph5 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
-  graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
-  graph3->setPen(QPen(QColor(173, 127, 168), 2));
+  graph5->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(0,0,139), 1), QBrush(QColor(135,206,250)),4));
+  //graph5->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(63, 211, 249), 1), QBrush(QColor(30,144,255)),4));
+  graph5->setPen(QPen(QColor(173, 127, 168), 2));
+
+
+
+
 
 
   QLinearGradient plotGradient;
@@ -605,11 +620,20 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->delayline, SIGNAL(valueChanged(int)), this, SLOT(Chang_delayline(int)));
 
     QObject::connect(this, SIGNAL(main_SaveAndValues(int, int, int , int , int, float , int )), &dbc, SLOT(SaveAndValues(int, int, int , int , int, float , int )));
+   // QObject::connect(this, SIGNAL(main_SaveAndValues(int, int, int , int , int, float , int )), this, SLOT(AndValues(int, int, int , int , int, float , int )));
 
     QObject::connect(this, SIGNAL(main_SaveRateValues( int, int , int , int , int , int , int , int , int , float)), &dbc, SLOT(SaveRateValues( int, int , int , int , int , int , int , int , int , float)));
 
     QObject::connect(ui->homscan_time, SIGNAL(valueChanged(int)), this, SLOT(Chang_homscan_time(int)));
-    QObject::connect(ui->homscan, SIGNAL(toggled(bool)), this, SLOT(Chang_homscan(bool)));
+    QObject::connect(ui->homscan, SIGNAL(valueChanged(int)), this, SLOT(Chang_homscan(int)));
+
+    QObject::connect(ui->tab2_xrange, SIGNAL(valueChanged(int)), this, SLOT(chang_tab2range(int)));
+
+
+    QObject::connect(ui->reset_delay, SIGNAL(released()), this, SLOT(resetdelay()));
+
+    QObject::connect(ui->Max_delay, SIGNAL(valueChanged(int)), this, SLOT(chang_in_max_del(int)));
+
 }
 
 
@@ -702,13 +726,27 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
         if(in_tab2_plot5)ui->PlotTab2->graph(4)->addData(key-lastPointKey_tab2, value5);
         //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
 
-    if(dbrunning && !in_homscan)emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, in_delayline);
-    if(dbrunning && in_homscan){
-        emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, prev_homscan);
-        prev_homscan=in_delayline+in_homscan_time;
+    if(dbrunning && !in_homscan){
+
+        std::cout<<"delay : "<<in_delayline<<std::endl;
+        emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, in_delayline);
+         ui->current_delay_pos->display(in_delayline);
+    }
+    if(dbrunning && in_homscan && prev_homscan<=in_Max_delay){
+        if(firstscan){
+            anl.Chang_adqtime_2(1);
+            firstscan=false;
+        }
+        else{
+            anl.Chang_adqtime_2(in_adqtime_2);
+            std::cout<<"delay scan : "<<prev_homscan<<std::endl;
+            emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, prev_homscan);
+            ui->current_delay_pos->display(prev_homscan);
+            prev_homscan+=in_homscan_time;
+        }
     }
 
-   ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, 120, Qt::AlignRight);
+   ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, double(xrange), Qt::AlignRight);
   //ui->PlotTab2->yAxis->rescale();
    ui->PlotTab2->replot();
 
@@ -1140,10 +1178,3 @@ void MainWindow::closeEvent (QCloseEvent *event)
 
     
 }
-/*
-void MainWindow::Ceventosalarma(int eventosalarma){
-
-_eventosalarma=eventosalarma;
-
-}
-*/

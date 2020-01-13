@@ -99,7 +99,7 @@ public:
     int tab2_win[5][2]= {{0}};
 
    // int counterplot1=0, counterplot2=0, counterplot3=0;
-    int tab2_ranges[4][2][2] = {{{0}}};
+    int tab2_ranges[5][2][2] = {{{0}}};
 
 public slots:
     

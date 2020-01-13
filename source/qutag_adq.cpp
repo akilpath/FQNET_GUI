@@ -169,7 +169,7 @@ int qutagadq::filterset(){
              previous_time = current_time;
          }
          if(anlAvilable)getTimeStamps();
-         QThread::msleep(100);
+         QThread::msleep(10);
 
      }
 
@@ -272,6 +272,13 @@ int qutagadq::filterset(){
      std::copy(channels, channels + tsValid, std::back_inserter(channelsTDC));     
      if(tsValid>0 && anlAvilable){
         // QThread::msleep(1);
+
+
+
+         /*for ( int i=0; i < 20; i++ ) {
+         //   printf("channel original:  %hd",channels[i]);
+           std::cout<<"     channel :"<<(int)channels[i]<<"\t TTS: "<<timestamps[i]<<"       "<<timestamps[i+1]-timestamps[i]<<std::endl;
+         }*/
         emit dataready(timetags, channelsTDC, (int)tsValid);
      }
 //std::cout<<"gethisto5"<<std::endl;

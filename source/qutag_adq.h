@@ -30,8 +30,8 @@ typedef QVector<Int32> vectorInt32;
 
 //#define HIST_BINCOUNT        5000  /* Histogram size */
 //#define HIST_BINWIDTH    20  /* Histogram bin width .5us */
-#define TIMESTAMP_COUNT   10000  /* Timestamp buffer size */
-#define COLLECT_TIME         1000  /* Time [ms] for data acquisition per round */
+#define TIMESTAMP_COUNT   150000  /* Timestamp buffer size */
+//#define COLLECT_TIME         1000  /* Time [ms] for data acquisition per round */
 #define COLLECT_ROUNDS      100
 
 

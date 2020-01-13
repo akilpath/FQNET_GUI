@@ -193,23 +193,29 @@ public:
     QVBoxLayout *verticalLayout_3;
     QWidget *tab2W;
     QHBoxLayout *horizontalLayout;
-    QVBoxLayout *verticalLayout_19;
-    QVBoxLayout *verticalLayout_20;
+    QWidget *horizontalWidget1;
+    QHBoxLayout *horizontalLayout_27;
+    QFormLayout *formLayout_6;
     QPushButton *BSM;
-    QSpacerItem *verticalSpacer_11;
     QPushButton *HOM;
-    QVBoxLayout *verticalLayout_21;
+    QSpacerItem *verticalSpacer_11;
     QLabel *label_103;
     QSlider *homscan;
     QLabel *label_104;
     QSpinBox *homscan_time;
+    QLabel *label_105;
+    QLCDNumber *current_delay_pos;
+    QPushButton *reset_delay;
     QSpacerItem *verticalSpacer;
     QLabel *label_22;
     QDoubleSpinBox *adqtime_2;
+    QLabel *label_21;
+    QSpinBox *tab2_xrange;
     QSpacerItem *verticalSpacer_2;
     QLabel *label_77;
     QSlider *DBON;
-    QSpacerItem *verticalSpacer_3;
+    QLabel *label_106;
+    QSpinBox *Max_delay;
     QVBoxLayout *verticalLayout_18;
     QHBoxLayout *horizontalLayout_9;
     QRadioButton *tab2_plot1;
@@ -303,7 +309,7 @@ public:
     QLabel *label_66;
     QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *horizontalLayout_37;
-    QRadioButton *tab2_plot5;
+    QRadioButton *tab2_plot4;
     QVBoxLayout *verticalLayout_46;
     QLabel *label_127;
     QVBoxLayout *verticalLayout_45;
@@ -321,7 +327,7 @@ public:
     QSlider *plot4_2;
     QSpacerItem *horizontalSpacer_5;
     QHBoxLayout *horizontalLayout_30;
-    QRadioButton *tab2_plot4;
+    QRadioButton *tab2_plot5;
     QSpacerItem *horizontalSpacer_6;
     QLabel *label_99;
     QLabel *label_123;
@@ -345,7 +351,7 @@ public:
     QVBoxLayout *verticalLayout_5;
     QWidget *conf;
     QHBoxLayout *horizontalLayout_26;
-    QWidget *horizontalWidget1;
+    QWidget *horizontalWidget2;
     QHBoxLayout *horizontalLayout_25;
     QFormLayout *formLayout;
     QLabel *label_16;
@@ -483,7 +489,7 @@ public:
         palette.setBrush(QPalette::Active, QPalette::ToolTipBase, brush8);
         palette.setBrush(QPalette::Active, QPalette::ToolTipText, brush5);
         QBrush brush9(QColor(0, 0, 0, 128));
-        brush9.setStyle(Qt::SolidPattern);
+        brush9.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette::Active, QPalette::PlaceholderText, brush9);
 #endif
@@ -520,8 +526,10 @@ public:
         palette.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush2);
         palette.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush8);
         palette.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush5);
+        QBrush brush13(QColor(0, 0, 0, 128));
+        brush13.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush9);
+        palette.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush13);
 #endif
         palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush3);
         QLinearGradient gradient6(0, 0, 1, 0);
@@ -529,8 +537,8 @@ public:
         gradient6.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient6.setColorAt(0, QColor(80, 80, 80, 255));
         gradient6.setColorAt(1, QColor(50, 50, 50, 255));
-        QBrush brush13(gradient6);
-        palette.setBrush(QPalette::Disabled, QPalette::Button, brush13);
+        QBrush brush14(gradient6);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush14);
         palette.setBrush(QPalette::Disabled, QPalette::Light, brush2);
         palette.setBrush(QPalette::Disabled, QPalette::Midlight, brush2);
         palette.setBrush(QPalette::Disabled, QPalette::Dark, brush3);
@@ -543,21 +551,23 @@ public:
         gradient7.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient7.setColorAt(0, QColor(80, 80, 80, 255));
         gradient7.setColorAt(1, QColor(50, 50, 50, 255));
-        QBrush brush14(gradient7);
-        palette.setBrush(QPalette::Disabled, QPalette::Base, brush14);
+        QBrush brush15(gradient7);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush15);
         QLinearGradient gradient8(0, 0, 1, 0);
         gradient8.setSpread(QGradient::PadSpread);
         gradient8.setCoordinateMode(QGradient::ObjectBoundingMode);
         gradient8.setColorAt(0, QColor(80, 80, 80, 255));
         gradient8.setColorAt(1, QColor(50, 50, 50, 255));
-        QBrush brush15(gradient8);
-        palette.setBrush(QPalette::Disabled, QPalette::Window, brush15);
+        QBrush brush16(gradient8);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush16);
         palette.setBrush(QPalette::Disabled, QPalette::Shadow, brush5);
         palette.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush2);
         palette.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush8);
         palette.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush5);
+        QBrush brush17(QColor(0, 0, 0, 128));
+        brush17.setStyle(Qt::NoBrush);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush9);
+        palette.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush17);
 #endif
         label_8->setPalette(palette);
         label_8->setTextFormat(Qt::RichText);
@@ -994,6 +1004,7 @@ public:
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         countA1 = new QLCDNumber(horizontalWidget_4);
         countA1->setObjectName(QString::fromUtf8("countA1"));
+        countA1->setSmallDecimalPoint(false);
         countA1->setDigitCount(7);
 
         formLayout_2->setWidget(1, QFormLayout::LabelRole, countA1);
@@ -1507,127 +1518,175 @@ public:
         horizontalLayout->setSpacing(0);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        verticalLayout_19 = new QVBoxLayout();
-        verticalLayout_19->setSpacing(6);
-        verticalLayout_19->setObjectName(QString::fromUtf8("verticalLayout_19"));
-        verticalLayout_20 = new QVBoxLayout();
-        verticalLayout_20->setSpacing(6);
-        verticalLayout_20->setObjectName(QString::fromUtf8("verticalLayout_20"));
-
-        verticalLayout_19->addLayout(verticalLayout_20);
-
-        BSM = new QPushButton(tab2W);
+        horizontalWidget1 = new QWidget(tab2W);
+        horizontalWidget1->setObjectName(QString::fromUtf8("horizontalWidget1"));
+        QSizePolicy sizePolicy6(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(horizontalWidget1->sizePolicy().hasHeightForWidth());
+        horizontalWidget1->setSizePolicy(sizePolicy6);
+        horizontalLayout_27 = new QHBoxLayout(horizontalWidget1);
+        horizontalLayout_27->setSpacing(6);
+        horizontalLayout_27->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_27->setObjectName(QString::fromUtf8("horizontalLayout_27"));
+        formLayout_6 = new QFormLayout();
+        formLayout_6->setSpacing(6);
+        formLayout_6->setObjectName(QString::fromUtf8("formLayout_6"));
+        formLayout_6->setSizeConstraint(QLayout::SetMinimumSize);
+        BSM = new QPushButton(horizontalWidget1);
         BSM->setObjectName(QString::fromUtf8("BSM"));
         BSM->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_19->addWidget(BSM);
+        formLayout_6->setWidget(0, QFormLayout::LabelRole, BSM);
 
-        verticalSpacer_11 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed);
-
-        verticalLayout_19->addItem(verticalSpacer_11);
-
-        HOM = new QPushButton(tab2W);
+        HOM = new QPushButton(horizontalWidget1);
         HOM->setObjectName(QString::fromUtf8("HOM"));
         HOM->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_19->addWidget(HOM);
+        formLayout_6->setWidget(0, QFormLayout::FieldRole, HOM);
 
-        verticalLayout_21 = new QVBoxLayout();
-        verticalLayout_21->setSpacing(6);
-        verticalLayout_21->setObjectName(QString::fromUtf8("verticalLayout_21"));
-        label_103 = new QLabel(tab2W);
+        verticalSpacer_11 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        formLayout_6->setItem(1, QFormLayout::LabelRole, verticalSpacer_11);
+
+        label_103 = new QLabel(horizontalWidget1);
         label_103->setObjectName(QString::fromUtf8("label_103"));
         label_103->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_21->addWidget(label_103);
+        formLayout_6->setWidget(2, QFormLayout::LabelRole, label_103);
 
-        homscan = new QSlider(tab2W);
+        homscan = new QSlider(horizontalWidget1);
         homscan->setObjectName(QString::fromUtf8("homscan"));
-        QSizePolicy sizePolicy6(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy6.setHorizontalStretch(0);
-        sizePolicy6.setVerticalStretch(0);
-        sizePolicy6.setHeightForWidth(homscan->sizePolicy().hasHeightForWidth());
-        homscan->setSizePolicy(sizePolicy6);
+        QSizePolicy sizePolicy7(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(homscan->sizePolicy().hasHeightForWidth());
+        homscan->setSizePolicy(sizePolicy7);
         homscan->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         homscan->setMinimum(0);
         homscan->setMaximum(1);
         homscan->setValue(0);
         homscan->setOrientation(Qt::Horizontal);
 
-        verticalLayout_21->addWidget(homscan);
+        formLayout_6->setWidget(2, QFormLayout::FieldRole, homscan);
 
-        label_104 = new QLabel(tab2W);
+        label_104 = new QLabel(horizontalWidget1);
         label_104->setObjectName(QString::fromUtf8("label_104"));
         label_104->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_21->addWidget(label_104);
+        formLayout_6->setWidget(3, QFormLayout::LabelRole, label_104);
 
-        homscan_time = new QSpinBox(tab2W);
+        homscan_time = new QSpinBox(horizontalWidget1);
         homscan_time->setObjectName(QString::fromUtf8("homscan_time"));
         homscan_time->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        homscan_time->setMinimum(1);
         homscan_time->setMaximum(1000);
 
-        verticalLayout_21->addWidget(homscan_time);
+        formLayout_6->setWidget(3, QFormLayout::FieldRole, homscan_time);
+
+        label_105 = new QLabel(horizontalWidget1);
+        label_105->setObjectName(QString::fromUtf8("label_105"));
+        label_105->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_6->setWidget(5, QFormLayout::LabelRole, label_105);
+
+        current_delay_pos = new QLCDNumber(horizontalWidget1);
+        current_delay_pos->setObjectName(QString::fromUtf8("current_delay_pos"));
+        current_delay_pos->setDigitCount(4);
+
+        formLayout_6->setWidget(5, QFormLayout::FieldRole, current_delay_pos);
+
+        reset_delay = new QPushButton(horizontalWidget1);
+        reset_delay->setObjectName(QString::fromUtf8("reset_delay"));
+        reset_delay->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_6->setWidget(6, QFormLayout::LabelRole, reset_delay);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_21->addItem(verticalSpacer);
+        formLayout_6->setItem(7, QFormLayout::LabelRole, verticalSpacer);
 
-        label_22 = new QLabel(tab2W);
+        label_22 = new QLabel(horizontalWidget1);
         label_22->setObjectName(QString::fromUtf8("label_22"));
         label_22->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_21->addWidget(label_22);
+        formLayout_6->setWidget(8, QFormLayout::LabelRole, label_22);
 
-        adqtime_2 = new QDoubleSpinBox(tab2W);
+        adqtime_2 = new QDoubleSpinBox(horizontalWidget1);
         adqtime_2->setObjectName(QString::fromUtf8("adqtime_2"));
         adqtime_2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        adqtime_2->setMinimum(1.000000000000000);
+        adqtime_2->setMaximum(6000.000000000000000);
+        adqtime_2->setValue(1.000000000000000);
 
-        verticalLayout_21->addWidget(adqtime_2);
+        formLayout_6->setWidget(8, QFormLayout::FieldRole, adqtime_2);
+
+        label_21 = new QLabel(horizontalWidget1);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+        label_21->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+
+        formLayout_6->setWidget(9, QFormLayout::LabelRole, label_21);
+
+        tab2_xrange = new QSpinBox(horizontalWidget1);
+        tab2_xrange->setObjectName(QString::fromUtf8("tab2_xrange"));
+        tab2_xrange->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        tab2_xrange->setMinimum(1);
+        tab2_xrange->setMaximum(10000);
+        tab2_xrange->setSingleStep(5);
+        tab2_xrange->setValue(125);
+
+        formLayout_6->setWidget(9, QFormLayout::FieldRole, tab2_xrange);
 
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_21->addItem(verticalSpacer_2);
+        formLayout_6->setItem(10, QFormLayout::LabelRole, verticalSpacer_2);
 
-
-        verticalLayout_19->addLayout(verticalLayout_21);
-
-        label_77 = new QLabel(tab2W);
+        label_77 = new QLabel(horizontalWidget1);
         label_77->setObjectName(QString::fromUtf8("label_77"));
         label_77->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_19->addWidget(label_77);
+        formLayout_6->setWidget(11, QFormLayout::LabelRole, label_77);
 
-        DBON = new QSlider(tab2W);
+        DBON = new QSlider(horizontalWidget1);
         DBON->setObjectName(QString::fromUtf8("DBON"));
-        sizePolicy6.setHeightForWidth(DBON->sizePolicy().hasHeightForWidth());
-        DBON->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(DBON->sizePolicy().hasHeightForWidth());
+        DBON->setSizePolicy(sizePolicy7);
         DBON->setMaximum(1);
         DBON->setOrientation(Qt::Horizontal);
 
-        verticalLayout_19->addWidget(DBON);
+        formLayout_6->setWidget(11, QFormLayout::FieldRole, DBON);
 
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        label_106 = new QLabel(horizontalWidget1);
+        label_106->setObjectName(QString::fromUtf8("label_106"));
+        label_106->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
-        verticalLayout_19->addItem(verticalSpacer_3);
+        formLayout_6->setWidget(4, QFormLayout::LabelRole, label_106);
+
+        Max_delay = new QSpinBox(horizontalWidget1);
+        Max_delay->setObjectName(QString::fromUtf8("Max_delay"));
+        Max_delay->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
+        Max_delay->setMinimum(1);
+        Max_delay->setMaximum(10000);
+
+        formLayout_6->setWidget(4, QFormLayout::FieldRole, Max_delay);
 
 
-        horizontalLayout->addLayout(verticalLayout_19);
+        horizontalLayout_27->addLayout(formLayout_6);
 
         verticalLayout_18 = new QVBoxLayout();
         verticalLayout_18->setSpacing(6);
         verticalLayout_18->setObjectName(QString::fromUtf8("verticalLayout_18"));
-        verticalLayout_18->setContentsMargins(25, -1, 23, -1);
+        verticalLayout_18->setContentsMargins(25, -1, 0, -1);
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
-        tab2_plot1 = new QRadioButton(tab2W);
+        tab2_plot1 = new QRadioButton(horizontalWidget1);
         tab2_plot1->setObjectName(QString::fromUtf8("tab2_plot1"));
-        QSizePolicy sizePolicy7(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy7.setHorizontalStretch(0);
-        sizePolicy7.setVerticalStretch(0);
-        sizePolicy7.setHeightForWidth(tab2_plot1->sizePolicy().hasHeightForWidth());
-        tab2_plot1->setSizePolicy(sizePolicy7);
+        QSizePolicy sizePolicy8(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy8.setHorizontalStretch(0);
+        sizePolicy8.setVerticalStretch(0);
+        sizePolicy8.setHeightForWidth(tab2_plot1->sizePolicy().hasHeightForWidth());
+        tab2_plot1->setSizePolicy(sizePolicy8);
         tab2_plot1->setStyleSheet(QString::fromUtf8("background-color: rgb(239, 41, 41);"));
         tab2_plot1->setAutoExclusive(false);
 
@@ -1636,7 +1695,7 @@ public:
         verticalLayout_27 = new QVBoxLayout();
         verticalLayout_27->setSpacing(6);
         verticalLayout_27->setObjectName(QString::fromUtf8("verticalLayout_27"));
-        label_27 = new QLabel(tab2W);
+        label_27 = new QLabel(horizontalWidget1);
         label_27->setObjectName(QString::fromUtf8("label_27"));
         sizePolicy1.setHeightForWidth(label_27->sizePolicy().hasHeightForWidth());
         label_27->setSizePolicy(sizePolicy1);
@@ -1647,7 +1706,7 @@ public:
 
         verticalLayout_27->addWidget(label_27);
 
-        label_28 = new QLabel(tab2W);
+        label_28 = new QLabel(horizontalWidget1);
         label_28->setObjectName(QString::fromUtf8("label_28"));
         label_28->setFont(font);
         label_28->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
@@ -1663,21 +1722,21 @@ public:
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(6);
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
-        label_29 = new QLabel(tab2W);
+        label_29 = new QLabel(horizontalWidget1);
         label_29->setObjectName(QString::fromUtf8("label_29"));
         label_29->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         label_29->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_8->addWidget(label_29);
 
-        label_30 = new QLabel(tab2W);
+        label_30 = new QLabel(horizontalWidget1);
         label_30->setObjectName(QString::fromUtf8("label_30"));
         label_30->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         label_30->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_8->addWidget(label_30);
 
-        label_90 = new QLabel(tab2W);
+        label_90 = new QLabel(horizontalWidget1);
         label_90->setObjectName(QString::fromUtf8("label_90"));
         label_90->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -1686,10 +1745,10 @@ public:
 
         verticalLayout_29->addLayout(horizontalLayout_8);
 
-        plot1_1 = new QSlider(tab2W);
+        plot1_1 = new QSlider(horizontalWidget1);
         plot1_1->setObjectName(QString::fromUtf8("plot1_1"));
-        sizePolicy6.setHeightForWidth(plot1_1->sizePolicy().hasHeightForWidth());
-        plot1_1->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot1_1->sizePolicy().hasHeightForWidth());
+        plot1_1->setSizePolicy(sizePolicy7);
         plot1_1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         plot1_1->setMinimum(0);
         plot1_1->setMaximum(2);
@@ -1698,10 +1757,10 @@ public:
 
         verticalLayout_29->addWidget(plot1_1);
 
-        win1_1 = new QSlider(tab2W);
+        win1_1 = new QSlider(horizontalWidget1);
         win1_1->setObjectName(QString::fromUtf8("win1_1"));
-        sizePolicy6.setHeightForWidth(win1_1->sizePolicy().hasHeightForWidth());
-        win1_1->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(win1_1->sizePolicy().hasHeightForWidth());
+        win1_1->setSizePolicy(sizePolicy7);
         win1_1->setMinimum(0);
         win1_1->setMaximum(2);
         win1_1->setValue(2);
@@ -1712,19 +1771,19 @@ public:
         horizontalLayout_11 = new QHBoxLayout();
         horizontalLayout_11->setSpacing(6);
         horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
-        label_36 = new QLabel(tab2W);
+        label_36 = new QLabel(horizontalWidget1);
         label_36->setObjectName(QString::fromUtf8("label_36"));
         label_36->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_11->addWidget(label_36);
 
-        label_37 = new QLabel(tab2W);
+        label_37 = new QLabel(horizontalWidget1);
         label_37->setObjectName(QString::fromUtf8("label_37"));
         label_37->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_11->addWidget(label_37);
 
-        label_35 = new QLabel(tab2W);
+        label_35 = new QLabel(horizontalWidget1);
         label_35->setObjectName(QString::fromUtf8("label_35"));
         label_35->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -1739,7 +1798,7 @@ public:
         verticalLayout_28 = new QVBoxLayout();
         verticalLayout_28->setSpacing(6);
         verticalLayout_28->setObjectName(QString::fromUtf8("verticalLayout_28"));
-        label_23 = new QLabel(tab2W);
+        label_23 = new QLabel(horizontalWidget1);
         label_23->setObjectName(QString::fromUtf8("label_23"));
         sizePolicy1.setHeightForWidth(label_23->sizePolicy().hasHeightForWidth());
         label_23->setSizePolicy(sizePolicy1);
@@ -1762,19 +1821,19 @@ public:
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setSpacing(6);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
-        label_32 = new QLabel(tab2W);
+        label_32 = new QLabel(horizontalWidget1);
         label_32->setObjectName(QString::fromUtf8("label_32"));
         label_32->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_10->addWidget(label_32);
 
-        label_33 = new QLabel(tab2W);
+        label_33 = new QLabel(horizontalWidget1);
         label_33->setObjectName(QString::fromUtf8("label_33"));
         label_33->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_10->addWidget(label_33);
 
-        label_91 = new QLabel(tab2W);
+        label_91 = new QLabel(horizontalWidget1);
         label_91->setObjectName(QString::fromUtf8("label_91"));
         label_91->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -1783,10 +1842,10 @@ public:
 
         verticalLayout_26->addLayout(horizontalLayout_10);
 
-        plot1_2 = new QSlider(tab2W);
+        plot1_2 = new QSlider(horizontalWidget1);
         plot1_2->setObjectName(QString::fromUtf8("plot1_2"));
-        sizePolicy6.setHeightForWidth(plot1_2->sizePolicy().hasHeightForWidth());
-        plot1_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot1_2->sizePolicy().hasHeightForWidth());
+        plot1_2->setSizePolicy(sizePolicy7);
         plot1_2->setMinimum(0);
         plot1_2->setMaximum(2);
         plot1_2->setValue(1);
@@ -1794,10 +1853,10 @@ public:
 
         verticalLayout_26->addWidget(plot1_2);
 
-        win1_2 = new QSlider(tab2W);
+        win1_2 = new QSlider(horizontalWidget1);
         win1_2->setObjectName(QString::fromUtf8("win1_2"));
-        sizePolicy6.setHeightForWidth(win1_2->sizePolicy().hasHeightForWidth());
-        win1_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(win1_2->sizePolicy().hasHeightForWidth());
+        win1_2->setSizePolicy(sizePolicy7);
         win1_2->setMinimum(0);
         win1_2->setMaximum(2);
         win1_2->setValue(2);
@@ -1808,19 +1867,19 @@ public:
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setSpacing(6);
         horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
-        label_38 = new QLabel(tab2W);
+        label_38 = new QLabel(horizontalWidget1);
         label_38->setObjectName(QString::fromUtf8("label_38"));
         label_38->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_12->addWidget(label_38);
 
-        label_40 = new QLabel(tab2W);
+        label_40 = new QLabel(horizontalWidget1);
         label_40->setObjectName(QString::fromUtf8("label_40"));
         label_40->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_12->addWidget(label_40);
 
-        label_39 = new QLabel(tab2W);
+        label_39 = new QLabel(horizontalWidget1);
         label_39->setObjectName(QString::fromUtf8("label_39"));
         label_39->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -1842,10 +1901,10 @@ public:
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        tab2_plot2 = new QRadioButton(tab2W);
+        tab2_plot2 = new QRadioButton(horizontalWidget1);
         tab2_plot2->setObjectName(QString::fromUtf8("tab2_plot2"));
-        sizePolicy7.setHeightForWidth(tab2_plot2->sizePolicy().hasHeightForWidth());
-        tab2_plot2->setSizePolicy(sizePolicy7);
+        sizePolicy8.setHeightForWidth(tab2_plot2->sizePolicy().hasHeightForWidth());
+        tab2_plot2->setSizePolicy(sizePolicy8);
         tab2_plot2->setStyleSheet(QString::fromUtf8("background-color: rgb(138, 226, 52);"));
         tab2_plot2->setAutoExclusive(false);
 
@@ -1854,14 +1913,14 @@ public:
         verticalLayout_31 = new QVBoxLayout();
         verticalLayout_31->setSpacing(6);
         verticalLayout_31->setObjectName(QString::fromUtf8("verticalLayout_31"));
-        label_25 = new QLabel(tab2W);
+        label_25 = new QLabel(horizontalWidget1);
         label_25->setObjectName(QString::fromUtf8("label_25"));
         label_25->setFont(font);
         label_25->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         verticalLayout_31->addWidget(label_25);
 
-        label_26 = new QLabel(tab2W);
+        label_26 = new QLabel(horizontalWidget1);
         label_26->setObjectName(QString::fromUtf8("label_26"));
         label_26->setFont(font);
         label_26->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
@@ -1877,19 +1936,19 @@ public:
         horizontalLayout_13 = new QHBoxLayout();
         horizontalLayout_13->setSpacing(6);
         horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
-        label_42 = new QLabel(tab2W);
+        label_42 = new QLabel(horizontalWidget1);
         label_42->setObjectName(QString::fromUtf8("label_42"));
         label_42->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_13->addWidget(label_42);
 
-        label_41 = new QLabel(tab2W);
+        label_41 = new QLabel(horizontalWidget1);
         label_41->setObjectName(QString::fromUtf8("label_41"));
         label_41->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_13->addWidget(label_41);
 
-        label_92 = new QLabel(tab2W);
+        label_92 = new QLabel(horizontalWidget1);
         label_92->setObjectName(QString::fromUtf8("label_92"));
         label_92->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -1898,10 +1957,10 @@ public:
 
         verticalLayout_22->addLayout(horizontalLayout_13);
 
-        plot2_1 = new QSlider(tab2W);
+        plot2_1 = new QSlider(horizontalWidget1);
         plot2_1->setObjectName(QString::fromUtf8("plot2_1"));
-        sizePolicy6.setHeightForWidth(plot2_1->sizePolicy().hasHeightForWidth());
-        plot2_1->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot2_1->sizePolicy().hasHeightForWidth());
+        plot2_1->setSizePolicy(sizePolicy7);
         plot2_1->setMinimum(0);
         plot2_1->setMaximum(2);
         plot2_1->setValue(0);
@@ -1909,10 +1968,10 @@ public:
 
         verticalLayout_22->addWidget(plot2_1);
 
-        win2_1 = new QSlider(tab2W);
+        win2_1 = new QSlider(horizontalWidget1);
         win2_1->setObjectName(QString::fromUtf8("win2_1"));
-        sizePolicy6.setHeightForWidth(win2_1->sizePolicy().hasHeightForWidth());
-        win2_1->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(win2_1->sizePolicy().hasHeightForWidth());
+        win2_1->setSizePolicy(sizePolicy7);
         win2_1->setMinimum(0);
         win2_1->setMaximum(2);
         win2_1->setValue(0);
@@ -1923,19 +1982,19 @@ public:
         horizontalLayout_14 = new QHBoxLayout();
         horizontalLayout_14->setSpacing(6);
         horizontalLayout_14->setObjectName(QString::fromUtf8("horizontalLayout_14"));
-        label_44 = new QLabel(tab2W);
+        label_44 = new QLabel(horizontalWidget1);
         label_44->setObjectName(QString::fromUtf8("label_44"));
         label_44->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_14->addWidget(label_44);
 
-        label_45 = new QLabel(tab2W);
+        label_45 = new QLabel(horizontalWidget1);
         label_45->setObjectName(QString::fromUtf8("label_45"));
         label_45->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_14->addWidget(label_45);
 
-        label_46 = new QLabel(tab2W);
+        label_46 = new QLabel(horizontalWidget1);
         label_46->setObjectName(QString::fromUtf8("label_46"));
         label_46->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -1950,7 +2009,7 @@ public:
         verticalLayout_23 = new QVBoxLayout();
         verticalLayout_23->setSpacing(6);
         verticalLayout_23->setObjectName(QString::fromUtf8("verticalLayout_23"));
-        label_24 = new QLabel(tab2W);
+        label_24 = new QLabel(horizontalWidget1);
         label_24->setObjectName(QString::fromUtf8("label_24"));
         QFont font2;
         font2.setPointSize(44);
@@ -1969,19 +2028,19 @@ public:
         horizontalLayout_15 = new QHBoxLayout();
         horizontalLayout_15->setSpacing(6);
         horizontalLayout_15->setObjectName(QString::fromUtf8("horizontalLayout_15"));
-        label_47 = new QLabel(tab2W);
+        label_47 = new QLabel(horizontalWidget1);
         label_47->setObjectName(QString::fromUtf8("label_47"));
         label_47->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_15->addWidget(label_47);
 
-        label_48 = new QLabel(tab2W);
+        label_48 = new QLabel(horizontalWidget1);
         label_48->setObjectName(QString::fromUtf8("label_48"));
         label_48->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_15->addWidget(label_48);
 
-        label_93 = new QLabel(tab2W);
+        label_93 = new QLabel(horizontalWidget1);
         label_93->setObjectName(QString::fromUtf8("label_93"));
         label_93->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -1990,10 +2049,10 @@ public:
 
         verticalLayout_30->addLayout(horizontalLayout_15);
 
-        plot2_2 = new QSlider(tab2W);
+        plot2_2 = new QSlider(horizontalWidget1);
         plot2_2->setObjectName(QString::fromUtf8("plot2_2"));
-        sizePolicy6.setHeightForWidth(plot2_2->sizePolicy().hasHeightForWidth());
-        plot2_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot2_2->sizePolicy().hasHeightForWidth());
+        plot2_2->setSizePolicy(sizePolicy7);
         plot2_2->setMinimum(0);
         plot2_2->setMaximum(2);
         plot2_2->setValue(0);
@@ -2001,10 +2060,10 @@ public:
 
         verticalLayout_30->addWidget(plot2_2);
 
-        win2_2 = new QSlider(tab2W);
+        win2_2 = new QSlider(horizontalWidget1);
         win2_2->setObjectName(QString::fromUtf8("win2_2"));
-        sizePolicy6.setHeightForWidth(win2_2->sizePolicy().hasHeightForWidth());
-        win2_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(win2_2->sizePolicy().hasHeightForWidth());
+        win2_2->setSizePolicy(sizePolicy7);
         win2_2->setMinimum(0);
         win2_2->setMaximum(2);
         win2_2->setValue(0);
@@ -2015,19 +2074,19 @@ public:
         horizontalLayout_16 = new QHBoxLayout();
         horizontalLayout_16->setSpacing(6);
         horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
-        label_50 = new QLabel(tab2W);
+        label_50 = new QLabel(horizontalWidget1);
         label_50->setObjectName(QString::fromUtf8("label_50"));
         label_50->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_16->addWidget(label_50);
 
-        label_52 = new QLabel(tab2W);
+        label_52 = new QLabel(horizontalWidget1);
         label_52->setObjectName(QString::fromUtf8("label_52"));
         label_52->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_16->addWidget(label_52);
 
-        label_51 = new QLabel(tab2W);
+        label_51 = new QLabel(horizontalWidget1);
         label_51->setObjectName(QString::fromUtf8("label_51"));
         label_51->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2049,10 +2108,10 @@ public:
         horizontalLayout_17 = new QHBoxLayout();
         horizontalLayout_17->setSpacing(6);
         horizontalLayout_17->setObjectName(QString::fromUtf8("horizontalLayout_17"));
-        tab2_plot3 = new QRadioButton(tab2W);
+        tab2_plot3 = new QRadioButton(horizontalWidget1);
         tab2_plot3->setObjectName(QString::fromUtf8("tab2_plot3"));
-        sizePolicy7.setHeightForWidth(tab2_plot3->sizePolicy().hasHeightForWidth());
-        tab2_plot3->setSizePolicy(sizePolicy7);
+        sizePolicy8.setHeightForWidth(tab2_plot3->sizePolicy().hasHeightForWidth());
+        tab2_plot3->setSizePolicy(sizePolicy8);
         tab2_plot3->setStyleSheet(QString::fromUtf8("background-color: rgb(252, 233, 79);"));
         tab2_plot3->setAutoExclusive(false);
 
@@ -2061,14 +2120,14 @@ public:
         verticalLayout_25 = new QVBoxLayout();
         verticalLayout_25->setSpacing(6);
         verticalLayout_25->setObjectName(QString::fromUtf8("verticalLayout_25"));
-        label_56 = new QLabel(tab2W);
+        label_56 = new QLabel(horizontalWidget1);
         label_56->setObjectName(QString::fromUtf8("label_56"));
         label_56->setFont(font);
         label_56->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         verticalLayout_25->addWidget(label_56);
 
-        label_57 = new QLabel(tab2W);
+        label_57 = new QLabel(horizontalWidget1);
         label_57->setObjectName(QString::fromUtf8("label_57"));
         label_57->setFont(font);
         label_57->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);\n"
@@ -2085,19 +2144,19 @@ public:
         horizontalLayout_18 = new QHBoxLayout();
         horizontalLayout_18->setSpacing(6);
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
-        label_49 = new QLabel(tab2W);
+        label_49 = new QLabel(horizontalWidget1);
         label_49->setObjectName(QString::fromUtf8("label_49"));
         label_49->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_18->addWidget(label_49);
 
-        label_43 = new QLabel(tab2W);
+        label_43 = new QLabel(horizontalWidget1);
         label_43->setObjectName(QString::fromUtf8("label_43"));
         label_43->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_18->addWidget(label_43);
 
-        label_94 = new QLabel(tab2W);
+        label_94 = new QLabel(horizontalWidget1);
         label_94->setObjectName(QString::fromUtf8("label_94"));
         label_94->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2106,19 +2165,19 @@ public:
 
         verticalLayout_34->addLayout(horizontalLayout_18);
 
-        plot3_1 = new QSlider(tab2W);
+        plot3_1 = new QSlider(horizontalWidget1);
         plot3_1->setObjectName(QString::fromUtf8("plot3_1"));
-        sizePolicy6.setHeightForWidth(plot3_1->sizePolicy().hasHeightForWidth());
-        plot3_1->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot3_1->sizePolicy().hasHeightForWidth());
+        plot3_1->setSizePolicy(sizePolicy7);
         plot3_1->setMaximum(2);
         plot3_1->setOrientation(Qt::Horizontal);
 
         verticalLayout_34->addWidget(plot3_1);
 
-        win3_1 = new QSlider(tab2W);
+        win3_1 = new QSlider(horizontalWidget1);
         win3_1->setObjectName(QString::fromUtf8("win3_1"));
-        sizePolicy6.setHeightForWidth(win3_1->sizePolicy().hasHeightForWidth());
-        win3_1->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(win3_1->sizePolicy().hasHeightForWidth());
+        win3_1->setSizePolicy(sizePolicy7);
         win3_1->setMinimum(0);
         win3_1->setMaximum(2);
         win3_1->setValue(0);
@@ -2129,19 +2188,19 @@ public:
         horizontalLayout_19 = new QHBoxLayout();
         horizontalLayout_19->setSpacing(6);
         horizontalLayout_19->setObjectName(QString::fromUtf8("horizontalLayout_19"));
-        label_59 = new QLabel(tab2W);
+        label_59 = new QLabel(horizontalWidget1);
         label_59->setObjectName(QString::fromUtf8("label_59"));
         label_59->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_19->addWidget(label_59);
 
-        label_60 = new QLabel(tab2W);
+        label_60 = new QLabel(horizontalWidget1);
         label_60->setObjectName(QString::fromUtf8("label_60"));
         label_60->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_19->addWidget(label_60);
 
-        label_58 = new QLabel(tab2W);
+        label_58 = new QLabel(horizontalWidget1);
         label_58->setObjectName(QString::fromUtf8("label_58"));
         label_58->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2156,7 +2215,7 @@ public:
         verticalLayout_33 = new QVBoxLayout();
         verticalLayout_33->setSpacing(6);
         verticalLayout_33->setObjectName(QString::fromUtf8("verticalLayout_33"));
-        label_61 = new QLabel(tab2W);
+        label_61 = new QLabel(horizontalWidget1);
         label_61->setObjectName(QString::fromUtf8("label_61"));
         label_61->setFont(font2);
         label_61->setStyleSheet(QString::fromUtf8("color: rgb(200, 200, 0);"));
@@ -2176,19 +2235,19 @@ public:
         horizontalLayout_22 = new QHBoxLayout();
         horizontalLayout_22->setSpacing(6);
         horizontalLayout_22->setObjectName(QString::fromUtf8("horizontalLayout_22"));
-        label_63 = new QLabel(tab2W);
+        label_63 = new QLabel(horizontalWidget1);
         label_63->setObjectName(QString::fromUtf8("label_63"));
         label_63->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_22->addWidget(label_63);
 
-        label_62 = new QLabel(tab2W);
+        label_62 = new QLabel(horizontalWidget1);
         label_62->setObjectName(QString::fromUtf8("label_62"));
         label_62->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_22->addWidget(label_62);
 
-        label_95 = new QLabel(tab2W);
+        label_95 = new QLabel(horizontalWidget1);
         label_95->setObjectName(QString::fromUtf8("label_95"));
         label_95->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2197,19 +2256,19 @@ public:
 
         verticalLayout_32->addLayout(horizontalLayout_22);
 
-        plot3_2 = new QSlider(tab2W);
+        plot3_2 = new QSlider(horizontalWidget1);
         plot3_2->setObjectName(QString::fromUtf8("plot3_2"));
-        sizePolicy6.setHeightForWidth(plot3_2->sizePolicy().hasHeightForWidth());
-        plot3_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot3_2->sizePolicy().hasHeightForWidth());
+        plot3_2->setSizePolicy(sizePolicy7);
         plot3_2->setMaximum(2);
         plot3_2->setOrientation(Qt::Horizontal);
 
         verticalLayout_32->addWidget(plot3_2);
 
-        win3_2 = new QSlider(tab2W);
+        win3_2 = new QSlider(horizontalWidget1);
         win3_2->setObjectName(QString::fromUtf8("win3_2"));
-        sizePolicy6.setHeightForWidth(win3_2->sizePolicy().hasHeightForWidth());
-        win3_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(win3_2->sizePolicy().hasHeightForWidth());
+        win3_2->setSizePolicy(sizePolicy7);
         win3_2->setMaximum(2);
         win3_2->setOrientation(Qt::Horizontal);
 
@@ -2218,19 +2277,19 @@ public:
         horizontalLayout_21 = new QHBoxLayout();
         horizontalLayout_21->setSpacing(6);
         horizontalLayout_21->setObjectName(QString::fromUtf8("horizontalLayout_21"));
-        label_65 = new QLabel(tab2W);
+        label_65 = new QLabel(horizontalWidget1);
         label_65->setObjectName(QString::fromUtf8("label_65"));
         label_65->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_21->addWidget(label_65);
 
-        label_64 = new QLabel(tab2W);
+        label_64 = new QLabel(horizontalWidget1);
         label_64->setObjectName(QString::fromUtf8("label_64"));
         label_64->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_21->addWidget(label_64);
 
-        label_66 = new QLabel(tab2W);
+        label_66 = new QLabel(horizontalWidget1);
         label_66->setObjectName(QString::fromUtf8("label_66"));
         label_66->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2255,19 +2314,19 @@ public:
         horizontalLayout_37 = new QHBoxLayout();
         horizontalLayout_37->setSpacing(6);
         horizontalLayout_37->setObjectName(QString::fromUtf8("horizontalLayout_37"));
-        tab2_plot5 = new QRadioButton(tab2W);
-        tab2_plot5->setObjectName(QString::fromUtf8("tab2_plot5"));
-        sizePolicy7.setHeightForWidth(tab2_plot5->sizePolicy().hasHeightForWidth());
-        tab2_plot5->setSizePolicy(sizePolicy7);
-        tab2_plot5->setStyleSheet(QString::fromUtf8("background-color: rgb(252, 175, 62);"));
-        tab2_plot5->setAutoExclusive(false);
+        tab2_plot4 = new QRadioButton(horizontalWidget1);
+        tab2_plot4->setObjectName(QString::fromUtf8("tab2_plot4"));
+        sizePolicy8.setHeightForWidth(tab2_plot4->sizePolicy().hasHeightForWidth());
+        tab2_plot4->setSizePolicy(sizePolicy8);
+        tab2_plot4->setStyleSheet(QString::fromUtf8("background-color: rgb(63, 211, 249);"));
+        tab2_plot4->setAutoExclusive(false);
 
-        horizontalLayout_37->addWidget(tab2_plot5);
+        horizontalLayout_37->addWidget(tab2_plot4);
 
         verticalLayout_46 = new QVBoxLayout();
         verticalLayout_46->setSpacing(6);
         verticalLayout_46->setObjectName(QString::fromUtf8("verticalLayout_46"));
-        label_127 = new QLabel(tab2W);
+        label_127 = new QLabel(horizontalWidget1);
         label_127->setObjectName(QString::fromUtf8("label_127"));
         label_127->setFont(font);
         label_127->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
@@ -2283,19 +2342,19 @@ public:
         horizontalLayout_38 = new QHBoxLayout();
         horizontalLayout_38->setSpacing(6);
         horizontalLayout_38->setObjectName(QString::fromUtf8("horizontalLayout_38"));
-        label_121 = new QLabel(tab2W);
+        label_121 = new QLabel(horizontalWidget1);
         label_121->setObjectName(QString::fromUtf8("label_121"));
         label_121->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_38->addWidget(label_121);
 
-        label_122 = new QLabel(tab2W);
+        label_122 = new QLabel(horizontalWidget1);
         label_122->setObjectName(QString::fromUtf8("label_122"));
         label_122->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_38->addWidget(label_122);
 
-        label_120 = new QLabel(tab2W);
+        label_120 = new QLabel(horizontalWidget1);
         label_120->setObjectName(QString::fromUtf8("label_120"));
         label_120->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2304,10 +2363,10 @@ public:
 
         verticalLayout_45->addLayout(horizontalLayout_38);
 
-        plot4_1 = new QSlider(tab2W);
+        plot4_1 = new QSlider(horizontalWidget1);
         plot4_1->setObjectName(QString::fromUtf8("plot4_1"));
-        sizePolicy6.setHeightForWidth(plot4_1->sizePolicy().hasHeightForWidth());
-        plot4_1->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot4_1->sizePolicy().hasHeightForWidth());
+        plot4_1->setSizePolicy(sizePolicy7);
         plot4_1->setMinimum(0);
         plot4_1->setMaximum(2);
         plot4_1->setOrientation(Qt::Horizontal);
@@ -2317,10 +2376,10 @@ public:
 
         horizontalLayout_37->addLayout(verticalLayout_45);
 
-        label_98 = new QLabel(tab2W);
+        label_98 = new QLabel(horizontalWidget1);
         label_98->setObjectName(QString::fromUtf8("label_98"));
         label_98->setFont(font2);
-        label_98->setStyleSheet(QString::fromUtf8("color: rgb(252, 175, 62);"));
+        label_98->setStyleSheet(QString::fromUtf8("color: rgb(63, 211, 249);"));
         label_98->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_37->addWidget(label_98);
@@ -2331,19 +2390,19 @@ public:
         horizontalLayout_39 = new QHBoxLayout();
         horizontalLayout_39->setSpacing(6);
         horizontalLayout_39->setObjectName(QString::fromUtf8("horizontalLayout_39"));
-        label_125 = new QLabel(tab2W);
+        label_125 = new QLabel(horizontalWidget1);
         label_125->setObjectName(QString::fromUtf8("label_125"));
         label_125->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_39->addWidget(label_125);
 
-        label_126 = new QLabel(tab2W);
+        label_126 = new QLabel(horizontalWidget1);
         label_126->setObjectName(QString::fromUtf8("label_126"));
         label_126->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_39->addWidget(label_126);
 
-        label_124 = new QLabel(tab2W);
+        label_124 = new QLabel(horizontalWidget1);
         label_124->setObjectName(QString::fromUtf8("label_124"));
         label_124->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2352,10 +2411,10 @@ public:
 
         verticalLayout_44->addLayout(horizontalLayout_39);
 
-        plot4_2 = new QSlider(tab2W);
+        plot4_2 = new QSlider(horizontalWidget1);
         plot4_2->setObjectName(QString::fromUtf8("plot4_2"));
-        sizePolicy6.setHeightForWidth(plot4_2->sizePolicy().hasHeightForWidth());
-        plot4_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot4_2->sizePolicy().hasHeightForWidth());
+        plot4_2->setSizePolicy(sizePolicy7);
         plot4_2->setMaximum(2);
         plot4_2->setOrientation(Qt::Horizontal);
 
@@ -2374,28 +2433,29 @@ public:
         horizontalLayout_30 = new QHBoxLayout();
         horizontalLayout_30->setSpacing(6);
         horizontalLayout_30->setObjectName(QString::fromUtf8("horizontalLayout_30"));
-        tab2_plot4 = new QRadioButton(tab2W);
-        tab2_plot4->setObjectName(QString::fromUtf8("tab2_plot4"));
-        sizePolicy7.setHeightForWidth(tab2_plot4->sizePolicy().hasHeightForWidth());
-        tab2_plot4->setSizePolicy(sizePolicy7);
-        tab2_plot4->setStyleSheet(QString::fromUtf8("background-color: rgb(173, 127, 168);"));
-        tab2_plot4->setAutoExclusive(false);
+        tab2_plot5 = new QRadioButton(horizontalWidget1);
+        tab2_plot5->setObjectName(QString::fromUtf8("tab2_plot5"));
+        sizePolicy8.setHeightForWidth(tab2_plot5->sizePolicy().hasHeightForWidth());
+        tab2_plot5->setSizePolicy(sizePolicy8);
+        tab2_plot5->setStyleSheet(QString::fromUtf8("background-color: rgb(173, 127, 168);\n"
+""));
+        tab2_plot5->setAutoExclusive(false);
 
-        horizontalLayout_30->addWidget(tab2_plot4);
+        horizontalLayout_30->addWidget(tab2_plot5);
 
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_30->addItem(horizontalSpacer_6);
 
-        label_99 = new QLabel(tab2W);
+        label_99 = new QLabel(horizontalWidget1);
         label_99->setObjectName(QString::fromUtf8("label_99"));
         label_99->setFont(font2);
-        label_99->setStyleSheet(QString::fromUtf8("background-color: rgb(252, 175, 62);"));
+        label_99->setStyleSheet(QString::fromUtf8("background-color: rgb(63, 211, 249);"));
         label_99->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_30->addWidget(label_99);
 
-        label_123 = new QLabel(tab2W);
+        label_123 = new QLabel(horizontalWidget1);
         label_123->setObjectName(QString::fromUtf8("label_123"));
         label_123->setFont(font2);
         label_123->setStyleSheet(QString::fromUtf8("color: rgb(173, 127, 168);"));
@@ -2409,19 +2469,19 @@ public:
         horizontalLayout_36 = new QHBoxLayout();
         horizontalLayout_36->setSpacing(6);
         horizontalLayout_36->setObjectName(QString::fromUtf8("horizontalLayout_36"));
-        label_115 = new QLabel(tab2W);
+        label_115 = new QLabel(horizontalWidget1);
         label_115->setObjectName(QString::fromUtf8("label_115"));
         label_115->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_36->addWidget(label_115);
 
-        label_116 = new QLabel(tab2W);
+        label_116 = new QLabel(horizontalWidget1);
         label_116->setObjectName(QString::fromUtf8("label_116"));
         label_116->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_36->addWidget(label_116);
 
-        label_114 = new QLabel(tab2W);
+        label_114 = new QLabel(horizontalWidget1);
         label_114->setObjectName(QString::fromUtf8("label_114"));
         label_114->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2430,19 +2490,19 @@ public:
 
         verticalLayout_40->addLayout(horizontalLayout_36);
 
-        plot5_2 = new QSlider(tab2W);
+        plot5_2 = new QSlider(horizontalWidget1);
         plot5_2->setObjectName(QString::fromUtf8("plot5_2"));
-        sizePolicy6.setHeightForWidth(plot5_2->sizePolicy().hasHeightForWidth());
-        plot5_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(plot5_2->sizePolicy().hasHeightForWidth());
+        plot5_2->setSizePolicy(sizePolicy7);
         plot5_2->setMaximum(2);
         plot5_2->setOrientation(Qt::Horizontal);
 
         verticalLayout_40->addWidget(plot5_2);
 
-        win5_2 = new QSlider(tab2W);
+        win5_2 = new QSlider(horizontalWidget1);
         win5_2->setObjectName(QString::fromUtf8("win5_2"));
-        sizePolicy6.setHeightForWidth(win5_2->sizePolicy().hasHeightForWidth());
-        win5_2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(win5_2->sizePolicy().hasHeightForWidth());
+        win5_2->setSizePolicy(sizePolicy7);
         win5_2->setMaximum(2);
         win5_2->setOrientation(Qt::Horizontal);
 
@@ -2451,19 +2511,19 @@ public:
         horizontalLayout_35 = new QHBoxLayout();
         horizontalLayout_35->setSpacing(6);
         horizontalLayout_35->setObjectName(QString::fromUtf8("horizontalLayout_35"));
-        label_119 = new QLabel(tab2W);
+        label_119 = new QLabel(horizontalWidget1);
         label_119->setObjectName(QString::fromUtf8("label_119"));
         label_119->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_35->addWidget(label_119);
 
-        label_118 = new QLabel(tab2W);
+        label_118 = new QLabel(horizontalWidget1);
         label_118->setObjectName(QString::fromUtf8("label_118"));
         label_118->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         horizontalLayout_35->addWidget(label_118);
 
-        label_117 = new QLabel(tab2W);
+        label_117 = new QLabel(horizontalWidget1);
         label_117->setObjectName(QString::fromUtf8("label_117"));
         label_117->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
@@ -2478,14 +2538,14 @@ public:
         verticalLayout_43 = new QVBoxLayout();
         verticalLayout_43->setSpacing(6);
         verticalLayout_43->setObjectName(QString::fromUtf8("verticalLayout_43"));
-        label_100 = new QLabel(tab2W);
+        label_100 = new QLabel(horizontalWidget1);
         label_100->setObjectName(QString::fromUtf8("label_100"));
         label_100->setFont(font);
         label_100->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         verticalLayout_43->addWidget(label_100);
 
-        label_101 = new QLabel(tab2W);
+        label_101 = new QLabel(horizontalWidget1);
         label_101->setObjectName(QString::fromUtf8("label_101"));
         label_101->setFont(font);
         label_101->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);\n"
@@ -2508,15 +2568,18 @@ public:
         verticalLayout_18->addItem(verticalSpacer_4);
 
 
-        horizontalLayout->addLayout(verticalLayout_18);
+        horizontalLayout_27->addLayout(verticalLayout_18);
+
+
+        horizontalLayout->addWidget(horizontalWidget1);
 
         PlotTab2 = new QCustomPlot(tab2W);
         PlotTab2->setObjectName(QString::fromUtf8("PlotTab2"));
-        QSizePolicy sizePolicy8(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy8.setHorizontalStretch(0);
-        sizePolicy8.setVerticalStretch(0);
-        sizePolicy8.setHeightForWidth(PlotTab2->sizePolicy().hasHeightForWidth());
-        PlotTab2->setSizePolicy(sizePolicy8);
+        QSizePolicy sizePolicy9(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy9.setHorizontalStretch(0);
+        sizePolicy9.setVerticalStretch(0);
+        sizePolicy9.setHeightForWidth(PlotTab2->sizePolicy().hasHeightForWidth());
+        PlotTab2->setSizePolicy(sizePolicy9);
         verticalLayout_5 = new QVBoxLayout(PlotTab2);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -2534,92 +2597,92 @@ public:
         horizontalLayout_26->setSpacing(6);
         horizontalLayout_26->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_26->setObjectName(QString::fromUtf8("horizontalLayout_26"));
-        horizontalWidget1 = new QWidget(conf);
-        horizontalWidget1->setObjectName(QString::fromUtf8("horizontalWidget1"));
-        horizontalWidget1->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
-        horizontalLayout_25 = new QHBoxLayout(horizontalWidget1);
+        horizontalWidget2 = new QWidget(conf);
+        horizontalWidget2->setObjectName(QString::fromUtf8("horizontalWidget2"));
+        horizontalWidget2->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
+        horizontalLayout_25 = new QHBoxLayout(horizontalWidget2);
         horizontalLayout_25->setSpacing(6);
         horizontalLayout_25->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_25->setObjectName(QString::fromUtf8("horizontalLayout_25"));
         formLayout = new QFormLayout();
         formLayout->setSpacing(6);
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
-        label_16 = new QLabel(horizontalWidget1);
+        label_16 = new QLabel(horizontalWidget2);
         label_16->setObjectName(QString::fromUtf8("label_16"));
         label_16->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_16);
 
-        thch1 = new QDoubleSpinBox(horizontalWidget1);
+        thch1 = new QDoubleSpinBox(horizontalWidget2);
         thch1->setObjectName(QString::fromUtf8("thch1"));
         thch1->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         thch1->setMinimum(-10.000000000000000);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, thch1);
 
-        label_71 = new QLabel(horizontalWidget1);
+        label_71 = new QLabel(horizontalWidget2);
         label_71->setObjectName(QString::fromUtf8("label_71"));
         label_71->setStyleSheet(QString::fromUtf8("\n"
 "color: rgb(238, 238, 236);"));
 
         formLayout->setWidget(1, QFormLayout::LabelRole, label_71);
 
-        thch2 = new QDoubleSpinBox(horizontalWidget1);
+        thch2 = new QDoubleSpinBox(horizontalWidget2);
         thch2->setObjectName(QString::fromUtf8("thch2"));
         thch2->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         thch2->setMinimum(-10.000000000000000);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, thch2);
 
-        label_72 = new QLabel(horizontalWidget1);
+        label_72 = new QLabel(horizontalWidget2);
         label_72->setObjectName(QString::fromUtf8("label_72"));
         label_72->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout->setWidget(2, QFormLayout::LabelRole, label_72);
 
-        thch3 = new QDoubleSpinBox(horizontalWidget1);
+        thch3 = new QDoubleSpinBox(horizontalWidget2);
         thch3->setObjectName(QString::fromUtf8("thch3"));
         thch3->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         thch3->setMinimum(-10.000000000000000);
 
         formLayout->setWidget(2, QFormLayout::FieldRole, thch3);
 
-        label_76 = new QLabel(horizontalWidget1);
+        label_76 = new QLabel(horizontalWidget2);
         label_76->setObjectName(QString::fromUtf8("label_76"));
         label_76->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout->setWidget(4, QFormLayout::LabelRole, label_76);
 
-        cw = new QSpinBox(horizontalWidget1);
+        cw = new QSpinBox(horizontalWidget2);
         cw->setObjectName(QString::fromUtf8("cw"));
         cw->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         cw->setMaximum(999999);
 
         formLayout->setWidget(4, QFormLayout::FieldRole, cw);
 
-        label_96 = new QLabel(horizontalWidget1);
+        label_96 = new QLabel(horizontalWidget2);
         label_96->setObjectName(QString::fromUtf8("label_96"));
         label_96->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout->setWidget(3, QFormLayout::LabelRole, label_96);
 
-        thch4 = new QDoubleSpinBox(horizontalWidget1);
+        thch4 = new QDoubleSpinBox(horizontalWidget2);
         thch4->setObjectName(QString::fromUtf8("thch4"));
         thch4->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
         thch4->setMinimum(-10.000000000000000);
 
         formLayout->setWidget(3, QFormLayout::FieldRole, thch4);
 
-        label_102 = new QLabel(horizontalWidget1);
+        label_102 = new QLabel(horizontalWidget2);
         label_102->setObjectName(QString::fromUtf8("label_102"));
         label_102->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout->setWidget(5, QFormLayout::LabelRole, label_102);
 
-        delayline = new QSpinBox(horizontalWidget1);
+        delayline = new QSpinBox(horizontalWidget2);
         delayline->setObjectName(QString::fromUtf8("delayline"));
         delayline->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
-        delayline->setMaximum(999999);
+        delayline->setMaximum(500);
 
         formLayout->setWidget(5, QFormLayout::FieldRole, delayline);
 
@@ -2629,52 +2692,52 @@ public:
         formLayout_4 = new QFormLayout();
         formLayout_4->setSpacing(6);
         formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
-        label_73 = new QLabel(horizontalWidget1);
+        label_73 = new QLabel(horizontalWidget2);
         label_73->setObjectName(QString::fromUtf8("label_73"));
         label_73->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout_4->setWidget(0, QFormLayout::LabelRole, label_73);
 
-        label_74 = new QLabel(horizontalWidget1);
+        label_74 = new QLabel(horizontalWidget2);
         label_74->setObjectName(QString::fromUtf8("label_74"));
         label_74->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout_4->setWidget(1, QFormLayout::LabelRole, label_74);
 
-        label_75 = new QLabel(horizontalWidget1);
+        label_75 = new QLabel(horizontalWidget2);
         label_75->setObjectName(QString::fromUtf8("label_75"));
         label_75->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout_4->setWidget(2, QFormLayout::LabelRole, label_75);
 
-        rof1 = new QComboBox(horizontalWidget1);
+        rof1 = new QComboBox(horizontalWidget2);
         rof1->setObjectName(QString::fromUtf8("rof1"));
         rof1->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
         rof1->setMaxVisibleItems(2);
 
         formLayout_4->setWidget(0, QFormLayout::FieldRole, rof1);
 
-        rof2 = new QComboBox(horizontalWidget1);
+        rof2 = new QComboBox(horizontalWidget2);
         rof2->setObjectName(QString::fromUtf8("rof2"));
         rof2->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
         rof2->setMaxVisibleItems(2);
 
         formLayout_4->setWidget(1, QFormLayout::FieldRole, rof2);
 
-        rof3 = new QComboBox(horizontalWidget1);
+        rof3 = new QComboBox(horizontalWidget2);
         rof3->setObjectName(QString::fromUtf8("rof3"));
         rof3->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
         rof3->setMaxVisibleItems(2);
 
         formLayout_4->setWidget(2, QFormLayout::FieldRole, rof3);
 
-        label_97 = new QLabel(horizontalWidget1);
+        label_97 = new QLabel(horizontalWidget2);
         label_97->setObjectName(QString::fromUtf8("label_97"));
         label_97->setStyleSheet(QString::fromUtf8("color: rgb(238, 238, 236);"));
 
         formLayout_4->setWidget(3, QFormLayout::LabelRole, label_97);
 
-        rof4 = new QComboBox(horizontalWidget1);
+        rof4 = new QComboBox(horizontalWidget2);
         rof4->setObjectName(QString::fromUtf8("rof4"));
         rof4->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));"));
         rof4->setMaxVisibleItems(2);
@@ -2685,7 +2748,7 @@ public:
         horizontalLayout_25->addLayout(formLayout_4);
 
 
-        horizontalLayout_26->addWidget(horizontalWidget1);
+        horizontalLayout_26->addWidget(horizontalWidget2);
 
         horizontalTabWidget->addTab(conf, QString());
 
@@ -2800,9 +2863,15 @@ public:
         label_103->setText(QApplication::translate("MainWindow", "Scan mode", nullptr));
         label_104->setText(QApplication::translate("MainWindow", "Step Size", nullptr));
         homscan_time->setSuffix(QApplication::translate("MainWindow", " [ps]", nullptr));
+        label_105->setText(QApplication::translate("MainWindow", "Current pos.", nullptr));
+        reset_delay->setText(QApplication::translate("MainWindow", "Reset Del.", nullptr));
         label_22->setText(QApplication::translate("MainWindow", "Adquisition time", nullptr));
         adqtime_2->setSuffix(QApplication::translate("MainWindow", " [s]", nullptr));
+        label_21->setText(QApplication::translate("MainWindow", "X axis range", nullptr));
+        tab2_xrange->setSuffix(QApplication::translate("MainWindow", " [s]", nullptr));
         label_77->setText(QApplication::translate("MainWindow", "Record Data", nullptr));
+        label_106->setText(QApplication::translate("MainWindow", "Max Delay", nullptr));
+        Max_delay->setSuffix(QApplication::translate("MainWindow", " [ps]", nullptr));
         tab2_plot1->setText(QApplication::translate("MainWindow", "&&1", nullptr));
         label_27->setText(QApplication::translate("MainWindow", " Plot", nullptr));
         label_28->setText(QApplication::translate("MainWindow", " Window ", nullptr));
@@ -2851,7 +2920,7 @@ public:
         label_65->setText(QApplication::translate("MainWindow", "1", nullptr));
         label_64->setText(QApplication::translate("MainWindow", "2", nullptr));
         label_66->setText(QApplication::translate("MainWindow", "3", nullptr));
-        tab2_plot5->setText(QApplication::translate("MainWindow", "OR", nullptr));
+        tab2_plot4->setText(QApplication::translate("MainWindow", "OR", nullptr));
         label_127->setText(QApplication::translate("MainWindow", " Plot ", nullptr));
         label_121->setText(QApplication::translate("MainWindow", "&1", nullptr));
         label_122->setText(QApplication::translate("MainWindow", "&2", nullptr));
@@ -2860,7 +2929,7 @@ public:
         label_125->setText(QApplication::translate("MainWindow", "&1", nullptr));
         label_126->setText(QApplication::translate("MainWindow", "&2", nullptr));
         label_124->setText(QApplication::translate("MainWindow", "&3", nullptr));
-        tab2_plot4->setText(QApplication::translate("MainWindow", "bsm", nullptr));
+        tab2_plot5->setText(QApplication::translate("MainWindow", "BSM", nullptr));
         label_99->setText(QApplication::translate("MainWindow", " OR ", nullptr));
         label_123->setText(QApplication::translate("MainWindow", "&", nullptr));
         label_115->setText(QApplication::translate("MainWindow", "A", nullptr));
