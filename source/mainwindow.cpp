@@ -732,18 +732,18 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
         emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, in_delayline);
          ui->current_delay_pos->display(in_delayline);
     }
-    if(dbrunning && in_homscan && prev_homscan<=in_Max_delay){
+   /* if(dbrunning && in_homscan && prev_homscan<=in_Max_delay){
         if(firstscan){
             anl.Chang_adqtime_2(1);
             firstscan=false;
-        }
-        else{
+        }*/
+       // else{
             anl.Chang_adqtime_2(in_adqtime_2);
             std::cout<<"delay scan : "<<prev_homscan<<std::endl;
             emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, prev_homscan);
             ui->current_delay_pos->display(prev_homscan);
             prev_homscan+=in_homscan_time;
-        }
+       // }
     }
 
    ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, double(xrange), Qt::AlignRight);
