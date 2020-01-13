@@ -738,7 +738,7 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
             firstscan=false;
         }*/
        // else{
-            anl.Chang_adqtime_2(in_adqtime_2);
+            //anl.Chang_adqtime_2(in_adqtime_2);
             std::cout<<"delay scan : "<<prev_homscan<<std::endl;
             emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, prev_homscan);
             ui->current_delay_pos->display(prev_homscan);
