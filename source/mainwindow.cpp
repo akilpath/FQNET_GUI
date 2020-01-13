@@ -732,8 +732,8 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
         emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, in_delayline);
          ui->current_delay_pos->display(in_delayline);
     }
-   /* if(dbrunning && in_homscan && prev_homscan<=in_Max_delay){
-        if(firstscan){
+    if(dbrunning && in_homscan && prev_homscan<=in_Max_delay){
+     /*   if(firstscan){
             anl.Chang_adqtime_2(1);
             firstscan=false;
         }*/
