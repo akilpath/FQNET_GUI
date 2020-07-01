@@ -28,7 +28,7 @@ void DBControl::DBConnect(QString server, int port, QString database, QString lo
         QStringList tables_names = db.tables();
         for (int i = 0; i < tables_names.size(); ++i)
                  std::cout << tables_names.at(i).toLocal8Bit().constData() << std::endl;
-       QSqlQuery query("create table if not exists inqnet_gui_tab2gates_V2(id int not null auto_increment primary key, and1 int,and2 int, and3 int, orgate int, bsm int, and_adqtime float(7,2), delayline int, datetime datetime);",db);
+       QSqlQuery query("create table if not exists inqnet_gui_tab2gates_V3(id int not null auto_increment primary key, and1 int,and2 int, and3 int, orgate int, bsm1 int, bsm2 int, and_adqtime float(7,2), delayline int,currentdelay double, attenuation double, datetime datetime);",db);
        QSqlQuery query2("create table if not exists inqnet_gui_historates(id int not null auto_increment primary key, Ra1 int,Ra2 int, Ra3 int, Rb1 int,Rb2 int, Rb3 int, Rc1 int,Rc2 int, Rc3 int ,hist_adqtime float(7,2), datetime datetime);",db);
        usleep(1000);
        //SaveAndValues(1,1,1,1);
@@ -50,8 +50,8 @@ bool DBControl::connectToServerMySQL(QString server, int port, QString database,
     return db.open();
 }
 
-void DBControl::SaveAndValues(int and1, int and2, int and3, int orgate, int bsm, float andTime, int delayline){
-    QString s= "insert into inqnet_gui_tab2gates_V2(and1,and2, and3, orgate, bsm, and_adqtime, delayline, datetime) values("+QString::number(and1)+","+QString::number(and2)+","+QString::number(and3)+","+QString::number(orgate)+","+QString::number(bsm)+","+QString::number(andTime)+","+QString::number(delayline)+","+"now());";
+void DBControl::SaveAndValues(int and1, int and2, int and3, int orgate, int bsm1, int bsm2, float andTime, int delayline){
+    QString s= "insert into inqnet_gui_tab2gates_V3(and1,and2, and3, orgate, bsm1, bsm2, and_adqtime, delayline, datetime) values("+QString::number(and1)+","+QString::number(and2)+","+QString::number(and3)+","+QString::number(orgate)+","+QString::number(bsm1)+","+QString::number(bsm2)+","+QString::number(andTime)+","+QString::number(delayline)+","+"now());";
     //std::cout<<s.toStdString()<<std::endl;
     if(connection_succesfull){QSqlQuery query(s,db);
        // std::cout<<"gud"<<std::endl;

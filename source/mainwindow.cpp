@@ -121,15 +121,30 @@ lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
 
+ui->rof1->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+ui->rof2->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+ui->rof3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+ui->rof4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+
+
 ui->rof1->addItem(tr("Rise"));
 ui->rof1->addItem(tr("Fall"));
 ui->rof2->addItem(tr("Rise"));
 ui->rof2->addItem(tr("Fall"));
 ui->rof3->addItem(tr("Rise"));
 ui->rof3->addItem(tr("Fall"));
+ui->rof4->addItem(tr("Rise"));
+ui->rof4->addItem(tr("Fall"));
+
+ui->rof1->setCurrentText("Rise");
+ui->rof2->setCurrentText("Fall");
+ui->rof3->setCurrentText("Fall");
+ui->rof4->setCurrentText("Fall");
 
 
 ui->Max_delay->setValue(500);
+
+ui->stepduration->setValue(30);
 
 dbc.start();
 adq.start();
@@ -139,7 +154,9 @@ adq.initdone = 1;
 }
 
 
-
+//////////////////////////////////////////////////////////
+///////////////////setups///////////////////////////
+///////////////////////////////////////////////////////////
 
 void MainWindow::setupratePlot(QCustomPlot *scope){
 
@@ -231,7 +248,7 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
   QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
   timeTicker->setTimeFormat("%h:%m:%s");
   scope->xAxis->setTicker(timeTicker);
-scope->rescaleAxes();
+  scope->rescaleAxes();
   scope->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
 
@@ -318,6 +335,11 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
   //graph5->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(63, 211, 249), 1), QBrush(QColor(30,144,255)),4));
   graph5->setPen(QPen(QColor(173, 127, 168), 2));
 
+  QCPGraph *graph6 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+  graph6->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(0,0,139), 1), QBrush(QColor(51,51,255)),4));
+  //graph5->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(QColor(63, 211, 249), 1), QBrush(QColor(30,144,255)),4));
+  graph6->setPen(QPen(QColor(130, 170, 120), 2));
+
 
 
 
@@ -341,8 +363,6 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
 
   scope->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
-
-
 
 void MainWindow::setupHistoPlot(QCustomPlot *histograma){
 
@@ -570,6 +590,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->plot4_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot4_1(int)));
     QObject::connect(ui->plot4_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot4_2(int)));
     QObject::connect(ui->plot5_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot5_2(int)));
+    QObject::connect(ui->plot6_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot6_2(int)));
 
     QObject::connect(ui->win1_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win1_1(int)));
     QObject::connect(ui->win1_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win1_2(int)));
@@ -578,6 +599,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->win3_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win3_1(int)));
     QObject::connect(ui->win3_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win3_2(int)));
     QObject::connect(ui->win5_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win5_2(int)));
+    QObject::connect(ui->win6_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win6_2(int)));
 
     QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(double)), &anl, SLOT(Chang_adqtime_2(double)));
     QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(double)), this, SLOT(Chang_adqtime_2(double)));
@@ -595,7 +617,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(&adq, SIGNAL(qutaghist(vectorDouble, vectorDouble, vectorDouble)), this, SLOT(histoplot(vectorDouble, vectorDouble, vectorDouble)),Qt::QueuedConnection);
     //QObject::connect(&adq, SIGNAL(qutaghist(vectorDouble, vectorDouble)), this, SLOT(histoplot(vectorDouble, vectorDouble)), Qt::BlockingQueuedConnection);
 
-    QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, int, int, double)));
+    QObject::connect(&anl, SIGNAL(rates_tab2(int, int, int, int, int, int, double)), this, SLOT(plotRates_tab2(int, int, int, int, int, int, double)));
 
     QObject::connect(ui->thch1, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch1(double)));
     QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch2(double)));
@@ -613,13 +635,14 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->tab2_plot3, SIGNAL(toggled(bool)), this, SLOT(tab2_plot3_activate(bool)));
     QObject::connect(ui->tab2_plot4, SIGNAL(toggled(bool)), this, SLOT(tab2_plot4_activate(bool)));
     QObject::connect(ui->tab2_plot5, SIGNAL(toggled(bool)), this, SLOT(tab2_plot5_activate(bool)));
+    QObject::connect(ui->tab2_plot6, SIGNAL(toggled(bool)), this, SLOT(tab2_plot6_activate(bool)));
 
     QObject::connect(ui->BSM, SIGNAL(released()), this, SLOT(setBSMmeas()));
     QObject::connect(ui->HOM, SIGNAL(released()), this, SLOT(setHOMmeas()));
 
     QObject::connect(ui->delayline, SIGNAL(valueChanged(int)), this, SLOT(Chang_delayline(int)));
 
-    QObject::connect(this, SIGNAL(main_SaveAndValues(int, int, int , int , int, float , int )), &dbc, SLOT(SaveAndValues(int, int, int , int , int, float , int )));
+    QObject::connect(this, SIGNAL(main_SaveAndValues(int, int, int , int , int, int , float , int )), &dbc, SLOT(SaveAndValues(int, int, int , int , int, int , float , int )));
    // QObject::connect(this, SIGNAL(main_SaveAndValues(int, int, int , int , int, float , int )), this, SLOT(AndValues(int, int, int , int , int, float , int )));
 
     QObject::connect(this, SIGNAL(main_SaveRateValues( int, int , int , int , int , int , int , int , int , float)), &dbc, SLOT(SaveRateValues( int, int , int , int , int , int , int , int , int , float)));
@@ -634,6 +657,14 @@ void MainWindow::setupsignalslot(){
 
     QObject::connect(ui->Max_delay, SIGNAL(valueChanged(int)), this, SLOT(chang_in_max_del(int)));
 
+    QObject::connect(ui->stepduration, SIGNAL(valueChanged(int)), this, SLOT(chang_in_stepduration(int)));
+
+    QObject::connect(ui->clean_tab2, SIGNAL(released()), this, SLOT(clean_tab2()));
+
+    QObject::connect(ui->rof1, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof1(QString)));
+    QObject::connect(ui->rof2, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof2(QString)));
+    QObject::connect(ui->rof3, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof3(QString)));
+    QObject::connect(ui->rof4, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof4(QString)));
 }
 
 
@@ -701,15 +732,16 @@ void MainWindow::plotRates(char AoBoC, int event, double key){
 
 }
 
-void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate , int bsm, double key){
+void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate , int bsm1, int bsm2, double key){
 
 
    double value1 = eventA;
    double value2 = eventB;
    double value3 = eventC;
    double value4 = orgate;
-   double value5 = bsm;
-   //std::cout<<value1<<std::endl;
+   double value5 = bsm1;
+   double value6 = bsm2;
+   //std::cout<<bsm2<<std::endl;
 
         if(in_tab2_plot1)ui->PlotTab2->graph(0)->addData(key-lastPointKey_tab2, value1);
         //ui->PlotTab2->graph(0)->rescaleValueAxis(true);
@@ -726,24 +758,28 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
         if(in_tab2_plot5)ui->PlotTab2->graph(4)->addData(key-lastPointKey_tab2, value5);
         //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
 
+        if(in_tab2_plot6)ui->PlotTab2->graph(5)->addData(key-lastPointKey_tab2, value6);
+
     if(dbrunning && !in_homscan){
 
-        std::cout<<"delay : "<<in_delayline<<std::endl;
-        emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, in_delayline);
+        //std::cout<<"delay : "<<in_delayline<<std::endl;
+        emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm1, bsm2 , in_adqtime_2, in_delayline);
          ui->current_delay_pos->display(in_delayline);
     }
     if(dbrunning && in_homscan && prev_homscan<=in_Max_delay){
-     /*   if(firstscan){
-            anl.Chang_adqtime_2(1);
-            firstscan=false;
-        }*/
-       // else{
-            //anl.Chang_adqtime_2(in_adqtime_2);
-            std::cout<<"delay scan : "<<prev_homscan<<std::endl;
-            emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm , in_adqtime_2, prev_homscan);
-            ui->current_delay_pos->display(prev_homscan);
+
+        del_key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+
+        if(del_key-del_previouskey>in_stepduration){
             prev_homscan+=in_homscan_time;
-       // }
+            del_previouskey=del_key;
+        }
+
+        // std::cout<<"delay scan : "<<prev_homscan<<std::endl;
+         emit main_SaveAndValues(eventA, eventB, eventC, orgate , bsm1, bsm2 , in_adqtime_2, prev_homscan);
+         ui->current_delay_pos->display(prev_homscan);
+
+
     }
 
    ui->PlotTab2->xAxis->setRange(key-lastPointKey_tab2, double(xrange), Qt::AlignRight);
@@ -1142,13 +1178,25 @@ void MainWindow::setBSMmeas(){
 }
 void MainWindow::setHOMmeas(){
 
+    QMessageBox msgBox;
+    msgBox.setText("Still to do :P");
+    msgBox.exec();
+}
+void MainWindow::clean_tab2(){
 
+    QMessageBox msgBox;
+    msgBox.setText("Still to do :P");
+    msgBox.exec();
 }
 
+void MainWindow::   Chang_homscan(int val){
+    in_homscan=bool(val);
+    if(in_homscan && !firstscan){
+        firstscan=true;
+        del_previouskey = 0;
+    }
+}
 
-//////////////////////////////////////
-////////////popup error///////////////
-/////////////////////////////////////
 /*void MainWindow::error1(){
 	QMessageBox msgBox;
 	msgBox.setText("reinicialice/encienda el conversor.");

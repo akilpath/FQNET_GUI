@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_qutagadq_t {
-    QByteArrayData data[37];
-    char stringdata0[485];
+    QByteArrayData data[42];
+    char stringdata0[534];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -67,7 +67,12 @@ QT_MOC_LITERAL(32, 413, 14), // "Chang_in_thch1"
 QT_MOC_LITERAL(33, 428, 14), // "Chang_in_thch2"
 QT_MOC_LITERAL(34, 443, 14), // "Chang_in_thch3"
 QT_MOC_LITERAL(35, 458, 14), // "Chang_in_thch4"
-QT_MOC_LITERAL(36, 473, 11) // "Chang_in_cw"
+QT_MOC_LITERAL(36, 473, 11), // "Chang_in_cw"
+QT_MOC_LITERAL(37, 485, 10), // "Chang_rof1"
+QT_MOC_LITERAL(38, 496, 4), // "text"
+QT_MOC_LITERAL(39, 501, 10), // "Chang_rof2"
+QT_MOC_LITERAL(40, 512, 10), // "Chang_rof3"
+QT_MOC_LITERAL(41, 523, 10) // "Chang_rof4"
 
     },
     "qutagadq\0dataready\0\0vectorInt64\0"
@@ -82,7 +87,9 @@ QT_MOC_LITERAL(36, 473, 11) // "Chang_in_cw"
     "Chang_in_PlotBChn2\0Chang_in_PlotCChn1\0"
     "Chang_in_PlotCChn2\0Chang_anlAvilable\0"
     "Chang_in_thch1\0Chang_in_thch2\0"
-    "Chang_in_thch3\0Chang_in_thch4\0Chang_in_cw"
+    "Chang_in_thch3\0Chang_in_thch4\0Chang_in_cw\0"
+    "Chang_rof1\0text\0Chang_rof2\0Chang_rof3\0"
+    "Chang_rof4"
 };
 #undef QT_MOC_LITERAL
 
@@ -92,7 +99,7 @@ static const uint qt_meta_data_qutagadq[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      28,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -100,32 +107,36 @@ static const uint qt_meta_data_qutagadq[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    3,  134,    2, 0x06 /* Public */,
-       8,    3,  141,    2, 0x06 /* Public */,
+       1,    3,  154,    2, 0x06 /* Public */,
+       8,    3,  161,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      13,    0,  148,    2, 0x0a /* Public */,
-      14,    0,  149,    2, 0x0a /* Public */,
-      15,    1,  150,    2, 0x0a /* Public */,
-      17,    0,  153,    2, 0x0a /* Public */,
-      18,    0,  154,    2, 0x0a /* Public */,
-      19,    1,  155,    2, 0x0a /* Public */,
-      21,    1,  158,    2, 0x0a /* Public */,
-      22,    1,  161,    2, 0x0a /* Public */,
-      23,    1,  164,    2, 0x0a /* Public */,
-      24,    1,  167,    2, 0x0a /* Public */,
-      25,    1,  170,    2, 0x0a /* Public */,
-      26,    1,  173,    2, 0x0a /* Public */,
-      27,    1,  176,    2, 0x0a /* Public */,
-      28,    1,  179,    2, 0x0a /* Public */,
-      29,    1,  182,    2, 0x0a /* Public */,
-      30,    1,  185,    2, 0x0a /* Public */,
-      31,    1,  188,    2, 0x0a /* Public */,
-      32,    1,  191,    2, 0x0a /* Public */,
-      33,    1,  194,    2, 0x0a /* Public */,
-      34,    1,  197,    2, 0x0a /* Public */,
-      35,    1,  200,    2, 0x0a /* Public */,
-      36,    1,  203,    2, 0x0a /* Public */,
+      13,    0,  168,    2, 0x0a /* Public */,
+      14,    0,  169,    2, 0x0a /* Public */,
+      15,    1,  170,    2, 0x0a /* Public */,
+      17,    0,  173,    2, 0x0a /* Public */,
+      18,    0,  174,    2, 0x0a /* Public */,
+      19,    1,  175,    2, 0x0a /* Public */,
+      21,    1,  178,    2, 0x0a /* Public */,
+      22,    1,  181,    2, 0x0a /* Public */,
+      23,    1,  184,    2, 0x0a /* Public */,
+      24,    1,  187,    2, 0x0a /* Public */,
+      25,    1,  190,    2, 0x0a /* Public */,
+      26,    1,  193,    2, 0x0a /* Public */,
+      27,    1,  196,    2, 0x0a /* Public */,
+      28,    1,  199,    2, 0x0a /* Public */,
+      29,    1,  202,    2, 0x0a /* Public */,
+      30,    1,  205,    2, 0x0a /* Public */,
+      31,    1,  208,    2, 0x0a /* Public */,
+      32,    1,  211,    2, 0x0a /* Public */,
+      33,    1,  214,    2, 0x0a /* Public */,
+      34,    1,  217,    2, 0x0a /* Public */,
+      35,    1,  220,    2, 0x0a /* Public */,
+      36,    1,  223,    2, 0x0a /* Public */,
+      37,    1,  226,    2, 0x0a /* Public */,
+      39,    1,  229,    2, 0x0a /* Public */,
+      40,    1,  232,    2, 0x0a /* Public */,
+      41,    1,  235,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5, QMetaType::Int,    4,    6,    7,
@@ -154,6 +165,10 @@ static const uint qt_meta_data_qutagadq[] = {
     QMetaType::Void, QMetaType::Double,   20,
     QMetaType::Void, QMetaType::Double,   20,
     QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::QString,   38,
+    QMetaType::Void, QMetaType::QString,   38,
+    QMetaType::Void, QMetaType::QString,   38,
+    QMetaType::Void, QMetaType::QString,   38,
 
        0        // eod
 };
@@ -189,6 +204,10 @@ void qutagadq::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 21: _t->Chang_in_thch3((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 22: _t->Chang_in_thch4((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 23: _t->Chang_in_cw((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 24: _t->Chang_rof1((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 25: _t->Chang_rof2((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 26: _t->Chang_rof3((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 27: _t->Chang_rof4((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -239,13 +258,13 @@ int qutagadq::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 28;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 28)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 24;
+        _id -= 28;
     }
     return _id;
 }

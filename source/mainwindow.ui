@@ -45,7 +45,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab1">
        <attribute name="title">
@@ -2285,7 +2285,7 @@ background-color: rgb(136, 138, 133);</string>
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
                   <property name="text">
-                   <string>Step Size</string>
+                   <string>Scan step Size</string>
                   </property>
                  </widget>
                 </item>
@@ -2305,7 +2305,59 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_108">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Step duration</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QSpinBox" name="stepduration">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="suffix">
+                   <string> [s]</string>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>50000</number>
+                  </property>
+                 </widget>
+                </item>
                 <item row="5" column="0">
+                 <widget class="QLabel" name="label_106">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Max Delay</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QSpinBox" name="Max_delay">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="suffix">
+                   <string> [ps]</string>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>10000</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="0">
                  <widget class="QLabel" name="label_105">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2315,14 +2367,14 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="5" column="1">
+                <item row="6" column="1">
                  <widget class="QLCDNumber" name="current_delay_pos">
                   <property name="digitCount">
                    <number>4</number>
                   </property>
                  </widget>
                 </item>
-                <item row="6" column="0">
+                <item row="7" column="0">
                  <widget class="QPushButton" name="reset_delay">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2332,7 +2384,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="7" column="0">
+                <item row="8" column="0">
                  <spacer name="verticalSpacer">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -2345,7 +2397,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </spacer>
                 </item>
-                <item row="8" column="0">
+                <item row="9" column="0">
                  <widget class="QLabel" name="label_22">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2355,7 +2407,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="8" column="1">
+                <item row="9" column="1">
                  <widget class="QDoubleSpinBox" name="adqtime_2">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2374,7 +2426,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="9" column="0">
+                <item row="10" column="0">
                  <widget class="QLabel" name="label_21">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2384,7 +2436,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="9" column="1">
+                <item row="10" column="1">
                  <widget class="QSpinBox" name="tab2_xrange">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2406,7 +2458,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="10" column="0">
+                <item row="11" column="0">
                  <spacer name="verticalSpacer_2">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -2419,7 +2471,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </spacer>
                 </item>
-                <item row="11" column="0">
+                <item row="12" column="0">
                  <widget class="QLabel" name="label_77">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
@@ -2429,7 +2481,7 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="11" column="1">
+                <item row="12" column="1">
                  <widget class="QSlider" name="DBON">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2445,29 +2497,13 @@ background-color: rgb(136, 138, 133);</string>
                   </property>
                  </widget>
                 </item>
-                <item row="4" column="0">
-                 <widget class="QLabel" name="label_106">
+                <item row="13" column="0">
+                 <widget class="QPushButton" name="clean_tab2">
                   <property name="styleSheet">
                    <string notr="true">color: rgb(238, 238, 236);</string>
                   </property>
                   <property name="text">
-                   <string>Max Delay</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="1">
-                 <widget class="QSpinBox" name="Max_delay">
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(238, 238, 236);</string>
-                  </property>
-                  <property name="suffix">
-                   <string> [ps]</string>
-                  </property>
-                  <property name="minimum">
-                   <number>1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>10000</number>
+                   <string>Clean Plot</string>
                   </property>
                  </widget>
                 </item>
@@ -3866,6 +3902,234 @@ background-color: rgb(136, 138, 133);</string>
                   </item>
                   <item>
                    <spacer name="horizontalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_31">
+                  <item>
+                   <widget class="QRadioButton" name="tab2_plot6">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(173, 127, 168);
+</string>
+                    </property>
+                    <property name="text">
+                     <string>BSM</string>
+                    </property>
+                    <property name="autoExclusive">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_7">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_107">
+                    <property name="font">
+                     <font>
+                      <pointsize>44</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(63, 211, 249);</string>
+                    </property>
+                    <property name="text">
+                     <string> OR </string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_128">
+                    <property name="font">
+                     <font>
+                      <pointsize>44</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(173, 127, 168);</string>
+                    </property>
+                    <property name="text">
+                     <string>&amp;</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_41">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_40">
+                      <item>
+                       <widget class="QLabel" name="label_129">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>A</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_130">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>B</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_131">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>C</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="plot6_2">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="maximum">
+                       <number>2</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="win6_2">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="maximum">
+                       <number>2</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_41">
+                      <item>
+                       <widget class="QLabel" name="label_132">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>1</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_133">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>2</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_134">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>3</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_47">
+                    <item>
+                     <widget class="QLabel" name="label_109">
+                      <property name="font">
+                       <font>
+                        <pointsize>20</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(238, 238, 236);</string>
+                      </property>
+                      <property name="text">
+                       <string> Plot </string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_110">
+                      <property name="font">
+                       <font>
+                        <pointsize>20</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(238, 238, 236);
+</string>
+                      </property>
+                      <property name="text">
+                       <string> Window </string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_8">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>

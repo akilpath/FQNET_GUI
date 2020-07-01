@@ -42,7 +42,7 @@ public:
 private slots:
 
   void plotRates(char AoB, int event, double key);
-  void plotRates_tab2(int eventA, int eventB, int eventC,int eventD, int eventE, double key);
+  void plotRates_tab2(int eventA, int eventB, int eventC,int eventD, int eventE, int eventf, double key);
   void changeStartchan(int starchan){this->in_startChan=starchan;}
 
   void histoplot(const vectorDouble &dat1, const vectorDouble &dat2, const vectorDouble &dat3);
@@ -126,20 +126,26 @@ private slots:
   void tab2_plot3_activate(bool val){in_tab2_plot3=val;}
   void tab2_plot4_activate(bool val){in_tab2_plot4=val;}
   void tab2_plot5_activate(bool val){in_tab2_plot5=val;}
+  void tab2_plot6_activate(bool val){in_tab2_plot6=val;}
 
   void setBSMmeas();
   void setHOMmeas();
+  void clean_tab2();
 
   void Chang_delayline(int val){in_delayline=val;}
 
   void Chang_homscan_time(int val){in_homscan_time=val;}
-  void Chang_homscan(int val){in_homscan=bool(val);if(val && firstscan==false)firstscan=true;}
+  void Chang_homscan(int val);
 
   void chang_tab2range(int val){xrange=val;}
 
 
    void resetdelay(){in_delayline=0;prev_homscan=0;}
    void chang_in_max_del(int val){in_Max_delay=val;}
+
+   void chang_in_stepduration(int val){in_stepduration=val;}
+
+
 
 private:
   Ui::MainWindow *ui;
@@ -180,7 +186,7 @@ private:
 
 
   float adqtime_tab2;
-  int tab2_plot[5][2]={{0}};
+  int tab2_plot[6][2]={{0}};
   int tab2_win[4][2]={{0}};
 
   bool in_tab2_plot1=false;
@@ -188,6 +194,7 @@ private:
   bool in_tab2_plot3=false;
   bool in_tab2_plot4=false;
   bool in_tab2_plot5=false;
+  bool in_tab2_plot6=false;
 
   int in_delayline=0;
 
@@ -197,8 +204,10 @@ private:
  int xrange = 120;
  int in_Max_delay=500;
  bool firstscan=false;
+ int in_stepduration;
+ double del_key, del_previouskey;
 signals:
-    void main_SaveAndValues(int and1, int and2, int and3, int orgate, int bsm, float andTime, int delayline);
+    void main_SaveAndValues(int and1, int and2, int and3, int orgate, int bsm1, int bsm2, float andTime, int delayline);
     void main_SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int Rb3, int Rc1, int Rc2, int Rc3, float hist_adqtime);
 
 };

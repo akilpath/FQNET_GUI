@@ -83,6 +83,11 @@ public slots:
   void Chang_in_thch4(double val){this->in_thch4=val;changThreshold(4,val);}
   void Chang_in_cw(int val){this->in_cw=val; TDC_setCoincidenceWindow(val);}
 
+  void Chang_rof1(QString text){if(text=="Rise")RoF[1]=1;else RoF[1]=0;}
+  void Chang_rof2(QString text){if(text=="Rise")RoF[2]=1;else RoF[2]=0;}
+  void Chang_rof3(QString text){if(text=="Rise")RoF[3]=1;else RoF[3]=0;}
+  void Chang_rof4(QString text){if(text=="Rise")RoF[4]=1;else RoF[4]=0;}
+
 signals:
    // void dataready(const vectorInt64 &TTdata, const channelsTDCPP &CHdata, int nevent); // sends to inputdata()
     void dataready(const vectorInt64 &vectorTimetags, const vectorInt8 &vectorChannels, int tsvalid);

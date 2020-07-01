@@ -43,10 +43,10 @@ qutagadq::qutagadq(){
     rc = TDC_setExposureTime( 1000 );
     checkRc( "TDC_setExposureTime", rc );
 
-    RoF[1]=1;
+    /*RoF[1]=1;
     RoF[2]=0;
     RoF[3]=0;
-    RoF[4]=0;
+    RoF[4]=0;*/
 
 
 
@@ -199,7 +199,7 @@ int qutagadq::filterset(){
 
      histodataC = new Int32 [in_binsinplot];
 
-     /*std::cout<<"binsinplot adq  :  "<< in_binsinplot<<std::endl;
+    /* std::cout<<"binsinplot adq  :  "<< in_binsinplot<<std::endl;
      std::cout<<"plot 1A  :  "<< in_PlotACh1<<std::endl;
      std::cout<<"plot 2A  :  "<< in_PlotACh2<<std::endl;
 */
@@ -254,7 +254,7 @@ int qutagadq::filterset(){
            dataC[i]=double (histodataC[i]);
        }
 
-
+//std::cout<<count1<<"  "<<count2<<"  "<< count3<<std::endl;
        if(count1 != 0 || count2 !=0 || count3 !=0)emit(qutaghist(dataA, dataB, dataC));
 
        dataA.clear();
