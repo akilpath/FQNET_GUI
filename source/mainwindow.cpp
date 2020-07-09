@@ -146,6 +146,10 @@ ui->Max_delay->setValue(500);
 
 ui->stepduration->setValue(30);
 
+/*while(1){
+    udpcom.sendDataToClient(66666);
+    sleep(1);
+}*/
 dbc.start();
 adq.start();
 anl.start();

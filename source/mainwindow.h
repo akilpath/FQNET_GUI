@@ -10,6 +10,7 @@
 #include "qutag_adq.h"
 #include "qutag_anl.h"
 #include "dbcontrol.h"
+#include "socket_com.h"
 
 namespace Ui {
 class MainWindow;
@@ -152,6 +153,7 @@ private:
   qutagadq adq;
   qutaganl anl;
   DBControl dbc;
+  socket_com udpcom;
   QString demoName;
   QTimer dataTimer;
   QCPItemTracer *itemDemoPhaseTracer;

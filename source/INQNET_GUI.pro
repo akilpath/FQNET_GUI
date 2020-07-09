@@ -3,7 +3,7 @@
 QT       += core gui multimedia sql widgets
 
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport network
 
 
 INCLUDEPATH += $$PWD/../lib
@@ -26,7 +26,8 @@ SOURCES += main.cpp\
            mainwindow.cpp \
            qcustomplot.cpp \
            qutag_adq.cpp \
-           qutag_anl.cpp
+           qutag_anl.cpp \
+           socket_com.cpp
           
 
 HEADERS  += mainwindow.h \
@@ -34,6 +35,7 @@ HEADERS  += mainwindow.h \
             qcustomplot.h \
             qutag_adq.h \
             qutag_anl.h \
+            socket_com.h \
             tdcbase.h \
             tdcdecl.h \
             tdcstartstop.h
