@@ -33,7 +33,7 @@
  *  parameter setting and getting calls return without error.
  */
 /*****************************************************************************/
-/* $Id: tdcbase.h,v 1.12 2019/03/25 17:57:36 trurl Exp $ */
+/* $Id: tdcbase.h,v 1.15 2019/11/29 13:25:13 trurl Exp $ */
 
 #ifndef __TDCBASE_H
 #define __TDCBASE_H
@@ -46,7 +46,7 @@
 #define TDC_QUTAG_CHANNELS   5   /**< Number of hardware input channels */
 #define TDC_COINC_CHANNELS  31   /**< Number of internal event and coincidence counters */
 #define TDC_MAX_CHANNEL_NO  20   /**< Maximum channel number (including synchronzed devices) */
-/* @} */
+/** @} */
 
 
 /** Type of the TDC device */
@@ -359,13 +359,15 @@ TDC_API int TDC_CC TDC_getChannelsEnabled( Int32 * channelMask );
 
 /** Enable Markers
  *
- *  The markers 0-3 are low resolution timestamps triggered over the GPIO port.
- *  Marker 4 is a 1ms timer tick. If enabled, the Markers are included in timestamp
- *  protocol files with channel numbers 100-104.
- *  By default, all markers are activated.
+ *  The markers are low resolution timestamps triggered over the GPIO port.
+ *  Markers 0-3 are triggerd by the rising edges of the signals,
+ *  markers 5-9 by the falling edges.  Marker 4 is a 1ms timer tick.
+ *  If enabled, the Markers are included in timestamp
+ *  protocol files with channel numbers 100-104 and 200-203.
+ *  By default, all markers are deactivated.
  *  The function allows to enable or disable the single marker channels.
  *  @param  markerMask   Bitfield with activation flags for every marker channel.
- *                       (e.g. 5 means activate channels 0 and 2)
+ *                       (e.g. 5 means activate markers 0 and 2)
  *  @return              Error code
  */
 TDC_API int TDC_CC TDC_enableMarkers( Int32 markerMask );
@@ -685,7 +687,7 @@ TDC_API int TDC_CC TDC_getCoincCounters( Int32 * data, Int32 * updates );
  */
 TDC_API int TDC_CC TDC_getLastTimestamps( Bln32   reset,
                                           Int64 * timestamps,
-                                          Int8  * channels,
+                                          Uint8 * channels,
                                           Int32 * valid );
 
 
@@ -754,7 +756,7 @@ TDC_API int TDC_CC TDC_writeTimestamps( const char *   filename,
  *  @return           Error code
  */
 TDC_API int TDC_CC TDC_inputTimestamps( const Int64 * timestamps,
-                                        const Int8  * channels,
+                                        const Uint8 * channels,
                                         Int32         count );
 
 

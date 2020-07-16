@@ -38,7 +38,9 @@ public:
   void setupsignalslot();
   void setupHistoPlot(QCustomPlot *customPlot);
 
-  
+  void setupHistoLines();
+
+  bool Oldlines=0;
 
 private slots:
 

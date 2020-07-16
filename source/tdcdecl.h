@@ -13,7 +13,7 @@
  *  @brief Technical declarations for the DLL interface and basic type defs.
  */
 /*****************************************************************************/
-/* $Id: tdcdecl.h,v 1.2 2018/07/02 12:24:49 trurl Exp $ */
+/* $Id: tdcdecl.h,v 1.4 2019/11/29 10:54:10 trurl Exp $ */
 
 #ifndef __TDCDECL_H
 #define __TDCDECL_H
@@ -38,7 +38,7 @@
 #define TDC_API EXTC __declspec(dllimport)     /**< External DLL interface */
 #endif
 #endif
-/* @} */
+/** @} */
 
 
 /** @name Portable data types
@@ -50,22 +50,24 @@
  *  @{
  */
 #if defined _MSC_VER && _MSC_VER < 1800
-typedef __int8  Int8;              /**< 8  bit integer for MSVC */
-typedef __int32 Int32;             /**< 32 bit integer for MSVC */
-typedef __int64 Int64;             /**< 64 bit integer for MSVC */
-typedef __int32 Bln32;             /**< integer used as boolean */
-#define LLXFORMAT "I64x"
-#define LLDFORMAT "I64d"
+typedef __int8  Int8;              /**< 8  bit integer for MSVC  */
+typedef __int32 Int32;             /**< 32 bit integer for MSVC  */
+typedef __int64 Int64;             /**< 64 bit integer for MSVC  */
+typedef unsigned __int8 Uint8;     /**<  8-Bit unsigned int for MSVC  */
+typedef __int32 Bln32;             /**< integer used as boolean  */
+#define LLXFORMAT "I64x"           /**< 64 bit hex printf format */
+#define LLDFORMAT "I64d"           /**< 64 bit dec printf format */
 #else
 #include <inttypes.h>
-typedef int8_t  Int8;              /**< 8  bit integer for GCC  */
-typedef int32_t Int32;             /**< 32 bit integer for GCC  */
-typedef int64_t Int64;             /**< 64 bit integer for GCC  */
-typedef int32_t Bln32;             /**< integer used as boolean */
-#define LLXFORMAT PRIx64
-#define LLDFORMAT PRId64
+typedef int8_t  Int8;              /**< 8  bit integer for GCC   */
+typedef int32_t Int32;             /**< 32 bit integer for GCC   */
+typedef int64_t Int64;             /**< 64 bit integer for GCC   */
+typedef uint8_t Uint8;             /**<  8 bit unsigned int f GCC*/
+typedef int32_t Bln32;             /**< integer used as boolean  */
+#define LLXFORMAT PRIx64           /**< 64 bit hex printf format */
+#define LLDFORMAT PRId64           /**< 64 bit dec printf format */
 #endif
-/* @} */
+/** @} */
 
 
 /** @name Return values of the functions
@@ -87,7 +89,7 @@ typedef int32_t Bln32;             /**< integer used as boolean */
 #define TDC_NotInitialized  12     /**< Library has not been initialized */
 #define TDC_NotEnabled      13     /**< Requested feature is not enabled */
 #define TDC_NotAvailable    14     /**< Requested feature is not available */
-/* @} */
+/** @} */
 
 
 #endif

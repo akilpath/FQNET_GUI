@@ -36,11 +36,8 @@ setupHistoPlot(ui->PlotC);
 setupratePlot(ui->PlotTrack);
 setupratePlot_tab2(ui->PlotTab2);
 
-for (int i=0;i<18;i++) {
-    if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
-    if((i>5) && (i<12)) infLine[i] = new QCPItemStraightLine(ui->PlotB);
-    if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
-}
+setupHistoLines();
+
 
 ui->thch1->setValue(0.25);
 ui->thch2->setValue(-0.08);
@@ -162,6 +159,13 @@ adq.initdone = 1;
 ///////////////////setups///////////////////////////
 ///////////////////////////////////////////////////////////
 
+void MainWindow::setupHistoLines(){
+    for (int i=0;i<18;i++) {
+        if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
+        if((i>5) && (i<12)) infLine[i] = new QCPItemStraightLine(ui->PlotB);
+        if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
+    }
+}
 void MainWindow::setupratePlot(QCustomPlot *scope){
 
 

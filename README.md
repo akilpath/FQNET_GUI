@@ -20,11 +20,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cptlab/Desktop/FQNET_GUI/lib/
 6. reboot
 
 
-
-
-
 7. open .pro file
 
 8. run
 
+9. requires for compile mesa-libGL-devel.x86_64 and GCC-G++
 
+daisy (native qtag program) requires gt4 libraries. on centos is just intstall libqtgui4.. etc
+on RHEL7 install sudo yum install qt-devel.x86_64 qt-devel.i686
