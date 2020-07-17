@@ -38,12 +38,13 @@ public:
   void setupsignalslot();
   void setupHistoPlot(QCustomPlot *customPlot);
 
-  void setupHistoLines();
-
-  bool Oldlines=0;
+  void setup_histolines_Teleport();
+  
+  void setupDefaultRanges();
+  
 
 private slots:
-
+  
   void plotRates(char AoB, int event, double key);
   void plotRates_tab2(int eventA, int eventB, int eventC,int eventD, int eventE, int eventf, double key);
   void changeStartchan(int starchan){this->in_startChan=starchan;}
@@ -143,11 +144,20 @@ private slots:
   void chang_tab2range(int val){xrange=val;}
 
 
-   void resetdelay(){in_delayline=0;prev_homscan=0;}
-   void chang_in_max_del(int val){in_Max_delay=val;}
+  void resetdelay(){in_delayline=0;prev_homscan=0;}
+  void chang_in_max_del(int val){in_Max_delay=val;}
 
-   void chang_in_stepduration(int val){in_stepduration=val;}
+  void chang_in_stepduration(int val){in_stepduration=val;}
 
+  void createQKDLinesA1();
+  void createQKDLinesA2();
+  void createQKDLinesA3();
+  void createQKDLinesB1();
+  void createQKDLinesB2();
+  void createQKDLinesB3();
+  void createQKDLinesC1();
+  void createQKDLinesC2();
+  void createQKDLinesC3();
 
 
 private:
@@ -159,6 +169,7 @@ private:
   QString demoName;
   QTimer dataTimer;
   QCPItemTracer *itemDemoPhaseTracer;
+  bool Teleport0_or_QKD1=1
   int currentDemoIndex;
   double prom;
   QButtonGroup *buttonGroup1 ;
@@ -204,12 +215,29 @@ private:
 
   bool in_homscan=false;
   int in_homscan_time;
- int prev_homscan=0;
- int xrange = 120;
- int in_Max_delay=500;
- bool firstscan=false;
- int in_stepduration;
- double del_key, del_previouskey;
+  int prev_homscan=0;
+  int xrange = 120;
+  int in_Max_delay=500;
+  bool firstscan=false;
+  int in_stepduration;
+  double del_key, del_previouskey;
+
+//////QKD///////////////
+
+  QVector<QCPItemStraightLine> LinesPlotA1;
+  QVector<QCPItemStraightLine> LinesPlotA2;
+  QVector<QCPItemStraightLine> LinesPlotA3;
+
+  QVector<QCPItemStraightLine> LinesPlotB1;
+  QVector<QCPItemStraightLine> LinesPlotB2;
+  QVector<QCPItemStraightLine> LinesPlotB3;
+
+  QVector<QCPItemStraightLine> LinesPlotC1;
+  QVector<QCPItemStraightLine> LinesPlotC2;
+  QVector<QCPItemStraightLine> LinesPlotC3;
+
+  int QubitTime, Phasetime, NoQubits, PeaksQubit;
+
 signals:
     void main_SaveAndValues(int and1, int and2, int and3, int orgate, int bsm1, int bsm2, float andTime, int delayline);
     void main_SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int Rb3, int Rc1, int Rc2, int Rc3, float hist_adqtime);

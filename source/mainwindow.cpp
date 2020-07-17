@@ -13,145 +13,133 @@
 #include <algorithm>
 
 MainWindow::MainWindow(QWidget *parent) :
-  QMainWindow(parent),
-  ui(new Ui::MainWindow){
+    QMainWindow(parent),
+    ui(new Ui::MainWindow){
 
-  ui->setupUi(this);
-  setGeometry(200, 200, 1500, 800);
+    ui->setupUi(this);
+    setGeometry(200, 200, 1500, 800);
+    setupsignalslot();
+    setWindowTitle(QString("INQNET TDC"));
+    Teleport0_or_QKD1=1;
 
-
-
-//setupPlotA(ui->PlotA);
-
-//dbc.DBConnect("localhost", 3306, "INQNET_GUI", "GUI", "Teleport1536!");
-
- setupsignalslot();
-
-setWindowTitle(QString("INQNET TDC"));
-
-
-setupHistoPlot(ui->PlotB);
-setupHistoPlot(ui->PlotA);
-setupHistoPlot(ui->PlotC);
-setupratePlot(ui->PlotTrack);
-setupratePlot_tab2(ui->PlotTab2);
-
-setupHistoLines();
+//setup style of the histograms and plots
+    setupHistoPlot(ui->PlotB);
+    setupHistoPlot(ui->PlotA);
+    setupHistoPlot(ui->PlotC);
+    setupratePlot(ui->PlotTrack);
+    setupratePlot_tab2(ui->PlotTab2);
 
 
-ui->thch1->setValue(0.25);
-ui->thch2->setValue(-0.08);
-ui->thch3->setValue(-0.08);
-ui->thch4->setValue(-0.08);
-ui->cw->setValue(50000);
-
-//for (int i=0;i<9;i++)P_R[i]=0;
-//for (int i=0;i<9;i++)P_T[i]=false;
-
-ui->plot1_1->setValue(0);
-ui->plot1_2->setValue(0);
-ui->win1_1->setValue(0);
-ui->win1_2->setValue(0);
-
-ui->histStart->setValue(69000);
-ui->histEnd->setValue(78500);
-/*ui->histStart->setValue(1000);
-ui->histEnd->setValue(10000);*/
-
-ui->binsinplot->setValue(1000);
-ui->adqtime->setValue(10);//update rate Adq time
+    if(!Teleport_or_QKD){
+        setup_histolines_Teleport();
+        setupDefaultRanges();
+    }
+    
 
 
-ui->BegA1->setValue(70700);
-ui->BegA2->setValue(72600);
-ui->BegA3->setValue(74600);
-ui->EndA1->setValue(72100);
-ui->EndA2->setValue(73900);
-ui->EndA3->setValue(75900);
+    ui->thch1->setValue(0.25);
+    ui->thch2->setValue(-0.08);
+    ui->thch3->setValue(-0.08);
+    ui->thch4->setValue(-0.08);
+    ui->cw->setValue(50000);
 
-ui->BegB1->setValue(71600);
-ui->BegB2->setValue(73600);
-ui->BegB3->setValue(75600);
-ui->EndB1->setValue(72800);
-ui->EndB2->setValue(74800);
-ui->EndB3->setValue(76800);
+    //for (int i=0;i<9;i++)P_R[i]=0;
+    //for (int i=0;i<9;i++)P_T[i]=false;
 
-ui->BegC1->setValue(71600);
-ui->BegC2->setValue(73600);
-ui->BegC3->setValue(75600);
-ui->EndC1->setValue(72800);
-ui->EndC2->setValue(74800);
-ui->EndC3->setValue(76800);
+    ui->plot1_1->setValue(0);
+    ui->plot1_2->setValue(0);
+    ui->win1_1->setValue(0);
+    ui->win1_2->setValue(0);
 
-ui->PlotAChn1->setValue(1);
-ui->PlotAChn2->setValue(3);
-ui->PlotBChn1->setValue(1);
-ui->PlotBChn2->setValue(2);
-ui->PlotCChn1->setValue(1);
-ui->PlotCChn2->setValue(4);
-ui->startChan->setValue(1);
+    if(Teleport_or_QKD){
+        ui->histStart->setValue(1);
+        ui->histEnd->setValue(110000);
+    }
+    else{
+        ui->histStart->setValue(69000);
+        ui->histEnd->setValue(78500);
+    }
 
-ui->plot1_1->setValue(0);
-ui->plot1_2->setValue(1);
-ui->plot2_1->setValue(0);
-ui->plot2_2->setValue(1);
-ui->plot3_1->setValue(0);
-ui->plot3_2->setValue(1);
+    ui->binsinplot->setValue(1000);
+    ui->adqtime->setValue(10);//update rate Adq time
 
-ui->win1_1->setValue(0);
-ui->win1_2->setValue(0);
-ui->win2_1->setValue(1);
-ui->win2_2->setValue(1);
-ui->win3_1->setValue(2);
-ui->win3_2->setValue(2);
+    
 
-//QThread::msleep(100);
+    ui->PlotAChn1->setValue(1);
+    ui->PlotAChn2->setValue(3);
+    ui->PlotBChn1->setValue(1);
+    ui->PlotBChn2->setValue(2);
+    ui->PlotCChn1->setValue(1);
+    ui->PlotCChn2->setValue(4);
+    ui->startChan->setValue(1);
 
-ui->adqtime_2->setValue(10);
+    ui->plot1_1->setValue(0);
+    ui->plot1_2->setValue(1);
+    ui->plot2_1->setValue(0);
+    ui->plot2_2->setValue(1);
+    ui->plot3_1->setValue(0);
+    ui->plot3_2->setValue(1);
 
-/*ui->tab2_plot1->setChecked(true);
-ui->tab2_plot2->setChecked(true);
-ui->tab2_plot3->setChecked(true);
-*/
+    ui->win1_1->setValue(0);
+    ui->win1_2->setValue(0);
+    ui->win2_1->setValue(1);
+    ui->win2_2->setValue(1);
+    ui->win3_1->setValue(2);
+    ui->win3_2->setValue(2);
 
-lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
-lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+    //QThread::msleep(100);
 
+    ui->adqtime_2->setValue(10);
 
-ui->rof1->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
-ui->rof2->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
-ui->rof3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
-ui->rof4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    /*ui->tab2_plot1->setChecked(true);
+    ui->tab2_plot2->setChecked(true);
+    ui->tab2_plot3->setChecked(true);
+    */
 
-
-ui->rof1->addItem(tr("Rise"));
-ui->rof1->addItem(tr("Fall"));
-ui->rof2->addItem(tr("Rise"));
-ui->rof2->addItem(tr("Fall"));
-ui->rof3->addItem(tr("Rise"));
-ui->rof3->addItem(tr("Fall"));
-ui->rof4->addItem(tr("Rise"));
-ui->rof4->addItem(tr("Fall"));
-
-ui->rof1->setCurrentText("Rise");
-ui->rof2->setCurrentText("Fall");
-ui->rof3->setCurrentText("Fall");
-ui->rof4->setCurrentText("Fall");
+    lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+    lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
 
-ui->Max_delay->setValue(500);
+    ui->rof1->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->rof2->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->rof3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->rof4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
 
-ui->stepduration->setValue(30);
 
-/*while(1){
-    udpcom.sendDataToClient(66666);
-    sleep(1);
-}*/
-dbc.start();
-adq.start();
-anl.start();
+    ui->rof1->addItem(tr("Rise"));
+    ui->rof1->addItem(tr("Fall"));
+    ui->rof2->addItem(tr("Rise"));
+    ui->rof2->addItem(tr("Fall"));
+    ui->rof3->addItem(tr("Rise"));
+    ui->rof3->addItem(tr("Fall"));
+    ui->rof4->addItem(tr("Rise"));
+    ui->rof4->addItem(tr("Fall"));
 
-adq.initdone = 1;
+    ui->rof1->setCurrentText("Rise");
+    ui->rof2->setCurrentText("Fall");
+    ui->rof3->setCurrentText("Fall");
+    ui->rof4->setCurrentText("Fall");
+
+
+    ui->Max_delay->setValue(500);
+
+    ui->stepduration->setValue(30);
+
+    /*while(1){
+        udpcom.sendDataToClient(66666);
+        sleep(1);
+    }*/
+
+    QubitTime=200;
+    Phasetime=50;
+    NoQubits=500;
+    PeaksQubit=3;
+
+    dbc.start();
+    adq.start();
+    anl.start();
+
+    adq.initdone = 1;
 }
 
 
@@ -159,13 +147,38 @@ adq.initdone = 1;
 ///////////////////setups///////////////////////////
 ///////////////////////////////////////////////////////////
 
-void MainWindow::setupHistoLines(){
-    for (int i=0;i<18;i++) {
-        if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
-        if((i>5) && (i<12)) infLine[i] = new QCPItemStraightLine(ui->PlotB);
-        if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
-    }
+void MainWindow::setupDefaultRanges(){
+   
+    ui->BegA1->setValue(70700);
+    ui->BegA2->setValue(72600);
+    ui->BegA3->setValue(74600);
+    ui->EndA1->setValue(72100);
+    ui->EndA2->setValue(73900);
+    ui->EndA3->setValue(75900);
+
+    ui->BegB1->setValue(71600);
+    ui->BegB2->setValue(73600);
+    ui->BegB3->setValue(75600);
+    ui->EndB1->setValue(72800);
+    ui->EndB2->setValue(74800);
+    ui->EndB3->setValue(76800);
+
+    ui->BegC1->setValue(71600);
+    ui->BegC2->setValue(73600);
+    ui->BegC3->setValue(75600);
+    ui->EndC1->setValue(72800);
+    ui->EndC2->setValue(74800);
+    ui->EndC3->setValue(76800);
+    
 }
+void MainWindow::setup_histolines_Teleport(){
+        for (int i=0;i<18;i++) {
+            if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
+            if((i>5) && (i<12)) infLine[i] = new QCPItemStraightLine(ui->PlotB);
+            if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
+        }
+    }
+  
 void MainWindow::setupratePlot(QCustomPlot *scope){
 
 
@@ -900,60 +913,86 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
 	
 }
 
+/////////////////////////////////////
+///////////lines plots///////////////
+/////////////////////////////////////
+
 
 void MainWindow::LinePlot(){
 
-   ////int Plot_Win_BoE[2][3][2];
+    if(!Teleport0_or_QKD1){
 
-   for (int i=0; i<18; i++) {
+        for (int i=0; i<18; i++) {
 
-        if(i==0 || i==3 || i==6 || i==9 || i==12 || i==15)infLine[i]->setPen(QPen(Qt::red));
-        if(i==1 || i==4 || i==7 || i==10 || i==13 || i==16)infLine[i]->setPen(QPen(Qt::green));
-       if(i==2 || i==5 || i==8 || i==11  || i==14 || i==17)infLine[i]->setPen(QPen(Qt::yellow));
-
-
-
-        if(i<6){
-
-            if(i<3)infLine[i]->point1->setCoords(Plot_Win_BoE[0][i][0], 0);
-                else infLine[i]->point1->setCoords(Plot_Win_BoE[0][i-3][1], 0);
-            if(i<3)infLine[i]->point2->setCoords(Plot_Win_BoE[0][i][0], 1);
-                else infLine[i]->point2->setCoords(Plot_Win_BoE[0][i-3][1], 1);
+            if(i==0 || i==3 || i==6 || i==9 || i==12 || i==15)infLine[i]->setPen(QPen(Qt::red));
+            if(i==1 || i==4 || i==7 || i==10 || i==13 || i==16)infLine[i]->setPen(QPen(Qt::green));
+            if(i==2 || i==5 || i==8 || i==11  || i==14 || i==17)infLine[i]->setPen(QPen(Qt::yellow));
 
 
-            ui->PlotA->replot();
 
-        }
-        if(i>5 && i<12){
-            if(i<9)infLine[i]->point1->setCoords(Plot_Win_BoE[1][i-6][0], 0);
-                else infLine[i]->point1->setCoords(Plot_Win_BoE[1][i-6-3][1], 0);
-            if(i<9)infLine[i]->point2->setCoords(Plot_Win_BoE[1][i-6][0], 1);
-                else infLine[i]->point2->setCoords(Plot_Win_BoE[1][i-6-3][1], 1);
+            if(i<6){
 
-            ui->PlotB->replot();
+                if(i<3)infLine[i]->point1->setCoords(Plot_Win_BoE[0][i][0], 0);
+                    else infLine[i]->point1->setCoords(Plot_Win_BoE[0][i-3][1], 0);
+                if(i<3)infLine[i]->point2->setCoords(Plot_Win_BoE[0][i][0], 1);
+                    else infLine[i]->point2->setCoords(Plot_Win_BoE[0][i-3][1], 1);
 
 
-        }
-        if(i>11){
-            if(i<15)infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-12][0], 0);
-                else infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-12-3][1], 0);
-            if(i<15)infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-12][0], 1);
-                else infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-12-3][1], 1);
+                ui->PlotA->replot();
 
-            ui->PlotC->replot();
+            }
+            if(i>5 && i<12){
+                if(i<9)infLine[i]->point1->setCoords(Plot_Win_BoE[1][i-6][0], 0);
+                    else infLine[i]->point1->setCoords(Plot_Win_BoE[1][i-6-3][1], 0);
+                if(i<9)infLine[i]->point2->setCoords(Plot_Win_BoE[1][i-6][0], 1);
+                    else infLine[i]->point2->setCoords(Plot_Win_BoE[1][i-6-3][1], 1);
 
+                ui->PlotB->replot();
+
+
+            }
+            if(i>11){
+                if(i<15)infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-12][0], 0);
+                    else infLine[i]->point1->setCoords(Plot_Win_BoE[2][i-12-3][1], 0);
+                if(i<15)infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-12][0], 1);
+                    else infLine[i]->point2->setCoords(Plot_Win_BoE[2][i-12-3][1], 1);
+
+                ui->PlotC->replot();
+
+                }
         }
     }
-//std::cout<<"que pasaaaaaaaaaaaaaaaaaaaaaa  line"<<std::endl;
-
-   /*for (int i=0;i<3;i++) {
-       for (int j ;j<3;j++) {
-           for (int k;k<2;k++) {
-           }
-       }
-   }*/
 }
 
+void MainWindow::createQKDLinesA1(){
+    for(int =0; i<NoQubits; i++){
+        LinesPlotA1->append
+    }
+}
+void MainWindow::createQKDLinesA2(){
+
+}
+void MainWindow::createQKDLinesA3(){
+
+}
+void MainWindow::createQKDLinesB1(){
+
+}
+void MainWindow::createQKDLinesB2(){
+
+}
+void MainWindow::createQKDLinesB3(){
+
+}
+void MainWindow::createQKDLinesC1(){
+
+}
+void MainWindow::createQKDLinesC2(){
+
+}
+void MainWindow::createQKDLinesC3(){
+
+}
 
 void MainWindow::turnONDB(int val){
     /*if(!dbc.isRunning() && dbrunning == 0 && val==1){
