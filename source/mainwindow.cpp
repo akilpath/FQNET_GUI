@@ -11,6 +11,7 @@
 #include <QApplication>
 #include <QtCore>
 #include <algorithm>
+#include <H5Cpp.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,18 +29,25 @@ MainWindow::MainWindow(QWidget *parent) :
     setupHistoPlot(ui->PlotC);
     setupratePlot(ui->PlotTrack);
     setupratePlot_tab2(ui->PlotTab2);
+    setup_plot_qkd_results(ui->QKD_H1_results);
+    setup_plot_qkd_results(ui->QKD_H2_results);
+    setup_plot_qkd_results(ui->QKD_H3_results);
+    setup_plot_qkd_stats(ui->qkd_errorplot);
+    setup_plot_qkd_stats(ui->qkd_siftedplot);
 
-
-    if(!Teleport_or_QKD){
+    if(!Teleport0_or_QKD1){
         setup_histolines_Teleport();
         setupDefaultRanges();
+    }
+    else {
+        setup_histolines_QKD();
     }
     
 
 
-    ui->thch1->setValue(0.25);
+    ui->thch1->setValue(-0.099);
     ui->thch2->setValue(-0.08);
-    ui->thch3->setValue(-0.08);
+    ui->thch3->setValue(-0.04248);
     ui->thch4->setValue(-0.08);
     ui->cw->setValue(50000);
 
@@ -51,17 +59,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->win1_1->setValue(0);
     ui->win1_2->setValue(0);
 
-    if(Teleport_or_QKD){
+    if(Teleport0_or_QKD1){
         ui->histStart->setValue(1);
-        ui->histEnd->setValue(110000);
+        ui->histEnd->setValue(50001);
     }
     else{
         ui->histStart->setValue(69000);
         ui->histEnd->setValue(78500);
     }
 
-    ui->binsinplot->setValue(1000);
-    ui->adqtime->setValue(10);//update rate Adq time
+    ui->binsinplot->setValue(10000);
+    ui->adqtime->setValue(2);//update rate Adq time
 
     
 
@@ -98,14 +106,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
     lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
-
+    lastPointKey_tab3 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+    lastPointKey_tab4 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+    qkd_prevKey = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
     ui->rof1->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
     ui->rof2->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
     ui->rof3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
     ui->rof4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
 
-
+    //ui->menuLoad_Qubits->addAction()
     ui->rof1->addItem(tr("Rise"));
     ui->rof1->addItem(tr("Fall"));
     ui->rof2->addItem(tr("Rise"));
@@ -115,7 +125,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->rof4->addItem(tr("Rise"));
     ui->rof4->addItem(tr("Fall"));
 
-    ui->rof1->setCurrentText("Rise");
+    ui->rof1->setCurrentText("Fall");
     ui->rof2->setCurrentText("Fall");
     ui->rof3->setCurrentText("Fall");
     ui->rof4->setCurrentText("Fall");
@@ -130,16 +140,40 @@ MainWindow::MainWindow(QWidget *parent) :
         sleep(1);
     }*/
 
-    QubitTime=200;
+   /* QubitTime=200;
     Phasetime=50;
-    NoQubits=500;
+    NoQubits=30;
     PeaksQubit=3;
+    QKD_intWind = 45;
+    QKD_zero = 1;*/
 
+   /* ui->QKD_time->setValue(200);//QubitTime
+    ui->QKD_phase->setValue(50);//Phasetime
+    ui->QKD_nuqub->setValue(30);//NoQubits
+    ui->QKD_PxQ->setValue(3);//PeaksQubit
+    ui->QKD_iw->setValue(45);//QKD_intWind
+    ui->QKD_zero->setValue(1);//QKD_zero*/
+
+    qkdparam.QKD_setDefault();
+
+/*    savejasonFile.setFileName(QDateTime::currentDateTime().toString("yyyy-MM-dd'_'hh:mm:ss'.json'"));
+    if (!savejasonFile.open(QIODevice::ReadWrite)) {
+        qWarning("Couldn't open save file.");
+    }
+*/
     dbc.start();
     adq.start();
     anl.start();
 
     adq.initdone = 1;
+    initR=true;
+
+    createQKDLinesA();
+    createQKDLinesB();
+    createQKDLinesC();
+
+
+
 }
 
 
@@ -178,7 +212,58 @@ void MainWindow::setup_histolines_Teleport(){
             if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
         }
     }
-  
+void MainWindow::setup_histolines_QKD(){
+    //QVector<QCPItemStraightLine> LinesPlotA1(2000,ui->PlotA);
+
+    for (int i = 0 ; i<MAX_QUBITS ; i++) {
+        LinesPlotA1[i] = new QCPItemStraightLine(ui->PlotA);
+        LinesPlotA1[i]->setPen(QPen(Qt::red));
+        LinesPlotA1[i]->setVisible(0);
+
+        LinesPlotA2[i] = new QCPItemStraightLine(ui->PlotA);
+        LinesPlotA2[i]->setPen(QPen(Qt::green));
+        LinesPlotA2[i]->setVisible(0);
+
+        LinesPlotA3[i] = new QCPItemStraightLine(ui->PlotA);
+        LinesPlotA3[i]->setPen(QPen(Qt::yellow));
+        LinesPlotA3[i]->setVisible(0);
+        LinesPlotA4[i] = new QCPItemStraightLine(ui->PlotA);
+        LinesPlotA4[i]->setPen(QPen(Qt::white));
+        LinesPlotA4[i]->setVisible(0);
+
+        LinesPlotB1[i] = new QCPItemStraightLine(ui->PlotB);
+        LinesPlotB1[i]->setPen(QPen(Qt::red));
+        LinesPlotB1[i]->setVisible(0);
+
+        LinesPlotB2[i] = new QCPItemStraightLine(ui->PlotB);
+        LinesPlotB2[i]->setPen(QPen(Qt::green));
+        LinesPlotB2[i]->setVisible(0);
+
+        LinesPlotB3[i] = new QCPItemStraightLine(ui->PlotB);
+        LinesPlotB3[i]->setPen(QPen(Qt::yellow));
+        LinesPlotB3[i]->setVisible(0);
+
+        LinesPlotB4[i] = new QCPItemStraightLine(ui->PlotB);
+        LinesPlotB4[i]->setPen(QPen(Qt::white));
+        LinesPlotB4[i]->setVisible(0);
+
+        LinesPlotC1[i] = new QCPItemStraightLine(ui->PlotC);
+        LinesPlotC1[i]->setPen(QPen(Qt::red));
+        LinesPlotC1[i]->setVisible(0);
+
+        LinesPlotC2[i] = new QCPItemStraightLine(ui->PlotC);
+        LinesPlotC2[i]->setPen(QPen(Qt::green));
+        LinesPlotC2[i]->setVisible(0);
+
+        LinesPlotC3[i] = new QCPItemStraightLine(ui->PlotC);
+        LinesPlotC3[i]->setPen(QPen(Qt::yellow));
+        LinesPlotC3[i]->setVisible(0);
+
+        LinesPlotC4[i] = new QCPItemStraightLine(ui->PlotC);
+        LinesPlotC4[i]->setPen(QPen(Qt::white));
+        LinesPlotC4[i]->setVisible(0);
+    }
+}
 void MainWindow::setupratePlot(QCustomPlot *scope){
 
 
@@ -272,7 +357,6 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
   scope->rescaleAxes();
   scope->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
-
 void MainWindow::setupratePlot_tab2(QCustomPlot *scope){
 
 
@@ -384,7 +468,6 @@ QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
 
   scope->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
-
 void MainWindow::setupHistoPlot(QCustomPlot *histograma){
 
   histograma->plotLayout()->clear();
@@ -484,7 +567,187 @@ title1->setTextColor(Qt::white);
 
 
 }
+void MainWindow::setup_plot_qkd_results(QCustomPlot *scope){
 
+    scope->plotLayout()->clear();
+
+    QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
+
+
+      wideAxisRect->setupFullAxesBox(true);
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setTickLabels(true);
+      //wideAxisRect->axis(QCPAxis::atTop, 0)->setTickLabels(true);
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setTickLabelColor(Qt::white);
+      //wideAxisRect->axis(QCPAxis::atTop, 0)->setTickLabelColor(Qt::white);
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setTickLabelColor(Qt::white);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setTickLabelColor(Qt::white);
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setBasePen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atTop, 0)->setBasePen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setBasePen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setBasePen(QPen(Qt::white, 1));
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atTop, 0)->setTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setTickPen(QPen(Qt::white, 1));
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setSubTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atTop, 0)->setSubTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setSubTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setSubTickPen(QPen(Qt::white, 1));
+
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setSubGridVisible(true);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setSubGridVisible(true);
+      //wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setVisible(false);//
+      //wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setVisible(false);//
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setZeroLinePen(Qt::NoPen);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setZeroLinePen(Qt::NoPen);
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
+
+      //wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabel("Counts");
+      //wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabel("Time");
+
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabelColor(Qt::white);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabelColor(Qt::white);
+
+      wideAxisRect->setRangeZoom(Qt::Vertical);
+
+
+     //scope->plotLayout()->addElement(0, 0, title1);
+     scope->plotLayout()->addElement(0, 0, wideAxisRect);
+
+      QCPGraph *graph1 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+      graph1->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),4));
+      graph1->setPen(QPen(QColor(0, 0, 0), 2));
+
+      QCPGraph *graph2 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+      graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+      graph2->setPen(QPen(QColor(200, 0, 0), 2));
+
+      QCPGraph *graph3 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+      graph3->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::blue),4));
+      graph3->setPen(QPen(QColor(0, 0, 200), 2));
+
+      QCPGraph *graph4 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+      graph4->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::yellow),4));
+      graph4->setPen(QPen(QColor(200, 200, 0), 2));
+
+
+      QLinearGradient plotGradient;
+      plotGradient.setStart(0, 0);
+      plotGradient.setFinalStop(0, 350);
+      plotGradient.setColorAt(0, QColor(80, 80, 80));
+      plotGradient.setColorAt(1, QColor(50, 50, 50));
+      scope->setBackground(plotGradient);
+      QLinearGradient axisRectGradient;
+      axisRectGradient.setStart(0, 0);
+      axisRectGradient.setFinalStop(0, 350);
+      axisRectGradient.setColorAt(0, QColor(80, 80, 80));
+      axisRectGradient.setColorAt(1, QColor(30, 30, 30));
+      scope->axisRect()->setBackground(axisRectGradient);
+
+
+      //scope->yAxis->setRange(0, 2);
+
+      QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+      timeTicker->setTimeFormat("%h:%m:%s");
+      scope->xAxis->setTicker(timeTicker);
+      scope->rescaleAxes();
+      scope->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+}
+void MainWindow::setup_plot_qkd_stats(QCustomPlot *scope){
+
+    scope->plotLayout()->clear();
+
+    QCPAxisRect *wideAxisRect = new QCPAxisRect(scope);
+
+
+      wideAxisRect->setupFullAxesBox(true);
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setTickLabels(true);
+      //wideAxisRect->axis(QCPAxis::atTop, 0)->setTickLabels(true);
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setTickLabelColor(Qt::white);
+      //wideAxisRect->axis(QCPAxis::atTop, 0)->setTickLabelColor(Qt::white);
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setTickLabelColor(Qt::white);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setTickLabelColor(Qt::white);
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setBasePen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atTop, 0)->setBasePen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setBasePen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setBasePen(QPen(Qt::white, 1));
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atTop, 0)->setTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setTickPen(QPen(Qt::white, 1));
+
+      wideAxisRect->axis(QCPAxis::atRight, 0)->setSubTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atTop, 0)->setSubTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setSubTickPen(QPen(Qt::white, 1));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setSubTickPen(QPen(Qt::white, 1));
+
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setSubGridVisible(true);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setSubGridVisible(true);
+      //wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setVisible(false);//
+      //wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setVisible(false);//
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->grid()->setZeroLinePen(Qt::NoPen);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->grid()->setZeroLinePen(Qt::NoPen);
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setUpperEnding(QCPLineEnding::esSpikeArrow);
+
+      //wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabel("Counts");
+      //wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabel("Time");
+
+      wideAxisRect->axis(QCPAxis::atLeft, 0)->setLabelColor(Qt::white);
+      wideAxisRect->axis(QCPAxis::atBottom, 0)->setLabelColor(Qt::white);
+
+      wideAxisRect->setRangeZoom(Qt::Vertical);
+
+
+     //scope->plotLayout()->addElement(0, 0, title1);
+     scope->plotLayout()->addElement(0, 0, wideAxisRect);
+
+      QCPGraph *graph1 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+      graph1->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white),4));
+      graph1->setPen(QPen(QColor(0, 0, 0), 2));
+
+      QCPGraph *graph2 = scope->addGraph(wideAxisRect->axis(QCPAxis::atBottom), wideAxisRect->axis(QCPAxis::atLeft));
+      graph2->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::red),4));
+      graph2->setPen(QPen(QColor(200, 0, 0), 2));
+
+      QLinearGradient plotGradient;
+      plotGradient.setStart(0, 0);
+      plotGradient.setFinalStop(0, 350);
+      plotGradient.setColorAt(0, QColor(80, 80, 80));
+      plotGradient.setColorAt(1, QColor(50, 50, 50));
+      scope->setBackground(plotGradient);
+      QLinearGradient axisRectGradient;
+      axisRectGradient.setStart(0, 0);
+      axisRectGradient.setFinalStop(0, 350);
+      axisRectGradient.setColorAt(0, QColor(80, 80, 80));
+      axisRectGradient.setColorAt(1, QColor(30, 30, 30));
+      scope->axisRect()->setBackground(axisRectGradient);
+
+
+      //scope->yAxis->setRange(0, 2);
+
+      QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+      timeTicker->setTimeFormat("%h:%m:%s");
+      scope->xAxis->setTicker(timeTicker);
+      scope->rescaleAxes();
+      scope->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+}
 
 void MainWindow::setupsignalslot(){
 
@@ -496,6 +759,9 @@ void MainWindow::setupsignalslot(){
     qRegisterMetaType<vectorInt32>("vectorInt32");
     qRegisterMetaType<vectorInt8>("vectorInt8");
     qRegisterMetaType<vectorDouble>("vectorDouble");
+    qRegisterMetaType<boolvector2d>("boolvector2d");
+    qRegisterMetaType<intvector>("intvector");
+
 
 
     QObject::connect(ui->startChan, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_startChan(int)));
@@ -686,6 +952,58 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->rof2, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof2(QString)));
     QObject::connect(ui->rof3, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof3(QString)));
     QObject::connect(ui->rof4, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof4(QString)));
+
+    QObject::connect(ui->actionQKD, SIGNAL(triggered()), &qkdparam, SLOT(show()));
+
+   /* QObject::connect(ui->QKD_time, SIGNAL(valueChanged(int)), this, SLOT(chang_QKD_time(int)));
+    QObject::connect(ui->QKD_phase, SIGNAL(valueChanged(int)), this, SLOT(chang_QKD_phase(int)));
+    QObject::connect(ui->QKD_nuqub, SIGNAL(valueChanged(int)), this, SLOT(chang_QKD_nuqub(int)));
+    QObject::connect(ui->QKD_PxQ, SIGNAL(valueChanged(int)), this, SLOT(chang_QKD_PxQ(int)));
+    QObject::connect(ui->QKD_iw, SIGNAL(valueChanged(int)), this, SLOT(chang_QKD_iw(int)));
+    QObject::connect(ui->QKD_zero, SIGNAL(valueChanged(int)), this, SLOT(chang_QKD_zero(int)));*/
+
+    //int in_QKD_timeA, in_QKD_numbA, in_QKD_phA, in_QKD_iwA, in_QKD_pxqA, in_QKD_zeroA;
+
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_timeA(double)), this, SLOT(chang_QKD_timeA(double)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_timeB(double)), this, SLOT(chang_QKD_timeB(double)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_timeC(double)), this, SLOT(chang_QKD_timeC(double)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_numbA(int)), this, SLOT(chang_QKD_numbA(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_numbB(int)), this, SLOT(chang_QKD_numbB(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_numbC(int)), this, SLOT(chang_QKD_numbC(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_phA(int)), this, SLOT(chang_QKD_phA(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_phB(int)), this, SLOT(chang_QKD_phB(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_phC(int)), this, SLOT(chang_QKD_phC(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_iwA(int)), this, SLOT(chang_QKD_iwA(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_iwB(int)), this, SLOT(chang_QKD_iwB(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_iwC(int)), this, SLOT(chang_QKD_iwC(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_pxqA(int)), this, SLOT(chang_QKD_pxqA(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_pxqB(int)), this, SLOT(chang_QKD_pxqB(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_pxqC(int)), this, SLOT(chang_QKD_pxqC(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_zeroA(int)), this, SLOT(chang_QKD_zeroA(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_zeroB(int)), this, SLOT(chang_QKD_zeroB(int)));
+    QObject::connect(&qkdparam, SIGNAL(sig_QKD_zeroC(int)), this, SLOT(chang_QKD_zeroC(int)));
+
+    QObject::connect(&dbc, SIGNAL(MYtables(QStringList)), this, SLOT(fillTablesNames(QStringList)));
+
+
+    QObject::connect(&dbc, SIGNAL(qubitsfromDB(boolvector2d, int, int)), this, SLOT(set_qkd_datafromDB(boolvector2d , int, int)),Qt::QueuedConnection);
+
+    QObject::connect(&qkdparam, SIGNAL(savehdf5()), this, SLOT(hdf5savefile()));
+    QObject::connect(this, SIGNAL(MW_savehdf5(QString)), &dbc, SLOT(createHDF5forQKDdata(QString)));
+
+    QObject::connect(this, SIGNAL(saveH5datafromMW(intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector)), &dbc, SLOT(appendQKDdata2HDF5(intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector,intvector)));
+
+   // void SaveQKDresults(int okA, int errA, int randA, int bkgndA, int okB, int errB, int randB, int bkgndB, int okC, int errC, int randC, int bkgndC);
+    //void SaveQKDstats(int sifted_time, int sifted_phase, int error_time, int error_phase);
+
+    QObject::connect(this, SIGNAL(main_SaveQKDresults(double,double, double, double ,double, double,double,double,double, double, double, double)),&dbc, SLOT(SaveQKDresults(double,double, double, double ,double, double,double,double,double, double, double, double)));
+    QObject::connect(this, SIGNAL(main_SaveQKDstats(int, int, int, int)),&dbc, SLOT(SaveQKDstats(int, int, int, int)));
+
+    QObject::connect(ui->menuLoad_Qubits, SIGNAL(triggered(QAction*)), this, SLOT(tableSelected(QAction*)));
+    QObject::connect(this , SIGNAL(tableQKDtoDB(QString)), &dbc, SLOT(readQubits(QString)));
+
+    QObject::connect(&qkdparam, SIGNAL(sig_turnONDB(int)), this, SLOT(chang_QKD_turnONDB(int)));
+    ;
 }
 
 
@@ -764,22 +1082,17 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
    double value6 = bsm2;
    //std::cout<<bsm2<<std::endl;
 
-        if(in_tab2_plot1)ui->PlotTab2->graph(0)->addData(key-lastPointKey_tab2, value1);
-        //ui->PlotTab2->graph(0)->rescaleValueAxis(true);
-
-        if(in_tab2_plot2)ui->PlotTab2->graph(1)->addData(key-lastPointKey_tab2, value2);
-        //ui->PlotTab2->graph(1)->rescaleValueAxis(true);
-
-        if(in_tab2_plot3)ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
-        //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
-
-        if(in_tab2_plot4)ui->PlotTab2->graph(3)->addData(key-lastPointKey_tab2, value4);
-        //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
-
-        if(in_tab2_plot5)ui->PlotTab2->graph(4)->addData(key-lastPointKey_tab2, value5);
-        //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
-
-        if(in_tab2_plot6)ui->PlotTab2->graph(5)->addData(key-lastPointKey_tab2, value6);
+   if(in_tab2_plot1)ui->PlotTab2->graph(0)->addData(key-lastPointKey_tab2, value1);
+   //ui->PlotTab2->graph(0)->rescaleValueAxis(true);
+   if(in_tab2_plot2)ui->PlotTab2->graph(1)->addData(key-lastPointKey_tab2, value2);
+   //ui->PlotTab2->graph(1)->rescaleValueAxis(true);
+   if(in_tab2_plot3)ui->PlotTab2->graph(2)->addData(key-lastPointKey_tab2, value3);
+   //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
+   if(in_tab2_plot4)ui->PlotTab2->graph(3)->addData(key-lastPointKey_tab2, value4);
+   //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
+   if(in_tab2_plot5)ui->PlotTab2->graph(4)->addData(key-lastPointKey_tab2, value5);
+   //ui->PlotTab2->graph(2)->rescaleValueAxis(true);
+   if(in_tab2_plot6)ui->PlotTab2->graph(5)->addData(key-lastPointKey_tab2, value6);
 
     if(dbrunning && !in_homscan){
 
@@ -823,6 +1136,61 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
 
 }
 
+
+void MainWindow::plot_qkd_results(double okA,double errA,double randA,double bkgndA,double okB,double errB,double randB,double bkgndB,double okC,double errC,double randC,double bkgndC, double key){
+
+//std::cout<<"randA: "<<randA<<std::endl;
+
+    ui->QKD_H1_results->graph(0)->addData(key-lastPointKey_tab3, okA);
+    ui->QKD_H1_results->graph(1)->addData(key-lastPointKey_tab3, errA);
+    ui->QKD_H1_results->graph(2)->addData(key-lastPointKey_tab3, randA);
+    ui->QKD_H1_results->graph(3)->addData(key-lastPointKey_tab3, bkgndA);
+
+    ui->QKD_H2_results->graph(0)->addData(key-lastPointKey_tab3, okB);
+    ui->QKD_H2_results->graph(1)->addData(key-lastPointKey_tab3, errB);
+    ui->QKD_H2_results->graph(2)->addData(key-lastPointKey_tab3, randB);
+    ui->QKD_H2_results->graph(3)->addData(key-lastPointKey_tab3, bkgndB);
+
+    ui->QKD_H3_results->graph(0)->addData(key-lastPointKey_tab3, okC);
+    ui->QKD_H3_results->graph(1)->addData(key-lastPointKey_tab3, errC);
+    ui->QKD_H3_results->graph(2)->addData(key-lastPointKey_tab3, randC);
+    ui->QKD_H3_results->graph(3)->addData(key-lastPointKey_tab3, bkgndC);
+
+
+
+    ui->QKD_H1_results->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
+    ui->QKD_H2_results->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
+    ui->QKD_H3_results->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
+   //ui->PlotTrack->yAxis->rescale();
+
+    ui->QKD_H1_results->replot();
+    ui->QKD_H2_results->replot();
+    ui->QKD_H3_results->replot();
+
+
+
+}
+void MainWindow::plot_qkd_stats(double sifted_time, double sifted_phase, double error_time, double error_phase, double key){
+    //std::cout<<sifted_time<<"   "<<sifted_phase<< "     "<<error_time<< "     "<< error_phase<<"   "<<key<<std::endl;
+
+    ui->qkd_errorplot->graph(0)->addData(key-lastPointKey_tab3, error_time);
+    ui->qkd_errorplot->graph(1)->addData(key-lastPointKey_tab3, error_phase);
+
+    ui->qkd_siftedplot->graph(0)->addData(key-lastPointKey_tab3, sifted_time);
+    ui->qkd_siftedplot->graph(1)->addData(key-lastPointKey_tab3, sifted_phase);
+
+
+
+
+    ui->qkd_errorplot->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
+    ui->qkd_siftedplot->xAxis->setRange(key-lastPointKey_tab1, 120, Qt::AlignRight);
+
+   //ui->PlotTrack->yAxis->rescale();
+
+    ui->qkd_errorplot->replot();
+    ui->qkd_siftedplot->replot();
+
+}
 //////////////////////////////////////////////////////////
 ///////////////////histograms///////////////////////////
 ///////////////////////////////////////////////////////////
@@ -831,8 +1199,9 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
 void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, const vectorDouble &datC){
     //std::cout<<" histoplot hermanitititototot"<< datB.size()<<"   "<<datC.size() <<std::endl;
     double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
-   // std::cout<<"histogram size   "<<datA.size()<<std::endl;
 
+  //  std::cout<<"histogram size   "<<datA.size()<<std::endl;
+//std::cout<<"binwidth   "<<binwidth<<std::endl;
     QVector<double> x(datA.size());
 //for (int i=in_histStart; i<in_histEnd; i++){
     for (int i=0; i<datA.size(); ++i){
@@ -840,74 +1209,343 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
 
     }
 
-
   ui->PlotA->graph(0)->data()->clear();
   // pass data points to graphs:
   ui->PlotA->graph(0)->setData(x, datA);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
-  ui->PlotA->graph(0)->rescaleAxes();
+  if(binwidth!=prevbinwidth)ui->PlotA->graph(0)->rescaleAxes();
+  ui->PlotA->graph(0)->rescaleValueAxis();
   ui->PlotA->replot();
 
   ui->PlotB->graph(0)->data()->clear();
   // pass data points to graphs:
   ui->PlotB->graph(0)->setData(x, datB);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
-  ui->PlotB->graph(0)->rescaleAxes();
+  if(binwidth!=prevbinwidth)ui->PlotB->graph(0)->rescaleAxes();
+  ui->PlotB->graph(0)->rescaleValueAxis();
   ui->PlotB->replot();
 
   ui->PlotC->graph(0)->data()->clear();
   // pass data points to graphs:
   ui->PlotC->graph(0)->setData(x, datC);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
-  ui->PlotC->graph(0)->rescaleAxes();
+  if(binwidth!=prevbinwidth)ui->PlotC->graph(0)->rescaleAxes();
+  ui->PlotC->graph(0)->rescaleValueAxis();
   ui->PlotC->replot();
+  prevbinwidth=binwidth;
 
+  if(!Teleport0_or_QKD1){
+      for (int D=0; D<datA.size(); D++) {
+          for (int i=0; i<9; i++) {
+              if(i<3){
+                  if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA[D];
+              }
+              if(i>2 && i<6) {
+                  if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB[D];
+              }
+              if(i>5) {
+                  if(x[D]>Plot_Win_BoE[2][i-6][0] && x[D]<Plot_Win_BoE[2][i-6][1])P_R[i]+=datC[D];
+              }
 
+           }
 
-  for (int D=0; D<datA.size(); D++) {
-      for (int i=0; i<9; i++) {
-          if(i<3){
-              if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA[D];
-          }
-          if(i>2 && i<6) {
-              if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB[D];
-          }
-          if(i>5) {
-              if(x[D]>Plot_Win_BoE[2][i-6][0] && x[D]<Plot_Win_BoE[2][i-6][1])P_R[i]+=datC[D];
-          }
-
-       }
-
-  }
-
-  ui->countA1->display(P_R[0]);
-  ui->countA2->display(P_R[1]);
-  ui->countA3->display(P_R[2]);
-  ui->countB1->display(P_R[3]);
-  ui->countB2->display(P_R[4]);
-  ui->countB3->display(P_R[5]);
-  ui->countC1->display(P_R[6]);
-  ui->countC2->display(P_R[7]);
-  ui->countC3->display(P_R[8]);
-
-  //std::cout<<P_R[7]<<std::endl;
-
-  if(dbrunning)emit main_SaveRateValues(P_R[0], P_R[1],  P_R[2], P_R[3], P_R[4], P_R[5], P_R[6], P_R[7], P_R[8], float(in_adqtime));
-//std::cout<<P_R[7]<<std::endl;
-  double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
-  for (int i=0;i<9;i++){
-      char AoBoC = char(NULL);
-      if(P_T[i]){
-          if(i<3)AoBoC='A';
-          if(i>2 && i<6) AoBoC='B';
-          if(i>5) AoBoC='C';
-          //std::cout<<AoBoC<<"    "<<P_R[i]<<"    "<<i<<std::endl;
-
-          plotRates(AoBoC, P_R[i], key);
       }
+      ui->countA1->display(P_R[0]);
+      ui->countA2->display(P_R[1]);
+      ui->countA3->display(P_R[2]);
+      ui->countB1->display(P_R[3]);
+      ui->countB2->display(P_R[4]);
+      ui->countB3->display(P_R[5]);
+      ui->countC1->display(P_R[6]);
+      ui->countC2->display(P_R[7]);
+      ui->countC3->display(P_R[8]);
+
+      if(dbrunning)emit main_SaveRateValues(P_R[0], P_R[1],  P_R[2], P_R[3], P_R[4], P_R[5], P_R[6], P_R[7], P_R[8], float(in_adqtime));
+
+      double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+      for (int i=0;i<9;i++){
+          char AoBoC = char(NULL);
+          if(P_T[i]){
+              if(i<3)AoBoC='A';
+              if(i>2 && i<6) AoBoC='B';
+              if(i>5) AoBoC='C';
+              plotRates(AoBoC, P_R[i], key);
+          }
+      }
+      for (int i=0;i<9;i++)P_R[i]=0;
   }
 
-  for (int i=0;i<9;i++)P_R[i]=0;
+
+  //////////////////
+  ////QKD HISTO/////
+  /// //////////////
+
+  if(Teleport0_or_QKD1 && qubitsfromDBloaded){
+
+      double resultAok=0, resultAerr=0, resultArand=0, resultAbkgnd=0;
+      double resultBok=0, resultBerr=0, resultBrand=0, resultBbkgnd=0;
+      double resultCok=0, resultCerr=0, resultCrand=0, resultCbkgnd=0;
+      double tempresultAok=0, tempresultAerr=0, tempresultArand=0, tempresultAbkgnd=0;
+      double tempresultBok=0, tempresultBerr=0, tempresultBrand=0, tempresultBbkgnd=0;
+      double tempresultCok=0, tempresultCerr=0, tempresultCrand=0, tempresultCbkgnd=0;
+      int error_ok_time = 0, error_ok_phase = 0, error_time = 0, error_phase = 0;
+
+
+      //////////////Histo A//////////////
+       // std::cout<<"in_QKD_numbA: "<<in_QKD_numbA<<std::endl;
+      for(int q=0; q<in_QKD_numbA; q++){
+          for (int D = int((q*int(in_QKD_timeA)+in_QKD_zeroA)/binwidth); D<=int((q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA)/binwidth); D++) {//first win
+              if(q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA<datA.size()){
+                  tempresultAok+=in_qkdfromDB[q][0]*datA[D];
+                  tempresultAerr+=in_qkdfromDB[q][1]*datA[D];
+                  tempresultArand+=in_qkdfromDB[q][2]*datA[D];
+              }
+          }
+
+          for (int D = int((q*int(in_QKD_timeA)+in_QKD_zeroA+in_QKD_phA)/binwidth); D<=int((q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+in_QKD_phA)/binwidth); D++) {//second win
+              if(q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+in_QKD_phA<datA.size()){
+                  tempresultAok+=in_qkdfromDB[q][3]*datA[D];
+                  tempresultAerr+=in_qkdfromDB[q][4]*datA[D];
+                  tempresultArand+=in_qkdfromDB[q][5]*datA[D];
+               }
+          }
+
+          for (int D = int((q*int(in_QKD_timeA)+in_QKD_zeroA+2*in_QKD_phA)/binwidth); D<=int((q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+2*in_QKD_phA)/binwidth); D++) {//third win
+              if(q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+2*in_QKD_phA<datA.size()){
+                  tempresultAok+=in_qkdfromDB[q][6]*datA[D];
+                  tempresultAerr+=in_qkdfromDB[q][7]*datA[D];
+                  tempresultArand+=in_qkdfromDB[q][8]*datA[D];
+              }
+          }
+
+         //if(q==0)std::cout<<q*int(in_QKD_timeA)+in_QKD_zeroA+3*in_QKD_phA<<"       "<<q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+3*in_QKD_phA<<std::endl;
+
+          for (int D = int((q*int(in_QKD_timeA)+in_QKD_zeroA+3*in_QKD_phA)/binwidth); D<=int((q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+3*in_QKD_phA)/binwidth); D++) {//last win (background)
+              if(q*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+3*in_QKD_phA<datA.size())tempresultAbkgnd+=datA[D];
+          }
+   // std::cout<<tempresultAbkgnd<<std::endl;
+          if(in_qkdfromDB[q][2]&&in_qkdfromDB[q][8]){//phase calc  R -- * -- R
+              error_ok_phase += tempresultAok+tempresultAerr;
+              error_phase += tempresultAerr;
+          }
+          if(in_qkdfromDB[q][5]&&!in_qkdfromDB[q][2]&&!in_qkdfromDB[q][8]){//time calc    * -- R -- *
+              error_ok_time += tempresultAok+tempresultAerr;
+              error_time += tempresultAerr;
+          }
+
+         // if(q==0)std::cout<<in_qkdfromDB[q][8]<<"       "<<tempresultArand<<std::endl;
+              /////cross qubit integration////
+          resultAok+=tempresultAok;
+          resultArand+=tempresultArand;
+          resultAerr+=tempresultAerr;
+          resultAbkgnd+=tempresultAbkgnd;
+
+             /////cross histogram integration////
+
+          if(q+1>datah5okA.size() && q+1>datah5errA.size() && q+1>datah5randA.size() && q+1>datah5bkgndA.size()){///if the array doesnt have the qubit
+              datah5okA.append(tempresultAok);
+              datah5randA.append(tempresultArand);
+              datah5errA.append(tempresultAerr);
+              datah5bkgndA.append(tempresultAbkgnd);
+          }
+          else{ ///if it have it, integrate
+              datah5okA[q]+=tempresultAok;
+              datah5randA[q]+=tempresultArand;
+              datah5errA[q]+=tempresultAerr;
+              datah5bkgndA[q]+=tempresultAbkgnd;
+          }
+
+          tempresultAok=0;
+          tempresultAerr=0;
+          tempresultArand=0;
+          tempresultAbkgnd=0;
+        // if(resultArand>200000)std::cout<<q<<std::endl;
+      }
+
+      ////////Histo B/////////////
+
+
+
+      for(int q=0; q<in_QKD_numbB; q++){
+          for (int D = q*int(in_QKD_timeB)+in_QKD_zeroB; D<=q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB; D++) {//first win
+              if(q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB<datB.size()){
+                  tempresultBok+=in_qkdfromDB[q][9]*datB[D];
+                  tempresultBerr+=in_qkdfromDB[q][10]*datB[D];
+                  tempresultBrand+=in_qkdfromDB[q][11]*datB[D];
+              }
+          }
+
+          for (int D = q*int(in_QKD_timeB)+in_QKD_zeroB+in_QKD_phB; D<=q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+in_QKD_phB; D++) {//second win
+              if(q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+in_QKD_phB<datB.size()){
+                  tempresultBok+=in_qkdfromDB[q][12]*datB[D];
+                  tempresultBerr+=in_qkdfromDB[q][13]*datB[D];
+                  tempresultBrand+=in_qkdfromDB[q][14]*datB[D];
+              }
+          }
+
+          for (int D = q*int(in_QKD_timeB)+in_QKD_zeroB+2*in_QKD_phB; D<=q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+2*in_QKD_phB; D++) {//third win
+              if(q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+2*in_QKD_phB<datB.size()){
+                  tempresultBok+=in_qkdfromDB[q][15]*datB[D];
+                  tempresultBerr+=in_qkdfromDB[q][16]*datB[D];
+                  tempresultBrand+=in_qkdfromDB[q][17]*datB[D];
+              }
+          }
+
+          for (int D = q*int(in_QKD_timeB)+in_QKD_zeroB+3*in_QKD_phB; D<=q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+3*in_QKD_phB; D++) {//last win (background)
+              if(q*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+3*in_QKD_phB<datB.size())tempresultBbkgnd+=datB[D];
+          }
+
+          if(in_qkdfromDB[q][11]&&in_qkdfromDB[q][17]){//phase calc  R -- * -- R
+              error_ok_phase += tempresultBok+tempresultBrand;
+              error_phase += tempresultBerr;
+          }
+          if(in_qkdfromDB[q][14]&&!in_qkdfromDB[q][11]&&!in_qkdfromDB[q][17]){//time calc    !R -- E -- !R
+              error_ok_time += tempresultBok+tempresultBrand;
+              error_time += tempresultBerr;
+          }
+              /////cross qubit integration////
+          resultBok+=tempresultBok;
+          resultBrand+=tempresultBrand;
+          resultBerr+=tempresultBerr;
+          resultBbkgnd+=tempresultBbkgnd;
+
+             /////cross histogram integration////
+
+          if(q+1>datah5okB.size() && q+1>datah5errB.size() && q+1>datah5randB.size() && q+1>datah5bkgndB.size()){///if the array doesnt have the qubit
+              datah5okB.append(tempresultBok);
+              datah5randB.append(tempresultBrand);
+              datah5errB.append(tempresultBerr);
+              datah5bkgndB.append(tempresultBbkgnd);
+          }
+          else{ ///if it have it, integrate
+              datah5okB[q]+=tempresultBok;
+              datah5randB[q]+=tempresultBrand;
+              datah5errB[q]+=tempresultBerr;
+              datah5bkgndB[q]+=tempresultBbkgnd;
+          }
+
+          tempresultBok=0;
+          tempresultBerr=0;
+          tempresultBrand=0;
+          tempresultBbkgnd=0;
+      }
+
+
+
+      ////////Histo C////////////
+
+
+      for(int q=0; q<in_QKD_numbC; q++){
+          for (int D = q*int(in_QKD_timeC)+in_QKD_zeroC; D<=q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC; D++) {//first win
+              if(q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC<datC.size()){
+                  tempresultCok+=in_qkdfromDB[q][18]*datC[D];
+                  tempresultCerr+=in_qkdfromDB[q][19]*datC[D];
+                  tempresultCrand+=in_qkdfromDB[q][20]*datC[D];
+              }
+          }
+
+          for (int D = q*int(in_QKD_timeC)+in_QKD_zeroC+in_QKD_phC; D<=q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+in_QKD_phC; D++) {//second win
+              if(q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+in_QKD_phC<datC.size()){
+                  tempresultCok+=in_qkdfromDB[q][21]*datC[D];
+                  tempresultCerr+=in_qkdfromDB[q][22]*datC[D];
+                  tempresultCrand+=in_qkdfromDB[q][23]*datC[D];
+              }
+          }
+
+          for (int D = q*int(in_QKD_timeC)+in_QKD_zeroC+2*in_QKD_phC; D<=q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+2*in_QKD_phC; D++) {//third win
+              if(q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+2*in_QKD_phC<datC.size()){
+                  tempresultCok+=in_qkdfromDB[q][24]*datC[D];
+                  tempresultCerr+=in_qkdfromDB[q][25]*datC[D];
+                  tempresultCrand+=in_qkdfromDB[q][26]*datC[D];
+              }
+          }
+
+          for (int D = q*int(in_QKD_timeC)+in_QKD_zeroC+3*in_QKD_phC; D<=q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+3*in_QKD_phC; D++) {//last win (background)
+              if(q*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+3*in_QKD_phC<datC.size())tempresultCbkgnd+=datC[D];
+          }
+
+          if(in_qkdfromDB[q][20]&&in_qkdfromDB[q][26]){//phase calc  R -- * -- R
+              error_ok_phase += tempresultCok+tempresultCrand;
+              error_phase += tempresultCerr;
+          }
+          if(in_qkdfromDB[q][23]&&!in_qkdfromDB[q][20]&&!in_qkdfromDB[q][26]){//time calc    !R -- E -- !R
+              error_ok_time += tempresultCok+tempresultCrand;
+              error_time += tempresultCerr;
+          }
+              /////cross qubit integration////
+          resultCok+=tempresultCok;
+          resultCrand+=tempresultCrand;
+          resultCerr+=tempresultCerr;
+          resultCbkgnd+=tempresultCbkgnd;
+
+             /////cross histogram integration////
+
+          if(q+1>datah5okC.size() && q+1>datah5errC.size() && q+1>datah5randC.size() && q+1>datah5bkgndC.size()){///if the array doesnt have the qubit
+              datah5okC.append(tempresultCok);
+              datah5randC.append(tempresultCrand);
+              datah5errC.append(tempresultCerr);
+              datah5bkgndC.append(tempresultCbkgnd);
+          }
+          else{ ///if it have it, integrate
+              datah5okC[q]+=tempresultCok;
+              datah5randC[q]+=tempresultCrand;
+              datah5errC[q]+=tempresultCerr;
+              datah5bkgndC[q]+=tempresultCbkgnd;
+          }
+
+          tempresultCok=0;
+          tempresultCerr=0;
+          tempresultCrand=0;
+          tempresultCbkgnd=0;
+      }
+
+
+      ///////Data submitt//////////
+
+
+      double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
+
+     // std::cout<<"resultAok:"<<resultAok<<"  resultAerr:"<<resultAerr<<"   resultArand:"<<resultArand<<"   resultAbkgnd:"<< resultAbkgnd<<std::endl;
+      plot_qkd_results(resultAok, resultAerr,resultArand, resultAbkgnd, resultBok, resultBerr, resultBrand, resultBbkgnd,resultCok, resultCerr, resultCrand, resultCbkgnd,key);
+      if(QKD_DB_ON)emit main_SaveQKDresults(resultAok, resultAerr,resultArand, resultAbkgnd, resultBok, resultBerr, resultBrand, resultBbkgnd,resultCok, resultCerr, resultCrand, resultCbkgnd);
+      resultAok=0;resultAerr=0;resultArand=0;resultAbkgnd=0;resultBok=0;resultBerr=0;resultBrand=0;resultBbkgnd=0;resultCok=0;resultCerr=0;resultCrand=0;resultCbkgnd=0;
+
+      if(error_ok_time>0)error_time= error_time/error_ok_time;
+      if(error_ok_phase>0)error_phase= error_phase/error_ok_phase;
+      //std::cout<<error_ok_time<<"   "<<error_ok_phase<< "     "<<error_time<< "     "<< error_phase<<"   "<<key<<std::endl;
+      plot_qkd_stats(error_ok_time, error_ok_phase, error_time, error_phase, key);
+      if(QKD_DB_ON)emit main_SaveQKDstats(error_ok_time, error_ok_phase, error_time, error_phase);
+
+      error_time = 0;
+      error_phase = 0;
+
+      /////HDF5 data submission/////////
+      if(key-qkd_prevKey>HDF5TIMEINTEGRATION && HDF5File_created){
+
+          //emit saveH5datafromMW(datah5okA, datah5errA, datah5randA, datah5bkgndA,datah5okB, datah5errB, datah5randB, datah5bkgndB,datah5okC, datah5errC, datah5randC, datah5bkgndC);
+
+          datah5okA.clear();
+          datah5errA.clear();
+          datah5randA.clear();
+          datah5bkgndA.clear();
+
+          datah5okB.clear();
+          datah5errB.clear();
+          datah5randB.clear();
+          datah5bkgndB.clear();
+
+          datah5okC.clear();
+          datah5errC.clear();
+          datah5randC.clear();
+          datah5bkgndC.clear();
+
+          qkd_prevKey=key;
+
+      }
+
+  }//end of QKD
+
+
   x.clear();
 
 	
@@ -964,34 +1602,140 @@ void MainWindow::LinePlot(){
     }
 }
 
-void MainWindow::createQKDLinesA1(){
-    for(int =0; i<NoQubits; i++){
-        LinesPlotA1->append
+void MainWindow::createQKDLinesA(){
+/*std::cout<<in_QKD_timeA<<std::endl;
+std::cout<<in_QKD_zeroA<<std::endl;
+std::cout<<in_QKD_iwA<<std::endl;*/
+
+    for(int i=0; i<in_QKD_numbA*2; i++){
+       if((i+1)%2){
+            LinesPlotA1[i]->setVisible(1);
+            LinesPlotA1[i]->point1->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA,0);
+            LinesPlotA1[i]->point2->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA,1);
+            LinesPlotA2[i]->setVisible(1);
+            LinesPlotA2[i]->point1->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_phA,0);
+            LinesPlotA2[i]->point2->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_phA,1);
+            LinesPlotA3[i]->setVisible(1);
+            LinesPlotA3[i]->point1->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA+2*in_QKD_phA,0);
+            LinesPlotA3[i]->point2->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA+2*in_QKD_phA,1);
+            LinesPlotA4[i]->setVisible(1);
+            LinesPlotA4[i]->point1->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA+3*in_QKD_phA,0);
+            LinesPlotA4[i]->point2->setCoords(i/2*in_QKD_timeA+in_QKD_zeroA+3*in_QKD_phA,1);
+
+            //std::cout<<"1";
+       }
+       else{
+            LinesPlotA1[i]->setVisible(1);
+            LinesPlotA1[i]->point1->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA,0);
+            LinesPlotA1[i]->point2->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA,1);
+            LinesPlotA2[i]->setVisible(1);
+            LinesPlotA2[i]->point1->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+in_QKD_phA,0);
+            LinesPlotA2[i]->point2->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+in_QKD_phA,1);
+            LinesPlotA3[i]->setVisible(1);
+            LinesPlotA3[i]->point1->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+2*in_QKD_phA,0);
+            LinesPlotA3[i]->point2->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+2*in_QKD_phA,1);
+            LinesPlotA4[i]->setVisible(1);
+            LinesPlotA4[i]->point1->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+3*in_QKD_phA,0);
+            LinesPlotA4[i]->point2->setCoords((i-1)/2*in_QKD_timeA+in_QKD_zeroA+in_QKD_iwA+3*in_QKD_phA,1);
+       }
+    }
+
+    ui->PlotA->replot();
+
+}
+void MainWindow::createQKDLinesB(){
+    for(int i=0; i<in_QKD_numbB*2; i++){
+       if((i+1)%2){
+            LinesPlotB1[i]->setVisible(1);
+            LinesPlotB1[i]->point1->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB,0);
+            LinesPlotB1[i]->point2->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB,1);
+            LinesPlotB2[i]->setVisible(1);
+            LinesPlotB2[i]->point1->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_phB,0);
+            LinesPlotB2[i]->point2->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_phB,1);
+            LinesPlotB3[i]->setVisible(1);
+            LinesPlotB3[i]->point1->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB+2*in_QKD_phB,0);
+            LinesPlotB3[i]->point2->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB+2*in_QKD_phB,1);
+            LinesPlotB4[i]->setVisible(1);
+            LinesPlotB4[i]->point1->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB+3*in_QKD_phB,0);
+            LinesPlotB4[i]->point2->setCoords(i/2*in_QKD_timeB+in_QKD_zeroB+3*in_QKD_phB,1);
+       }
+       else{
+            LinesPlotB1[i]->setVisible(1);
+            LinesPlotB1[i]->point1->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB,0);
+            LinesPlotB1[i]->point2->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB,1);
+            LinesPlotB2[i]->setVisible(1);
+            LinesPlotB2[i]->point1->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+in_QKD_phB,0);
+            LinesPlotB2[i]->point2->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+in_QKD_phB,1);
+            LinesPlotB3[i]->setVisible(1);
+            LinesPlotB3[i]->point1->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+2*in_QKD_phB,0);
+            LinesPlotB3[i]->point2->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+2*in_QKD_phB,1);
+            LinesPlotB4[i]->setVisible(1);
+            LinesPlotB4[i]->point1->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+3*in_QKD_phB,0);
+            LinesPlotB4[i]->point2->setCoords((i-1)/2*in_QKD_timeB+in_QKD_zeroB+in_QKD_iwB+3*in_QKD_phB,1);
+       }
+    }
+    ui->PlotB->replot();
+}
+void MainWindow::createQKDLinesC(){
+    for(int i=0; i<in_QKD_numbC*2; i++){
+       if((i+1)%2){
+            LinesPlotC1[i]->setVisible(1);
+            LinesPlotC1[i]->point1->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC,0);
+            LinesPlotC1[i]->point2->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC,1);
+            LinesPlotC2[i]->setVisible(1);
+            LinesPlotC2[i]->point1->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_phC,0);
+            LinesPlotC2[i]->point2->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_phC,1);
+            LinesPlotC3[i]->setVisible(1);
+            LinesPlotC3[i]->point1->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC+2*in_QKD_phC,0);
+            LinesPlotC3[i]->point2->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC+2*in_QKD_phC,1);
+            LinesPlotC4[i]->setVisible(1);
+            LinesPlotC4[i]->point1->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC+3*in_QKD_phC,0);
+            LinesPlotC4[i]->point2->setCoords(i/2*in_QKD_timeC+in_QKD_zeroC+3*in_QKD_phC,1);
+       }
+       else{
+            LinesPlotC1[i]->setVisible(1);
+            LinesPlotC1[i]->point1->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC,0);
+            LinesPlotC1[i]->point2->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC,1);
+            LinesPlotC2[i]->setVisible(1);
+            LinesPlotC2[i]->point1->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+in_QKD_phC,0);
+            LinesPlotC2[i]->point2->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+in_QKD_phC,1);
+            LinesPlotC3[i]->setVisible(1);
+            LinesPlotC3[i]->point1->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+2*in_QKD_phC,0);
+            LinesPlotC3[i]->point2->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+2*in_QKD_phC,1);
+            LinesPlotC4[i]->setVisible(1);
+            LinesPlotC4[i]->point1->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+3*in_QKD_phC,0);
+            LinesPlotC4[i]->point2->setCoords((i-1)/2*in_QKD_timeC+in_QKD_zeroC+in_QKD_iwC+3*in_QKD_phC,1);
+       }
+    }
+    ui->PlotC->replot();
+}
+
+void MainWindow::hidelinesA(int val){
+
+    for (int i= 2*val;i<2*in_QKD_numbA;i++) {
+         LinesPlotA1[i]->setVisible(0);
+         LinesPlotA2[i]->setVisible(0);
+         LinesPlotA3[i]->setVisible(0);
+         LinesPlotA4[i]->setVisible(0);
     }
 }
-void MainWindow::createQKDLinesA2(){
+void MainWindow::hidelinesB(int val){
 
+    for (int i= 2*val;i<2*in_QKD_numbB;i++) {
+         LinesPlotB1[i]->setVisible(0);
+         LinesPlotB2[i]->setVisible(0);
+         LinesPlotB3[i]->setVisible(0);
+         LinesPlotB4[i]->setVisible(0);
+    }
 }
-void MainWindow::createQKDLinesA3(){
+void MainWindow::hidelinesC(int val){
 
-}
-void MainWindow::createQKDLinesB1(){
-
-}
-void MainWindow::createQKDLinesB2(){
-
-}
-void MainWindow::createQKDLinesB3(){
-
-}
-void MainWindow::createQKDLinesC1(){
-
-}
-void MainWindow::createQKDLinesC2(){
-
-}
-void MainWindow::createQKDLinesC3(){
-
+    for (int i= 2*val;i<2*in_QKD_numbC;i++) {
+         LinesPlotC1[i]->setVisible(0);
+         LinesPlotC2[i]->setVisible(0);
+         LinesPlotC3[i]->setVisible(0);
+         LinesPlotC4[i]->setVisible(0);
+    }
 }
 
 void MainWindow::turnONDB(int val){
@@ -1251,6 +1995,79 @@ void MainWindow::   Chang_homscan(int val){
 }
 */
 
+void MainWindow::hdf5savefile(){
+
+
+
+        bool ok;
+        QString comentario = QInputDialog::getText(this, tr("Record DATA"),tr("Insert a name for HDF5 the file"), QLineEdit::Normal,QDir::home().dirName(), &ok);
+
+
+   if (ok && !comentario.isEmpty()){
+       HDF5File_created=true;
+       emit MW_savehdf5(comentario);
+   }
+
+   /*    QString key = QDateTime::currentDateTime().toString("dd_MMM_yyyy_hh:mm" );
+       key.append(".txt");
+
+       data = new QFile(key);
+
+       if (!data->open(QIODevice::WriteOnly | QIODevice::Text))return;
+
+       QTextStream out(data);
+       out<<"# "<<comentario<<"\n";
+       out<<"Vch0\tVch1\tCch0\tCch1\tTime\n";
+       recorddata=true;*/
+
+
+}
+
+void MainWindow::fillTablesNames(QStringList tables_names)
+{
+    if (tables_names.length() == 0)
+        QMessageBox::warning(this,
+                             "Tables",
+                             "There are no tables to display in the database",
+                             QMessageBox::Ok);
+    else
+    {
+       /* ui->menuLoad_Qubits->addAction()
+        ui->comboBox_table_name->addItems(tables_names);
+
+        ui->comboBox_table_name->setEnabled(true);
+        ui->comboBox_table_name->setFocus();*/
+
+        for (int i = 0; i < tables_names.size(); ++i)ui->menuLoad_Qubits->addAction(tables_names.at(i));
+                         //std::cout << tables_names.at(i).toLocal8Bit().constData() << std::endl;
+
+    }
+}
+
+
+void MainWindow::set_qkd_datafromDB(const boolvector2d &dat,int qkdcolumns, int qkdrows){
+   /* std::cout<<dat.size()<<std::endl;
+    std::cout<<dat[0].size()<<std::endl;
+   for (int i = 0;i<dat.size();i++) {
+       for (int j =0;j<dat[i].size();j++) {
+           std::cout<<dat[i][j];
+       }
+        std::cout<<std::endl;
+    }*/
+    this->in_qkdfromDB=dat;
+    for (int i = 0;i<in_qkdfromDB.size();i++) {
+        std::cout<<i<<" : ";
+        for (int j =0;j<in_qkdfromDB[i].size();j++) {
+            std::cout<<in_qkdfromDB[i][j];
+        }
+         std::cout<<std::endl;
+}
+    this->in_qubnumindb=qkdrows;
+    this->in_qkddbcolumns=qkdcolumns;
+    qubitsfromDBloaded=true;
+}
+
+
 void MainWindow::closeEvent (QCloseEvent *event)
 {
         std::cout<<"going out"<<std::endl;
@@ -1266,6 +2083,8 @@ void MainWindow::closeEvent (QCloseEvent *event)
 	
        while(adq.isRunning() || anl.isRunning()|| dbc.isRunning())usleep(100);
        usleep(1000);
+       //savejasonFile.close();
+
        event->accept();
 
 

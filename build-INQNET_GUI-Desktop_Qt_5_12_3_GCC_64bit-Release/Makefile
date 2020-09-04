@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DLINUX -Dlinux -DQT_NO_DEBUG -DQT_MULTIMEDIA_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../source -I. -I../lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../source -I. -I../lib -I../include -I../include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++
 QMAKE         = /opt/Qt5.12.3/5.12.3/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = PROGRAM1.0.0
 DISTDIR = /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/.tmp/PROGRAM1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -Wl,-rpath,/opt/Qt5.12.3/5.12.3/gcc_64/lib
-LIBS          = $(SUBLIBS) -DLINUX -Dlinux -L/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source/../lib/ -lftd3xx -ltdcbase -L/opt/Qt5.12.3/5.12.3/gcc_64/lib -lQt5Multimedia -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Sql -lQt5Core -lGL -lpthread   
+LIBS          = $(SUBLIBS) -DLINUX -Dlinux -L/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source/../lib/ -lftd3xx -ltdcbase -lhdf5 -lhdf5_cpp -L/opt/Qt5.12.3/5.12.3/gcc_64/lib -lQt5Multimedia -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Sql -lQt5Core -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -56,12 +56,14 @@ SOURCES       = ../source/main.cpp \
 		../source/dbcontrol.cpp \
 		../source/mainwindow.cpp \
 		../source/qcustomplot.cpp \
+		../source/qkd_param.cpp \
 		../source/qutag_adq.cpp \
 		../source/qutag_anl.cpp \
 		../source/socket_com.cpp qrc_resources.cpp \
 		moc_mainwindow.cpp \
 		moc_dbcontrol.cpp \
 		moc_qcustomplot.cpp \
+		moc_qkd_param.cpp \
 		moc_qutag_adq.cpp \
 		moc_qutag_anl.cpp \
 		moc_socket_com.cpp
@@ -69,6 +71,7 @@ OBJECTS       = main.o \
 		dbcontrol.o \
 		mainwindow.o \
 		qcustomplot.o \
+		qkd_param.o \
 		qutag_adq.o \
 		qutag_anl.o \
 		socket_com.o \
@@ -76,6 +79,7 @@ OBJECTS       = main.o \
 		moc_mainwindow.o \
 		moc_dbcontrol.o \
 		moc_qcustomplot.o \
+		moc_qkd_param.o \
 		moc_qutag_adq.o \
 		moc_qutag_anl.o \
 		moc_socket_com.o
@@ -252,6 +256,7 @@ DIST          = /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/qt_config.prf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/spec_post.prf \
+		../source/.qmake.stash \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/toolchain.prf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/default_pre.prf \
@@ -275,6 +280,7 @@ DIST          = /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../source/INQNET_GUI.pro ../source/mainwindow.h \
 		../source/dbcontrol.h \
 		../source/qcustomplot.h \
+		../source/qkd_param.h \
 		../source/qutag_adq.h \
 		../source/qutag_anl.h \
 		../source/socket_com.h \
@@ -284,6 +290,7 @@ DIST          = /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../source/dbcontrol.cpp \
 		../source/mainwindow.cpp \
 		../source/qcustomplot.cpp \
+		../source/qkd_param.cpp \
 		../source/qutag_adq.cpp \
 		../source/qutag_anl.cpp \
 		../source/socket_com.cpp
@@ -295,7 +302,7 @@ TARGET        = PROGRAM
 first: all
 ####### Build rules
 
-PROGRAM: ui_mainwindow.h $(OBJECTS)  
+PROGRAM: ui_mainwindow.h ui_qkd_param.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../source/INQNET_GUI.pro /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++/qmake.conf /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/spec_pre.prf \
@@ -471,6 +478,7 @@ Makefile: ../source/INQNET_GUI.pro /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/qt_config.prf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/toolchain.prf \
 		/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/default_pre.prf \
@@ -674,6 +682,7 @@ Makefile: ../source/INQNET_GUI.pro /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++
 /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/qt_config.prf:
 /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++/qmake.conf:
 /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/exclusive_builds.prf:
 /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/toolchain.prf:
 /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/default_pre.prf:
@@ -719,9 +728,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../source/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../source/mainwindow.h ../source/dbcontrol.h ../source/qcustomplot.h ../source/qutag_adq.h ../source/qutag_anl.h ../source/socket_com.h ../source/tdcbase.h ../source/tdcdecl.h ../source/tdcstartstop.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../source/main.cpp ../source/dbcontrol.cpp ../source/mainwindow.cpp ../source/qcustomplot.cpp ../source/qutag_adq.cpp ../source/qutag_anl.cpp ../source/socket_com.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../source/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../source/mainwindow.h ../source/dbcontrol.h ../source/qcustomplot.h ../source/qkd_param.h ../source/qutag_adq.h ../source/qutag_anl.h ../source/socket_com.h ../source/tdcbase.h ../source/tdcdecl.h ../source/tdcstartstop.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../source/main.cpp ../source/dbcontrol.cpp ../source/mainwindow.cpp ../source/qcustomplot.cpp ../source/qkd_param.cpp ../source/qutag_adq.cpp ../source/qutag_anl.cpp ../source/socket_com.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../source/mainwindow.ui ../source/qkd_param.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -764,9 +773,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_dbcontrol.cpp moc_qcustomplot.cpp moc_qutag_adq.cpp moc_qutag_anl.cpp moc_socket_com.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_dbcontrol.cpp moc_qcustomplot.cpp moc_qkd_param.cpp moc_qutag_adq.cpp moc_qutag_anl.cpp moc_socket_com.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_dbcontrol.cpp moc_qcustomplot.cpp moc_qutag_adq.cpp moc_qutag_anl.cpp moc_socket_com.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_dbcontrol.cpp moc_qcustomplot.cpp moc_qkd_param.cpp moc_qutag_adq.cpp moc_qutag_anl.cpp moc_socket_com.cpp
 moc_mainwindow.cpp: ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMainWindow \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -1291,6 +1300,83 @@ moc_mainwindow.cpp: ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqltablemodel.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqlresult.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h \
+		../include/H5Cpp.h \
+		../include/H5Include.h \
+		../include/hdf5.h \
+		../include/H5public.h \
+		../include/H5pubconf.h \
+		../include/H5version.h \
+		../include/H5api_adpt.h \
+		../include/H5Apublic.h \
+		../include/H5Ipublic.h \
+		../include/H5Opublic.h \
+		../include/H5Lpublic.h \
+		../include/H5Tpublic.h \
+		../include/H5ACpublic.h \
+		../include/H5Cpublic.h \
+		../include/H5Dpublic.h \
+		../include/H5Epublic.h \
+		../include/H5Epubgen.h \
+		../include/H5Fpublic.h \
+		../include/H5FDpublic.h \
+		../include/H5Gpublic.h \
+		../include/H5Mpublic.h \
+		../include/H5MMpublic.h \
+		../include/H5Ppublic.h \
+		../include/H5Zpublic.h \
+		../include/H5PLpublic.h \
+		../include/H5Rpublic.h \
+		../include/H5Spublic.h \
+		../include/H5VLpublic.h \
+		../include/H5VLconnector.h \
+		../include/H5ESpublic.h \
+		../include/H5VLconnector_passthru.h \
+		../include/H5VLnative.h \
+		../include/H5FDcore.h \
+		../include/H5FDdirect.h \
+		../include/H5FDfamily.h \
+		../include/H5FDhdfs.h \
+		../include/H5FDlog.h \
+		../include/H5FDmpi.h \
+		../include/H5FDmpio.h \
+		../include/H5FDmulti.h \
+		../include/H5FDros3.h \
+		../include/H5FDsec2.h \
+		../include/H5FDstdio.h \
+		../include/H5FDwindows.h \
+		../include/H5VLpassthru.h \
+		../include/H5Exception.h \
+		../include/H5IdComponent.h \
+		../include/H5DataSpace.h \
+		../include/H5PropList.h \
+		../include/H5FaccProp.h \
+		../include/H5FcreatProp.h \
+		../include/H5OcreatProp.h \
+		../include/H5DcreatProp.h \
+		../include/H5DxferProp.h \
+		../include/H5LcreatProp.h \
+		../include/H5LaccProp.h \
+		../include/H5DaccProp.h \
+		../include/H5Location.h \
+		../include/H5Classes.h \
+		../include/H5Object.h \
+		../include/H5AbstractDs.h \
+		../include/H5Attribute.h \
+		../include/H5DataType.h \
+		../include/H5AtomType.h \
+		../include/H5PredType.h \
+		../include/H5EnumType.h \
+		../include/H5IntType.h \
+		../include/H5FloatType.h \
+		../include/H5StrType.h \
+		../include/H5CompType.h \
+		../include/H5ArrayType.h \
+		../include/H5VarLenType.h \
+		../include/H5DataSet.h \
+		../include/H5CommonFG.h \
+		../include/H5Group.h \
+		../include/H5File.h \
+		../include/H5Library.h \
 		../source/socket_com.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/QUdpSocket \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qudpsocket.h \
@@ -1298,9 +1384,15 @@ moc_mainwindow.cpp: ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qtnetwork-config.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qhostaddress.h \
+		../source/qkd_param.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QFile \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonDocument \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonValue \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonArray \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonObject \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/mainwindow.h -o moc_mainwindow.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/mainwindow.h -o moc_mainwindow.cpp
 
 moc_dbcontrol.cpp: ../source/dbcontrol.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QString \
@@ -1562,9 +1654,86 @@ moc_dbcontrol.cpp: ../source/dbcontrol.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqltablemodel.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqlresult.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h \
+		../include/H5Cpp.h \
+		../include/H5Include.h \
+		../include/hdf5.h \
+		../include/H5public.h \
+		../include/H5pubconf.h \
+		../include/H5version.h \
+		../include/H5api_adpt.h \
+		../include/H5Apublic.h \
+		../include/H5Ipublic.h \
+		../include/H5Opublic.h \
+		../include/H5Lpublic.h \
+		../include/H5Tpublic.h \
+		../include/H5ACpublic.h \
+		../include/H5Cpublic.h \
+		../include/H5Dpublic.h \
+		../include/H5Epublic.h \
+		../include/H5Epubgen.h \
+		../include/H5Fpublic.h \
+		../include/H5FDpublic.h \
+		../include/H5Gpublic.h \
+		../include/H5Mpublic.h \
+		../include/H5MMpublic.h \
+		../include/H5Ppublic.h \
+		../include/H5Zpublic.h \
+		../include/H5PLpublic.h \
+		../include/H5Rpublic.h \
+		../include/H5Spublic.h \
+		../include/H5VLpublic.h \
+		../include/H5VLconnector.h \
+		../include/H5ESpublic.h \
+		../include/H5VLconnector_passthru.h \
+		../include/H5VLnative.h \
+		../include/H5FDcore.h \
+		../include/H5FDdirect.h \
+		../include/H5FDfamily.h \
+		../include/H5FDhdfs.h \
+		../include/H5FDlog.h \
+		../include/H5FDmpi.h \
+		../include/H5FDmpio.h \
+		../include/H5FDmulti.h \
+		../include/H5FDros3.h \
+		../include/H5FDsec2.h \
+		../include/H5FDstdio.h \
+		../include/H5FDwindows.h \
+		../include/H5VLpassthru.h \
+		../include/H5Exception.h \
+		../include/H5IdComponent.h \
+		../include/H5DataSpace.h \
+		../include/H5PropList.h \
+		../include/H5FaccProp.h \
+		../include/H5FcreatProp.h \
+		../include/H5OcreatProp.h \
+		../include/H5DcreatProp.h \
+		../include/H5DxferProp.h \
+		../include/H5LcreatProp.h \
+		../include/H5LaccProp.h \
+		../include/H5DaccProp.h \
+		../include/H5Location.h \
+		../include/H5Classes.h \
+		../include/H5Object.h \
+		../include/H5AbstractDs.h \
+		../include/H5Attribute.h \
+		../include/H5DataType.h \
+		../include/H5AtomType.h \
+		../include/H5PredType.h \
+		../include/H5EnumType.h \
+		../include/H5IntType.h \
+		../include/H5FloatType.h \
+		../include/H5StrType.h \
+		../include/H5CompType.h \
+		../include/H5ArrayType.h \
+		../include/H5VarLenType.h \
+		../include/H5DataSet.h \
+		../include/H5CommonFG.h \
+		../include/H5Group.h \
+		../include/H5File.h \
+		../include/H5Library.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/dbcontrol.h -o moc_dbcontrol.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/dbcontrol.h -o moc_dbcontrol.cpp
 
 moc_qcustomplot.cpp: ../source/qcustomplot.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qglobal.h \
@@ -2066,7 +2235,115 @@ moc_qcustomplot.cpp: ../source/qcustomplot.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport/qtprintsupportversion.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qcustomplot.h -o moc_qcustomplot.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qcustomplot.h -o moc_qcustomplot.cpp
+
+moc_qkd_param.cpp: ../source/qkd_param.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qwidget.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtguiglobal.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qglobal.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qconfig.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qtcore-config.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qlogging.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qflags.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic_msvc.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmutex.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qnumeric.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qversiontagging.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtgui-config.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qwindowdefs.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobjectdefs.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qnamespace.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobject.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstring.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qchar.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qbytearray.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qrefcount.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qarraydata.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringliteral.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringalgorithms.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringview.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringbuilder.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qlist.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qalgorithms.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qiterator.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qhashfunctions.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qpair.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qbytearraylist.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringlist.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qregexp.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringmatcher.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcoreevent.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qscopedpointer.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmetatype.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qvarlengtharray.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcontainerfwd.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobject_impl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmargins.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpaintdevice.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qrect.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsize.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qpoint.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpalette.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qcolor.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qrgb.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qrgba64.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qbrush.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qvector.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qmatrix.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpolygon.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qregion.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qdatastream.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qiodevice.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qline.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtransform.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpainterpath.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qimage.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpixelformat.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpixmap.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsharedpointer.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qshareddata.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qhash.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qfont.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qfontmetrics.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qfontinfo.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qcursor.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qkeysequence.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qevent.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qvariant.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmap.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qdebug.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qtextstream.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qlocale.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qset.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcontiguouscache.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qurl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qurlquery.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qfile.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qfiledevice.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qvector2d.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtouchdevice.h \
+		moc_predefs.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qkd_param.h -o moc_qkd_param.cpp
 
 moc_qutag_adq.cpp: ../source/qutag_adq.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QObject \
@@ -2267,7 +2544,7 @@ moc_qutag_adq.cpp: ../source/qutag_adq.h \
 		../source/tdcstartstop.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_adq.h -o moc_qutag_adq.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_adq.h -o moc_qutag_adq.cpp
 
 moc_qutag_anl.cpp: ../source/qutag_anl.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QObject \
@@ -2469,7 +2746,7 @@ moc_qutag_anl.cpp: ../source/qutag_anl.h \
 		../source/tdcstartstop.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_anl.h -o moc_qutag_anl.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_anl.h -o moc_qutag_anl.cpp
 
 moc_socket_com.cpp: ../source/socket_com.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QObject \
@@ -2544,15 +2821,15 @@ moc_socket_com.cpp: ../source/socket_com.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qhostaddress.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/socket_com.h -o moc_socket_com.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/nike/Desktop/INQNET_GUI/FQNET_GUI/build-INQNET_GUI-Desktop_Qt_5_12_3_GCC_64bit-Release/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/source -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/lib -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/home/nike/Desktop/INQNET_GUI/FQNET_GUI/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/socket_com.h -o moc_socket_com.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_qkd_param.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_qkd_param.h
 ui_mainwindow.h: ../source/mainwindow.ui \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/uic \
 		../source/qcustomplot.h \
@@ -3054,6 +3331,10 @@ ui_mainwindow.h: ../source/mainwindow.ui \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport/qprintpreviewwidget.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport/qtprintsupportversion.h
 	/opt/Qt5.12.3/5.12.3/gcc_64/bin/uic ../source/mainwindow.ui -o ui_mainwindow.h
+
+ui_qkd_param.h: ../source/qkd_param.ui \
+		/opt/Qt5.12.3/5.12.3/gcc_64/bin/uic
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/uic ../source/qkd_param.ui -o ui_qkd_param.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -3590,13 +3871,96 @@ main.o: ../source/main.cpp /opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QApplic
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqltablemodel.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqlresult.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h \
+		../include/H5Cpp.h \
+		../include/H5Include.h \
+		../include/hdf5.h \
+		../include/H5public.h \
+		../include/H5pubconf.h \
+		../include/H5version.h \
+		../include/H5api_adpt.h \
+		../include/H5Apublic.h \
+		../include/H5Ipublic.h \
+		../include/H5Opublic.h \
+		../include/H5Lpublic.h \
+		../include/H5Tpublic.h \
+		../include/H5ACpublic.h \
+		../include/H5Cpublic.h \
+		../include/H5Dpublic.h \
+		../include/H5Epublic.h \
+		../include/H5Epubgen.h \
+		../include/H5Fpublic.h \
+		../include/H5FDpublic.h \
+		../include/H5Gpublic.h \
+		../include/H5Mpublic.h \
+		../include/H5MMpublic.h \
+		../include/H5Ppublic.h \
+		../include/H5Zpublic.h \
+		../include/H5PLpublic.h \
+		../include/H5Rpublic.h \
+		../include/H5Spublic.h \
+		../include/H5VLpublic.h \
+		../include/H5VLconnector.h \
+		../include/H5ESpublic.h \
+		../include/H5VLconnector_passthru.h \
+		../include/H5VLnative.h \
+		../include/H5FDcore.h \
+		../include/H5FDdirect.h \
+		../include/H5FDfamily.h \
+		../include/H5FDhdfs.h \
+		../include/H5FDlog.h \
+		../include/H5FDmpi.h \
+		../include/H5FDmpio.h \
+		../include/H5FDmulti.h \
+		../include/H5FDros3.h \
+		../include/H5FDsec2.h \
+		../include/H5FDstdio.h \
+		../include/H5FDwindows.h \
+		../include/H5VLpassthru.h \
+		../include/H5Exception.h \
+		../include/H5IdComponent.h \
+		../include/H5DataSpace.h \
+		../include/H5PropList.h \
+		../include/H5FaccProp.h \
+		../include/H5FcreatProp.h \
+		../include/H5OcreatProp.h \
+		../include/H5DcreatProp.h \
+		../include/H5DxferProp.h \
+		../include/H5LcreatProp.h \
+		../include/H5LaccProp.h \
+		../include/H5DaccProp.h \
+		../include/H5Location.h \
+		../include/H5Classes.h \
+		../include/H5Object.h \
+		../include/H5AbstractDs.h \
+		../include/H5Attribute.h \
+		../include/H5DataType.h \
+		../include/H5AtomType.h \
+		../include/H5PredType.h \
+		../include/H5EnumType.h \
+		../include/H5IntType.h \
+		../include/H5FloatType.h \
+		../include/H5StrType.h \
+		../include/H5CompType.h \
+		../include/H5ArrayType.h \
+		../include/H5VarLenType.h \
+		../include/H5DataSet.h \
+		../include/H5CommonFG.h \
+		../include/H5Group.h \
+		../include/H5File.h \
+		../include/H5Library.h \
 		../source/socket_com.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/QUdpSocket \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qudpsocket.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qtnetworkglobal.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qtnetwork-config.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qabstractsocket.h \
-		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qhostaddress.h
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qhostaddress.h \
+		../source/qkd_param.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QFile \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonDocument \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonValue \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonArray \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonObject
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../source/main.cpp
 
 dbcontrol.o: ../source/dbcontrol.cpp ../source/dbcontrol.h \
@@ -3858,7 +4222,84 @@ dbcontrol.o: ../source/dbcontrol.cpp ../source/dbcontrol.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqlrelationaltablemodel.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqltablemodel.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqlresult.h \
-		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h \
+		../include/H5Cpp.h \
+		../include/H5Include.h \
+		../include/hdf5.h \
+		../include/H5public.h \
+		../include/H5pubconf.h \
+		../include/H5version.h \
+		../include/H5api_adpt.h \
+		../include/H5Apublic.h \
+		../include/H5Ipublic.h \
+		../include/H5Opublic.h \
+		../include/H5Lpublic.h \
+		../include/H5Tpublic.h \
+		../include/H5ACpublic.h \
+		../include/H5Cpublic.h \
+		../include/H5Dpublic.h \
+		../include/H5Epublic.h \
+		../include/H5Epubgen.h \
+		../include/H5Fpublic.h \
+		../include/H5FDpublic.h \
+		../include/H5Gpublic.h \
+		../include/H5Mpublic.h \
+		../include/H5MMpublic.h \
+		../include/H5Ppublic.h \
+		../include/H5Zpublic.h \
+		../include/H5PLpublic.h \
+		../include/H5Rpublic.h \
+		../include/H5Spublic.h \
+		../include/H5VLpublic.h \
+		../include/H5VLconnector.h \
+		../include/H5ESpublic.h \
+		../include/H5VLconnector_passthru.h \
+		../include/H5VLnative.h \
+		../include/H5FDcore.h \
+		../include/H5FDdirect.h \
+		../include/H5FDfamily.h \
+		../include/H5FDhdfs.h \
+		../include/H5FDlog.h \
+		../include/H5FDmpi.h \
+		../include/H5FDmpio.h \
+		../include/H5FDmulti.h \
+		../include/H5FDros3.h \
+		../include/H5FDsec2.h \
+		../include/H5FDstdio.h \
+		../include/H5FDwindows.h \
+		../include/H5VLpassthru.h \
+		../include/H5Exception.h \
+		../include/H5IdComponent.h \
+		../include/H5DataSpace.h \
+		../include/H5PropList.h \
+		../include/H5FaccProp.h \
+		../include/H5FcreatProp.h \
+		../include/H5OcreatProp.h \
+		../include/H5DcreatProp.h \
+		../include/H5DxferProp.h \
+		../include/H5LcreatProp.h \
+		../include/H5LaccProp.h \
+		../include/H5DaccProp.h \
+		../include/H5Location.h \
+		../include/H5Classes.h \
+		../include/H5Object.h \
+		../include/H5AbstractDs.h \
+		../include/H5Attribute.h \
+		../include/H5DataType.h \
+		../include/H5AtomType.h \
+		../include/H5PredType.h \
+		../include/H5EnumType.h \
+		../include/H5IntType.h \
+		../include/H5FloatType.h \
+		../include/H5StrType.h \
+		../include/H5CompType.h \
+		../include/H5ArrayType.h \
+		../include/H5VarLenType.h \
+		../include/H5DataSet.h \
+		../include/H5CommonFG.h \
+		../include/H5Group.h \
+		../include/H5File.h \
+		../include/H5Library.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dbcontrol.o ../source/dbcontrol.cpp
 
 mainwindow.o: ../source/mainwindow.cpp ../source/mainwindow.h \
@@ -4385,6 +4826,83 @@ mainwindow.o: ../source/mainwindow.cpp ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqltablemodel.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qsqlresult.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h \
+		../include/H5Cpp.h \
+		../include/H5Include.h \
+		../include/hdf5.h \
+		../include/H5public.h \
+		../include/H5pubconf.h \
+		../include/H5version.h \
+		../include/H5api_adpt.h \
+		../include/H5Apublic.h \
+		../include/H5Ipublic.h \
+		../include/H5Opublic.h \
+		../include/H5Lpublic.h \
+		../include/H5Tpublic.h \
+		../include/H5ACpublic.h \
+		../include/H5Cpublic.h \
+		../include/H5Dpublic.h \
+		../include/H5Epublic.h \
+		../include/H5Epubgen.h \
+		../include/H5Fpublic.h \
+		../include/H5FDpublic.h \
+		../include/H5Gpublic.h \
+		../include/H5Mpublic.h \
+		../include/H5MMpublic.h \
+		../include/H5Ppublic.h \
+		../include/H5Zpublic.h \
+		../include/H5PLpublic.h \
+		../include/H5Rpublic.h \
+		../include/H5Spublic.h \
+		../include/H5VLpublic.h \
+		../include/H5VLconnector.h \
+		../include/H5ESpublic.h \
+		../include/H5VLconnector_passthru.h \
+		../include/H5VLnative.h \
+		../include/H5FDcore.h \
+		../include/H5FDdirect.h \
+		../include/H5FDfamily.h \
+		../include/H5FDhdfs.h \
+		../include/H5FDlog.h \
+		../include/H5FDmpi.h \
+		../include/H5FDmpio.h \
+		../include/H5FDmulti.h \
+		../include/H5FDros3.h \
+		../include/H5FDsec2.h \
+		../include/H5FDstdio.h \
+		../include/H5FDwindows.h \
+		../include/H5VLpassthru.h \
+		../include/H5Exception.h \
+		../include/H5IdComponent.h \
+		../include/H5DataSpace.h \
+		../include/H5PropList.h \
+		../include/H5FaccProp.h \
+		../include/H5FcreatProp.h \
+		../include/H5OcreatProp.h \
+		../include/H5DcreatProp.h \
+		../include/H5DxferProp.h \
+		../include/H5LcreatProp.h \
+		../include/H5LaccProp.h \
+		../include/H5DaccProp.h \
+		../include/H5Location.h \
+		../include/H5Classes.h \
+		../include/H5Object.h \
+		../include/H5AbstractDs.h \
+		../include/H5Attribute.h \
+		../include/H5DataType.h \
+		../include/H5AtomType.h \
+		../include/H5PredType.h \
+		../include/H5EnumType.h \
+		../include/H5IntType.h \
+		../include/H5FloatType.h \
+		../include/H5StrType.h \
+		../include/H5CompType.h \
+		../include/H5ArrayType.h \
+		../include/H5VarLenType.h \
+		../include/H5DataSet.h \
+		../include/H5CommonFG.h \
+		../include/H5Group.h \
+		../include/H5File.h \
+		../include/H5Library.h \
 		../source/socket_com.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/QUdpSocket \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qudpsocket.h \
@@ -4392,12 +4910,36 @@ mainwindow.o: ../source/mainwindow.cpp ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qtnetwork-config.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork/qhostaddress.h \
+		../source/qkd_param.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QFile \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonDocument \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonValue \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonArray \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QJsonObject \
 		ui_mainwindow.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QAction \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QApplication \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QComboBox \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QDoubleSpinBox \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QFormLayout \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QFrame \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QGridLayout \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QHBoxLayout \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QLCDNumber \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QLabel \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMenu \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMenuBar \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QPushButton \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QRadioButton \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSlider \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSpacerItem \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSpinBox \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QTabWidget \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QDesktopWidget \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/QScreen \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMessageBox \
-		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QMetaEnum \
-		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QApplication
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QMetaEnum
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../source/mainwindow.cpp
 
 qcustomplot.o: ../source/qcustomplot.cpp ../source/qcustomplot.h \
@@ -4900,6 +5442,138 @@ qcustomplot.o: ../source/qcustomplot.cpp ../source/qcustomplot.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport/qtprintsupportversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qcustomplot.o ../source/qcustomplot.cpp
 
+qkd_param.o: ../source/qkd_param.cpp ../source/qkd_param.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qwidget.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtguiglobal.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qglobal.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qconfig.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qtcore-config.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qlogging.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qflags.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qatomic_msvc.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmutex.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qnumeric.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qversiontagging.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtgui-config.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qwindowdefs.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobjectdefs.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qnamespace.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobject.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstring.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qchar.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qbytearray.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qrefcount.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qarraydata.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringliteral.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringalgorithms.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringview.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringbuilder.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qlist.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qalgorithms.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qiterator.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qhashfunctions.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qpair.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qbytearraylist.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringlist.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qregexp.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qstringmatcher.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcoreevent.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qscopedpointer.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmetatype.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qvarlengtharray.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcontainerfwd.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobject_impl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmargins.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpaintdevice.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qrect.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsize.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qpoint.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpalette.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qcolor.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qrgb.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qrgba64.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qbrush.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qvector.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qmatrix.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpolygon.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qregion.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qdatastream.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qiodevice.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qline.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtransform.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpainterpath.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qimage.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpixelformat.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qpixmap.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsharedpointer.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qshareddata.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qhash.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qfont.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qfontmetrics.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qfontinfo.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qcursor.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qkeysequence.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qevent.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qvariant.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qmap.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qdebug.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qtextstream.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qlocale.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qset.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcontiguouscache.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qurl.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qurlquery.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qfile.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qfiledevice.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qvector2d.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qtouchdevice.h \
+		ui_qkd_param.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QVariant \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QApplication \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qapplication.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qcoreapplication.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qeventloop.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qguiapplication.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qinputmethod.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QHBoxLayout \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qboxlayout.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qlayout.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qgridlayout.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QLabel \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qlabel.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSlider \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qslider.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qabstractslider.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSpinBox \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qspinbox.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui/qvalidator.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qregularexpression.h \
+		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QVBoxLayout
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qkd_param.o ../source/qkd_param.cpp
+
 qutag_adq.o: ../source/qutag_adq.cpp ../source/qutag_adq.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QObject \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qobject.h \
@@ -5383,6 +6057,9 @@ moc_dbcontrol.o: moc_dbcontrol.cpp
 
 moc_qcustomplot.o: moc_qcustomplot.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qcustomplot.o moc_qcustomplot.cpp
+
+moc_qkd_param.o: moc_qkd_param.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qkd_param.o moc_qkd_param.cpp
 
 moc_qutag_adq.o: moc_qutag_adq.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qutag_adq.o moc_qutag_adq.cpp

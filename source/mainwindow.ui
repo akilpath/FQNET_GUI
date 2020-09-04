@@ -44,8 +44,11 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab1">
        <attribute name="title">
@@ -68,7 +71,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QWidget" name="widget" native="true">
+         <widget class="QWidget" name="widget_2" native="true">
           <property name="styleSheet">
            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
           </property>
@@ -4178,6 +4181,9 @@ background-color: rgb(136, 138, 133);</string>
        </layout>
       </widget>
       <widget class="QWidget" name="conf">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+       </property>
        <attribute name="title">
         <string>Parameters</string>
        </attribute>
@@ -4411,6 +4417,269 @@ color: rgb(238, 238, 236);</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+       </property>
+       <attribute name="title">
+        <string>QKD results</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_20">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_32">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_19">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMaximumSize</enum>
+            </property>
+            <item>
+             <widget class="QCustomPlot" name="QKD_H1_results" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_48"/>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCustomPlot" name="QKD_H2_results" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_42"/>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCustomPlot" name="QKD_H3_results" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_21"/>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_49">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_33">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetMinimumSize</enum>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_111">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(238, 238, 236);</string>
+                </property>
+                <property name="text">
+                 <string>OK</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_135">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(239, 41, 41);</string>
+              </property>
+              <property name="text">
+               <string>ERROR</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_113">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(114, 159, 207);</string>
+              </property>
+              <property name="text">
+               <string>RANDOM</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_34">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetMinimumSize</enum>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_112">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(252, 233, 79);</string>
+                </property>
+                <property name="text">
+                 <string>BACKGROUND</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+       </property>
+       <attribute name="title">
+        <string>QKD stats</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_43">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_42">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_50">
+            <item>
+             <widget class="QCustomPlot" name="qkd_siftedplot" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_46"/>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCustomPlot" name="qkd_errorplot" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_45"/>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_51">
+          <item>
+           <spacer name="verticalSpacer_16">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_136">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(238, 238, 236);</string>
+            </property>
+            <property name="text">
+             <string>SIFTED TIME</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="SIFTED">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(239, 41, 41);</string>
+            </property>
+            <property name="text">
+             <string>SIFTED PHASE</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_12">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_139">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(238, 238, 236);</string>
+            </property>
+            <property name="text">
+             <string>ERROR TIME</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_138">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(239, 41, 41);</string>
+            </property>
+            <property name="text">
+             <string>ERROR PHASE</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_15">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -4421,7 +4690,7 @@ color: rgb(238, 238, 236);</string>
      <x>0</x>
      <y>0</y>
      <width>1500</width>
-     <height>19</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="font">
@@ -4438,12 +4707,27 @@ color: rgb(238, 238, 236);</string>
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuLoad_Qubits">
+     <property name="title">
+      <string>Load Qubits</string>
+     </property>
+     <addaction name="separator"/>
+    </widget>
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionSave_state"/>
     <addaction name="actionLoad_state"/>
+    <addaction name="separator"/>
+    <addaction name="menuLoad_Qubits"/>
+   </widget>
+   <widget class="QMenu" name="menuQKD_param">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionQKD"/>
    </widget>
    <addaction name="menuconfig_n"/>
+   <addaction name="menuQKD_param"/>
   </widget>
   <action name="actionSave_state">
    <property name="text">
@@ -4453,6 +4737,11 @@ color: rgb(238, 238, 236);</string>
   <action name="actionLoad_state">
    <property name="text">
     <string>Load state</string>
+   </property>
+  </action>
+  <action name="actionQKD">
+   <property name="text">
+    <string>QKD</string>
    </property>
   </action>
  </widget>
@@ -4465,6 +4754,93 @@ color: rgb(238, 238, 236);</string>
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>PlotBChn2</tabstop>
+  <tabstop>autostart</tabstop>
+  <tabstop>startChan</tabstop>
+  <tabstop>PlotAChn1</tabstop>
+  <tabstop>PlotAChn2</tabstop>
+  <tabstop>PlotBChn1</tabstop>
+  <tabstop>PlotCChn1</tabstop>
+  <tabstop>PlotCChn2</tabstop>
+  <tabstop>histStart</tabstop>
+  <tabstop>horizontalTabWidget</tabstop>
+  <tabstop>histEnd</tabstop>
+  <tabstop>binsinplot</tabstop>
+  <tabstop>adqtime</tabstop>
+  <tabstop>BegA3</tabstop>
+  <tabstop>BegA2</tabstop>
+  <tabstop>EndA3</tabstop>
+  <tabstop>EndA2</tabstop>
+  <tabstop>BegA1</tabstop>
+  <tabstop>EndA1</tabstop>
+  <tabstop>trackA2</tabstop>
+  <tabstop>trackA3</tabstop>
+  <tabstop>trackA1</tabstop>
+  <tabstop>EndB2</tabstop>
+  <tabstop>EndB3</tabstop>
+  <tabstop>BegB1</tabstop>
+  <tabstop>BegB3</tabstop>
+  <tabstop>EndB1</tabstop>
+  <tabstop>BegB2</tabstop>
+  <tabstop>trackB1</tabstop>
+  <tabstop>trackB2</tabstop>
+  <tabstop>trackB3</tabstop>
+  <tabstop>BegC1</tabstop>
+  <tabstop>EndC2</tabstop>
+  <tabstop>BegC2</tabstop>
+  <tabstop>BegC3</tabstop>
+  <tabstop>EndC3</tabstop>
+  <tabstop>EndC1</tabstop>
+  <tabstop>trackC1</tabstop>
+  <tabstop>trackC2</tabstop>
+  <tabstop>trackC3</tabstop>
+  <tabstop>BSM</tabstop>
+  <tabstop>HOM</tabstop>
+  <tabstop>homscan</tabstop>
+  <tabstop>homscan_time</tabstop>
+  <tabstop>stepduration</tabstop>
+  <tabstop>Max_delay</tabstop>
+  <tabstop>reset_delay</tabstop>
+  <tabstop>adqtime_2</tabstop>
+  <tabstop>tab2_xrange</tabstop>
+  <tabstop>DBON</tabstop>
+  <tabstop>clean_tab2</tabstop>
+  <tabstop>tab2_plot1</tabstop>
+  <tabstop>plot1_1</tabstop>
+  <tabstop>win1_1</tabstop>
+  <tabstop>plot1_2</tabstop>
+  <tabstop>win1_2</tabstop>
+  <tabstop>tab2_plot2</tabstop>
+  <tabstop>plot2_1</tabstop>
+  <tabstop>win2_1</tabstop>
+  <tabstop>plot2_2</tabstop>
+  <tabstop>win2_2</tabstop>
+  <tabstop>tab2_plot3</tabstop>
+  <tabstop>plot3_1</tabstop>
+  <tabstop>win3_1</tabstop>
+  <tabstop>plot3_2</tabstop>
+  <tabstop>win3_2</tabstop>
+  <tabstop>tab2_plot4</tabstop>
+  <tabstop>plot4_1</tabstop>
+  <tabstop>plot4_2</tabstop>
+  <tabstop>tab2_plot5</tabstop>
+  <tabstop>plot5_2</tabstop>
+  <tabstop>win5_2</tabstop>
+  <tabstop>tab2_plot6</tabstop>
+  <tabstop>plot6_2</tabstop>
+  <tabstop>win6_2</tabstop>
+  <tabstop>thch1</tabstop>
+  <tabstop>thch2</tabstop>
+  <tabstop>thch3</tabstop>
+  <tabstop>cw</tabstop>
+  <tabstop>thch4</tabstop>
+  <tabstop>delayline</tabstop>
+  <tabstop>rof1</tabstop>
+  <tabstop>rof2</tabstop>
+  <tabstop>rof3</tabstop>
+  <tabstop>rof4</tabstop>
+ </tabstops>
  <resources>
   <include location="resources.qrc"/>
  </resources>

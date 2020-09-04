@@ -25,6 +25,7 @@ SOURCES += main.cpp\
            dbcontrol.cpp \
            mainwindow.cpp \
            qcustomplot.cpp \
+           qkd_param.cpp \
            qutag_adq.cpp \
            qutag_anl.cpp \
            socket_com.cpp
@@ -33,6 +34,7 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
             dbcontrol.h \
             qcustomplot.h \
+            qkd_param.h \
             qutag_adq.h \
             qutag_anl.h \
             socket_com.h \
@@ -41,10 +43,21 @@ HEADERS  += mainwindow.h \
             tdcstartstop.h
 	   
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    qkd_param.ui
 
 
 RESOURCES += \
     resources.qrc
 
 
+
+unix:!macx: LIBS += -L$$PWD/../lib/ -lhdf5
+
+INCLUDEPATH += $$PWD/../include
+DEPENDPATH += $$PWD/../include
+
+unix:!macx: LIBS += -L$$PWD/../lib/ -lhdf5_cpp
+
+INCLUDEPATH += $$PWD/../include
+DEPENDPATH += $$PWD/../include

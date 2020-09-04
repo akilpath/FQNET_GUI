@@ -48,6 +48,8 @@ void run();
     ~qutagadq();
     //void Break();
     bool anlAvilable =false;
+
+
 public slots:
     
   void adqui();
@@ -92,6 +94,7 @@ signals:
    // void dataready(const vectorInt64 &TTdata, const channelsTDCPP &CHdata, int nevent); // sends to inputdata()
     void dataready(const vectorInt64 &vectorTimetags, const vectorInt8 &vectorChannels, int tsvalid);
     void qutaghist(const vectorDouble &TTdata1, const vectorDouble &TTdata2, const vectorDouble &TTdata3);
+    void histohdf5adq(const vectorDouble &TTdata1, const vectorDouble &TTdata2, const vectorDouble &TTdata3);
     //void qutaghist2(const vectorDouble &TTdata);
 
 private:
@@ -116,7 +119,7 @@ private:
     int ret;
     Int32 rc, count, tooSmall, tooBig, tsValid, eventsA, eventsB, eventsC, i, j, it, ch;
     Int64 expTime, lastTimestamp = 0;    
-    Int8  channels[TIMESTAMP_COUNT];
+    Uint8  channels[TIMESTAMP_COUNT];
     int   coincCnt[TDC_COINC_CHANNELS];
     double bin2ns = 0, timeBase = 0.;
     double simPara[2] = { 1000., 1000. };
@@ -136,9 +139,9 @@ private:
     void lautrun();
     void getTimeStamps();
     void changThreshold(int, double);
-    int HIST_BINWIDTH;
-    int HIST_BINCOUNT;
-    int HIST_BINWIDTH_out, HIST_BINCOUNT_out;
+    int HIST_BINWIDTH=0;
+    int HIST_BINCOUNT=0;
+    int HIST_BINWIDTH_out=0, HIST_BINCOUNT_out=0;
     Int32 hist1[5000], hist2[5000];
 
     Int32 *histodataA;

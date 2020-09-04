@@ -266,6 +266,7 @@ int qutagadq::filterset(){
  void qutagadq::getTimeStamps(){
      //std::cout<<"gethisto"<<std::endl;
      timetags.clear();channelsTDC.clear();
+
      rc = TDC_getLastTimestamps( 1, timestamps, channels, &tsValid );
      checkRc( "TDC_getLastTimestamps", rc );
      std::copy(timestamps, timestamps + tsValid, std::back_inserter(timetags));
@@ -289,7 +290,7 @@ int qutagadq::filterset(){
 
      /////////calculate histogram parameters///////////
 
-     HIST_BINWIDTH=(int)(in_histEnd-in_histStart)/in_binsinplot;
+     if(in_binsinplot>0)HIST_BINWIDTH=(int)(in_histEnd-in_histStart)/in_binsinplot;
      HIST_BINCOUNT=in_binsinplot;
      filterset();
 
@@ -330,9 +331,10 @@ int qutagadq::filterset(){
              checkRc( "TDC_addHistogram", rc );
          }
      }
-    if((HIST_BINWIDTH!= HIST_BINWIDTH_out || HIST_BINCOUNT!=HIST_BINCOUNT_out) && HIST_BINWIDTH>1){
+    if((HIST_BINWIDTH!= HIST_BINWIDTH_out || HIST_BINCOUNT!=HIST_BINCOUNT_out) && HIST_BINWIDTH>=1){
       HIST_BINWIDTH_out= HIST_BINWIDTH;
       HIST_BINCOUNT_out = HIST_BINCOUNT;
+      //std::cout<<"HIST_BINCOUNT_out :"<<HIST_BINCOUNT_out <<"  HIST_BINWIDTH_out: "<<HIST_BINWIDTH_out<<std::cout;
       rc = TDC_setHistogramParams( HIST_BINWIDTH_out, HIST_BINCOUNT_out );
       checkRc( "TDC_setHistogramParams", rc );
 
