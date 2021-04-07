@@ -37,10 +37,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = PROGRAM1.0.0
-DISTDIR = /home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/build/.tmp/PROGRAM1.0.0
+DISTDIR = /home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/build/.tmp/PROGRAM1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -Wl,-rpath,/opt/Qt5.12.3/5.12.3/gcc_64/lib
-LIBS          = $(SUBLIBS) -DLINUX -Dlinux -L/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/source/../lib/ -lftd3xx -ltdcbase -L/opt/Qt5.12.3/5.12.3/gcc_64/lib -lQt5Multimedia -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Sql -lQt5Core -lGL -lpthread   
+LIBS          = $(SUBLIBS) -DLINUX -Dlinux -L/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/source/../lib/ -lftd3xx -ltdcbase -L/opt/Qt5.12.3/5.12.3/gcc_64/lib -lQt5Multimedia -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Sql -lQt5Core -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -1233,7 +1233,7 @@ moc_mainwindow.cpp: ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/source -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/mainwindow.h -o moc_mainwindow.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/source -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/mainwindow.h -o moc_mainwindow.cpp
 
 moc_dbcontrol.cpp: ../source/dbcontrol.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QString \
@@ -1497,7 +1497,7 @@ moc_dbcontrol.cpp: ../source/dbcontrol.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql/qtsqlversion.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/source -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/dbcontrol.h -o moc_dbcontrol.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/source -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/dbcontrol.h -o moc_dbcontrol.cpp
 
 moc_qcustomplot.cpp: ../source/qcustomplot.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/qglobal.h \
@@ -1999,7 +1999,7 @@ moc_qcustomplot.cpp: ../source/qcustomplot.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport/qtprintsupportversion.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/source -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qcustomplot.h -o moc_qcustomplot.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/source -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qcustomplot.h -o moc_qcustomplot.cpp
 
 moc_qutag_adq.cpp: ../source/qutag_adq.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QObject \
@@ -2200,7 +2200,7 @@ moc_qutag_adq.cpp: ../source/qutag_adq.h \
 		../source/tdcstartstop.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/source -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_adq.h -o moc_qutag_adq.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/source -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_adq.h -o moc_qutag_adq.cpp
 
 moc_qutag_anl.cpp: ../source/qutag_anl.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore/QObject \
@@ -2402,7 +2402,7 @@ moc_qutag_anl.cpp: ../source/qutag_anl.h \
 		../source/tdcstartstop.h \
 		moc_predefs.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc
-	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/source -I/home/cptlab/Desktop/INQNET_QT_GUI/qtsql/qtsql/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_anl.h -o moc_qutag_anl.cpp
+	/opt/Qt5.12.3/5.12.3/gcc_64/bin/moc $(DEFINES) --include /home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/build/moc_predefs.h -I/opt/Qt5.12.3/5.12.3/gcc_64/mkspecs/linux-g++ -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/source -I/home/cptlab/Desktop/INQNET_QT_GUI/Master/FQNET_GUI/lib -I/opt/Qt5.12.3/5.12.3/gcc_64/include -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtMultimedia -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtGui -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtNetwork -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtSql -I/opt/Qt5.12.3/5.12.3/gcc_64/include/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../source/qutag_anl.h -o moc_qutag_anl.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -4249,7 +4249,6 @@ mainwindow.o: ../source/mainwindow.cpp ../source/mainwindow.h \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QLabel \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMenu \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QMenuBar \
-		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QPushButton \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QRadioButton \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSlider \
 		/opt/Qt5.12.3/5.12.3/gcc_64/include/QtWidgets/QSpacerItem \

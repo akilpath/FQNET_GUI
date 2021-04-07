@@ -16,8 +16,6 @@ PKGCONFIG +=
 CONFIG += link_pkgconfig 
 
 
-INCPATH +=
-
 
 
 

@@ -179,9 +179,9 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
         }
     }*/
 
-/*for ( int i=0; i < 20; i++ ) {
+for ( int i=0; i < 20; i++ ) {
     std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<"       "<<vectorTimetags[i+1]-vectorTimetags[i]<<std::endl;
-}*/
+}
 /*for ( int i=0; i < 20; i++ ) {
         std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<std::endl;
         file<<(int)vectorChannels[i]<<","<<vectorTimetags[i]<<std::endl;
