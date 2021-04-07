@@ -68,12 +68,12 @@ public slots:
   void Chang_in_adqtime(double val){this->in_adqtime=val;}
 
 
-  void Chang_in_PlotAChn1(int val){this->in_PlotACh1=val;paramschange=true;}
-  void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;paramschange=true;}
-  void Chang_in_PlotBChn1(int val){this->in_PlotBCh1=val;paramschange=true;}
-  void Chang_in_PlotBChn2(int val){this->in_PlotBCh2=val;paramschange=true;}
-  void Chang_in_PlotCChn1(int val){this->in_PlotCCh1=val;paramschange=true;}
-  void Chang_in_PlotCChn2(int val){this->in_PlotCCh2=val;paramschange=true;}
+  void Chang_in_PlotAChn1(int val){this->in_PlotACh1=val;paramschange=true;std::cout<<"A1: "<<val<<std::endl;}
+  void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;paramschange=true;std::cout<<"A2: "<<val<<std::endl;}
+  void Chang_in_PlotBChn1(int val){this->in_PlotBCh1=val;paramschange=true;std::cout<<"B1: "<<val<<std::endl;}
+  void Chang_in_PlotBChn2(int val){this->in_PlotBCh2=val;paramschange=true;std::cout<<"B2: "<<val<<std::endl;}
+  void Chang_in_PlotCChn1(int val){this->in_PlotCCh1=val;paramschange=true;std::cout<<"C1: "<<val<<std::endl;}
+  void Chang_in_PlotCChn2(int val){this->in_PlotCCh2=val;paramschange=true;std::cout<<"C2: "<<val<<std::endl;}
 
   void Chang_anlAvilable(bool val){this->anlAvilable =val;}
 
@@ -83,10 +83,10 @@ public slots:
   void Chang_in_thch4(double val){this->in_thch4=val;changThreshold(4,val);}
   void Chang_in_cw(int val){this->in_cw=val; TDC_setCoincidenceWindow(val);}
 
-  void Chang_rof1(QString text){if(text=="Rise")RoF[1]=1;else RoF[1]=0;}
-  void Chang_rof2(QString text){if(text=="Rise")RoF[2]=1;else RoF[2]=0;}
-  void Chang_rof3(QString text){if(text=="Rise")RoF[3]=1;else RoF[3]=0;}
-  void Chang_rof4(QString text){if(text=="Rise")RoF[4]=1;else RoF[4]=0;}
+  void Chang_rof1(QString text){if(text=="Rise")RoF[1]=1;else RoF[1]=0;changThreshold(1,in_thch1);}
+  void Chang_rof2(QString text){if(text=="Rise")RoF[2]=1;else RoF[2]=0;changThreshold(2,in_thch2);}
+  void Chang_rof3(QString text){if(text=="Rise")RoF[3]=1;else RoF[3]=0;changThreshold(3,in_thch3);}
+  void Chang_rof4(QString text){if(text=="Rise")RoF[4]=1;else RoF[4]=0;changThreshold(4,in_thch4);}
 
 signals:
    // void dataready(const vectorInt64 &TTdata, const channelsTDCPP &CHdata, int nevent); // sends to inputdata()
@@ -104,7 +104,7 @@ private:
     int get_max_collection_time( float rate );
     int count1, count2, count3;
     int firstChanHist, secondChanHist;//thirdChanHist;
-    int ActHist[4][4];
+    int ActHist[5][5]={{0}};
     //QVector<int> ch1[4];QVector<int> ch2[4];QVector<int> ch3[4];QVector<int> ch4[4];
 
     QVector<int64_t> timetags;

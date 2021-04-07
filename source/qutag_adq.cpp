@@ -85,12 +85,12 @@ qutagadq::qutagadq(){
 void qutagadq::run(){
 
 lautrun();
-//andrewrun();
+
 }
 
 /* Check return code and exit on error */
-void qutagadq::checkRc( const char * fctname, int rc )
-{
+void qutagadq::checkRc( const char * fctname, int rc ){
+  //std::cout<<"function: "<<fctname<< "     rc = "<<rc<<std::endl;
   if ( rc ) {
     printf("error\n");
     printf( ">>> %s: %s\n", fctname, TDC_perror( rc ) );
@@ -136,21 +136,21 @@ int qutagadq::filterset(){
    /* std::cout<<"filter channel : "<<in_startChan<<"  , mask : "<<maskC<<std::endl;
     std::cout<<"filter channel : "<<in_PlotACh2<<"  , mask : "<<maskA<<std::endl;
     std::cout<<"filter channel : "<<in_PlotBCh2<<"  , mask : "<<maskB<<std::endl;*/
-    rc = TDC_configureFilter(in_startChan, FILTER_SYNC , maskC);
-    checkRc( "TDC_configureFilter clock", rc );
-    rc = TDC_configureFilter(in_PlotACh2, FILTER_NONE, maskA);
+    //rc = TDC_configureFilter(in_startChan, FILTER_SYNC , maskC);
+    //checkRc( "TDC_configureFilter clock", rc );
+    /*rc = TDC_configureFilter(in_PlotACh2, FILTER_NONE, maskA);
     checkRc( "TDC_configureFilter mask A", rc );
     rc = TDC_configureFilter(in_PlotBCh2, FILTER_NONE, maskB);
     checkRc( "TDC_configureFilter mask B", rc );
     rc = TDC_configureFilter(in_PlotCCh2, FILTER_NONE, maskB);
-    checkRc( "TDC_configureFilter mask B", rc );
+    checkRc( "TDC_configureFilter mask B", rc );*/
 
     return 0;
 }
 
 
  void qutagadq::lautrun(){
-     setHistograms();
+    setHistograms();
 
   TDC_clearAllHistograms ();
 
@@ -161,7 +161,7 @@ int qutagadq::filterset(){
     double previous_time = QDateTime::currentDateTime().toMSecsSinceEpoch();
     double current_time;
 
-     while(!break_){
+     while(!break_ && !rc){
          current_time = QDateTime::currentDateTime().toMSecsSinceEpoch();
         // std::cout<< current_time-previous_time <<std::endl;
          if((current_time-previous_time) > 1000*in_adqtime){           
@@ -172,7 +172,7 @@ int qutagadq::filterset(){
          QThread::msleep(10);
 
      }
-
+    std::cout<<"adq thread broke"<<std::endl;
  }
 
  void qutagadq::getHisto(){
@@ -240,7 +240,7 @@ int qutagadq::filterset(){
        }
 
 
-
+        //std::cout<<"in_PlotCCh1= "<<in_PlotCCh1<<"     in_PlotCCh2 = "<<in_PlotCCh2<<std::endl;
        rc = TDC_getHistogram(in_PlotCCh1, in_PlotCCh2, 1, histodataC, &count, &tooSmall, &tooBig, &eventsA, &eventsB, &expTime );
        checkRc( "TDC_getHistogram C", rc );
 
@@ -264,7 +264,7 @@ int qutagadq::filterset(){
 
 
  void qutagadq::getTimeStamps(){
-     //std::cout<<"gethisto"<<std::endl;
+     //std::cout<<"gettimestanmps"<<std::endl;
      timetags.clear();channelsTDC.clear();
      rc = TDC_getLastTimestamps( 1, timestamps, channels, &tsValid );
      checkRc( "TDC_getLastTimestamps", rc );
@@ -289,30 +289,31 @@ int qutagadq::filterset(){
 
      /////////calculate histogram parameters///////////
 
-     HIST_BINWIDTH=(int)(in_histEnd-in_histStart)/in_binsinplot;
+     if(in_binsinplot>0)HIST_BINWIDTH=(int)(in_histEnd-in_histStart)/in_binsinplot;
      HIST_BINCOUNT=in_binsinplot;
-     filterset();
+     //filterset();
 
-    /* std::cout<<"HIST_BINWIDTH  :  "<< HIST_BINWIDTH<<std::endl;
+     std::cout<<"HIST_BINWIDTH  :  "<< HIST_BINWIDTH<<std::endl;
      std::cout<<"HIST_BINCOUNT  :  "<< HIST_BINCOUNT<<std::endl;
-     std::cout<<"HIST_BINWIDTH  *  HIST_BINCOUNT  :  "<< HIST_BINWIDTH*HIST_BINCOUNT<<std::endl;*/
+     std::cout<<"HIST_BINWIDTH  *  HIST_BINCOUNT  :  "<< HIST_BINWIDTH*HIST_BINCOUNT<<std::endl;
      bin2ns = HIST_BINWIDTH * timeBase * 1.e9;
 
      /////////////create the histograms on the FPGA only if is necesary/////////////
 
+     std::cout<<"A1: "<<in_PlotACh1<<", A2: "<<in_PlotACh2<<", B1: "<<in_PlotBCh1<<", B2: "<<in_PlotBCh2<<", C1: "<<in_PlotCCh1<<", C2: "<<in_PlotCCh2<<std::endl;
+
      if(ActHist[in_PlotACh1][in_PlotACh2]==0){
          firstChanHist=in_PlotACh1;
          secondChanHist=in_PlotACh2;
-         //thirdChanHist=in_PlotACh2;
          ActHist[in_PlotACh1][in_PlotACh2]=1;
         // std::cout<<"quewepasahermano  "<<std::endl;
          rc = TDC_addHistogram( firstChanHist, secondChanHist, 1 );
          checkRc( "TDC_addHistogram", rc );
-         //std::cout<<"quewepasahermano 2 "<<std::endl;
+
      }
 
 
-     if(in_PlotACh1!=in_PlotBCh1 || in_PlotACh2!=in_PlotBCh2){
+     //if(in_PlotACh1!=in_PlotBCh1 || in_PlotACh2!=in_PlotBCh2){
          if(ActHist[in_PlotBCh1][in_PlotBCh2]==0){
              firstChanHist=in_PlotBCh1;
              secondChanHist=in_PlotBCh2;
@@ -320,8 +321,8 @@ int qutagadq::filterset(){
              rc = TDC_addHistogram( firstChanHist, secondChanHist, 1 );
              checkRc( "TDC_addHistogram", rc );
          }
-     }
-     if(in_PlotBCh1!=in_PlotCCh1 || in_PlotBCh2!=in_PlotCCh2){
+    // }
+    // if(in_PlotBCh1!=in_PlotCCh1 || in_PlotBCh2!=in_PlotCCh2){
          if(ActHist[in_PlotCCh1][in_PlotCCh2]==0){
              firstChanHist=in_PlotCCh1;
              secondChanHist=in_PlotCCh2;
@@ -329,8 +330,16 @@ int qutagadq::filterset(){
              rc = TDC_addHistogram( firstChanHist, secondChanHist, 1 );
              checkRc( "TDC_addHistogram", rc );
          }
-     }
-    if((HIST_BINWIDTH!= HIST_BINWIDTH_out || HIST_BINCOUNT!=HIST_BINCOUNT_out) && HIST_BINWIDTH>1){
+     //}
+
+     /*rc = TDC_addHistogram( in_PlotACh1, in_PlotACh2, 1 );
+     checkRc( "TDC_addHistogram", rc );
+     rc = TDC_addHistogram(in_PlotBCh1, in_PlotBCh2, 1 );
+     checkRc( "TDC_addHistogram", rc );
+     rc = TDC_addHistogram( in_PlotCCh1, in_PlotCCh2, 1 );
+     checkRc( "TDC_addHistogram", rc );*/
+
+    if((HIST_BINWIDTH!= HIST_BINWIDTH_out || HIST_BINCOUNT!=HIST_BINCOUNT_out) && HIST_BINWIDTH>=1){
       HIST_BINWIDTH_out= HIST_BINWIDTH;
       HIST_BINCOUNT_out = HIST_BINCOUNT;
       rc = TDC_setHistogramParams( HIST_BINWIDTH_out, HIST_BINCOUNT_out );
@@ -355,7 +364,7 @@ int qutagadq::filterset(){
 
 
      paramschange=false;
-    //std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
+    std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
 
  }
 

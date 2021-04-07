@@ -65,6 +65,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
     int j;
 //std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
+    //std::cout<<"in_statChan= "<<in_startChan<<std::endl;
    // double prevclk;
     for ( int i=0 ; i<tsvalid; i++) {
             ChannelIndex = int(vectorChannels[i]);
@@ -77,7 +78,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
                     //std::cout<<(int)vectorChannels[j]<<std::endl;
                     diffh = vectorTimetags[j]-vectorTimetags[i];
                    //if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh+in_histStart<<std::endl;
-                            for (int ii=0; ii<6; ii++) {//over the 5 curves of tab2
+                            for (int ii=0; ii<6; ii++) {//over the 6 curves of tab2
                                 for (int jj=0; jj<2; jj++) {//check the condition of at one side of the &
                                     //if(ii<3 || (ii==4 && jj==1)){
                                    //if(ii==4 && jj==1) std::cout<<"tab 2 plot   :  "<<tab2_plot[ii][jj]<<std::endl;

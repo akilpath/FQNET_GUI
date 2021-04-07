@@ -27,7 +27,7 @@ void DBControl::DBConnect(QString server, int port, QString database, QString lo
         std::cout<<"connection DB success"<<std::endl;
         QStringList tables_names = db.tables();
         for (int i = 0; i < tables_names.size(); ++i)
-                 std::cout << tables_names.at(i).toLocal8Bit().constData() << std::endl;
+                 //std::cout << tables_names.at(i).toLocal8Bit().constData() << std::endl;
        QSqlQuery query("create table if not exists inqnet_gui_tab2gates_V3(id int not null auto_increment primary key, and1 int,and2 int, and3 int, orgate int, bsm1 int, bsm2 int, and_adqtime float(7,2), delayline int,currentdelay double, attenuation double, datetime datetime);",db);
        QSqlQuery query2("create table if not exists inqnet_gui_historates(id int not null auto_increment primary key, Ra1 int,Ra2 int, Ra3 int, Rb1 int,Rb2 int, Rb3 int, Rc1 int,Rc2 int, Rc3 int ,hist_adqtime float(7,2), datetime datetime);",db);
        usleep(1000);

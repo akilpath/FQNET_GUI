@@ -56,26 +56,26 @@ ui->plot1_2->setValue(0);
 ui->win1_1->setValue(0);
 ui->win1_2->setValue(0);
 
-ui->histStart->setValue(69000);
-ui->histEnd->setValue(78500);
+ui->histStart->setValue(0);
+ui->histEnd->setValue(2500);
 /*ui->histStart->setValue(1000);
 ui->histEnd->setValue(10000);*/
 
 ui->binsinplot->setValue(1000);
-ui->adqtime->setValue(10);//update rate Adq time
+ui->adqtime->setValue(2);//update rate Adq time
 
 
-ui->BegA1->setValue(70700);
-ui->BegA2->setValue(72600);
+ui->BegA1->setValue(500);
+ui->BegA2->setValue(7000);
 ui->BegA3->setValue(74600);
-ui->EndA1->setValue(72100);
+ui->EndA1->setValue(1000);
 ui->EndA2->setValue(73900);
 ui->EndA3->setValue(75900);
 
-ui->BegB1->setValue(71600);
-ui->BegB2->setValue(73600);
+ui->BegB1->setValue(2);
+ui->BegB2->setValue(5000);
 ui->BegB3->setValue(75600);
-ui->EndB1->setValue(72800);
+ui->EndB1->setValue(500);
 ui->EndB2->setValue(74800);
 ui->EndB3->setValue(76800);
 
@@ -86,13 +86,13 @@ ui->EndC1->setValue(72800);
 ui->EndC2->setValue(74800);
 ui->EndC3->setValue(76800);
 
-ui->PlotAChn1->setValue(1);
-ui->PlotAChn2->setValue(3);
-ui->PlotBChn1->setValue(1);
+ui->PlotAChn1->setValue(3);
+ui->PlotAChn2->setValue(4);
+ui->PlotBChn1->setValue(3);
 ui->PlotBChn2->setValue(2);
-ui->PlotCChn1->setValue(1);
-ui->PlotCChn2->setValue(4);
-ui->startChan->setValue(1);
+ui->PlotCChn1->setValue(2);
+ui->PlotCChn2->setValue(2);
+ui->startChan->setValue(3);
 
 ui->plot1_1->setValue(0);
 ui->plot1_2->setValue(1);
@@ -147,8 +147,11 @@ ui->Max_delay->setValue(500);
 ui->stepduration->setValue(30);
 
 dbc.start();
-adq.start();
+
 anl.start();
+
+while(adq.isRunning())usleep(100);
+adq.start();
 
 adq.initdone = 1;
 }
