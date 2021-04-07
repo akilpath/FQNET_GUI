@@ -18,8 +18,10 @@ qutagadq::qutagadq(){
     channelsTDC.reserve(TIMESTAMP_COUNT+1);
     break_=false;
     adqpause_=false;
-    histodataA=0;
-    histodataB=0;
+    histodataA=NULL;
+    histodataB=NULL;
+    histodataC=NULL;
+
     anlAvilable=false;
 
     printf( ">>> tdcbase version: %f\n", TDC_getVersion() );
@@ -41,9 +43,10 @@ qutagadq::qutagadq(){
     rc = TDC_setExposureTime( 1000 );
     checkRc( "TDC_setExposureTime", rc );
 
-    RoF[1]=1;
+    /*RoF[1]=1;
     RoF[2]=0;
     RoF[3]=0;
+    RoF[4]=0;*/
 
 
 
@@ -66,8 +69,8 @@ qutagadq::qutagadq(){
 
 
 
-    req.tv_sec = 0;
-    req.tv_nsec = microsec * 1000L;
+    //req.tv_sec = 0;
+    //req.tv_nsec = microsec * 1000L;
 
     fflush(stdout);
 
@@ -103,10 +106,6 @@ void qutagadq::checkRc( const char * fctname, int rc )
 
  void qutagadq::adqui(){
 
-
-
-
-	
 }
 
 
@@ -131,6 +130,7 @@ int qutagadq::filterset(){
 
     maskC|=0x1<<(in_PlotACh2);
     maskC|=0x1<<(in_PlotBCh2);
+    maskC|=0x1<<(in_PlotCCh2);
     //maskC|=0x1<<(in_startChan);
 
    /* std::cout<<"filter channel : "<<in_startChan<<"  , mask : "<<maskC<<std::endl;
@@ -141,6 +141,8 @@ int qutagadq::filterset(){
     rc = TDC_configureFilter(in_PlotACh2, FILTER_NONE, maskA);
     checkRc( "TDC_configureFilter mask A", rc );
     rc = TDC_configureFilter(in_PlotBCh2, FILTER_NONE, maskB);
+    checkRc( "TDC_configureFilter mask B", rc );
+    rc = TDC_configureFilter(in_PlotCCh2, FILTER_NONE, maskB);
     checkRc( "TDC_configureFilter mask B", rc );
 
     return 0;
@@ -167,7 +169,7 @@ int qutagadq::filterset(){
              previous_time = current_time;
          }
          if(anlAvilable)getTimeStamps();
-         QThread::msleep(100);
+         QThread::msleep(10);
 
      }
 
@@ -191,6 +193,12 @@ int qutagadq::filterset(){
 
      histodataB = new Int32 [in_binsinplot];
 
+     if (histodataC != 0) {
+         delete [] histodataC;
+     }
+
+     histodataC = new Int32 [in_binsinplot];
+
     /* std::cout<<"binsinplot adq  :  "<< in_binsinplot<<std::endl;
      std::cout<<"plot 1A  :  "<< in_PlotACh1<<std::endl;
      std::cout<<"plot 2A  :  "<< in_PlotACh2<<std::endl;
@@ -202,21 +210,14 @@ int qutagadq::filterset(){
      else rc = TDC_getHistogram(in_PlotACh1, in_PlotACh2, 1, histodataA, &count, &tooSmall, &tooBig, &eventsA, &eventsB, &expTime );
 
        checkRc( "TDC_getHistogram A", rc );
-      // printf( ">>> Histogram 1-2:     valid=%d tooSmall=%d tooBig=%d\n", count, tooSmall, tooBig );
-      // printf( ">>>                    starts=%d  stops=%d expTime=%g s\n", eventsA, eventsB, expTime * timeBase );
-      /* printf( ">>>       Bin Time   Counter global      Counter 1-2\n" );
-       for ( i = 0; i < HIST_BINCOUNT; ++i ) {
-        ////// "Bin Time" is the lower limit of the bin
-         printf( ">>> %12fns %16d %16d\n", i * bin2ns, histodataA[i]);
-       }*/
-       //std::copy(histodataA, histodataA + HIST_BINCOUNT, std::back_inserter(histo2vector));
+
 
         count1=count;
 
        QVector<double> dataA(in_binsinplot);
        for (int i=0; i<in_binsinplot; ++i){
 
-           dataA[i]=(double) histodataA[i];
+           dataA[i]=double(histodataA[i]);
        }
 
 
@@ -228,14 +229,6 @@ int qutagadq::filterset(){
        rc = TDC_getHistogram(in_PlotBCh1, in_PlotBCh2, 1, histodataB, &count, &tooSmall, &tooBig, &eventsA, &eventsB, &expTime );
        checkRc( "TDC_getHistogram B", rc );
 
-      //  printf( ">>> Histogram 1-2:     valid=%d tooSmall=%d tooBig=%d\n", count, tooSmall, tooBig );
-       // printf( ">>>                    starts=%d  stops=%d expTime=%g s\n", eventsA, eventsB, expTime * timeBase );
-        /*printf( ">>>       Bin Time   Counter global      Counter 1-2\n" );
-        for ( i = 0; i < HIST_BINCOUNT; ++i ) {
-         ////// "Bin Time" is the lower limit of the bin
-          printf( ">>> %12fns %16d %16d\n", i * bin2ns, histodataA[i]);
-        }
-*/
 
        count2=count;
 
@@ -243,13 +236,30 @@ int qutagadq::filterset(){
 
        for (int i=0; i<in_binsinplot; ++i){
 
-           dataB[i]=(double) histodataB[i];
+           dataB[i]=double( histodataB[i] );
        }
 
-       if(count1 != 0 || count2 !=0)emit(qutaghist(dataA, dataB));
+
+
+       rc = TDC_getHistogram(in_PlotCCh1, in_PlotCCh2, 1, histodataC, &count, &tooSmall, &tooBig, &eventsA, &eventsB, &expTime );
+       checkRc( "TDC_getHistogram C", rc );
+
+
+       count3=count;
+
+       QVector<double> dataC(in_binsinplot);
+
+       for (int i=0; i<in_binsinplot; ++i){
+
+           dataC[i]=double (histodataC[i]);
+       }
+
+//std::cout<<count1<<"  "<<count2<<"  "<< count3<<std::endl;
+       if(count1 != 0 || count2 !=0 || count3 !=0)emit(qutaghist(dataA, dataB, dataC));
 
        dataA.clear();
        dataB.clear();
+       dataC.clear();
  }
 
 
@@ -262,6 +272,13 @@ int qutagadq::filterset(){
      std::copy(channels, channels + tsValid, std::back_inserter(channelsTDC));     
      if(tsValid>0 && anlAvilable){
         // QThread::msleep(1);
+
+
+
+         /*for ( int i=0; i < 20; i++ ) {
+         //   printf("channel original:  %hd",channels[i]);
+           std::cout<<"     channel :"<<(int)channels[i]<<"\t TTS: "<<timestamps[i]<<"       "<<timestamps[i+1]-timestamps[i]<<std::endl;
+         }*/
         emit dataready(timetags, channelsTDC, (int)tsValid);
      }
 //std::cout<<"gethisto5"<<std::endl;
@@ -286,6 +303,7 @@ int qutagadq::filterset(){
      if(ActHist[in_PlotACh1][in_PlotACh2]==0){
          firstChanHist=in_PlotACh1;
          secondChanHist=in_PlotACh2;
+         //thirdChanHist=in_PlotACh2;
          ActHist[in_PlotACh1][in_PlotACh2]=1;
         // std::cout<<"quewepasahermano  "<<std::endl;
          rc = TDC_addHistogram( firstChanHist, secondChanHist, 1 );
@@ -303,6 +321,15 @@ int qutagadq::filterset(){
              checkRc( "TDC_addHistogram", rc );
          }
      }
+     if(in_PlotBCh1!=in_PlotCCh1 || in_PlotBCh2!=in_PlotCCh2){
+         if(ActHist[in_PlotCCh1][in_PlotCCh2]==0){
+             firstChanHist=in_PlotCCh1;
+             secondChanHist=in_PlotCCh2;
+             ActHist[in_PlotCCh1][in_PlotCCh2]=1;
+             rc = TDC_addHistogram( firstChanHist, secondChanHist, 1 );
+             checkRc( "TDC_addHistogram", rc );
+         }
+     }
     if((HIST_BINWIDTH!= HIST_BINWIDTH_out || HIST_BINCOUNT!=HIST_BINCOUNT_out) && HIST_BINWIDTH>1){
       HIST_BINWIDTH_out= HIST_BINWIDTH;
       HIST_BINCOUNT_out = HIST_BINCOUNT;
@@ -315,7 +342,7 @@ int qutagadq::filterset(){
 
     //std::cout<<in_PlotACh1 << "||||||||"<<in_PlotACh1 <<std::endl;
     for (int i=0;i<5;i++) {
-        if(i==in_PlotACh1 || i==in_PlotBCh1)delays[i]=in_histStart;
+        if(i==in_PlotACh1 || i==in_PlotBCh1|| i==in_PlotCCh1)delays[i]=in_histStart;
         else delays[i]=0;
         std::cout<<delays[i]<<"   ";
 
@@ -328,7 +355,7 @@ int qutagadq::filterset(){
 
 
      paramschange=false;
-    std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
+    //std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
 
  }
 

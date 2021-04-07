@@ -29,35 +29,9 @@ public:
        int Hist1start, Hist2start, Hist1end, Hist2end;
        Int64 sampleclocks[AVGLENGTH];
        Int64 sampletimediffs[AVGLENGTH - 1];
-       int arrindex = 0;
-       int clockchannel;
-       Int64 sum1 = 0;
-       Int64 sum2 = 0;
-       int i = 0;
-       int evt= 0;
-       int ch = 0;
-       int tg = 0;
-       int avgtimediff = 0;
-       int anlclock = 0;
-       int eventsum = 0;
-       Int64 begin = 0;
-       Int64 end = 0;
-       Int64 prevclock = -1;
-       Int64 init_prevclock = -1;
-       int newevent = 0;
-       int goodevent = 0;
-       int clocksum = 0;
-       std::array<int, 4> myarray;
-       int runcounter = 0;
-       int clocknotfound = 0;
-       int starttag = 0;
-       char clock1[15];
-       char clock2[15];
-       char clock3[15];
-       char clock4[15];
-       int totalevents;
-       int lengthtoprint;
-       Int64 delta;
+
+
+
 
 
 
@@ -72,21 +46,21 @@ public:
 
 
     void clear_events();
-    void print_event(int EVT, int CLOCK);
-    void generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS);
-    void print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, int LENGTHTOPRINT);
+    //void print_event(int EVT, int CLOCK);
+    //void generate_deltavector(int CHAN, int CLOCK, int TOTALEVENTS);
+    //void print_deltavector(std::vector< std::pair <Int64,int> > VECTOR, int LENGTHTOPRINT);
 
     explicit qutaganl();
     void updateConditions();
     ~qutaganl();
 
     /////histogram Windows////
-    int Plot_Win_BoE[2][3][2]= {{{0}}};
+    int Plot_Win_BoE[3][3][2]= {{{0}}};
 
     ////first plot////
     int in_binsinplot, in_startChan, in_histStart, in_histEnd;
     double in_adqtime;
-    int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2;
+    int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2, in_PlotCCh1, in_PlotCCh2;
 
 
 
@@ -95,11 +69,11 @@ public:
    //////tab 2 param/////////
     int xtime;
     float adqtime_tab2;
-    int tab2_plot[3][2]={{0}};
-    int tab2_win[3][2]= {{0}};
+    int tab2_plot[6][2]={{0}};
+    int tab2_win[6][2]= {{0}};
 
-    int counterplot1=0, counterplot2=0, counterplot3=0;
-    int tab2_ranges[3][2][2] = {{{0}}};
+   // int counterplot1=0, counterplot2=0, counterplot3=0;
+    int tab2_ranges[6][2][2] = {{{0}}};
 
 public slots:
     
@@ -111,6 +85,8 @@ public slots:
   void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;updateConditions();}
   void Chang_in_PlotBChn1(int val){this->in_PlotBCh1=val;updateConditions();}
   void Chang_in_PlotBChn2(int val){this->in_PlotBCh2=val;updateConditions();}
+  void Chang_in_PlotCChn1(int val){this->in_PlotCCh1=val;updateConditions();}
+  void Chang_in_PlotCChn2(int val){this->in_PlotCCh2=val;updateConditions();}
 
   void Chang_in_binsinplot(int val){this->in_binsinplot=val;updateConditions();}
   void Chang_in_histStart(int val){this->in_histStart=val;updateConditions();}
@@ -132,6 +108,13 @@ public slots:
   void EndB2(int val){Plot_Win_BoE[1][1][1]=val;updateConditions();}
   void EndB3(int val){Plot_Win_BoE[1][2][1]=val;updateConditions();}
 
+  void BegC1(int val){Plot_Win_BoE[2][0][0]=val;updateConditions();}
+  void BegC2(int val){Plot_Win_BoE[2][1][0]=val;updateConditions();}
+  void BegC3(int val){Plot_Win_BoE[2][2][0]=val;updateConditions();}
+  void EndC1(int val){Plot_Win_BoE[2][0][1]=val;updateConditions();}
+  void EndC2(int val){Plot_Win_BoE[2][1][1]=val;updateConditions();}
+  void EndC3(int val){Plot_Win_BoE[2][2][1]=val;updateConditions();}
+
 
   void Chang_plot1_1(int val){this->tab2_plot[0][0]=val;updateConditions();}
   void Chang_plot1_2(int val){this->tab2_plot[0][1]=val;updateConditions();}
@@ -139,6 +122,10 @@ public slots:
   void Chang_plot2_2(int val){this->tab2_plot[1][1]=val;updateConditions();}
   void Chang_plot3_1(int val){this->tab2_plot[2][0]=val;updateConditions();}
   void Chang_plot3_2(int val){this->tab2_plot[2][1]=val;updateConditions();}
+  void Chang_plot4_1(int val){this->tab2_plot[3][0]=val;updateConditions();}
+  void Chang_plot4_2(int val){this->tab2_plot[3][1]=val;updateConditions();}
+  void Chang_plot5_2(int val){this->tab2_plot[4][1]=val;updateConditions();}
+  void Chang_plot6_2(int val){this->tab2_plot[5][1]=val;updateConditions();}
 
   void Chang_win1_1(int val){this->tab2_win[0][0]=val;updateConditions();}
   void Chang_win1_2(int val){this->tab2_win[0][1]=val;updateConditions();}
@@ -146,6 +133,8 @@ public slots:
   void Chang_win2_2(int val){this->tab2_win[1][1]=val;updateConditions();}
   void Chang_win3_1(int val){this->tab2_win[2][0]=val;updateConditions();}
   void Chang_win3_2(int val){this->tab2_win[2][1]=val;updateConditions();}
+  void Chang_win5_2(int val){this->tab2_win[4][1]=val;updateConditions();}
+  void Chang_win6_2(int val){this->tab2_win[5][1]=val;updateConditions();}
 
   void Chang_adqtime_2(double val){this->adqtime_2=val;updateConditions();}
 
@@ -155,14 +144,15 @@ signals:
     void anlongoing(bool ong);                          //analysis program still working
     void Chang_anlAvilable(bool val);
     void CombinationChange(bool val);
-    void rates_tab2(int, int, int, double);
+    void rates_tab2(int, int, int, int, int ,int ,double);
+
 private:
 
   QVector<double> histo1data;
   std::ofstream file;
   double diffh;
-  int ChannelIndex=0, j=0, StopIndex=0, counterplot[3]={0,0,0};
-  int flag[3][2]= {{0}};
+  int ChannelIndex=0, StopIndex=0, counterplot[6]={0};
+  int flag[6][2]= {{0}};
   double adqtime_2=0;
   double previouskey;
   double key;
