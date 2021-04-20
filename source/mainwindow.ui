@@ -45,7 +45,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab1">
        <attribute name="title">
@@ -279,6 +279,15 @@
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </active>
                   <inactive>
                    <colorrole role="WindowText">
@@ -449,6 +458,15 @@
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </inactive>
                   <disabled>
                    <colorrole role="WindowText">
@@ -613,6 +631,15 @@
                    <colorrole role="ToolTipText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
                       <red>0</red>
                       <green>0</green>
                       <blue>0</blue>
@@ -957,7 +984,7 @@
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
                    <property name="text">
-                    <string>Histogram Start</string>
+                    <string>Histogram DisplayStart</string>
                    </property>
                   </widget>
                  </item>
@@ -976,7 +1003,7 @@
                     <number>110000</number>
                    </property>
                    <property name="singleStep">
-                    <number>0</number>
+                    <number>10</number>
                    </property>
                    <property name="value">
                     <number>2</number>
@@ -989,12 +1016,12 @@
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
                    <property name="text">
-                    <string>Histogram End</string>
+                    <string>Bin Width</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="histEnd">
+                  <widget class="QSpinBox" name="binWidth">
                    <property name="styleSheet">
                     <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
@@ -1054,20 +1081,44 @@
                   </widget>
                  </item>
                  <item>
-                  <spacer name="verticalSpacer_13">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                  <widget class="QLabel" name="label_111">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
                    </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Minimum</enum>
+                   <property name="text">
+                    <string>Histogram End</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_32">
+                   <item>
+                    <widget class="QLCDNumber" name="HistoEndDisplay">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_112">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(238, 238, 236);</string>
+                     </property>
+                     <property name="text">
+                      <string>[ps]</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                 </layout>
                </widget>
@@ -1339,6 +1390,16 @@ color: rgb(239, 41, 41);</string>
                    </size>
                   </property>
                  </spacer>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="Log1">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Log</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -1649,6 +1710,16 @@ color: rgb(239, 41, 41);</string>
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="Log2">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Log</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_7">
@@ -1967,6 +2038,16 @@ background-color: rgb(136, 138, 133);</string>
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="Log3">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(238, 238, 236);</string>
+                  </property>
+                  <property name="text">
+                   <string>Log</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_5">
@@ -4190,6 +4271,9 @@ background-color: rgb(136, 138, 133);</string>
                <property name="styleSheet">
                 <string notr="true">color: rgb(238, 238, 236);</string>
                </property>
+               <property name="decimals">
+                <number>3</number>
+               </property>
                <property name="minimum">
                 <double>-10.000000000000000</double>
                </property>
@@ -4211,6 +4295,9 @@ color: rgb(238, 238, 236);</string>
                <property name="styleSheet">
                 <string notr="true">color: rgb(238, 238, 236);</string>
                </property>
+               <property name="decimals">
+                <number>3</number>
+               </property>
                <property name="minimum">
                 <double>-10.000000000000000</double>
                </property>
@@ -4230,6 +4317,9 @@ color: rgb(238, 238, 236);</string>
               <widget class="QDoubleSpinBox" name="thch3">
                <property name="styleSheet">
                 <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="decimals">
+                <number>3</number>
                </property>
                <property name="minimum">
                 <double>-10.000000000000000</double>
@@ -4271,6 +4361,9 @@ color: rgb(238, 238, 236);</string>
                <property name="styleSheet">
                 <string notr="true">color: rgb(238, 238, 236);</string>
                </property>
+               <property name="decimals">
+                <number>3</number>
+               </property>
                <property name="minimum">
                 <double>-10.000000000000000</double>
                </property>
@@ -4282,7 +4375,7 @@ color: rgb(238, 238, 236);</string>
                 <string notr="true">color: rgb(238, 238, 236);</string>
                </property>
                <property name="text">
-                <string>Delay line time</string>
+                <string>Optical delay line time</string>
                </property>
               </widget>
              </item>
@@ -4296,6 +4389,110 @@ color: rgb(238, 238, 236);</string>
                </property>
                <property name="maximum">
                 <number>500</number>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_113">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Delay Ch1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_135">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Delay Ch2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_136">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Delay Ch3</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_137">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Delay Ch4</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QDoubleSpinBox" name="delay1">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="suffix">
+                <string> [ns]</string>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QDoubleSpinBox" name="delay2">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="suffix">
+                <string> [ns]</string>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QDoubleSpinBox" name="delay3">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="suffix">
+                <string> [ns]</string>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QDoubleSpinBox" name="delay4">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="suffix">
+                <string> [ns]</string>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
                </property>
               </widget>
              </item>
@@ -4406,7 +4603,7 @@ color: rgb(238, 238, 236);</string>
      <x>0</x>
      <y>0</y>
      <width>1500</width>
-     <height>28</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="font">

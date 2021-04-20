@@ -42,12 +42,13 @@ class qutagadq : public QThread
 
 public:
 
-void run();
+    void run();
 
     explicit qutagadq();
     ~qutagadq();
     //void Break();
     bool anlAvilable =false;
+    //double getthreshold1(){return }
 public slots:
     
   void adqui();
@@ -62,7 +63,7 @@ public slots:
   void Chang_in_binsinplot(int val){this->in_binsinplot=val;paramschange=true;}
 
   void Chang_in_histStart(int val){this->in_histStart=val;paramschange=true;}
-  void Chang_in_histEnd(int val){this->in_histEnd=val;paramschange=true;}
+  void Chang_in_binWidth(int val){this->in_binWidth=val;paramschange=true;}
   void Chang_in_startChan(int val){this->in_startChan=val;paramschange=true;}
 
   void Chang_in_adqtime(double val){this->in_adqtime=val;}
@@ -77,16 +78,22 @@ public slots:
 
   void Chang_anlAvilable(bool val){this->anlAvilable =val;}
 
-  void Chang_in_thch1(double val){this->in_thch1=val;changThreshold(1,val);}
-  void Chang_in_thch2(double val){this->in_thch2=val;changThreshold(2,val);}
-  void Chang_in_thch3(double val){this->in_thch3=val;changThreshold(3,val);}
-  void Chang_in_thch4(double val){this->in_thch4=val;changThreshold(4,val);}
+  void Chang_in_thch1(double val){thresholds[1]=val;changThreshold(1);}
+  void Chang_in_thch2(double val){thresholds[2]=val;changThreshold(2);}
+  void Chang_in_thch3(double val){thresholds[3]=val;changThreshold(3);}
+  void Chang_in_thch4(double val){thresholds[4]=val;changThreshold(4);}
   void Chang_in_cw(int val){this->in_cw=val; TDC_setCoincidenceWindow(val);}
 
-  void Chang_rof1(QString text){if(text=="Rise")RoF[1]=1;else RoF[1]=0;changThreshold(1,in_thch1);}
-  void Chang_rof2(QString text){if(text=="Rise")RoF[2]=1;else RoF[2]=0;changThreshold(2,in_thch2);}
-  void Chang_rof3(QString text){if(text=="Rise")RoF[3]=1;else RoF[3]=0;changThreshold(3,in_thch3);}
-  void Chang_rof4(QString text){if(text=="Rise")RoF[4]=1;else RoF[4]=0;changThreshold(4,in_thch4);}
+  void Chang_rof1(QString text){if(text=="Rise")RoF[1]=1;else RoF[1]=0;changThreshold(1);}
+  void Chang_rof2(QString text){if(text=="Rise")RoF[2]=1;else RoF[2]=0;changThreshold(2);}
+  void Chang_rof3(QString text){if(text=="Rise")RoF[3]=1;else RoF[3]=0;changThreshold(3);}
+  void Chang_rof4(QString text){if(text=="Rise")RoF[4]=1;else RoF[4]=0;changThreshold(4);}
+
+  void Chang_delay1(double val){delays[1]=int(1000*val);set_delays();}
+  void Chang_delay2(double val){delays[2]=int(1000*val);set_delays();}
+  void Chang_delay3(double val){delays[3]=int(1000*val);set_delays();}
+  void Chang_delay4(double val){delays[4]=int(1000*val);set_delays();}
+  void set_delays();
 
 signals:
    // void dataready(const vectorInt64 &TTdata, const channelsTDCPP &CHdata, int nevent); // sends to inputdata()
@@ -135,7 +142,7 @@ private:
     void andrewrun();
     void lautrun();
     void getTimeStamps();
-    void changThreshold(int, double);
+    void changThreshold(int);
     int HIST_BINWIDTH;
     int HIST_BINCOUNT;
     int HIST_BINWIDTH_out, HIST_BINCOUNT_out;
@@ -148,17 +155,19 @@ private:
 
     int delays[5] = {0,0,0,0,0};
     /////////////////tab 1 variables///////////////
-    int in_binsinplot, in_startChan, in_histStart, in_histEnd;
+    int in_binsinplot, in_startChan, in_histStart, in_binWidth;
     double in_adqtime;
     int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2, in_PlotCCh1, in_PlotCCh2;
-    double in_thch1, in_thch2,in_thch3,in_thch4;
-    int in_cw;
-    bool RoF[5];
+    //double in_thch1, in_thch2,in_thch3,in_thch4;
+
 
 public:
     clock_t begin, end;
     double cpu_time_used;
     bool initdone = 0;
+    double thresholds[5];
+    int in_cw;
+    bool RoF[5];
 
 private:
 

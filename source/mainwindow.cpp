@@ -19,10 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->setupUi(this);
   setGeometry(200, 200, 1500, 800);
 
-
-
-//setupPlotA(ui->PlotA);
-
 //dbc.DBConnect("localhost", 3306, "INQNET_GUI", "GUI", "Teleport1536!");
 
  setupsignalslot();
@@ -42,10 +38,7 @@ for (int i=0;i<18;i++) {
     if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
 }
 
-ui->thch1->setValue(0.25);
-ui->thch2->setValue(-0.08);
-ui->thch3->setValue(-0.08);
-ui->thch4->setValue(-0.08);
+
 ui->cw->setValue(50000);
 
 //for (int i=0;i<9;i++)P_R[i]=0;
@@ -57,7 +50,7 @@ ui->win1_1->setValue(0);
 ui->win1_2->setValue(0);
 
 ui->histStart->setValue(0);
-ui->histEnd->setValue(2500);
+ui->binWidth->setValue(1);
 /*ui->histStart->setValue(1000);
 ui->histEnd->setValue(10000);*/
 
@@ -127,6 +120,29 @@ ui->rof3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { 
 ui->rof4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
 
 
+
+
+ui->Max_delay->setValue(500);
+
+ui->stepduration->setValue(30);
+
+ui->Log1->setCheckState(Qt::Unchecked);
+ui->Log2->setCheckState(Qt::Unchecked);
+ui->Log3->setCheckState(Qt::Unchecked);
+
+
+dbc.start();
+
+anl.start();
+
+while(adq.isRunning())usleep(100);
+
+ui->thch1->setValue(adq.thresholds[1]);
+ui->thch2->setValue(adq.thresholds[2]);
+ui->thch3->setValue(adq.thresholds[3]);
+ui->thch4->setValue(adq.thresholds[4]);
+//std::cout<<" MAINWINDOW rof"<<adq.RoF[1]<<"rof"<<adq.RoF[2]<<"rof"<<adq.RoF[3]<<"rof"<<adq.RoF[4]<<std::endl;
+for (int i=0;i<5;i++)this->RoF[i]=adq.RoF[i];
 ui->rof1->addItem(tr("Rise"));
 ui->rof1->addItem(tr("Fall"));
 ui->rof2->addItem(tr("Rise"));
@@ -135,22 +151,15 @@ ui->rof3->addItem(tr("Rise"));
 ui->rof3->addItem(tr("Fall"));
 ui->rof4->addItem(tr("Rise"));
 ui->rof4->addItem(tr("Fall"));
+if(RoF[1])ui->rof1->setCurrentText("Rise");
+else ui->rof1->setCurrentText("Fall");
+if(RoF[2])ui->rof2->setCurrentText("Rise");
+else ui->rof2->setCurrentText("Fall");
+if(RoF[3])ui->rof3->setCurrentText("Rise");
+else ui->rof3->setCurrentText("Fall");
+if(RoF[4])ui->rof4->setCurrentText("Rise");
+else ui->rof4->setCurrentText("Fall");
 
-ui->rof1->setCurrentText("Rise");
-ui->rof2->setCurrentText("Fall");
-ui->rof3->setCurrentText("Fall");
-ui->rof4->setCurrentText("Fall");
-
-
-ui->Max_delay->setValue(500);
-
-ui->stepduration->setValue(30);
-
-dbc.start();
-
-anl.start();
-
-while(adq.isRunning())usleep(100);
 adq.start();
 
 adq.initdone = 1;
@@ -442,7 +451,7 @@ title1->setTextColor(Qt::white);
   graph1->setLineStyle((QCPGraph::LineStyle)4);
 
   histograma->xAxis->setRange(0, 10000);
-
+  //histograma->yAxis->setScaleType(QCPAxis::stLogarithmic);
   //histograma->addGraph();
   //histograma->graph(0)->setPen(QPen(Qt::red));
 
@@ -494,9 +503,11 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->histStart, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_histStart(int)));
 
 
-    QObject::connect(ui->histEnd, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_in_histEnd(int)));
-    QObject::connect(ui->histEnd, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_histEnd(int)));
-    QObject::connect(ui->histEnd, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_histEnd(int)));
+    QObject::connect(ui->binWidth, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_in_binWidth(int)));
+    QObject::connect(ui->binWidth, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_binWidth(int)));
+    QObject::connect(ui->binWidth, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_binWidth(int)));
+
+    //QObject::connect(this, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_binWidth(int)));
 
     QObject::connect(ui->binsinplot, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_in_binsinplot(int)));
     QObject::connect(ui->binsinplot, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_binsinplot(int)));
@@ -626,7 +637,14 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch2(double)));
     QObject::connect(ui->thch3, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch3(double)));
     QObject::connect(ui->thch4, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch4(double)));
+
+    QObject::connect(ui->thch1, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch1(double)));
+    QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch2(double)));
+    QObject::connect(ui->thch3, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch3(double)));
+    QObject::connect(ui->thch4, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch4(double)));
+
     QObject::connect(ui->cw, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_cw(int)));
+    QObject::connect(ui->cw, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_cw(int)));
 
     QObject::connect(ui->DBON, SIGNAL(valueChanged(int)), this, SLOT(turnONDB(int)));
 
@@ -668,6 +686,20 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->rof2, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof2(QString)));
     QObject::connect(ui->rof3, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof3(QString)));
     QObject::connect(ui->rof4, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof4(QString)));
+
+ /*   QObject::connect(ui->rof1, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof1(QString)));
+    QObject::connect(ui->rof2, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof2(QString)));
+    QObject::connect(ui->rof3, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof3(QString)));
+    QObject::connect(ui->rof4, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof4(QString)));*/
+
+    QObject::connect(ui->Log1, SIGNAL(stateChanged(int)),this, SLOT(Chang_log1(int)));
+    QObject::connect(ui->Log2, SIGNAL(stateChanged(int)),this, SLOT(Chang_log2(int)));
+    QObject::connect(ui->Log3, SIGNAL(stateChanged(int)),this, SLOT(Chang_log3(int)));
+
+    QObject::connect(ui->delay1, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay1(double)));
+    QObject::connect(ui->delay2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay2(double)));
+    QObject::connect(ui->delay3, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay3(double)));
+    QObject::connect(ui->delay4, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay4(double)));
 }
 
 
@@ -812,50 +844,72 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
 
 void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, const vectorDouble &datC){
     //std::cout<<" histoplot hermanitititototot"<< datB.size()<<"   "<<datC.size() <<std::endl;
-    double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
+    //double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
+    double binwidth=double(in_binWidth);
    // std::cout<<"histogram size   "<<datA.size()<<std::endl;
-
-    QVector<double> x(datA.size());
+    QVector<double> datA_out(datA.size()-in_histStart);
+    QVector<double> datB_out(datB.size()-in_histStart);
+    QVector<double> datC_out(datC.size()-in_histStart);
+    QVector<double> x(datA.size()-in_histStart);
 //for (int i=in_histStart; i<in_histEnd; i++){
-    for (int i=0; i<datA.size(); ++i){
+    for (int i=0; i<x.size(); ++i){
         x[i] = binwidth*i+in_histStart;
-
     }
 
 
+    for (int i=0; i<datA_out.size(); ++i){
+       /* if(logar[0] && datA[i+in_histStart]>0)datA_out[i] = log10(datA[i+in_histStart]);
+        else datA_out[i] = datA[i+in_histStart];*/
+        datA_out[i] = datA[i+in_histStart];
+    }
+
   ui->PlotA->graph(0)->data()->clear();
   // pass data points to graphs:
-  ui->PlotA->graph(0)->setData(x, datA);
+  ui->PlotA->graph(0)->setData(x, datA_out);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
   ui->PlotA->graph(0)->rescaleAxes();
   ui->PlotA->replot();
 
+  for (int i=0; i<datB_out.size(); ++i){
+      /*if(logar[1] && datB[i+in_histStart]>0)datB_out[i] = log10(datB[i+in_histStart]);
+      else datB_out[i] = datB[i+in_histStart];*/
+      datB_out[i] = datB[i+in_histStart];
+  }
+
+
   ui->PlotB->graph(0)->data()->clear();
   // pass data points to graphs:
-  ui->PlotB->graph(0)->setData(x, datB);
+  ui->PlotB->graph(0)->setData(x, datB_out);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
   ui->PlotB->graph(0)->rescaleAxes();
   ui->PlotB->replot();
 
+  for (int i=0; i<datC_out.size(); ++i){
+     /* if(logar[2] && datC[i+in_histStart]>0)datC_out[i] = log10(datC[i+in_histStart]);
+      else datC_out[i] = datC[i+in_histStart];*/
+      datC_out[i] = datC[i+in_histStart];
+  }
+
+
   ui->PlotC->graph(0)->data()->clear();
   // pass data points to graphs:
-  ui->PlotC->graph(0)->setData(x, datC);
+  ui->PlotC->graph(0)->setData(x, datC_out);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
   ui->PlotC->graph(0)->rescaleAxes();
   ui->PlotC->replot();
 
 
 
-  for (int D=0; D<datA.size(); D++) {
+  for (int D=0; D<datA_out.size(); D++) {
       for (int i=0; i<9; i++) {
           if(i<3){
-              if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA[D];
+              if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA_out[D];
           }
           if(i>2 && i<6) {
-              if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB[D];
+              if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB_out[D];
           }
           if(i>5) {
-              if(x[D]>Plot_Win_BoE[2][i-6][0] && x[D]<Plot_Win_BoE[2][i-6][1])P_R[i]+=datC[D];
+              if(x[D]>Plot_Win_BoE[2][i-6][0] && x[D]<Plot_Win_BoE[2][i-6][1])P_R[i]+=datC_out[D];
           }
 
        }
@@ -1028,16 +1082,30 @@ void MainWindow::SaveState(bool a){
                     mapint.insert("in_PlotCCh1",in_PlotCCh1);
                     mapint.insert("in_PlotCCh2",in_PlotCCh2);
                     mapint.insert("in_histStart",in_histStart);
-                    mapint.insert("in_histEnd",in_histEnd);
+                    //mapint.insert("in_histEnd",in_histEnd);
                     mapint.insert("in_binsinplot",in_binsinplot);
 
                     mapdouble.insert("in_adqtime", in_adqtime);
                     mapdouble.insert("adqtime_tab2", double(adqtime_tab2));
 
+                    mapdouble.insert("threshold1", double(in_thch1));
+                    mapdouble.insert("threshold2", double(in_thch2));
+                    mapdouble.insert("threshold3", double(in_thch3));
+                    mapdouble.insert("threshold4", double(in_thch4));
+
+                    /*mapint.insert("RoF1",int(RoF[1]));
+                    mapint.insert("RoF2",int(RoF[2]));
+                    mapint.insert("RoF3",int(RoF[3]));
+                    mapint.insert("RoF4",int(RoF[4]));*/
+
                     /*QMapIterator<QString,int>ip(mapint);
                     while (ip.hasNext()) {
                         ip.next();
                         std::cout<< ip.key().toStdString()<< ": " << ip.value() << std::endl;
+
+ double in_thch1, in_thch2,in_thch3,in_thch4;
+ int in_cw;
+ bool RoF[5];
                     }*/
                     out<<mapint;
                     out<<mapdouble;
@@ -1125,12 +1193,54 @@ void MainWindow::LoadState(bool a){
             if(mapintout.contains("in_PlotCCh1"))ui->PlotCChn1->setValue(mapintout.value("in_PlotCCh1"));
             if(mapintout.contains("in_PlotCCh2"))ui->PlotCChn2->setValue(mapintout.value("in_PlotCCh2"));
             if(mapintout.contains("in_histStart"))ui->histStart->setValue(mapintout.value("in_histStart"));
-            if(mapintout.contains("in_histEnd"))ui->histEnd->setValue(mapintout.value("in_histEnd"));
+            //if(mapintout.contains("in_histEnd"))ui->histEnd->setValue(mapintout.value("in_histEnd"));
             if(mapintout.contains("in_binsinplot"))ui->binsinplot->setValue(mapintout.value("in_binsinplot"));
 
             if(mapdoubleout.contains("in_adqtime"))ui->adqtime->setValue(mapdoubleout.value("in_adqtime"));
             if(mapdoubleout.contains("adqtime_tab2"))ui->adqtime_2->setValue(mapdoubleout.value("adqtime_tab2"));
 
+            if(mapdoubleout.contains("threshold1"))ui->thch1->setValue(mapdoubleout.value("threshold1"));
+            if(mapdoubleout.contains("threshold2"))ui->thch2->setValue(mapdoubleout.value("threshold2"));
+            if(mapdoubleout.contains("threshold3"))ui->thch3->setValue(mapdoubleout.value("threshold3"));
+            if(mapdoubleout.contains("threshold4"))ui->thch4->setValue(mapdoubleout.value("threshold4"));
+
+            /*if(mapintout.contains("RoF1")){
+                if(mapintout.value("RoF1"))ui->rof1->setCurrentText("Rise");
+            }
+            else ui->rof1->setCurrentText("Fall");
+
+            if(mapintout.contains("RoF2")){
+                if(mapintout.value("RoF2"))ui->rof2->setCurrentText("Rise");
+            }
+            else ui->rof2->setCurrentText("Fall");
+
+            if(mapintout.contains("RoF3")){
+                if(mapintout.value("RoF3"))ui->rof3->setCurrentText("Rise");
+            }
+            else ui->rof3->setCurrentText("Fall");
+
+            if(mapintout.contains("RoF4")){
+                if(mapintout.value("RoF4"))ui->rof4->setCurrentText("Rise");
+            }
+            else ui->rof4->setCurrentText("Fall");
+
+            /*
+             *
+             * ui->rof1->setCurrentText("Rise");
+ui->rof2->setCurrentText("Fall");
+ui->rof3->setCurrentText("Fall");
+ui->rof4->setCurrentText("Fall");
+
+
+mapdouble.insert("threshold1", double(in_thch1));
+                    mapdouble.insert("threshold2", double(in_thch2));
+                    mapdouble.insert("threshold3", double(in_thch3));
+                    mapdouble.insert("threshold4", double(in_thch4));
+
+                    mapint.insert("RoF1",int(RoF[1]));
+                    mapint.insert("RoF2",int(RoF[2]));
+                    mapint.insert("RoF3",int(RoF[3]));
+                    mapint.insert("RoF4",int(RoF[4]));*/
 
 
                QMapIterator<QString,int>i(mapintout);
@@ -1228,4 +1338,45 @@ void MainWindow::closeEvent (QCloseEvent *event)
     //else event->ignore();
 
     
+}
+
+void MainWindow::Chang_in_binsinplot(int val){
+    this->in_binsinplot=val;
+    ui->HistoEndDisplay->display(in_binWidth*in_binsinplot);
+}
+void MainWindow::Chang_in_histStart(int val){
+    this->in_histStart=val;
+    ui->HistoEndDisplay->display(in_binWidth*in_binsinplot);
+}
+void MainWindow::Chang_in_binWidth(int val){
+    this->in_binWidth=val;
+    ui->HistoEndDisplay->display(in_binWidth*in_binsinplot);
+}
+
+void MainWindow::Chang_log1(int val){
+    if(val){
+        ui->PlotA->yAxis->setScaleType(QCPAxis::stLogarithmic);
+        ui->PlotA->xAxis->setTicker(QSharedPointer<QCPAxisTickerLog>(new QCPAxisTickerLog));
+    }else{
+        ui->PlotA->yAxis->setScaleType(QCPAxis::stLinear);
+        ui->PlotA->xAxis->setTicker(QSharedPointer<QCPAxisTickerFixed>(new QCPAxisTickerFixed));
+    }
+}
+void MainWindow::Chang_log2(int val){
+    if(val){
+        ui->PlotB->yAxis->setScaleType(QCPAxis::stLogarithmic);
+        ui->PlotB->xAxis->setTicker(QSharedPointer<QCPAxisTickerLog>(new QCPAxisTickerLog));
+    }else{
+        ui->PlotB->yAxis->setScaleType(QCPAxis::stLinear);
+        ui->PlotB->xAxis->setTicker(QSharedPointer<QCPAxisTickerFixed>(new QCPAxisTickerFixed));
+    }
+}
+void MainWindow::Chang_log3(int val){
+    if(val){
+        ui->PlotC->yAxis->setScaleType(QCPAxis::stLogarithmic);
+        ui->PlotC->xAxis->setTicker(QSharedPointer<QCPAxisTickerLog>(new QCPAxisTickerLog));
+    }else{
+        ui->PlotC->yAxis->setScaleType(QCPAxis::stLinear);
+        ui->PlotC->xAxis->setTicker(QSharedPointer<QCPAxisTickerFixed>(new QCPAxisTickerFixed));
+    }
 }

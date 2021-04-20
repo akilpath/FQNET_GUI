@@ -18,9 +18,9 @@ qutagadq::qutagadq(){
     channelsTDC.reserve(TIMESTAMP_COUNT+1);
     break_=false;
     adqpause_=false;
-    histodataA=NULL;
-    histodataB=NULL;
-    histodataC=NULL;
+    histodataA=nullptr;
+    histodataB=nullptr;
+    histodataC=nullptr;
 
     anlAvilable=false;
 
@@ -43,12 +43,29 @@ qutagadq::qutagadq(){
     rc = TDC_setExposureTime( 1000 );
     checkRc( "TDC_setExposureTime", rc );
 
-    /*RoF[1]=1;
-    RoF[2]=0;
-    RoF[3]=0;
-    RoF[4]=0;*/
-
-
+    ///////////////initial thresholds and edges/////////////
+    int temp_edge[1];
+    double temp_thresh[1];
+    rc = TDC_getSignalConditioning(1, temp_edge,temp_thresh);
+    checkRc( "TDC_getSignalConditioning", rc );
+    std::cout<<*temp_edge<<"\t"<<*temp_thresh<<std::endl;
+    thresholds[1] = *temp_thresh;
+    RoF[1] = bool(*temp_edge);
+    rc = TDC_getSignalConditioning(2, temp_edge,temp_thresh);
+    std::cout<<*temp_edge<<"\t"<<*temp_thresh<<std::endl;
+    thresholds[2] = *temp_thresh;
+    RoF[2] = bool(*temp_edge);
+    rc = TDC_getSignalConditioning(3, temp_edge,temp_thresh);
+    std::cout<<*temp_edge<<"\t"<<*temp_thresh<<std::endl;
+    thresholds[3] = *temp_thresh;
+    RoF[3] = bool(*temp_edge);
+    rc = TDC_getSignalConditioning(4, temp_edge,temp_thresh);
+    std::cout<<*temp_edge<<"\t"<<*temp_thresh<<std::endl;
+    thresholds[4] = *temp_thresh;
+    RoF[4] = bool(*temp_edge);
+    //std::cout<<"ADQ  rof"<<RoF[1]<<"rof"<<RoF[2]<<"rof"<<RoF[3]<<"rof"<<RoF[4]<<std::endl;
+    //delete temp_edge;
+    //delete temp_thresh;
 
     //rc = TDC_enableMarkers(0);        //WHY IS THIS NOT WORKING??
     //checkRc( "TDC_enableMarkers", rc);
@@ -67,14 +84,7 @@ qutagadq::qutagadq(){
     SLEEP(1e6);
     TDC_getCoincCounters( coincCnt, NULL );
 
-
-
-    //req.tv_sec = 0;
-    //req.tv_nsec = microsec * 1000L;
-
     fflush(stdout);
-
-
 
     rc = TDC_enableStartStop( 1 );
     checkRc( "TDC_enableStartStop", rc );
@@ -289,18 +299,18 @@ int qutagadq::filterset(){
 
      /////////calculate histogram parameters///////////
 
-     if(in_binsinplot>0)HIST_BINWIDTH=(int)(in_histEnd-in_histStart)/in_binsinplot;
+     HIST_BINWIDTH=in_binWidth;
      HIST_BINCOUNT=in_binsinplot;
      //filterset();
 
-     std::cout<<"HIST_BINWIDTH  :  "<< HIST_BINWIDTH<<std::endl;
-     std::cout<<"HIST_BINCOUNT  :  "<< HIST_BINCOUNT<<std::endl;
-     std::cout<<"HIST_BINWIDTH  *  HIST_BINCOUNT  :  "<< HIST_BINWIDTH*HIST_BINCOUNT<<std::endl;
+     //std::cout<<"HIST_BINWIDTH  :  "<< HIST_BINWIDTH<<std::endl;
+    // std::cout<<"HIST_BINCOUNT  :  "<< HIST_BINCOUNT<<std::endl;
+     //std::cout<<"HIST_BINWIDTH  *  HIST_BINCOUNT  :  "<< HIST_BINWIDTH*HIST_BINCOUNT<<std::endl;
      bin2ns = HIST_BINWIDTH * timeBase * 1.e9;
 
      /////////////create the histograms on the FPGA only if is necesary/////////////
 
-     std::cout<<"A1: "<<in_PlotACh1<<", A2: "<<in_PlotACh2<<", B1: "<<in_PlotBCh1<<", B2: "<<in_PlotBCh2<<", C1: "<<in_PlotCCh1<<", C2: "<<in_PlotCCh2<<std::endl;
+    // std::cout<<"A1: "<<in_PlotACh1<<", A2: "<<in_PlotACh2<<", B1: "<<in_PlotBCh1<<", B2: "<<in_PlotBCh2<<", C1: "<<in_PlotCCh1<<", C2: "<<in_PlotCCh2<<std::endl;
 
      if(ActHist[in_PlotACh1][in_PlotACh2]==0){
          firstChanHist=in_PlotACh1;
@@ -350,7 +360,7 @@ int qutagadq::filterset(){
     //////////////fix the delay////////////
 
     //std::cout<<in_PlotACh1 << "||||||||"<<in_PlotACh1 <<std::endl;
-    for (int i=0;i<5;i++) {
+  /*  for (int i=0;i<5;i++) {
         if(i==in_PlotACh1 || i==in_PlotBCh1|| i==in_PlotCCh1)delays[i]=in_histStart;
         else delays[i]=0;
         std::cout<<delays[i]<<"   ";
@@ -359,20 +369,24 @@ int qutagadq::filterset(){
     std::cout<<std::endl;
     rc = TDC_setChannelDelays(delays);
     checkRc( "TDC_setChannelDelays", rc );
-
+*/
     //filterset();
 
 
      paramschange=false;
-    std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
+    //std::cout<<" paramschange  :  "<<  paramschange<<std::endl;
 
  }
 
- void qutagadq::changThreshold(int ch, double val){
+ void qutagadq::changThreshold(int ch){
 
-     rc = TDC_configureSignalConditioning(ch, SCOND_MISC, RoF[ch], val);
+     rc = TDC_configureSignalConditioning(ch, SCOND_MISC, RoF[ch], thresholds[ch]);
      checkRc( "TDC_configureSignalConditioning", rc );
 
  }
 
+ void qutagadq::set_delays(){
+     rc = TDC_setChannelDelays(delays);
+     checkRc( "TDC_setChannelDelays", rc );
+ }
 
