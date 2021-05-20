@@ -34,6 +34,8 @@ typedef QVector<Int32> vectorInt32;
 //#define COLLECT_TIME         1000  /* Time [ms] for data acquisition per round */
 #define COLLECT_ROUNDS      100
 
+#define HIST_CH_MIN 1
+#define HIST_CH_MAX 4
 
 class qutagadq : public QThread
 {
@@ -46,20 +48,21 @@ public:
 
     explicit qutagadq();
     ~qutagadq();
-    //void Break();
+    void loadtdcfiltertype();
     bool anlAvilable =false;
-    //double getthreshold1(){return }
+
 public slots:
     
   void adqui();
   void setHistograms();
 
-//  void clockchange(int);
+
   void adqpausechange(bool chang){adqpause_=chang;}
   void Break(){break_= true;}
-  //void filterconfigure(int clockchannel);
-  int filterset();
 
+  //int filterset();
+  void updatefiltertype(int ch);
+  void setfilter(int ch);
   void Chang_in_binsinplot(int val){this->in_binsinplot=val;paramschange=true;}
 
   void Chang_in_histStart(int val){this->in_histStart=val;paramschange=true;}
@@ -95,13 +98,42 @@ public slots:
   void Chang_delay4(double val){delays[4]=int(1000*val);set_delays();}
   void set_delays();
 
+  void Chang_filtertype1(QString text){filtertypeSTR[1]=text; updatefiltertype(1);}
+  void Chang_filtertype2(QString text){filtertypeSTR[2]=text; updatefiltertype(2);}
+  void Chang_filtertype3(QString text){filtertypeSTR[3]=text; updatefiltertype(3);}
+  void Chang_filtertype4(QString text){filtertypeSTR[4]=text; updatefiltertype(4);}
+
+  void Chang_filtermask1_1(int state){if(state)ch_filtermask[1]|=0x1<<1;else ch_filtermask[1]&=!(0x1<<1);setfilter(1); }
+  void Chang_filtermask1_2(int state){if(state)ch_filtermask[1]|=0x1<<2;else ch_filtermask[1]&=!(0x1<<2);setfilter(1); }
+  void Chang_filtermask1_3(int state){if(state)ch_filtermask[1]|=0x1<<3;else ch_filtermask[1]&=!(0x1<<3);setfilter(1); }
+  void Chang_filtermask1_4(int state){if(state)ch_filtermask[1]|=0x1<<4;else ch_filtermask[1]&=!(0x1<<4);setfilter(1); }
+
+  void Chang_filtermask2_1(int state){if(state)ch_filtermask[2]|=0x1<<1;else ch_filtermask[2]&=!(0x1<<1);setfilter(2); }
+  void Chang_filtermask2_2(int state){if(state)ch_filtermask[2]|=0x1<<2;else ch_filtermask[2]&=!(0x1<<2);setfilter(2); }
+  void Chang_filtermask2_3(int state){if(state)ch_filtermask[2]|=0x1<<3;else ch_filtermask[2]&=!(0x1<<3);setfilter(2); }
+  void Chang_filtermask2_4(int state){if(state)ch_filtermask[2]|=0x1<<4;else ch_filtermask[2]&=!(0x1<<4);setfilter(2); }
+
+  void Chang_filtermask3_1(int state){if(state)ch_filtermask[3]|=0x1<<1;else ch_filtermask[3]&=!(0x1<<1);setfilter(3); }
+  void Chang_filtermask3_2(int state){if(state)ch_filtermask[3]|=0x1<<2;else ch_filtermask[3]&=!(0x1<<2);setfilter(3); }
+  void Chang_filtermask3_3(int state){if(state)ch_filtermask[3]|=0x1<<3;else ch_filtermask[3]&=!(0x1<<3);setfilter(3); }
+  void Chang_filtermask3_4(int state){if(state)ch_filtermask[3]|=0x1<<4;else ch_filtermask[3]&=!(0x1<<4);setfilter(3); }
+
+  void Chang_filtermask4_1(int state){if(state)ch_filtermask[3]|=0x1<<1;else ch_filtermask[4]&=!(0x1<<1);setfilter(4); }
+  void Chang_filtermask4_2(int state){if(state)ch_filtermask[3]|=0x1<<2;else ch_filtermask[4]&=!(0x1<<2);setfilter(4); }
+  void Chang_filtermask4_3(int state){if(state)ch_filtermask[3]|=0x1<<3;else ch_filtermask[4]&=!(0x1<<3);setfilter(4); }
+  void Chang_filtermask4_4(int state){if(state)ch_filtermask[3]|=0x1<<4;else ch_filtermask[4]&=!(0x1<<4);setfilter(4); }
+
+
 signals:
    // void dataready(const vectorInt64 &TTdata, const channelsTDCPP &CHdata, int nevent); // sends to inputdata()
     void dataready(const vectorInt64 &vectorTimetags, const vectorInt8 &vectorChannels, int tsvalid);
     void qutaghist(const vectorDouble &TTdata1, const vectorDouble &TTdata2, const vectorDouble &TTdata3);
     //void qutaghist2(const vectorDouble &TTdata);
-
+    void TDCerror(QString text);
 private:
+    QVector<double> dataA;
+    QVector<double> dataB;
+    QVector<double> dataC;
     bool paramschange = false;
     bool adqpause_;
     bool break_;
@@ -138,8 +170,6 @@ private:
     int microsec = 10000; // length of time to sleep, in microseconds
     //struct timespec req = {0};
 
-
-    void andrewrun();
     void lautrun();
     void getTimeStamps();
     void changThreshold(int);
@@ -168,7 +198,9 @@ public:
     double thresholds[5];
     int in_cw;
     bool RoF[5];
-
+    int ch_filtermask[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+    TDC_FilterType filtertype[5];
+    QString filtertypeSTR[5] = {"NONE", "NONE", "NONE", "NONE", "NONE"};
 private:
 
     //nanosleep(&req, (struct timespec *)NULL);

@@ -789,13 +789,13 @@
                      <string notr="true">color: rgb(238, 238, 236);</string>
                     </property>
                     <property name="minimum">
-                     <number>0</number>
+                     <number>1</number>
                     </property>
                     <property name="maximum">
                      <number>4</number>
                     </property>
                     <property name="value">
-                     <number>0</number>
+                     <number>1</number>
                     </property>
                    </widget>
                   </item>
@@ -1076,7 +1076,7 @@
                     <number>1</number>
                    </property>
                    <property name="maximum">
-                    <number>100000</number>
+                    <number>10000000</number>
                    </property>
                   </widget>
                  </item>
@@ -1159,6 +1159,12 @@
                    <property name="minimum">
                     <double>0.100000000000000</double>
                    </property>
+                   <property name="maximum">
+                    <double>1000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>1.000000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -1236,7 +1242,7 @@
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1252,7 +1258,7 @@
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1268,7 +1274,7 @@
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1305,7 +1311,7 @@ color: rgb(252, 233, 79);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1342,7 +1348,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1369,7 +1375,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1569,7 +1575,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1585,7 +1591,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1601,7 +1607,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1649,7 +1655,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1665,7 +1671,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1691,7 +1697,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1890,7 +1896,7 @@ color: rgb(239, 41, 41);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1928,7 +1934,7 @@ color: rgb(115, 210, 22);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1982,7 +1988,7 @@ background-color: rgb(136, 138, 133);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -1998,7 +2004,7 @@ background-color: rgb(136, 138, 133);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -2014,7 +2020,7 @@ background-color: rgb(136, 138, 133);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -2030,7 +2036,7 @@ background-color: rgb(136, 138, 133);</string>
                      <string> [ps]</string>
                     </property>
                     <property name="maximum">
-                     <number>200000</number>
+                     <number>10000000</number>
                     </property>
                     <property name="singleStep">
                      <number>100</number>
@@ -4326,26 +4332,6 @@ color: rgb(238, 238, 236);</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_76">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
-               </property>
-               <property name="text">
-                <string>Coinc Window</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QSpinBox" name="cw">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
-               </property>
-               <property name="maximum">
-                <number>999999</number>
-               </property>
-              </widget>
-             </item>
              <item row="3" column="0">
               <widget class="QLabel" name="label_96">
                <property name="styleSheet">
@@ -4366,6 +4352,26 @@ color: rgb(238, 238, 236);</string>
                </property>
                <property name="minimum">
                 <double>-10.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_76">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Coinc Window</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QSpinBox" name="cw">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="maximum">
+                <number>999999</number>
                </property>
               </widget>
              </item>
@@ -4402,6 +4408,22 @@ color: rgb(238, 238, 236);</string>
                </property>
               </widget>
              </item>
+             <item row="6" column="1">
+              <widget class="QDoubleSpinBox" name="delay1">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="suffix">
+                <string> [ns]</string>
+               </property>
+               <property name="maximum">
+                <double>1000.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
+               </property>
+              </widget>
+             </item>
              <item row="7" column="0">
               <widget class="QLabel" name="label_135">
                <property name="styleSheet">
@@ -4409,6 +4431,22 @@ color: rgb(238, 238, 236);</string>
                </property>
                <property name="text">
                 <string>Delay Ch2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QDoubleSpinBox" name="delay2">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="suffix">
+                <string> [ns]</string>
+               </property>
+               <property name="maximum">
+                <double>1000.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.100000000000000</double>
                </property>
               </widget>
              </item>
@@ -4422,48 +4460,6 @@ color: rgb(238, 238, 236);</string>
                </property>
               </widget>
              </item>
-             <item row="9" column="0">
-              <widget class="QLabel" name="label_137">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
-               </property>
-               <property name="text">
-                <string>Delay Ch4</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QDoubleSpinBox" name="delay1">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
-               </property>
-               <property name="suffix">
-                <string> [ns]</string>
-               </property>
-               <property name="maximum">
-                <double>100.000000000000000</double>
-               </property>
-               <property name="singleStep">
-                <double>0.100000000000000</double>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="1">
-              <widget class="QDoubleSpinBox" name="delay2">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(238, 238, 236);</string>
-               </property>
-               <property name="suffix">
-                <string> [ns]</string>
-               </property>
-               <property name="maximum">
-                <double>100.000000000000000</double>
-               </property>
-               <property name="singleStep">
-                <double>0.100000000000000</double>
-               </property>
-              </widget>
-             </item>
              <item row="8" column="1">
               <widget class="QDoubleSpinBox" name="delay3">
                <property name="styleSheet">
@@ -4473,10 +4469,20 @@ color: rgb(238, 238, 236);</string>
                 <string> [ns]</string>
                </property>
                <property name="maximum">
-                <double>100.000000000000000</double>
+                <double>1000.000000000000000</double>
                </property>
                <property name="singleStep">
                 <double>0.100000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_137">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Delay Ch4</string>
                </property>
               </widget>
              </item>
@@ -4489,10 +4495,298 @@ color: rgb(238, 238, 236);</string>
                 <string> [ns]</string>
                </property>
                <property name="maximum">
-                <double>100.000000000000000</double>
+                <double>1000.000000000000000</double>
                </property>
                <property name="singleStep">
                 <double>0.100000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="0">
+              <widget class="QLabel" name="label_144">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="0">
+              <widget class="QLabel" name="label_138">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Filter Ch1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_33">
+               <item>
+                <widget class="QComboBox" name="FilterType1">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_34">
+                 <item>
+                  <widget class="QCheckBox" name="Filter1_1">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter1_2">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter1_3">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>3</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter1_4">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>4</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item row="13" column="0">
+              <widget class="QLabel" name="label_140">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Filter Ch2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_45">
+               <item>
+                <widget class="QComboBox" name="FilterType2">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_48">
+                 <item>
+                  <widget class="QCheckBox" name="Filter2_1">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter2_2">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter2_3">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>3</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter2_4">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>4</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item row="14" column="0">
+              <widget class="QLabel" name="label_141">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Filter Ch3</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_46">
+               <item>
+                <widget class="QComboBox" name="FilterType3">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_49">
+                 <item>
+                  <widget class="QCheckBox" name="Filter3_1">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter3_2">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter3_3">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>3</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter3_4">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>4</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item row="15" column="0">
+              <widget class="QLabel" name="label_142">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(238, 238, 236);</string>
+               </property>
+               <property name="text">
+                <string>Filter Ch4</string>
+               </property>
+              </widget>
+             </item>
+             <item row="15" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout_47">
+               <item>
+                <widget class="QComboBox" name="FilterType4">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(80, 80, 80, 255), stop:1 rgba(50, 50, 50, 255));</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_50">
+                 <item>
+                  <widget class="QCheckBox" name="Filter4_1">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter4_2">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter4_3">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>3</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="Filter4_4">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(238, 238, 236);</string>
+                   </property>
+                   <property name="text">
+                    <string>4</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item row="11" column="0">
+              <widget class="QLabel" name="label_139">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="1">
+              <widget class="QLabel" name="label_143">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="1">
+              <widget class="QLabel" name="label_145">
+               <property name="text">
+                <string/>
                </property>
               </widget>
              </item>

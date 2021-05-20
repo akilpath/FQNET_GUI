@@ -36,8 +36,9 @@ public:
   void setupratePlot_tab2(QCustomPlot *customPlot);
 
   void setupsignalslot();
+  void setupsignalslot2();
   void setupHistoPlot(QCustomPlot *customPlot);
-
+  void setup_comboboxes();
   
 
 private slots:
@@ -125,6 +126,8 @@ private slots:
 
   void SaveState(bool a);
   void LoadState(bool a);
+  void SaveSeason(bool a);
+  bool LoadPrevoiusSeason(bool a);
 
   void tab2_plot1_activate(bool val){in_tab2_plot1=val;}
   void tab2_plot2_activate(bool val){in_tab2_plot2=val;}
@@ -161,10 +164,13 @@ private slots:
    void Chang_rof3(QString text){if(text=="Rise")RoF[3]=1;else RoF[3]=0;}
    void Chang_rof4(QString text){if(text=="Rise")RoF[4]=1;else RoF[4]=0;}*/
 
+
+   void setup_log_plot(QCustomPlot *histo);
    void Chang_log1(int val);
    void Chang_log2(int val);
    void Chang_log3(int val);
 
+   void error1(QString text);
 
 private:
   Ui::MainWindow *ui;
@@ -204,7 +210,7 @@ private:
   ////SECOND tab////
 
 
-  float adqtime_tab2;
+
   int tab2_plot[6][2]={{0}};
   int tab2_win[4][2]={{0}};
 
