@@ -897,11 +897,12 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
     //std::cout<<" histosizes:  "<<datB.size()<<"   "<< datB.size()<<"   "<<datC.size() <<std::endl;
     //double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
     double binwidth=double(in_binWidth);
-   // std::cout<<"histogram size   "<<datA.size()<<std::endl;
-    QVector<double> datA_out(datA.size()-in_histStart);
-    QVector<double> datB_out(datB.size()-in_histStart);
-    QVector<double> datC_out(datC.size()-in_histStart);
-    int maxsize = qMax((datA.size()-in_histStart),qMax((datB.size()-in_histStart),(datC.size()-in_histStart)));
+    //std::cout<<"histogram size   "<<datA.size()<<std::endl;
+    int histStart_bins = int(in_histStart/binwidth);
+    QVector<double> datA_out(datA.size()-histStart_bins);
+    QVector<double> datB_out(datB.size()-histStart_bins);
+    QVector<double> datC_out(datC.size()-histStart_bins);
+    int maxsize = qMax((datA.size()-histStart_bins),qMax((datB.size()-histStart_bins),(datC.size()-histStart_bins)));
     QVector<double> x(maxsize);
     //std::cout<<"size x : "<<x.size()<<std::endl;
 //for (int i=in_histStart; i<in_histEnd; i++){
@@ -912,7 +913,7 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
     for (int i=0; i<datA_out.size(); ++i){
        /* if(logar[0] && datA[i+in_histStart]>0)datA_out[i] = log10(datA[i+in_histStart]);
         else datA_out[i] = datA[i+in_histStart];*/
-        datA_out[i] = datA[i+in_histStart];
+        datA_out[i] = datA[i+histStart_bins];
     }
 
   ui->PlotA->graph(0)->data()->clear();
@@ -925,7 +926,7 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
   for (int i=0; i<datB_out.size(); ++i){
       /*if(logar[1] && datB[i+in_histStart]>0)datB_out[i] = log10(datB[i+in_histStart]);
       else datB_out[i] = datB[i+in_histStart];*/
-      datB_out[i] = datB[i+in_histStart];
+      datB_out[i] = datB[i+histStart_bins];
   }
 
 
@@ -939,7 +940,7 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
   for (int i=0; i<datC_out.size(); ++i){
      /* if(logar[2] && datC[i+in_histStart]>0)datC_out[i] = log10(datC[i+in_histStart]);
       else datC_out[i] = datC[i+in_histStart];*/
-      datC_out[i] = datC[i+in_histStart];
+      datC_out[i] = datC[i+histStart_bins];
   }
 
 
@@ -1183,6 +1184,7 @@ bool MainWindow::LoadPrevoiusSeason(bool a){
     in.setVersion(QDataStream::Qt_4_5);
     in>>mapintout;
 
+
     QMapIterator<QString,int>i(mapintout);
     while (i.hasNext()) {
         i.next();
@@ -1361,12 +1363,12 @@ void MainWindow::SaveSeason(bool a){
      }
 
     mapint.insert("in_startChan",in_startChan);
-    mapint.insert("in_PlotACh1",in_PlotACh1);
-    mapint.insert("in_PlotACh2",in_PlotACh2);
-    mapint.insert("in_PlotBCh1",in_PlotBCh1);
-    mapint.insert("in_PlotBCh2",in_PlotBCh2);
-    mapint.insert("in_PlotCCh1",in_PlotCCh1);
-    mapint.insert("in_PlotCCh2",in_PlotCCh2);
+    if(in_PlotACh1>0 && in_PlotACh1<5)mapint.insert("in_PlotACh1",in_PlotACh1);
+    if(in_PlotACh2>0 && in_PlotACh2<5)mapint.insert("in_PlotACh2",in_PlotACh2);
+    if(in_PlotBCh1>0 && in_PlotBCh1<5)mapint.insert("in_PlotBCh1",in_PlotBCh1);
+    if(in_PlotBCh2>0 && in_PlotBCh2<5)mapint.insert("in_PlotBCh2",in_PlotBCh2);
+    if(in_PlotCCh1>0 && in_PlotCCh1<5)mapint.insert("in_PlotCCh1",in_PlotCCh1);
+    if(in_PlotCCh2>0 && in_PlotCCh2<5)mapint.insert("in_PlotCCh2",in_PlotCCh2);
     mapint.insert("in_histStart",in_histStart);
     mapint.insert("in_binsinplot",in_binsinplot);
     mapint.insert("in_binWidth",in_binWidth);
@@ -1448,6 +1450,7 @@ void MainWindow::LoadState(bool a){
 
             if(mapintout.contains("in_startChan"))ui->startChan->setValue(mapintout.value("in_startChan"));
             if(mapintout.contains("in_PlotACh1"))ui->PlotAChn1->setValue(mapintout.value("in_PlotACh1"));
+            if(mapintout.contains("in_PlotACh2"))std::cout<<"ke wea hermano"<<mapintout.value("in_PlotACh2")<<std::endl;
             if(mapintout.contains("in_PlotACh2"))ui->PlotAChn2->setValue(mapintout.value("in_PlotACh2"));
             if(mapintout.contains("in_PlotBCh1"))ui->PlotBChn1->setValue(mapintout.value("in_PlotBCh1"));
             if(mapintout.contains("in_PlotBCh2"))ui->PlotBChn2->setValue(mapintout.value("in_PlotBCh2"));

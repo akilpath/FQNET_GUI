@@ -183,7 +183,7 @@ int qutagadq::filterset(){
 */
 
  void qutagadq::lautrun(){
-    setHistograms();
+    //setHistograms();
 
   TDC_clearAllHistograms ();
 
@@ -340,7 +340,7 @@ int qutagadq::filterset(){
 
      /////////////create the histograms on the FPGA only if is necesary/////////////
 
-    // std::cout<<"A1: "<<in_PlotACh1<<", A2: "<<in_PlotACh2<<", B1: "<<in_PlotBCh1<<", B2: "<<in_PlotBCh2<<", C1: "<<in_PlotCCh1<<", C2: "<<in_PlotCCh2<<std::endl;
+     std::cout<<"A1: "<<in_PlotACh1<<", A2: "<<in_PlotACh2<<", B1: "<<in_PlotBCh1<<", B2: "<<in_PlotBCh2<<", C1: "<<in_PlotCCh1<<", C2: "<<in_PlotCCh2<<std::endl;
     if(in_PlotACh1>=HIST_CH_MIN && in_PlotACh2>=HIST_CH_MIN && in_PlotACh1<=HIST_CH_MAX && in_PlotACh2<=HIST_CH_MAX){
          if(ActHist[in_PlotACh1][in_PlotACh2]==0){
              firstChanHist=in_PlotACh1;
@@ -369,7 +369,7 @@ int qutagadq::filterset(){
              firstChanHist=in_PlotCCh1;
              secondChanHist=in_PlotCCh2;
              ActHist[in_PlotCCh1][in_PlotCCh2]=1;
-             std::cout<<"add hist C: "<<in_PlotACh1<<" and "<< in_PlotCCh2<<std::endl;
+             std::cout<<"add hist C: "<<in_PlotCCh1<<" and "<< in_PlotCCh2<<std::endl;
              rc = TDC_addHistogram( firstChanHist, secondChanHist, 1 );
              checkRc( "TDC_addHistogram", rc );
          }

@@ -73,7 +73,7 @@ public slots:
 
 
   void Chang_in_PlotAChn1(int val){this->in_PlotACh1=val;paramschange=true;std::cout<<"A1: "<<val<<std::endl;}
-  void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;paramschange=true;std::cout<<"A2: "<<val<<std::endl;}
+  void Chang_in_PlotAChn2(int val){this->in_PlotACh2=val;paramschange=true;}
   void Chang_in_PlotBChn1(int val){this->in_PlotBCh1=val;paramschange=true;std::cout<<"B1: "<<val<<std::endl;}
   void Chang_in_PlotBChn2(int val){this->in_PlotBCh2=val;paramschange=true;std::cout<<"B2: "<<val<<std::endl;}
   void Chang_in_PlotCChn1(int val){this->in_PlotCCh1=val;paramschange=true;std::cout<<"C1: "<<val<<std::endl;}

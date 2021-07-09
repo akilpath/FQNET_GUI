@@ -83,15 +83,18 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
                                     //if(ii<3 || (ii==4 && jj==1)){
                                    //if(ii==4 && jj==1) std::cout<<"tab 2 plot   :  "<<tab2_plot[ii][jj]<<std::endl;
                                         if(tab2_plot[ii][jj] == 0 && StopIndex == in_PlotACh2){
-                                            if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                           // if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
                                             //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         }
                                         if(tab2_plot[ii][jj] == 1 && StopIndex == in_PlotBCh2){
-                                            if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            //if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
                                             //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         }
                                         if(tab2_plot[ii][jj] == 2 && StopIndex == in_PlotCCh2){
-                                            if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            //if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
                                             //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         }
 
