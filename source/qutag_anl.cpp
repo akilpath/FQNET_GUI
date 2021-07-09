@@ -65,6 +65,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
     int j;
 //std::cout<<"tsvalid  :"<<tsvalid<<std::endl;
+    //std::cout<<"in_statChan= "<<in_startChan<<std::endl;
    // double prevclk;
     for ( int i=0 ; i<tsvalid; i++) {
             ChannelIndex = int(vectorChannels[i]);
@@ -77,20 +78,23 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
                     //std::cout<<(int)vectorChannels[j]<<std::endl;
                     diffh = vectorTimetags[j]-vectorTimetags[i];
                    //if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh+in_histStart<<std::endl;
-                            for (int ii=0; ii<6; ii++) {//over the 5 curves of tab2
+                            for (int ii=0; ii<6; ii++) {//over the 6 curves of tab2
                                 for (int jj=0; jj<2; jj++) {//check the condition of at one side of the &
                                     //if(ii<3 || (ii==4 && jj==1)){
                                    //if(ii==4 && jj==1) std::cout<<"tab 2 plot   :  "<<tab2_plot[ii][jj]<<std::endl;
                                         if(tab2_plot[ii][jj] == 0 && StopIndex == in_PlotACh2){
-                                            if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                           // if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
                                             //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         }
                                         if(tab2_plot[ii][jj] == 1 && StopIndex == in_PlotBCh2){
-                                            if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            //if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
                                             //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         }
                                         if(tab2_plot[ii][jj] == 2 && StopIndex == in_PlotCCh2){
-                                            if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            //if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
+                                            if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
                                             //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         }
 
@@ -141,10 +145,8 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
 
 
 /*for ( int i=0; i < 20; i++ ) {
-        std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<std::endl;
-        file<<(int)vectorChannels[i]<<","<<vectorTimetags[i]<<std::endl;
-    }
-*/
+    std::cout<<"channel :"<<(int)vectorChannels[i]<<"\t TTS: "<<vectorTimetags[i]<<"       "<<vectorTimetags[i+1]-vectorTimetags[i]<<std::endl;
+}*/
 
 
     emit(Chang_anlAvilable(true));

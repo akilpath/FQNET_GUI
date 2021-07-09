@@ -58,7 +58,7 @@ public:
     int Plot_Win_BoE[3][3][2]= {{{0}}};
 
     ////first plot////
-    int in_binsinplot, in_startChan, in_histStart, in_histEnd;
+    int in_binsinplot, in_startChan, in_histStart, in_binWidth;
     double in_adqtime;
     int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2, in_PlotCCh1, in_PlotCCh2;
 
@@ -90,7 +90,7 @@ public slots:
 
   void Chang_in_binsinplot(int val){this->in_binsinplot=val;updateConditions();}
   void Chang_in_histStart(int val){this->in_histStart=val;updateConditions();}
-  void Chang_in_histEnd(int val){this->in_histEnd=val;updateConditions();}
+  void Chang_in_binWidth(int val){this->in_binWidth=val;updateConditions();}
 
   //void clockchange(int clockchannel){anlclock = clockchannel;}
 

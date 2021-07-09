@@ -19,16 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->setupUi(this);
   setGeometry(200, 200, 1500, 800);
 
-
-
-//setupPlotA(ui->PlotA);
-
 //dbc.DBConnect("localhost", 3306, "INQNET_GUI", "GUI", "Teleport1536!");
 
  setupsignalslot();
 
 setWindowTitle(QString("INQNET TDC"));
-
 
 setupHistoPlot(ui->PlotB);
 setupHistoPlot(ui->PlotA);
@@ -36,119 +31,154 @@ setupHistoPlot(ui->PlotC);
 setupratePlot(ui->PlotTrack);
 setupratePlot_tab2(ui->PlotTab2);
 
+
 for (int i=0;i<18;i++) {
     if(i<6)infLine[i] = new QCPItemStraightLine(ui->PlotA);
     if((i>5) && (i<12)) infLine[i] = new QCPItemStraightLine(ui->PlotB);
     if(i>11)infLine[i] = new QCPItemStraightLine(ui->PlotC);
 }
 
-ui->thch1->setValue(0.25);
-ui->thch2->setValue(-0.08);
-ui->thch3->setValue(-0.08);
-ui->thch4->setValue(-0.08);
-ui->cw->setValue(50000);
+if(LoadPrevoiusSeason(1)){
+    std::cout<<"loading hard coded initial values"<<std::endl;
 
-//for (int i=0;i<9;i++)P_R[i]=0;
-//for (int i=0;i<9;i++)P_T[i]=false;
+    ui->histStart->setValue(0);
+    ui->binWidth->setValue(1);
+    ui->binsinplot->setValue(1000);
 
-ui->plot1_1->setValue(0);
-ui->plot1_2->setValue(0);
-ui->win1_1->setValue(0);
-ui->win1_2->setValue(0);
+    ui->adqtime->setValue(1);//update rate Adq time
 
-ui->histStart->setValue(69000);
-ui->histEnd->setValue(78500);
-/*ui->histStart->setValue(1000);
-ui->histEnd->setValue(10000);*/
+    ui->BegA1->setValue(500);
+    ui->BegA2->setValue(7000);
+    ui->BegA3->setValue(74600);
+    ui->EndA1->setValue(1000);
+    ui->EndA2->setValue(73900);
+    ui->EndA3->setValue(75900);
 
-ui->binsinplot->setValue(1000);
-ui->adqtime->setValue(10);//update rate Adq time
+    ui->BegB1->setValue(2);
+    ui->BegB2->setValue(5000);
+    ui->BegB3->setValue(75600);
+    ui->EndB1->setValue(500);
+    ui->EndB2->setValue(74800);
+    ui->EndB3->setValue(76800);
+
+    ui->BegC1->setValue(71600);
+    ui->BegC2->setValue(73600);
+    ui->BegC3->setValue(75600);
+    ui->EndC1->setValue(72800);
+    ui->EndC2->setValue(74800);
+    ui->EndC3->setValue(76800);
+
+    ui->PlotAChn1->setValue(3);
+    ui->PlotAChn2->setValue(4);
+    ui->PlotBChn1->setValue(3);
+    ui->PlotBChn2->setValue(2);
+    ui->PlotCChn1->setValue(2);
+    ui->PlotCChn2->setValue(2);
+    ui->startChan->setValue(3);
+
+    ui->plot1_1->setValue(0);
+    ui->plot1_2->setValue(1);
+    ui->plot2_1->setValue(0);
+    ui->plot2_2->setValue(1);
+    ui->plot3_1->setValue(0);
+    ui->plot3_2->setValue(1);
+
+    ui->win1_1->setValue(0);
+    ui->win1_2->setValue(0);
+    ui->win2_1->setValue(1);
+    ui->win2_2->setValue(1);
+    ui->win3_1->setValue(2);
+    ui->win3_2->setValue(2);
 
 
-ui->BegA1->setValue(70700);
-ui->BegA2->setValue(72600);
-ui->BegA3->setValue(74600);
-ui->EndA1->setValue(72100);
-ui->EndA2->setValue(73900);
-ui->EndA3->setValue(75900);
+    ui->adqtime_2->setValue(1);
 
-ui->BegB1->setValue(71600);
-ui->BegB2->setValue(73600);
-ui->BegB3->setValue(75600);
-ui->EndB1->setValue(72800);
-ui->EndB2->setValue(74800);
-ui->EndB3->setValue(76800);
 
-ui->BegC1->setValue(71600);
-ui->BegC2->setValue(73600);
-ui->BegC3->setValue(75600);
-ui->EndC1->setValue(72800);
-ui->EndC2->setValue(74800);
-ui->EndC3->setValue(76800);
+    ui->Max_delay->setValue(500);
 
-ui->PlotAChn1->setValue(1);
-ui->PlotAChn2->setValue(3);
-ui->PlotBChn1->setValue(1);
-ui->PlotBChn2->setValue(2);
-ui->PlotCChn1->setValue(1);
-ui->PlotCChn2->setValue(4);
-ui->startChan->setValue(1);
+    ui->stepduration->setValue(30);
 
-ui->plot1_1->setValue(0);
-ui->plot1_2->setValue(1);
-ui->plot2_1->setValue(0);
-ui->plot2_2->setValue(1);
-ui->plot3_1->setValue(0);
-ui->plot3_2->setValue(1);
-
-ui->win1_1->setValue(0);
-ui->win1_2->setValue(0);
-ui->win2_1->setValue(1);
-ui->win2_2->setValue(1);
-ui->win3_1->setValue(2);
-ui->win3_2->setValue(2);
-
-//QThread::msleep(100);
-
-ui->adqtime_2->setValue(10);
-
-/*ui->tab2_plot1->setChecked(true);
-ui->tab2_plot2->setChecked(true);
-ui->tab2_plot3->setChecked(true);
-*/
+}
 
 lastPointKey_tab1 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 lastPointKey_tab2 = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
 
-ui->rof1->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
-ui->rof2->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
-ui->rof3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
-ui->rof4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+ui->Log1->setCheckState(Qt::Unchecked);
+ui->Log2->setCheckState(Qt::Unchecked);
+ui->Log3->setCheckState(Qt::Unchecked);
 
+setup_comboboxes();
 
-ui->rof1->addItem(tr("Rise"));
-ui->rof1->addItem(tr("Fall"));
-ui->rof2->addItem(tr("Rise"));
-ui->rof2->addItem(tr("Fall"));
-ui->rof3->addItem(tr("Rise"));
-ui->rof3->addItem(tr("Fall"));
-ui->rof4->addItem(tr("Rise"));
-ui->rof4->addItem(tr("Fall"));
-
-ui->rof1->setCurrentText("Rise");
-ui->rof2->setCurrentText("Fall");
-ui->rof3->setCurrentText("Fall");
-ui->rof4->setCurrentText("Fall");
-
-
-ui->Max_delay->setValue(500);
-
-ui->stepduration->setValue(30);
 
 dbc.start();
-adq.start();
+
 anl.start();
+
+while(adq.isRunning())usleep(100);
+
+ui->thch1->setValue(adq.thresholds[1]);
+ui->thch2->setValue(adq.thresholds[2]);
+ui->thch3->setValue(adq.thresholds[3]);
+ui->thch4->setValue(adq.thresholds[4]);
+//std::cout<<" MAINWINDOW rof"<<adq.RoF[1]<<"rof"<<adq.RoF[2]<<"rof"<<adq.RoF[3]<<"rof"<<adq.RoF[4]<<std::endl;
+for (int i=0;i<5;i++)this->RoF[i]=adq.RoF[i];
+
+if(RoF[1])ui->rof1->setCurrentText("Rise");
+else ui->rof1->setCurrentText("Fall");
+if(RoF[2])ui->rof2->setCurrentText("Rise");
+else ui->rof2->setCurrentText("Fall");
+if(RoF[3])ui->rof3->setCurrentText("Rise");
+else ui->rof3->setCurrentText("Fall");
+if(RoF[4])ui->rof4->setCurrentText("Rise");
+else ui->rof4->setCurrentText("Fall");
+
+//std::cout<<"filtersss   "<<adq.filtertypeSTR[1].toStdString()<<"  "<<adq.filtertypeSTR[2].toStdString()<<"   "<<adq.filtertypeSTR[3].toStdString()<<std::endl;
+ui->FilterType1->setCurrentText(adq.filtertypeSTR[1]);
+ui->FilterType2->setCurrentText(adq.filtertypeSTR[2]);
+ui->FilterType3->setCurrentText(adq.filtertypeSTR[3]);
+ui->FilterType4->setCurrentText(adq.filtertypeSTR[4]);
+
+if(adq.ch_filtermask[1] & 0x01<<1)ui->Filter1_1->setCheckState(Qt::Checked);
+else ui->Filter1_1->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[1] & 0x01<<2)ui->Filter1_2->setCheckState(Qt::Checked);
+else ui->Filter1_2->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[1] & 0x01<<3)ui->Filter1_3->setCheckState(Qt::Checked);
+else ui->Filter1_3->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[1] & 0x01<<4)ui->Filter1_4->setCheckState(Qt::Checked);
+else ui->Filter1_4->setCheckState(Qt::Unchecked);
+
+if(adq.ch_filtermask[2] & 0x01<<1)ui->Filter2_1->setCheckState(Qt::Checked);
+else ui->Filter2_1->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[2] & 0x01<<2)ui->Filter2_2->setCheckState(Qt::Checked);
+else ui->Filter2_2->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[2] & 0x01<<3)ui->Filter2_3->setCheckState(Qt::Checked);
+else ui->Filter2_3->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[2] & 0x01<<4)ui->Filter2_4->setCheckState(Qt::Checked);
+else ui->Filter2_4->setCheckState(Qt::Unchecked);
+
+if(adq.ch_filtermask[3] & 0x01<<1)ui->Filter3_1->setCheckState(Qt::Checked);
+else ui->Filter3_1->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[3] & 0x01<<2)ui->Filter3_2->setCheckState(Qt::Checked);
+else ui->Filter3_2->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[3] & 0x01<<3)ui->Filter3_3->setCheckState(Qt::Checked);
+else ui->Filter3_3->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[3] & 0x01<<4)ui->Filter3_4->setCheckState(Qt::Checked);
+else ui->Filter3_4->setCheckState(Qt::Unchecked);
+
+if(adq.ch_filtermask[4] & 0x01<<1)ui->Filter4_1->setCheckState(Qt::Checked);
+else ui->Filter4_1->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[4] & 0x01<<2)ui->Filter4_2->setCheckState(Qt::Checked);
+else ui->Filter4_2->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[4] & 0x01<<3)ui->Filter4_3->setCheckState(Qt::Checked);
+else ui->Filter4_3->setCheckState(Qt::Unchecked);
+if(adq.ch_filtermask[4] & 0x01<<4)ui->Filter4_4->setCheckState(Qt::Checked);
+else ui->Filter4_4->setCheckState(Qt::Unchecked);
+
+
+ setupsignalslot2();
+
+adq.start();
 
 adq.initdone = 1;
 }
@@ -439,7 +469,7 @@ title1->setTextColor(Qt::white);
   graph1->setLineStyle((QCPGraph::LineStyle)4);
 
   histograma->xAxis->setRange(0, 10000);
-
+  //histograma->yAxis->setScaleType(QCPAxis::stLogarithmic);
   //histograma->addGraph();
   //histograma->graph(0)->setPen(QPen(Qt::red));
 
@@ -491,9 +521,11 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->histStart, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_histStart(int)));
 
 
-    QObject::connect(ui->histEnd, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_in_histEnd(int)));
-    QObject::connect(ui->histEnd, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_histEnd(int)));
-    QObject::connect(ui->histEnd, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_histEnd(int)));
+    QObject::connect(ui->binWidth, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_in_binWidth(int)));
+    QObject::connect(ui->binWidth, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_binWidth(int)));
+    QObject::connect(ui->binWidth, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_binWidth(int)));
+
+    //QObject::connect(this, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_binWidth(int)));
 
     QObject::connect(ui->binsinplot, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_in_binsinplot(int)));
     QObject::connect(ui->binsinplot, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_binsinplot(int)));
@@ -623,7 +655,14 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch2(double)));
     QObject::connect(ui->thch3, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch3(double)));
     QObject::connect(ui->thch4, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_in_thch4(double)));
+
+    QObject::connect(ui->thch1, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch1(double)));
+    QObject::connect(ui->thch2, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch2(double)));
+    QObject::connect(ui->thch3, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch3(double)));
+    QObject::connect(ui->thch4, SIGNAL(valueChanged(double)), this, SLOT(Chang_in_thch4(double)));
+
     QObject::connect(ui->cw, SIGNAL(valueChanged(int)), &adq, SLOT(Chang_in_cw(int)));
+    QObject::connect(ui->cw, SIGNAL(valueChanged(int)), this, SLOT(Chang_in_cw(int)));
 
     QObject::connect(ui->DBON, SIGNAL(valueChanged(int)), this, SLOT(turnONDB(int)));
 
@@ -661,13 +700,60 @@ void MainWindow::setupsignalslot(){
 
     QObject::connect(ui->clean_tab2, SIGNAL(released()), this, SLOT(clean_tab2()));
 
+ /*   QObject::connect(ui->rof1, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof1(QString)));
+    QObject::connect(ui->rof2, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof2(QString)));
+    QObject::connect(ui->rof3, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof3(QString)));
+    QObject::connect(ui->rof4, SIGNAL(currentTextChanged(QString)), this, SLOT(Chang_rof4(QString)));*/
+
+    QObject::connect(ui->Log1, SIGNAL(stateChanged(int)),this, SLOT(Chang_log1(int)));
+    QObject::connect(ui->Log2, SIGNAL(stateChanged(int)),this, SLOT(Chang_log2(int)));
+    QObject::connect(ui->Log3, SIGNAL(stateChanged(int)),this, SLOT(Chang_log3(int)));
+
+    QObject::connect(ui->delay1, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay1(double)));
+    QObject::connect(ui->delay2, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay2(double)));
+    QObject::connect(ui->delay3, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay3(double)));
+    QObject::connect(ui->delay4, SIGNAL(valueChanged(double)), &adq, SLOT(Chang_delay4(double)));
+
+    QObject::connect(&adq, SIGNAL(TDCerror(QString)), this, SLOT(error1(QString)) );
+
+
+
+
+}
+
+void MainWindow::setupsignalslot2(){
+
+
     QObject::connect(ui->rof1, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof1(QString)));
     QObject::connect(ui->rof2, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof2(QString)));
     QObject::connect(ui->rof3, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof3(QString)));
     QObject::connect(ui->rof4, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_rof4(QString)));
+
+    QObject::connect(ui->FilterType1, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_filtertype1(QString)));
+    QObject::connect(ui->FilterType2, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_filtertype2(QString)));
+    QObject::connect(ui->FilterType3, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_filtertype3(QString)));
+    QObject::connect(ui->FilterType4, SIGNAL(currentTextChanged(QString)), &adq, SLOT(Chang_filtertype4(QString)));
+
+    QObject::connect(ui->Filter1_1, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask1_1(int)));
+    QObject::connect(ui->Filter1_2, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask1_2(int)));
+    QObject::connect(ui->Filter1_3, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask1_3(int)));
+    QObject::connect(ui->Filter1_4, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask1_4(int)));
+
+    QObject::connect(ui->Filter2_1, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask2_1(int)));
+    QObject::connect(ui->Filter2_2, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask2_2(int)));
+    QObject::connect(ui->Filter2_3, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask2_3(int)));
+    QObject::connect(ui->Filter2_4, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask2_4(int)));
+
+    QObject::connect(ui->Filter3_1, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask3_1(int)));
+    QObject::connect(ui->Filter3_2, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask3_2(int)));
+    QObject::connect(ui->Filter3_3, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask3_3(int)));
+    QObject::connect(ui->Filter3_4, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask3_4(int)));
+
+    QObject::connect(ui->Filter4_1, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask4_1(int)));
+    QObject::connect(ui->Filter4_2, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask4_2(int)));
+    QObject::connect(ui->Filter4_3, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask4_3(int)));
+    QObject::connect(ui->Filter4_4, SIGNAL(stateChanged(int)), &adq, SLOT(Chang_filtermask4_4(int)));
 }
-
-
 
 //////////////////////////////////////////////////////////
 ///////////////////plotting///////////////////////////
@@ -808,51 +894,75 @@ void MainWindow::plotRates_tab2(int eventA, int eventB, int eventC, int orgate ,
 
 
 void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, const vectorDouble &datC){
-    //std::cout<<" histoplot hermanitititototot"<< datB.size()<<"   "<<datC.size() <<std::endl;
-    double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
-   // std::cout<<"histogram size   "<<datA.size()<<std::endl;
-
-    QVector<double> x(datA.size());
+    //std::cout<<" histosizes:  "<<datB.size()<<"   "<< datB.size()<<"   "<<datC.size() <<std::endl;
+    //double binwidth=((in_histEnd-in_histStart)/in_binsinplot);
+    double binwidth=double(in_binWidth);
+    //std::cout<<"histogram size   "<<datA.size()<<std::endl;
+    int histStart_bins = int(in_histStart/binwidth);
+    QVector<double> datA_out(datA.size()-histStart_bins);
+    QVector<double> datB_out(datB.size()-histStart_bins);
+    QVector<double> datC_out(datC.size()-histStart_bins);
+    int maxsize = qMax((datA.size()-histStart_bins),qMax((datB.size()-histStart_bins),(datC.size()-histStart_bins)));
+    QVector<double> x(maxsize);
+    //std::cout<<"size x : "<<x.size()<<std::endl;
 //for (int i=in_histStart; i<in_histEnd; i++){
-    for (int i=0; i<datA.size(); ++i){
+    for (int i=0; i<x.size(); ++i){
         x[i] = binwidth*i+in_histStart;
-
     }
 
+    for (int i=0; i<datA_out.size(); ++i){
+       /* if(logar[0] && datA[i+in_histStart]>0)datA_out[i] = log10(datA[i+in_histStart]);
+        else datA_out[i] = datA[i+in_histStart];*/
+        datA_out[i] = datA[i+histStart_bins];
+    }
 
   ui->PlotA->graph(0)->data()->clear();
   // pass data points to graphs:
-  ui->PlotA->graph(0)->setData(x, datA);
+  ui->PlotA->graph(0)->setData(x, datA_out);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
   ui->PlotA->graph(0)->rescaleAxes();
   ui->PlotA->replot();
 
+  for (int i=0; i<datB_out.size(); ++i){
+      /*if(logar[1] && datB[i+in_histStart]>0)datB_out[i] = log10(datB[i+in_histStart]);
+      else datB_out[i] = datB[i+in_histStart];*/
+      datB_out[i] = datB[i+histStart_bins];
+  }
+
+
   ui->PlotB->graph(0)->data()->clear();
   // pass data points to graphs:
-  ui->PlotB->graph(0)->setData(x, datB);
+  ui->PlotB->graph(0)->setData(x, datB_out);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
   ui->PlotB->graph(0)->rescaleAxes();
   ui->PlotB->replot();
 
+  for (int i=0; i<datC_out.size(); ++i){
+     /* if(logar[2] && datC[i+in_histStart]>0)datC_out[i] = log10(datC[i+in_histStart]);
+      else datC_out[i] = datC[i+in_histStart];*/
+      datC_out[i] = datC[i+histStart_bins];
+  }
+
+
   ui->PlotC->graph(0)->data()->clear();
   // pass data points to graphs:
-  ui->PlotC->graph(0)->setData(x, datC);
+  ui->PlotC->graph(0)->setData(x, datC_out);
   //let the ranges scale themselves so graph 0 fits perfectly in the visible area:
   ui->PlotC->graph(0)->rescaleAxes();
   ui->PlotC->replot();
 
 
 
-  for (int D=0; D<datA.size(); D++) {
+  for (int D=0; D<datA_out.size(); D++) {
       for (int i=0; i<9; i++) {
           if(i<3){
-              if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA[D];
+              if(x[D]>Plot_Win_BoE[0][i][0] && x[D]<Plot_Win_BoE[0][i][1])P_R[i]+=datA_out[D];
           }
           if(i>2 && i<6) {
-              if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB[D];
+              if(x[D]>Plot_Win_BoE[1][i-3][0] && x[D]<Plot_Win_BoE[1][i-3][1])P_R[i]+=datB_out[D];
           }
           if(i>5) {
-              if(x[D]>Plot_Win_BoE[2][i-6][0] && x[D]<Plot_Win_BoE[2][i-6][1])P_R[i]+=datC[D];
+              if(x[D]>Plot_Win_BoE[2][i-6][0] && x[D]<Plot_Win_BoE[2][i-6][1])P_R[i]+=datC_out[D];
           }
 
        }
@@ -1025,16 +1135,25 @@ void MainWindow::SaveState(bool a){
                     mapint.insert("in_PlotCCh1",in_PlotCCh1);
                     mapint.insert("in_PlotCCh2",in_PlotCCh2);
                     mapint.insert("in_histStart",in_histStart);
-                    mapint.insert("in_histEnd",in_histEnd);
+                    mapint.insert("in_binWidth",in_binWidth);
                     mapint.insert("in_binsinplot",in_binsinplot);
 
                     mapdouble.insert("in_adqtime", in_adqtime);
-                    mapdouble.insert("adqtime_tab2", double(adqtime_tab2));
+                    mapdouble.insert("in_adqtime_2", double(in_adqtime_2));
+
+                    /*mapint.insert("RoF1",int(RoF[1]));
+                    mapint.insert("RoF2",int(RoF[2]));
+                    mapint.insert("RoF3",int(RoF[3]));
+                    mapint.insert("RoF4",int(RoF[4]));*/
 
                     /*QMapIterator<QString,int>ip(mapint);
                     while (ip.hasNext()) {
                         ip.next();
                         std::cout<< ip.key().toStdString()<< ": " << ip.value() << std::endl;
+
+ double in_thch1, in_thch2,in_thch3,in_thch4;
+ int in_cw;
+ bool RoF[5];
                     }*/
                     out<<mapint;
                     out<<mapdouble;
@@ -1044,15 +1163,239 @@ void MainWindow::SaveState(bool a){
 }
 
 
+bool MainWindow::LoadPrevoiusSeason(bool a){
+    std::cout<<"loading previous season parameters"<<std::endl;
+    QString fileName = "LastSeasonVariables.conf";
+    if (fileName.isEmpty())return 1;
+
+    QFile file(fileName);
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::information(this, tr("Unable to open file"),
+        file.errorString());
+        return 1;
+    }
+
+
+
+    QMap<QString, int> mapintout;
+    QMap<QString, double> mapdoubleout;
+    QDataStream in(&file);
+    in.setVersion(QDataStream::Qt_4_5);
+    in>>mapintout;
+
+
+    QMapIterator<QString,int>i(mapintout);
+    while (i.hasNext()) {
+        i.next();
+        std::cout<< i.key().toStdString() <<  ": " << i.value() << std::endl;
+    }
+    in>>mapdoubleout;
+    QMapIterator<QString,double>j(mapdoubleout);
+    while (j.hasNext()) {
+        j.next();
+        std::cout<< j.key().toStdString() <<  ": " << j.value() << std::endl;
+    }
+
+    if(mapintout.contains("in_histStart"))ui->histStart->setValue(mapintout.value("in_histStart"));
+    else ui->histStart->setValue(0);
+    if(mapintout.contains("in_binWidth"))ui->binWidth->setValue(mapintout.value("in_binWidth"));
+    else ui->binWidth->setValue(1);
+    if(mapintout.contains("in_binsinplot"))ui->binsinplot->setValue(mapintout.value("in_binsinplot"));
+    else ui->binsinplot->setValue(1000);
+    if(mapdoubleout.contains("in_adqtime"))ui->adqtime->setValue(mapdoubleout.value("in_adqtime"));
+    else ui->adqtime->setValue(1);
+    if(mapintout.contains("tab2_plot[0][0]"))ui->plot1_1->setValue(mapintout.value("tab2_plot[0][0]"));
+    else ui->plot1_1->setValue(0);
+    if(mapintout.contains("tab2_plot[0][1]"))ui->plot1_2->setValue(mapintout.value("tab2_plot[0][1]"));
+    else ui->plot1_2->setValue(1);
+    if(mapintout.contains("tab2_plot[1][0]"))ui->plot2_1->setValue(mapintout.value("tab2_plot[1][0]"));
+    else ui->plot2_1->setValue(0);
+    if(mapintout.contains("tab2_plot[1][1]"))ui->plot2_2->setValue(mapintout.value("tab2_plot[1][1]"));
+    else ui->plot2_2->setValue(1);
+    if(mapintout.contains("tab2_plot[2][0]"))ui->plot3_1->setValue(mapintout.value("tab2_plot[2][0]"));
+    else ui->plot3_1->setValue(0);
+    if(mapintout.contains("tab2_plot[2][1]"))ui->plot3_2->setValue(mapintout.value("tab2_plot[2][1]"));
+    else ui->plot3_2->setValue(1);
+
+    if(mapintout.contains("tab2_win[0][0]"))ui->win1_1->setValue(mapintout.value("tab2_win[0][0]"));
+    else ui->win1_1->setValue(0);
+    if(mapintout.contains("tab2_win[0][1]"))ui->win1_2->setValue(mapintout.value("tab2_win[0][1]"));
+    else ui->win1_2->setValue(0);
+    if(mapintout.contains("tab2_win[1][0]"))ui->win2_1->setValue(mapintout.value("tab2_win[1][0]"));
+    else ui->win2_1->setValue(1);
+    if(mapintout.contains("tab2_win[1][1]"))ui->win2_2->setValue(mapintout.value("tab2_win[1][1]"));
+    else ui->win2_2->setValue(1);
+    if(mapintout.contains("tab2_win[2][0]"))ui->win3_1->setValue(mapintout.value("tab2_win[2][0]"));
+    else ui->win3_1->setValue(3);
+    if(mapintout.contains("tab2_win[2][1]"))ui->win3_2->setValue(mapintout.value("tab2_win[2][1]"));
+    else ui->win3_2->setValue(3);
+
+    if(mapintout.contains("Plot_Win_BoE[0][0][0]"))ui->BegA1->setValue(mapintout.value("Plot_Win_BoE[0][0][0]"));
+    else ui->BegA1->setValue(500);
+    if(mapintout.contains("Plot_Win_BoE[0][1][0]"))ui->BegA2->setValue(mapintout.value("Plot_Win_BoE[0][1][0]"));
+    else ui->BegA2->setValue(1500);
+    if(mapintout.contains("Plot_Win_BoE[0][2][0]"))ui->BegA3->setValue(mapintout.value("Plot_Win_BoE[0][2][0]"));
+    else ui->BegA3->setValue(2500);
+    if(mapintout.contains("Plot_Win_BoE[0][0][1]"))ui->EndA1->setValue(mapintout.value("Plot_Win_BoE[0][0][1]"));
+    else ui->EndA1->setValue(600);
+    if(mapintout.contains("Plot_Win_BoE[0][1][1]"))ui->EndA2->setValue(mapintout.value("Plot_Win_BoE[0][1][1]"));
+    else ui->EndA2->setValue(1600);
+    if(mapintout.contains("Plot_Win_BoE[0][2][1]"))ui->EndA3->setValue(mapintout.value("Plot_Win_BoE[0][2][1]"));
+    else ui->EndA3->setValue(2600);
+
+    if(mapintout.contains("Plot_Win_BoE[1][0][0]"))ui->BegB1->setValue(mapintout.value("Plot_Win_BoE[1][0][0]"));
+    else ui->BegB1->setValue(500);
+    if(mapintout.contains("Plot_Win_BoE[1][1][0]"))ui->BegB2->setValue(mapintout.value("Plot_Win_BoE[1][1][0]"));
+    else ui->BegB2->setValue(1500);
+    if(mapintout.contains("Plot_Win_BoE[1][2][0]"))ui->BegB3->setValue(mapintout.value("Plot_Win_BoE[1][2][0]"));
+    else ui->BegB3->setValue(2500);
+    if(mapintout.contains("Plot_Win_BoE[1][0][1]"))ui->EndB1->setValue(mapintout.value("Plot_Win_BoE[1][0][1]"));
+    else ui->EndB1->setValue(600);
+    if(mapintout.contains("Plot_Win_BoE[1][1][1]"))ui->EndB2->setValue(mapintout.value("Plot_Win_BoE[1][1][1]"));
+    else ui->EndB2->setValue(1600);
+    if(mapintout.contains("Plot_Win_BoE[1][2][1]"))ui->EndB3->setValue(mapintout.value("Plot_Win_BoE[1][2][1]"));
+    else ui->EndB3->setValue(2600);
+
+    if(mapintout.contains("Plot_Win_BoE[2][0][0]"))ui->BegC1->setValue(mapintout.value("Plot_Win_BoE[2][0][0]"));
+    else ui->BegC1->setValue(500);
+    if(mapintout.contains("Plot_Win_BoE[2][1][0]"))ui->BegC2->setValue(mapintout.value("Plot_Win_BoE[2][1][0]"));
+    else ui->BegC2->setValue(1500);
+    if(mapintout.contains("Plot_Win_BoE[2][2][0]"))ui->BegC3->setValue(mapintout.value("Plot_Win_BoE[2][2][0]"));
+    else ui->BegC3->setValue(2500);
+    if(mapintout.contains("Plot_Win_BoE[2][0][1]"))ui->EndC1->setValue(mapintout.value("Plot_Win_BoE[2][0][1]"));
+    else ui->EndC1->setValue(600);
+    if(mapintout.contains("Plot_Win_BoE[2][1][1]"))ui->EndC2->setValue(mapintout.value("Plot_Win_BoE[2][1][1]"));
+    else ui->EndC2->setValue(1600);
+    if(mapintout.contains("Plot_Win_BoE[2][2][1]"))ui->EndC3->setValue(mapintout.value("Plot_Win_BoE[2][2][1]"));
+    else ui->EndC3->setValue(2600);
+
+
+    if(mapintout.contains("in_startChan"))ui->startChan->setValue(mapintout.value("in_startChan"));
+    else ui->startChan->setValue(3);
+    if(mapintout.contains("in_PlotACh1"))ui->PlotAChn1->setValue(mapintout.value("in_PlotACh1"));
+    else ui->PlotAChn1->setValue(3);
+    if(mapintout.contains("in_PlotACh2"))ui->PlotAChn2->setValue(mapintout.value("in_PlotACh2"));
+    else ui->PlotAChn2->setValue(4);
+    if(mapintout.contains("in_PlotBCh1"))ui->PlotBChn1->setValue(mapintout.value("in_PlotBCh1"));
+    else ui->PlotBChn1->setValue(3);
+    if(mapintout.contains("in_PlotBCh2"))ui->PlotBChn2->setValue(mapintout.value("in_PlotBCh2"));
+    else ui->PlotBChn2->setValue(2);
+    if(mapintout.contains("in_PlotCCh1"))ui->PlotCChn1->setValue(mapintout.value("in_PlotCCh1"));
+    else ui->PlotCChn1->setValue(2);
+    if(mapintout.contains("in_PlotCCh2"))ui->PlotCChn2->setValue(mapintout.value("in_PlotCCh2"));
+    else ui->PlotCChn2->setValue(2);
+
+    if(mapdoubleout.contains("in_adqtime_2"))ui->adqtime_2->setValue(mapdoubleout.value("in_adqtime_2"));
+    else ui->adqtime_2->setValue(1);
+    if(mapintout.contains("Max_delay"))ui->Max_delay->setValue(mapintout.value("Max_delay"));
+    else ui->Max_delay->setValue(500);
+    if(mapintout.contains("stepduration"))ui->stepduration->setValue(mapintout.value("stepduration"));
+    else ui->stepduration->setValue(30);
+
+
+/*
+       QMapIterator<QString,int>i(mapintout);
+       while (i.hasNext()) {
+           i.next();
+           std::cout<< i.key().toStdString() <<  ": " << i.value() << std::endl;
+       }
+       in>>mapdoubleout;
+       QMapIterator<QString,double>j(mapdoubleout);
+       while (j.hasNext()) {
+           j.next();
+           std::cout<< j.key().toStdString() <<  ": " << j.value() << std::endl;
+       }
+
+*/
+     std::cout<<"parameters loaded"<<std::endl;
+    return 0;
+}
+
+
+void MainWindow::SaveSeason(bool a){
+
+    QString CurrentSeason = "LastSeasonVariables.conf";
+
+    QFile file(CurrentSeason);
+    if (!file.open(QIODevice::WriteOnly)) {
+        QMessageBox::information(this, tr("Unable to open file"),
+        file.errorString());
+        return;
+    }
+
+    QDataStream out(&file);
+
+    out.setVersion(QDataStream::Qt_4_5);
+    QMap<QString, int> mapint;
+    QMap<QString, double> mapdouble;
+    QString localstring;
+
+
+    for ( int i=0;i<3;i++) {
+        for (int j =0;j<3;j++) {
+              for (int k = 0;k<2;k++) {
+                   localstring = QString("Plot_Win_BoE[%1][%2][%3]").arg(i).arg(j).arg(k);
+                   if(!mapint.contains(localstring))mapint.insert(localstring,Plot_Win_BoE[i][j][k]);
+                   else mapint.value(localstring, Plot_Win_BoE[i][j][k]);
+                   }
+
+         }
+
+    }
+
+    for ( int i=0;i<3;i++) {
+           for (int j =0;j<2;j++) {
+                   localstring = QString("tab2_plot[%1][%2]").arg(i).arg(j);
+                   //std::cout<< localstring.toStdString()<< std::endl;
+                    if(!mapint.contains(localstring))mapint.insert(localstring,tab2_plot[i][j]);
+                    else mapint.value(localstring, tab2_plot[i][j]);
+               }
+     }
+
+    for ( int i=0;i<3;i++) {
+           for (int j =0;j<2;j++) {
+                   localstring = QString("tab2_win[%1][%2]").arg(i).arg(j);
+                   //std::cout<< localstring.toStdString()<< std::endl;
+                    if(!mapint.contains(localstring))mapint.insert(localstring,tab2_win[i][j]);
+                    else mapint.value(localstring, tab2_win[i][j]);
+               }
+     }
+
+    mapint.insert("in_startChan",in_startChan);
+    if(in_PlotACh1>0 && in_PlotACh1<5)mapint.insert("in_PlotACh1",in_PlotACh1);
+    if(in_PlotACh2>0 && in_PlotACh2<5)mapint.insert("in_PlotACh2",in_PlotACh2);
+    if(in_PlotBCh1>0 && in_PlotBCh1<5)mapint.insert("in_PlotBCh1",in_PlotBCh1);
+    if(in_PlotBCh2>0 && in_PlotBCh2<5)mapint.insert("in_PlotBCh2",in_PlotBCh2);
+    if(in_PlotCCh1>0 && in_PlotCCh1<5)mapint.insert("in_PlotCCh1",in_PlotCCh1);
+    if(in_PlotCCh2>0 && in_PlotCCh2<5)mapint.insert("in_PlotCCh2",in_PlotCCh2);
+    mapint.insert("in_histStart",in_histStart);
+    mapint.insert("in_binsinplot",in_binsinplot);
+    mapint.insert("in_binWidth",in_binWidth);
+
+    mapdouble.insert("in_adqtime", in_adqtime);
+    mapdouble.insert("in_adqtime_2", double(in_adqtime_2));
+
+    mapint.insert("Max_delay",in_Max_delay);
+    mapint.insert("stepduration",in_stepduration);
+
+
+
+    out<<mapint;
+    out<<mapdouble;
+
+   // LoadState(1);
+}
+
 
 void MainWindow::LoadState(bool a){
     QString fileName = QFileDialog::getOpenFileName(this,
-            tr("Load Configuration"), "",
-            tr("Configuration (*.conf);;All Files (*)"));
-    //QString fileName = "test";
-    if (fileName.isEmpty())
-            return;
-        else {
+                tr("Load Configuration"), "",
+                tr("Configuration (*.conf);;All Files (*)"));
+        //QString fileName = "test";
+        if (fileName.isEmpty())
+                return;
+    else {
 
             QFile file(fileName);
 
@@ -1067,15 +1410,6 @@ void MainWindow::LoadState(bool a){
             in.setVersion(QDataStream::Qt_4_5);
             in>>mapintout;
 
-            /*QString localstring;
-            for ( int i=0;i<3;i++) {
-                   for (int j =0;j<3;j++) {
-                       for (int k = 0;k<2;k++) {
-                           localstring = QString("Plot_Win_BoE[%1][%2][%3]").arg(i).arg(j).arg(k);
-                            if(mapintout.contains(localstring))Plot_Win_BoE[i][j][k]= mapintout.value(localstring);
-                       }
-                   }
-             }*/
             if(mapintout.contains("tab2_plot[0][0]"))ui->plot1_1->setValue(mapintout.value("tab2_plot[0][0]"));
             if(mapintout.contains("tab2_plot[0][1]"))ui->plot1_2->setValue(mapintout.value("tab2_plot[0][1]"));
             if(mapintout.contains("tab2_plot[1][0]"))ui->plot2_1->setValue(mapintout.value("tab2_plot[1][0]"));
@@ -1116,18 +1450,40 @@ void MainWindow::LoadState(bool a){
 
             if(mapintout.contains("in_startChan"))ui->startChan->setValue(mapintout.value("in_startChan"));
             if(mapintout.contains("in_PlotACh1"))ui->PlotAChn1->setValue(mapintout.value("in_PlotACh1"));
+            if(mapintout.contains("in_PlotACh2"))std::cout<<"ke wea hermano"<<mapintout.value("in_PlotACh2")<<std::endl;
             if(mapintout.contains("in_PlotACh2"))ui->PlotAChn2->setValue(mapintout.value("in_PlotACh2"));
             if(mapintout.contains("in_PlotBCh1"))ui->PlotBChn1->setValue(mapintout.value("in_PlotBCh1"));
             if(mapintout.contains("in_PlotBCh2"))ui->PlotBChn2->setValue(mapintout.value("in_PlotBCh2"));
             if(mapintout.contains("in_PlotCCh1"))ui->PlotCChn1->setValue(mapintout.value("in_PlotCCh1"));
             if(mapintout.contains("in_PlotCCh2"))ui->PlotCChn2->setValue(mapintout.value("in_PlotCCh2"));
             if(mapintout.contains("in_histStart"))ui->histStart->setValue(mapintout.value("in_histStart"));
-            if(mapintout.contains("in_histEnd"))ui->histEnd->setValue(mapintout.value("in_histEnd"));
+            //if(mapintout.contains("in_histEnd"))ui->histEnd->setValue(mapintout.value("in_histEnd"));
             if(mapintout.contains("in_binsinplot"))ui->binsinplot->setValue(mapintout.value("in_binsinplot"));
 
             if(mapdoubleout.contains("in_adqtime"))ui->adqtime->setValue(mapdoubleout.value("in_adqtime"));
-            if(mapdoubleout.contains("adqtime_tab2"))ui->adqtime_2->setValue(mapdoubleout.value("adqtime_tab2"));
+            if(mapdoubleout.contains("in_adqtime_2"))ui->adqtime_2->setValue(mapdoubleout.value("in_adqtime_2"));
 
+
+            /*if(mapintout.contains("RoF1")){
+                if(mapintout.value("RoF1"))ui->rof1->setCurrentText("Rise");
+            }
+            else ui->rof1->setCurrentText("Fall");
+
+            if(mapintout.contains("RoF2")){
+                if(mapintout.value("RoF2"))ui->rof2->setCurrentText("Rise");
+            }
+            else ui->rof2->setCurrentText("Fall");
+
+            if(mapintout.contains("RoF3")){
+                if(mapintout.value("RoF3"))ui->rof3->setCurrentText("Rise");
+            }
+            else ui->rof3->setCurrentText("Fall");
+
+            if(mapintout.contains("RoF4")){
+                if(mapintout.value("RoF4"))ui->rof4->setCurrentText("Rise");
+            }
+            else ui->rof4->setCurrentText("Fall");
+*/
 
 
                QMapIterator<QString,int>i(mapintout);
@@ -1176,12 +1532,14 @@ void MainWindow::setBSMmeas(){
     //ui->win3_2->setValue(2);
 
 }
+
 void MainWindow::setHOMmeas(){
 
     QMessageBox msgBox;
     msgBox.setText("Still to do :P");
     msgBox.exec();
 }
+
 void MainWindow::clean_tab2(){
 
     QMessageBox msgBox;
@@ -1189,7 +1547,7 @@ void MainWindow::clean_tab2(){
     msgBox.exec();
 }
 
-void MainWindow::   Chang_homscan(int val){
+void MainWindow::Chang_homscan(int val){
     in_homscan=bool(val);
     if(in_homscan && !firstscan){
         firstscan=true;
@@ -1197,32 +1555,127 @@ void MainWindow::   Chang_homscan(int val){
     }
 }
 
-/*void MainWindow::error1(){
+void MainWindow::error1(QString text){
 	QMessageBox msgBox;
-	msgBox.setText("reinicialice/encienda el conversor.");
+    msgBox.setText(text);
 	msgBox.exec();
 }
-*/
-
-void MainWindow::closeEvent (QCloseEvent *event)
-{
-        std::cout<<"going out"<<std::endl;
-       adq.Break();
-       usleep(100);
-       //adq.~qutagadq();
-       usleep(100e3);
-       std::cout<<"destroy"<<std::endl;
-       //adq.quit();
-       //anl.quit();
 
 
-	
-       while(adq.isRunning() || anl.isRunning()|| dbc.isRunning())usleep(100);
-       usleep(1000);
-       event->accept();
+void MainWindow::closeEvent (QCloseEvent *event){
+   SaveSeason(1);
+   std::cout<<"going out"<<std::endl;
+   adq.Break();
+   usleep(100);
+   //adq.~qutagadq();
+   usleep(100e3);
+   std::cout<<"destroy"<<std::endl;
+   //adq.quit();
+   //anl.quit();
+   dbc.~DBControl();
 
 
-    //else event->ignore();
+   while(adq.isRunning() || anl.isRunning()|| dbc.isRunning())usleep(100);
+   usleep(1000);
+   event->accept();
 
-    
+//else event->ignore();
+
+}
+
+void MainWindow::Chang_in_binsinplot(int val){
+    this->in_binsinplot=val;
+    ui->HistoEndDisplay->display(in_binWidth*in_binsinplot);
+}
+
+void MainWindow::Chang_in_histStart(int val){
+    this->in_histStart=val;
+    ui->HistoEndDisplay->display(in_binWidth*in_binsinplot);
+}
+
+void MainWindow::Chang_in_binWidth(int val){
+    this->in_binWidth=val;
+    ui->HistoEndDisplay->display(in_binWidth*in_binsinplot);
+}
+
+void MainWindow::Chang_log1(int val){
+    if(val){
+        setup_log_plot(ui->PlotA);
+    }else{
+        setupHistoPlot(ui->PlotA);
+    }
+}
+
+void MainWindow::Chang_log2(int val){
+    if(val){
+        setup_log_plot(ui->PlotB);
+    }else{
+        setupHistoPlot(ui->PlotB);
+    }
+}
+
+void MainWindow::Chang_log3(int val){
+    if(val){
+        setup_log_plot(ui->PlotC);
+    }else{
+        setupHistoPlot(ui->PlotC);
+    }
+}
+
+void MainWindow::setup_log_plot(QCustomPlot *histo){
+
+    histo->yAxis->grid()->setSubGridVisible(true);
+    histo->xAxis->grid()->setSubGridVisible(true);
+    histo->yAxis->setScaleType(QCPAxis::stLogarithmic);
+    histo->yAxis2->setScaleType(QCPAxis::stLogarithmic);
+    //ui->PlotA->xAxis->setTicker(QSharedPointer<QCPAxisTickerLog>(new QCPAxisTickerLog));
+    QSharedPointer<QCPAxisTickerLog> logTicker(new QCPAxisTickerLog);
+    histo->yAxis->setTicker(logTicker);
+    histo->yAxis2->setTicker(logTicker);
+    histo->yAxis->setNumberFormat("eb"); // e = exponential, b = beautiful decimal powers
+    histo->yAxis->setNumberPrecision(0); // makes sure "1*10^4" is displayed only as "10^4"
+
+}
+
+void MainWindow::setup_comboboxes(){
+
+    ui->rof1->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->rof2->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->rof3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->rof4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+
+
+    ui->FilterType1->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->FilterType2->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->FilterType3->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+    ui->FilterType4->setStyleSheet("QComboBox { background-color: darkGray }" "QListView { color: white; }");
+
+    ui->rof1->addItem(tr("Rise"));
+    ui->rof1->addItem(tr("Fall"));
+    ui->rof2->addItem(tr("Rise"));
+    ui->rof2->addItem(tr("Fall"));
+    ui->rof3->addItem(tr("Rise"));
+    ui->rof3->addItem(tr("Fall"));
+    ui->rof4->addItem(tr("Rise"));
+    ui->rof4->addItem(tr("Fall"));
+
+    ui->FilterType1->addItem(tr("NONE"));
+    ui->FilterType1->addItem(tr("MUTE"));
+    ui->FilterType1->addItem(tr("COINC"));
+    ui->FilterType1->addItem(tr("SYNC"));
+
+    ui->FilterType2->addItem(tr("NONE"));
+    ui->FilterType2->addItem(tr("MUTE"));
+    ui->FilterType2->addItem(tr("COINC"));
+    ui->FilterType2->addItem(tr("SYNC"));
+
+    ui->FilterType3->addItem(tr("NONE"));
+    ui->FilterType3->addItem(tr("MUTE"));
+    ui->FilterType3->addItem(tr("COINC"));
+    ui->FilterType3->addItem(tr("SYNC"));
+
+    ui->FilterType4->addItem(tr("NONE"));
+    ui->FilterType4->addItem(tr("MUTE"));
+    ui->FilterType4->addItem(tr("COINC"));
+    ui->FilterType4->addItem(tr("SYNC"));
 }

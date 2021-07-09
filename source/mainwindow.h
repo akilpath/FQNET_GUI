@@ -10,6 +10,7 @@
 #include "qutag_adq.h"
 #include "qutag_anl.h"
 #include "dbcontrol.h"
+#include <math.h>
 
 namespace Ui {
 class MainWindow;
@@ -35,8 +36,9 @@ public:
   void setupratePlot_tab2(QCustomPlot *customPlot);
 
   void setupsignalslot();
+  void setupsignalslot2();
   void setupHistoPlot(QCustomPlot *customPlot);
-
+  void setup_comboboxes();
   
 
 private slots:
@@ -70,9 +72,13 @@ private slots:
   void EndC2(int val){Plot_Win_BoE[2][1][1]=val;LinePlot();}
   void EndC3(int val){Plot_Win_BoE[2][2][1]=val;LinePlot();}
 
-  void Chang_in_binsinplot(int val){this->in_binsinplot=val;}
-  void Chang_in_histStart(int val){this->in_histStart=val;}
-  void Chang_in_histEnd(int val){this->in_histEnd=val;}
+  /*void Chang_in_binsinplot(int val){this->in_binsinplot=val;ui->HistoEndDisplay->display(in_binWidth*in_binsinplot+in_histStart);}
+  void Chang_in_histStart(int val){this->in_histStart=val;ui->HistoEndDisplay->display(in_binWidth*in_binsinplot+in_histStart);}
+  void Chang_in_binWidth(int val){this->in_binWidth=val;ui->HistoEndDisplay->display(in_binWidth*in_binsinplot+in_histStart);}
+*/
+  void Chang_in_binsinplot(int val);
+  void Chang_in_histStart(int val);
+  void Chang_in_binWidth(int val);
 
   void Chang_in_adqtime(double val){this->in_adqtime=val;}
 
@@ -120,6 +126,8 @@ private slots:
 
   void SaveState(bool a);
   void LoadState(bool a);
+  void SaveSeason(bool a);
+  bool LoadPrevoiusSeason(bool a);
 
   void tab2_plot1_activate(bool val){in_tab2_plot1=val;}
   void tab2_plot2_activate(bool val){in_tab2_plot2=val;}
@@ -145,7 +153,24 @@ private slots:
 
    void chang_in_stepduration(int val){in_stepduration=val;}
 
+   void Chang_in_thch1(double val){this->in_thch1=val;}
+   void Chang_in_thch2(double val){this->in_thch2=val;}
+   void Chang_in_thch3(double val){this->in_thch3=val;}
+   void Chang_in_thch4(double val){this->in_thch4=val;}
+   void Chang_in_cw(int val){this->in_cw=val; }
 
+ /*  void Chang_rof1(QString text){if(text=="Rise")RoF[1]=1;else RoF[1]=0;}
+   void Chang_rof2(QString text){if(text=="Rise")RoF[2]=1;else RoF[2]=0;}
+   void Chang_rof3(QString text){if(text=="Rise")RoF[3]=1;else RoF[3]=0;}
+   void Chang_rof4(QString text){if(text=="Rise")RoF[4]=1;else RoF[4]=0;}*/
+
+
+   void setup_log_plot(QCustomPlot *histo);
+   void Chang_log1(int val);
+   void Chang_log2(int val);
+   void Chang_log3(int val);
+
+   void error1(QString text);
 
 private:
   Ui::MainWindow *ui;
@@ -174,7 +199,7 @@ private:
   QMap<QString, int>windows;
 
   ///general Configs////
-  int in_binsinplot, in_startChan, in_histStart, in_histEnd;
+  int in_binsinplot, in_startChan, in_binWidth, in_histStart;
   double in_adqtime;
   int in_PlotACh1, in_PlotACh2, in_PlotBCh1, in_PlotBCh2,in_PlotCCh1,in_PlotCCh2;
   /////first plot////
@@ -185,7 +210,7 @@ private:
   ////SECOND tab////
 
 
-  float adqtime_tab2;
+
   int tab2_plot[6][2]={{0}};
   int tab2_win[4][2]={{0}};
 
@@ -206,10 +231,15 @@ private:
  bool firstscan=false;
  int in_stepduration;
  double del_key, del_previouskey;
+
+ double in_thch1, in_thch2,in_thch3,in_thch4;
+ int in_cw;
+ bool RoF[5];
+ int logar[3];
 signals:
     void main_SaveAndValues(int and1, int and2, int and3, int orgate, int bsm1, int bsm2, float andTime, int delayline);
     void main_SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int Rb3, int Rc1, int Rc2, int Rc3, float hist_adqtime);
-
+    //void updatehistend(int histend);
 };
 
 #endif // MAINWINDOW_H
