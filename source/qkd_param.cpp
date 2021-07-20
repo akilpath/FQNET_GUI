@@ -47,14 +47,14 @@ void QKD_param::QKD_setDefault(){
     ui->QKD_phA->setValue(82);
     ui->QKD_iwA->setValue(43);
     ui->QKD_pxqA->setValue(3);
-    ui->QKD_zeroA->setValue(27);
+    ui->QKD_zeroA->setValue(1800);
 
     ui->QKD_timeB->setValue(212.766);
 
     ui->QKD_timeC->setValue(212.766);
 
-    ui->QKD_numbB->setValue(235);
-    ui->QKD_numbC->setValue(235);
+    ui->QKD_numbB->setValue(35);
+    ui->QKD_numbC->setValue(35);
 
     ui->QKD_phB->setValue(50);
     ui->QKD_phC->setValue(50);

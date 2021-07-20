@@ -35,7 +35,7 @@ void DBControl::DBConnect(QString server, int port, QString database, QString lo
        QSqlQuery query("create table if not exists inqnet_gui_tab2gates_V3(id int not null auto_increment primary key, and1 int,and2 int, and3 int, orgate int, bsm1 int, bsm2 int, and_adqtime float(7,2), delayline int,currentdelay double, attenuation double, datetime datetime);",db);
        QSqlQuery query2("create table if not exists inqnet_gui_historates(id int not null auto_increment primary key, Ra1 int,Ra2 int, Ra3 int, Rb1 int,Rb2 int, Rb3 int, Rc1 int,Rc2 int, Rc3 int ,hist_adqtime float(7,2), datetime datetime);",db);
        QSqlQuery query3("create table if not exists QKD_results(id int not null auto_increment primary key, det1ok int, det1err int, det1rand int, det1bkgnd int, det2ok int, det2err int, det2rand int, det2bkgnd int, det3ok int, det3err int, det3rand int, det3bkgnd int, datetime datetime)", db);
-       QSqlQuery query4("create table if not exists QKD_stats(sifted_time int, sifted_phase int, error_time int, error_phase int, datetime datetime);",db);
+       QSqlQuery query4("create table if not exists QKD_stats_V3(id int not null auto_increment primary key, sifted_time int, sifted_phase int, error_rate_time double, error_rate_phase double, datetime datetime);",db);
        usleep(1000);
     }
     else std::cout<<"connection to the database failed"<<std::cout;
@@ -78,15 +78,15 @@ void DBControl::SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int
 }
 
 void DBControl::SaveQKDresults(double okA,double errA,double randA,double bkgndA,double okB,double errB,double randB, double bkgndB,double okC,double errC,double randC,double bkgndC){
-    QString s= "insert into QKD_results(id int not null auto_increment primary key, det1ok , det1err , det1rand , det1bkgnd , det2ok , det2err , det2rand , det2bkgnd , det3ok , det3err , det3rand , det3bkgnd, datetime) values("+QString::number(okA)+","+QString::number(errA)+","+QString::number(randA)+","+QString::number(bkgndA)+","+QString::number(okB)+","+QString::number(errB)+","+QString::number(randB)+","+QString::number(bkgndB)+","+QString::number(okC)+","+QString::number(errC)+","+QString::number(randC)+","+QString::number(bkgndC)+"now());";
-    std::cout<<s.toStdString()<<std::endl;
+    QString s= "insert into QKD_results(id int not null auto_increment primary key, det1ok , det1err , det1rand , det1bkgnd , det2ok , det2err , det2rand , det2bkgnd , det3ok , det3err , det3rand , det3bkgnd, datetime) values("+QString::number(okA)+","+QString::number(errA)+","+QString::number(randA)+","+QString::number(bkgndA)+","+QString::number(okB)+","+QString::number(errB)+","+QString::number(randB)+","+QString::number(bkgndB)+","+QString::number(okC)+","+QString::number(errC)+","+QString::number(randC)+","+QString::number(bkgndC)+", now());";
+    //std::cout<<s.toStdString()<<std::endl;
     if(connection_succesfull){QSqlQuery query(s,db);
        // std::cout<<"gud"<<std::endl;
     }
 }
-void DBControl::SaveQKDstats(int sifted_time, int sifted_phase, int error_time, int error_phase){
-    QString s= "insert into QKD_stats(sifted_time, sifted_phase, error_time, error_phase, datetime) values("+QString::number(sifted_time)+","+QString::number(sifted_phase)+","+QString::number(error_time)+","+QString::number(error_phase)+","+"now());";
-    //std::cout<<s.toStdString()<<std::endl;
+void DBControl::SaveQKDstats(int sifted_time, int sifted_phase, double error_rate_time, double error_rate_phase){
+    QString s= "insert into QKD_stats_V3(sifted_time, sifted_phase, error_rate_time, error_rate_phase, datetime) values("+QString::number(sifted_time)+","+QString::number(sifted_phase)+","+QString::number(error_rate_time)+","+QString::number(error_rate_phase)+","+"now());";
+    std::cout<<s.toStdString()<<std::endl;
     if(connection_succesfull){QSqlQuery query(s,db);
        // std::cout<<"gud"<<std::endl;
     }

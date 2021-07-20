@@ -205,7 +205,9 @@ private slots:
 
   void set_qkd_datafromDB(const boolvector2d &dat,int qkdcolumns, int qkdrows);
 
-  void plot_qkd_results(double okA,double errA,double randA,double bkgndA,double okB,double errB,double randB,double bkgndB,double okC,double errC,double randC,double bkgndC, double key);
+  void plot_qkd_results_det(double okA,double errA,double randA,double bkgndA,double okB,double errB,double randB,double bkgndB,double okC,double errC,double randC,double bkgndC, double key);
+  void plot_qkd_results_QB(double okE,double errE,double randE,double bkgndE,double okL,double errL,double randL, double bkgndL,double okP,double errP,double randP,double bkgndP, double key);
+
   void plot_qkd_stats(double sifted_time, double sifted_phase, double error_time, double error_phase, double key);
 
   void hdf5savefile();
@@ -334,7 +336,7 @@ signals:
     void main_SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int Rb3, int Rc1, int Rc2, int Rc3, float hist_adqtime);
 
     void main_SaveQKDresults(double okA, double errA,double  randA, double bkgndA, double okB, double errB, double randB, double bkgndB, double okC, double errC, double randC, double bkgndC);
-    void main_SaveQKDstats(int sifted_time, int sifted_phase, int error_time, int error_phase);
+    void main_SaveQKDstats(int sifted_time, int sifted_phase, double error_time, double error_phase);
     void MW_savehdf5(QString mensaje);
     void saveH5datafromMW(const intvector datah5okA, const intvector datah5errA, const intvector datah5randA, const intvector datah5bkgndA, const intvector datah5okB, const intvector datah5errB, const intvector datah5randB, const intvector datah5bkgndB, const intvector datah5okC, const intvector datah5errC, const intvector datah5randC, const intvector datah5bkgndC);
     void tableQKDtoDB(QString text);

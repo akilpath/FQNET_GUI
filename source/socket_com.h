@@ -14,7 +14,7 @@ public:
 signals:
 
 public slots:
-    void sendDataToClient(int data);
+    void sendDataToClient(double data);
 
 private:
 
