@@ -69,8 +69,8 @@ public:
    //////tab 2 param/////////
     int xtime;
     float adqtime_tab2;
-    int tab2_plot[6][2]={{0}};
-    int tab2_win[6][2]= {{0}};
+    int tab2_plot[6][3]={{0}};
+    int tab2_win[6][3]= {{0}};
 
    // int counterplot1=0, counterplot2=0, counterplot3=0;
     int tab2_ranges[6][2][2] = {{{0}}};
@@ -126,6 +126,7 @@ public slots:
   void Chang_plot4_2(int val){this->tab2_plot[3][1]=val;updateConditions();}
   void Chang_plot5_2(int val){this->tab2_plot[4][1]=val;updateConditions();}
   void Chang_plot6_2(int val){this->tab2_plot[5][1]=val;updateConditions();}
+  void Chang_plot6_3(int val){this->tab2_plot[5][2]=val;updateConditions();}
 
   void Chang_win1_1(int val){this->tab2_win[0][0]=val;updateConditions();}
   void Chang_win1_2(int val){this->tab2_win[0][1]=val;updateConditions();}
@@ -135,6 +136,7 @@ public slots:
   void Chang_win3_2(int val){this->tab2_win[2][1]=val;updateConditions();}
   void Chang_win5_2(int val){this->tab2_win[4][1]=val;updateConditions();}
   void Chang_win6_2(int val){this->tab2_win[5][1]=val;updateConditions();}
+  void Chang_win6_3(int val){this->tab2_win[5][2]=val;updateConditions();}
 
   void Chang_adqtime_2(double val){this->adqtime_2=val;updateConditions();}
 
@@ -152,7 +154,7 @@ private:
   std::ofstream file;
   double diffh;
   int ChannelIndex=0, StopIndex=0, counterplot[6]={0};
-  int flag[6][2]= {{0}};
+  int flag[6][3]= {{0}};
   double adqtime_2=0;
   double previouskey;
   double key;

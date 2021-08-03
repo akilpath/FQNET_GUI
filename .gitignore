@@ -1,1 +1,10 @@
-*.o
+*.o*
+*Makefile
+*PROGRAM
+*moc*.cpp*
+*qrc_resources.cpp*
+*ui_mainwindow.h*
+*INQNET_GUI.pro.user*
+*mainwindow.cpp.autosave*
+*autosave*
+

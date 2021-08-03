@@ -623,6 +623,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->plot4_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot4_2(int)));
     QObject::connect(ui->plot5_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot5_2(int)));
     QObject::connect(ui->plot6_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot6_2(int)));
+    QObject::connect(ui->plot6_3, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_plot6_3(int)));
 
     QObject::connect(ui->win1_1, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win1_1(int)));
     QObject::connect(ui->win1_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win1_2(int)));
@@ -632,6 +633,7 @@ void MainWindow::setupsignalslot(){
     QObject::connect(ui->win3_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win3_2(int)));
     QObject::connect(ui->win5_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win5_2(int)));
     QObject::connect(ui->win6_2, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win6_2(int)));
+    QObject::connect(ui->win6_3, SIGNAL(valueChanged(int)), &anl, SLOT(Chang_win6_3(int)));
 
     QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(double)), &anl, SLOT(Chang_adqtime_2(double)));
     QObject::connect(ui->adqtime_2, SIGNAL(valueChanged(double)), this, SLOT(Chang_adqtime_2(double)));

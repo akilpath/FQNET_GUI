@@ -45,7 +45,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab1">
        <attribute name="title">
@@ -279,6 +279,15 @@
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </active>
                   <inactive>
                    <colorrole role="WindowText">
@@ -449,6 +458,15 @@
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </inactive>
                   <disabled>
                    <colorrole role="WindowText">
@@ -613,6 +631,15 @@
                    <colorrole role="ToolTipText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
                       <red>0</red>
                       <green>0</green>
                       <blue>0</blue>
@@ -3914,6 +3941,128 @@ background-color: rgb(136, 138, 133);</string>
                    </layout>
                   </item>
                   <item>
+                   <widget class="QLabel" name="label_146">
+                    <property name="font">
+                     <font>
+                      <pointsize>44</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(173, 127, 168);</string>
+                    </property>
+                    <property name="text">
+                     <string>&amp;</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_42">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_42">
+                      <item>
+                       <widget class="QLabel" name="label_148">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>A</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_149">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>B</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_150">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>C</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="plot5_3">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="maximum">
+                       <number>2</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="win5_3">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="maximum">
+                       <number>2</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_43">
+                      <item>
+                       <widget class="QLabel" name="label_151">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>1</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_152">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>2</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_153">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>3</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
                    <layout class="QVBoxLayout" name="verticalLayout_43">
                     <item>
                      <widget class="QLabel" name="label_100">
@@ -4129,6 +4278,128 @@ background-color: rgb(136, 138, 133);</string>
                       </item>
                       <item>
                        <widget class="QLabel" name="label_134">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>3</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_147">
+                    <property name="font">
+                     <font>
+                      <pointsize>44</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(173, 127, 168);</string>
+                    </property>
+                    <property name="text">
+                     <string>&amp;</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_48">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_44">
+                      <item>
+                       <widget class="QLabel" name="label_154">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>A</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_155">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>B</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_156">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>C</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="plot6_3">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="maximum">
+                       <number>2</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="win6_3">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="maximum">
+                       <number>2</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_51">
+                      <item>
+                       <widget class="QLabel" name="label_157">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>1</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_158">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(238, 238, 236);</string>
+                        </property>
+                        <property name="text">
+                         <string>2</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_159">
                         <property name="styleSheet">
                          <string notr="true">color: rgb(238, 238, 236);</string>
                         </property>
@@ -4873,7 +5144,7 @@ color: rgb(238, 238, 236);</string>
      <x>0</x>
      <y>0</y>
      <width>1500</width>
-     <height>28</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="font">

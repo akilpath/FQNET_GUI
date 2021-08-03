@@ -79,9 +79,7 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
                     diffh = vectorTimetags[j]-vectorTimetags[i];
                    //if(i<50)std::cout<<"channel " <<(int)vectorChannels[i]<<" and " <<(int)vectorChannels[j]<<"   |||   diff  "<<diffh+in_histStart<<std::endl;
                             for (int ii=0; ii<6; ii++) {//over the 6 curves of tab2
-                                for (int jj=0; jj<2; jj++) {//check the condition of at one side of the &
-                                    //if(ii<3 || (ii==4 && jj==1)){
-                                   //if(ii==4 && jj==1) std::cout<<"tab 2 plot   :  "<<tab2_plot[ii][jj]<<std::endl;
+                                for (int jj=0; jj<3; jj++) {//check the condition of at one side of the &
                                         if(tab2_plot[ii][jj] == 0 && StopIndex == in_PlotACh2){
                                            // if(diffh+in_histStart>tab2_ranges[ii][jj][0] && diffh+in_histStart<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
                                             if(diffh>tab2_ranges[ii][jj][0] && diffh<tab2_ranges[ii][jj][1])flag[ii][jj]=true;
@@ -98,9 +96,9 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
                                             //if(i<50)if(ii==0) std::cout<<"ranges  :"<<tab2_ranges[ii][jj][0]<<"   "<<tab2_ranges[ii][jj][1]<<"  \\  "<< diffh+in_histStart<<"   "<<jj<<std::endl;
                                         }
 
-                                   // }
-
                                 }
+
+
                                // if(i<50)if(ii==0)std::cout<<flag[ii][0]<<"    "<<flag[ii][1]<<std::endl;
                             }
 
@@ -114,14 +112,13 @@ void qutaganl::timestampANL(const vectorInt64 &vectorTimetags, const vectorInt8 
                 flag[5][0]= flag[3][0] || flag[3][1];
 
                 for (int ii=0; ii<6; ii++) {//over the 3 curves of tab2
-                     if(ii!=3)if(flag[ii][0] && flag[ii][1])counterplot[ii]++;
+                     if(ii==0 || ii ==1 || ii==2)if(flag[ii][0] && flag[ii][1])counterplot[ii]++;
                      if(ii==3)if(flag[ii][0] || flag[ii][1])counterplot[ii]++;
-                     //if(ii==4)if(flag[ii][1])counterplot[ii]++;
-                     //if(i<50)if(ii==0)std::cout<<"------------------"<<std::endl;
+                     if(ii==4 || ii==5)if(flag[ii][0] && flag[ii][1] && flag[ii][2] )counterplot[ii]++;
                     }
 
                 for (int ii=0; ii<6; ii++) {//over the 3 curves of tab2
-                     flag[ii][0]=0;flag[ii][1]=0;
+                     flag[ii][0]=0;flag[ii][1]=0;flag[ii][2]=0;
 
                     }
             }
@@ -158,9 +155,9 @@ void qutaganl::updateConditions(){
     //while(anlbusy){std::cout<<"quechuchawn:"<<std::endl;}
    emit CombinationChange(true);
     for (int ii=0; ii<6; ii++) {//recorro los graficos
-        for (int jj=0; jj<2; jj++) {//recorro A & B
+        for (int jj=0; jj<3; jj++) {//recorro A & B y C
             for (int k=0 ;k<2;k++) {//recorro inicio o fin
-                if(ii<3 || (ii==4 && jj==1) || (ii==5 && jj==1) )tab2_ranges[ii][jj][k] = Plot_Win_BoE[ tab2_plot[ii][jj] ][ tab2_win[ii][jj] ][k];
+                if(ii<3 || (ii==4 && (jj==1 || jj==2)) || (ii==5 && (jj==1 || jj==2)) )tab2_ranges[ii][jj][k] = Plot_Win_BoE[ tab2_plot[ii][jj] ][ tab2_win[ii][jj] ][k];
                 //if(ii==4 && jj==1)tab2_ranges[ii][jj][k] = Plot_Win_BoE[ tab2_plot[ii][jj] ][ tab2_win[ii][jj] ][k];
 
             }
