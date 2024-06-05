@@ -1004,6 +1004,10 @@ void MainWindow::histoplot(const vectorDouble &datA, const vectorDouble &datB, c
 	
 }
 
+void calculate_offset(const QVector<double> &data){
+    
+}
+
 
 void MainWindow::LinePlot(){
 

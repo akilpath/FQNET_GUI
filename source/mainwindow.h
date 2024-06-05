@@ -236,6 +236,8 @@ private:
  int in_cw;
  bool RoF[5];
  int logar[3];
+
+ void calculate_offset(const QVector<double> &data);
 signals:
     void main_SaveAndValues(int and1, int and2, int and3, int orgate, int bsm1, int bsm2, float andTime, int delayline);
     void main_SaveRateValues( int Ra1, int Ra2, int Ra3, int Rb1, int Rb2, int Rb3, int Rc1, int Rc2, int Rc3, float hist_adqtime);
